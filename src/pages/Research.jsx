@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import SectionWrapper from '@/components/shared/SectionWrapper'
 import ResearchCard from '@/components/shared/ResearchCard'
@@ -11,6 +12,8 @@ const researchAreas = [
 ]
 
 export default function Research() {
+  useEffect(() => { document.title = 'Research — DORA Research' }, [])
+
   return (
     <div className="bg-[#FAFAFA]">
       <section className="max-w-6xl mx-auto px-6 pt-32 md:pt-44 pb-24 md:pb-32">

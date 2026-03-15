@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import SectionWrapper from '@/components/shared/SectionWrapper'
 
@@ -30,6 +31,8 @@ const sections = [
 ]
 
 export default function About() {
+  useEffect(() => { document.title = 'About — DORA Research' }, [])
+
   return (
     <div className="bg-[#FAFAFA]">
       <section className="max-w-6xl mx-auto px-6 pt-32 md:pt-44 pb-24 md:pb-32">

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import SectionWrapper from '@/components/shared/SectionWrapper'
@@ -22,6 +23,8 @@ const researchAreas = [
 ]
 
 export default function Home() {
+  useEffect(() => { document.title = 'DORA Research — AI That Executes' }, [])
+
   return (
     <div className="bg-[#FAFAFA]">
       <section className="max-w-6xl mx-auto px-6 pt-32 md:pt-44 pb-24 md:pb-32">
