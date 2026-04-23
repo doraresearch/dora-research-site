@@ -1,5 +1,5 @@
 export default function SectionWrapper({ children, className = '', surface = 'default' }) {
-  const bg = surface === 'card' ? 'bg-card' : 'bg-paper'
+  const bg = surface === 'card' ? 'bg-card' : 'bg-transparent'
 
   return (
     <div className={`${bg} border-t border-border ${className}`}>

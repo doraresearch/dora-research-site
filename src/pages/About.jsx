@@ -43,7 +43,7 @@ export default function About() {
   useEffect(() => { document.title = 'About — DORA Research' }, [])
 
   return (
-    <div className="bg-paper">
+    <div>
       <section className="max-w-6xl mx-auto px-6 pt-40 md:pt-56 pb-24 md:pb-32">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

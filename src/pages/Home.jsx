@@ -32,7 +32,7 @@ export default function Home() {
   useEffect(() => { document.title = 'DORA Research — AI That Executes' }, [])
 
   return (
-    <div className="bg-paper">
+    <div>
       <section className="max-w-6xl mx-auto px-6 pt-40 md:pt-56 pb-24 md:pb-32 relative">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -184,16 +184,49 @@ export default function Home() {
       </SectionWrapper>
 
       <SectionWrapper surface="card">
-        <div className="max-w-3xl">
-          <Eyebrow>§ V &nbsp;·&nbsp; Vision</Eyebrow>
-          <h2 className="font-serif text-4xl md:text-6xl text-ink tracking-[-0.01em] leading-[1.08] mb-10 max-w-[20ch]">
-            From assistants to <em className="italic text-ochre">operators</em>.
-          </h2>
-          <div className="space-y-6 border-l-2 border-ochre pl-8">
-            <p className="font-serif text-xl md:text-2xl text-body leading-[1.4]">The first generation of AI helped users find information.</p>
-            <p className="font-serif text-xl md:text-2xl text-ink leading-[1.4]">The next generation will help users execute work.</p>
-            <p className="font-serif text-xl md:text-2xl text-body leading-[1.4]">DORA Research is building the foundations for that shift.</p>
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,2fr)_1fr] gap-12 lg:gap-20 items-start">
+          <div>
+            <Eyebrow>§ V &nbsp;·&nbsp; Vision</Eyebrow>
+            <h2 className="font-serif text-4xl md:text-6xl text-ink tracking-[-0.01em] leading-[1.08] mb-10 max-w-[20ch]">
+              From assistants to <em className="italic text-ochre">operators</em>.
+            </h2>
+            <div className="space-y-6 border-l-2 border-ochre pl-8">
+              <p className="font-serif text-xl md:text-2xl text-body leading-[1.4]">The first generation of AI helped users find information.</p>
+              <p className="font-serif text-xl md:text-2xl text-ink leading-[1.4]">The next generation will help users execute work.</p>
+              <p className="font-serif text-xl md:text-2xl text-body leading-[1.4]">DORA Research is building the foundations for that shift.</p>
+            </div>
           </div>
+          <aside className="lg:pt-24">
+            <figure>
+              <div className="flex items-baseline justify-between pb-3 mb-5 border-b border-border">
+                <p className="font-mono text-[10px] tracking-[0.14em] uppercase">
+                  <span className="text-ochre font-medium">Fig 3</span>
+                  <span className="text-ink-muted">&nbsp;·&nbsp;&nbsp;σ(x) = 1 / (1 + e⁻ˣ)</span>
+                </p>
+              </div>
+              <svg viewBox="0 0 240 160" fill="none" className="w-full h-auto">
+                <g stroke="#0A0A0A" strokeWidth="1" fill="none">
+                  <line x1="30" y1="15" x2="30" y2="140"/>
+                  <line x1="30" y1="140" x2="225" y2="140"/>
+                  <line x1="27" y1="30" x2="33" y2="30"/>
+                  <line x1="27" y1="85" x2="33" y2="85"/>
+                  <line x1="125" y1="137" x2="125" y2="143"/>
+                  <path d="M35 135 C 70 135, 100 128, 125 85 C 150 42, 180 32, 220 32" strokeWidth="1.25" stroke="#B08A3E"/>
+                  <circle cx="125" cy="85" r="3" fill="#B08A3E" stroke="none"/>
+                </g>
+                <g fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#5A5A5A" letterSpacing="1">
+                  <text x="12" y="34">1</text>
+                  <text x="12" y="89">½</text>
+                  <text x="12" y="142">0</text>
+                  <text x="121" y="155" textAnchor="middle">0</text>
+                </g>
+                <text x="140" y="65" fontFamily="Instrument Serif, serif" fontStyle="italic" fontSize="14" fill="#0A0A0A">σ(x)</text>
+              </svg>
+              <figcaption className="mt-4 text-xs text-body leading-relaxed">
+                Assistant → operator: a continuous transition, not a binary flip. The midpoint is where AI begins to act, not only answer.
+              </figcaption>
+            </figure>
+          </aside>
         </div>
       </SectionWrapper>
 
