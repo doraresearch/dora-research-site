@@ -555,6 +555,7 @@ export default function BackgroundIcons() {
     <div
       ref={layerRef}
       aria-hidden="true"
+      className="opacity-60 md:opacity-100"
       style={{
         position: 'absolute',
         inset: 0,
