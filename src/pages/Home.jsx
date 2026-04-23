@@ -300,6 +300,12 @@ export default function Home() {
             <p className="text-base text-body leading-relaxed">
               We are working toward practical implementations while continuing to refine the underlying model.
             </p>
+            <div className="pt-6 border-t border-border">
+              <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-ink-muted mb-4 font-medium">Founder</p>
+              <p className="text-base text-body leading-relaxed">
+                DORA Research was founded by <span className="text-ink font-medium">John Brackens</span>, a technology and product executive with two decades of work in gaming, environments that require orchestrated execution across operators, analysts, and end-users. Previously at EveryMatrix Software and Esports Entertainment Group, with earlier roles at Activision Blizzard and DataBet.
+              </p>
+            </div>
           </div>
         </div>
       </SectionWrapper>
