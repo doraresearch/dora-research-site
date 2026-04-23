@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom'
-
 export default function Footer() {
   return (
     <footer className="border-t border-border mt-32">
@@ -10,15 +8,13 @@ export default function Footer() {
               <span className="text-ochre">§</span>&nbsp;&nbsp;DORA Research
             </p>
             <p className="text-body text-sm mt-4 max-w-xs leading-relaxed">
-              An applied AI lab building systems that turn intelligence into execution.
+              An AI research lab focused on systems that operate inside real environments.
             </p>
           </div>
-          <nav className="flex gap-8 items-start flex-wrap">
-            <Link to="/" className="text-sm text-body hover:text-ink transition-colors">Home</Link>
-            <Link to="/thesis" className="text-sm text-body hover:text-ink transition-colors">Thesis</Link>
-            <Link to="/research" className="text-sm text-body hover:text-ink transition-colors">Research</Link>
-            <Link to="/about" className="text-sm text-body hover:text-ink transition-colors">About</Link>
-          </nav>
+          <div className="max-w-xs text-sm text-body leading-relaxed">
+            <p className="text-ink font-medium mb-2">Positioning statement</p>
+            <p>This site outlines what we believe, how we think AI systems should be built, and why this direction matters now.</p>
+          </div>
         </div>
         <div className="mt-16 pt-8 border-t border-border flex items-baseline justify-between">
           <p className="font-mono text-[11px] tracking-[0.12em] uppercase text-ink-muted">© 2026 DORA Research, Inc.</p>
