@@ -4,18 +4,29 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        inter: ['var(--font-inter)'],
+        serif: ['var(--font-serif)'],
+        sans: ['var(--font-sans)'],
+        mono: ['var(--font-mono)'],
       },
       borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        none: '0',
+        sm: '0',
+        md: '0',
+        lg: '0',
       },
       colors: {
+        paper: '#F6F3EC',
+        ink: '#0A0A0A',
+        body: '#5A5A5A',
+        'ink-muted': '#8C8A84',
+        ochre: {
+          DEFAULT: '#B08A3E',
+          hover: '#9A7934',
+        },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
-          DEFAULT: 'hsl(var(--card))',
+          DEFAULT: '#FBFAF5',
           foreground: 'hsl(var(--card-foreground))',
         },
         popover: {
@@ -37,12 +48,14 @@ export default {
         accent: {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
+          hover: '#9A7934',
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
         },
-        border: 'hsl(var(--border))',
+        border: 'rgba(10,10,10,0.12)',
+        'border-strong': 'rgba(10,10,10,0.24)',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
       },

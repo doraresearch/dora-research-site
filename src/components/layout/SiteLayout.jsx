@@ -5,13 +5,15 @@ import BackgroundIcons from '../shared/BackgroundIcons'
 
 export default function SiteLayout() {
   return (
-    <div className="min-h-screen bg-[#FAFAFA]">
+    <div className="min-h-screen bg-paper relative">
       <BackgroundIcons />
-      <Header />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
+      <div className="relative" style={{ zIndex: 1 }}>
+        <Header />
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     </div>
   )
 }
