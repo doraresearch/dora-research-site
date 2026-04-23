@@ -1,9 +1,10 @@
 export default function ConceptCard({ title, text, index }) {
+  const roman = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII']
   return (
-    <div className="bg-white border border-black/[0.07] rounded-2xl p-8 hover:border-black/[0.14] hover:shadow-[0_4px_16px_rgba(0,0,0,0.05)] transition-all duration-200 flex flex-col gap-4">
-      <span className="text-[10px] text-[#9CA3AF] font-mono">{String(index).padStart(2, '0')}</span>
-      <h3 className="text-base font-semibold text-[#111111] tracking-tight">{title}</h3>
-      <p className="text-sm text-[#6B7280] leading-relaxed">{text}</p>
+    <div className="bg-card border border-border p-8 flex flex-col gap-4 transition-colors duration-200 hover:border-border-strong">
+      <span className="font-mono text-[10px] tracking-[0.14em] uppercase text-ochre font-medium">§ {roman[index - 1] || index}</span>
+      <h3 className="font-serif text-xl text-ink leading-tight">{title}</h3>
+      <p className="text-sm text-body leading-relaxed">{text}</p>
     </div>
   )
 }

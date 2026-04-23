@@ -6,6 +6,8 @@ const steps = [
   { label: 'Feedback', sub: 'Verify & adapt' },
 ]
 
+const roman = ['I', 'II', 'III', 'IV', 'V']
+
 export default function ExecutionDiagram() {
   return (
     <div className="w-full overflow-x-auto">
@@ -13,17 +15,17 @@ export default function ExecutionDiagram() {
         {steps.map((step, i) => (
           <div key={step.label} className="contents">
             <div className="flex flex-col items-center">
-              <div className="w-28 md:w-32 bg-white border border-black/[0.1] rounded-xl px-4 py-3 flex flex-col items-center shadow-[0_1px_3px_rgba(0,0,0,0.05)] hover:border-black/[0.2] hover:shadow-[0_2px_8px_rgba(0,0,0,0.07)] transition-all duration-200">
-                <span className="text-[10px] text-[#6B7280] font-mono mb-1.5">{String(i + 1).padStart(2, '0')}</span>
-                <span className="text-xs font-semibold text-[#111111] tracking-wide">{step.label}</span>
-                <span className="text-[10px] text-[#9CA3AF] mt-1 text-center leading-tight">{step.sub}</span>
+              <div className="w-28 md:w-32 bg-paper border border-border-strong px-4 py-4 flex flex-col items-center transition-colors duration-200 hover:bg-card">
+                <span className="font-mono text-[10px] text-ochre tracking-[0.16em] mb-2 font-medium">{roman[i]}</span>
+                <span className="text-xs font-medium text-ink tracking-wide">{step.label}</span>
+                <span className="font-mono text-[9px] text-ink-muted mt-1 tracking-wider text-center leading-tight uppercase">{step.sub}</span>
               </div>
             </div>
             {i < steps.length - 1 && (
-              <div className="flex items-center mx-1 mb-1">
-                <div className="w-5 md:w-8 h-px bg-black/[0.12]" />
+              <div className="flex items-center mx-1">
+                <div className="w-5 md:w-8 h-px bg-border-strong" />
                 <svg width="5" height="8" viewBox="0 0 6 10" fill="none" className="flex-shrink-0">
-                  <path d="M1 1L5 5L1 9" stroke="#9CA3AF" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M1 1L5 5L1 9" stroke="rgba(10,10,10,0.4)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
             )}

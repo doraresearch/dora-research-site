@@ -5,7 +5,7 @@ import BackgroundIcons from '../shared/BackgroundIcons'
 
 export default function SiteLayout() {
   return (
-    <div className="min-h-screen bg-[#FAFAFA]">
+    <div className="min-h-screen bg-paper">
       <BackgroundIcons />
       <Header />
       <main>

@@ -22,72 +22,81 @@ const researchAreas = [
   { title: 'Human–AI Collaboration', text: 'Shared control between people and intelligent systems in complex workflows.' },
 ]
 
+const Eyebrow = ({ children, accent = false }) => (
+  <p className={`font-mono text-[11px] tracking-[0.14em] uppercase mb-6 font-medium ${accent ? 'text-ochre' : 'text-ink-muted'}`}>
+    {children}
+  </p>
+)
+
 export default function Home() {
   useEffect(() => { document.title = 'DORA Research — AI That Executes' }, [])
 
   return (
-    <div className="bg-[#FAFAFA]">
-      <section className="max-w-6xl mx-auto px-6 pt-32 md:pt-44 pb-24 md:pb-32">
+    <div className="bg-paper">
+      <section className="max-w-6xl mx-auto px-6 pt-40 md:pt-56 pb-24 md:pb-32 relative">
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-[11px] font-semibold text-[#9CA3AF] uppercase tracking-[0.18em] mb-10">DORA Research</p>
-          <h1 className="text-5xl md:text-7xl lg:text-[84px] font-semibold text-[#111111] tracking-[-0.02em] leading-[1.04] mb-8 max-w-4xl">
-            AI that executes.
+          <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-ochre mb-12 font-medium">
+            DORA Research &nbsp;·&nbsp; Working paper &nbsp;·&nbsp; 2026.04
+          </p>
+          <h1 className="font-serif text-6xl md:text-8xl lg:text-[112px] font-normal text-ink tracking-[-0.015em] leading-[1.02] mb-10 max-w-[14ch]">
+            AI that <em className="italic text-ochre">executes</em>.
           </h1>
-          <p className="text-xl md:text-2xl text-[#111111] max-w-xl leading-relaxed mb-3 font-medium tracking-tight">
+          <p className="text-xl md:text-2xl text-ink max-w-xl leading-[1.45] mb-4 font-medium tracking-[-0.005em]">
             DORA Research is an applied AI lab building AI-native systems that turn intelligence into execution.
           </p>
-          <p className="text-base text-[#6B7280] max-w-md leading-relaxed mb-12">
+          <p className="text-base text-body max-w-md leading-relaxed mb-12">
             Most AI systems stop at answers.<br />
             We build systems that execute real-world workflows.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
               to="/thesis"
-              className="inline-flex items-center px-5 py-2.5 bg-[#111111] text-white text-sm font-medium rounded-lg hover:bg-[#2563EB] transition-colors duration-200"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-ink text-paper text-sm font-medium hover:bg-ochre transition-colors duration-200"
             >
-              Our Thesis
+              Our Thesis <span aria-hidden="true">→</span>
             </Link>
             <Link
               to="/research"
-              className="inline-flex items-center px-5 py-2.5 bg-white border border-black/[0.12] text-[#111111] text-sm font-medium rounded-lg hover:border-black/[0.24] transition-colors duration-200"
+              className="inline-flex items-center px-6 py-3 bg-transparent border border-border-strong text-ink text-sm font-medium hover:border-ink transition-colors duration-200"
             >
               Research
             </Link>
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-20 md:mt-28 bg-white border border-black/[0.07] rounded-2xl p-8 md:p-12 shadow-[0_1px_4px_rgba(0,0,0,0.04)]"
-        >
-          <p className="text-[11px] font-semibold text-[#9CA3AF] uppercase tracking-[0.16em] mb-8">Execution architecture</p>
+        <div className="mt-24 md:mt-32 bg-card border border-border p-8 md:p-12">
+          <div className="flex items-baseline justify-between pb-4 mb-10 border-b border-border">
+            <p className="font-mono text-[11px] tracking-[0.14em] uppercase">
+              <span className="text-ochre font-medium">Fig 1</span>
+              <span className="text-ink-muted">&nbsp;·&nbsp;&nbsp;Execution architecture</span>
+            </p>
+            <p className="font-mono text-[11px] tracking-[0.12em] uppercase text-ink">Operator model</p>
+          </div>
           <ExecutionDiagram />
-        </motion.div>
+        </div>
       </section>
 
-      <SectionWrapper surface="white">
+      <SectionWrapper surface="card">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-0">
           <div>
-            <p className="text-[11px] font-semibold text-[#9CA3AF] uppercase tracking-[0.16em] mb-6">The execution gap</p>
-            <h2 className="text-3xl md:text-4xl font-semibold text-[#111111] tracking-[-0.015em] leading-tight mb-8">
-              The gap between intelligence and execution
+            <Eyebrow>§ I &nbsp;·&nbsp; The execution gap</Eyebrow>
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-ink tracking-[-0.01em] leading-[1.08] mb-8 max-w-[18ch]">
+              The gap between intelligence and execution.
             </h2>
           </div>
           <div className="space-y-5 lg:pt-14">
-            <p className="text-base text-[#6B7280] leading-relaxed">
+            <p className="text-base text-body leading-relaxed">
               Modern AI systems are increasingly capable of answering questions, summarizing information, and generating recommendations.
             </p>
-            <p className="text-base text-[#111111] leading-relaxed font-medium">But real work requires more than reasoning.</p>
-            <p className="text-base text-[#6B7280] leading-relaxed">
+            <p className="text-base text-ink leading-relaxed font-medium">But real work requires more than reasoning.</p>
+            <p className="text-base text-body leading-relaxed">
               Execution requires structured context, persistent memory, coordination across tools, and action inside real environments.
             </p>
-            <p className="text-base text-[#6B7280] leading-relaxed">DORA Research exists to help close that gap.</p>
+            <p className="text-base text-body leading-relaxed">DORA Research exists to help close that gap.</p>
           </div>
         </div>
         <ComparisonBlock
@@ -97,41 +106,45 @@ export default function Home() {
       </SectionWrapper>
 
       <SectionWrapper surface="default">
-        <p className="text-[11px] font-semibold text-[#9CA3AF] uppercase tracking-[0.16em] mb-6">Thesis</p>
-        <h2 className="text-3xl md:text-4xl font-semibold text-[#111111] tracking-[-0.015em] leading-tight mb-6 max-w-xl">
-          AI should execute workflows.
+        <Eyebrow>§ II &nbsp;·&nbsp; Thesis</Eyebrow>
+        <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-ink tracking-[-0.01em] leading-[1.08] mb-8 max-w-[18ch]">
+          AI should <em className="italic text-ochre">execute</em> workflows.
         </h2>
         <div className="max-w-2xl space-y-4 mb-14">
-          <p className="text-base text-[#6B7280] leading-relaxed">
+          <p className="text-base text-body leading-relaxed">
             The first generation of AI systems focused on information retrieval and generation.
           </p>
-          <p className="text-base text-[#6B7280] leading-relaxed">The next generation must focus on execution.</p>
-          <p className="text-base text-[#6B7280] leading-relaxed">
+          <p className="text-base text-body leading-relaxed">The next generation must focus on execution.</p>
+          <p className="text-base text-body leading-relaxed">
             AI systems should be able to interpret complex environments, coordinate tools and data sources, and safely perform actions inside real workflows.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-l border-border">
           {thesisCards.map((card, i) => (
-            <ConceptCard key={card.title} title={card.title} text={card.text} index={i + 1} />
+            <div key={card.title} className="border-r border-b border-border -mt-px -ml-px">
+              <ConceptCard title={card.title} text={card.text} index={i + 1} />
+            </div>
           ))}
         </div>
       </SectionWrapper>
 
-      <SectionWrapper surface="white">
+      <SectionWrapper surface="card">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-14">
           <div>
-            <p className="text-[11px] font-semibold text-[#9CA3AF] uppercase tracking-[0.16em] mb-6">Research</p>
-            <h2 className="text-3xl md:text-4xl font-semibold text-[#111111] tracking-[-0.015em] leading-tight">Research areas</h2>
+            <Eyebrow>§ III &nbsp;·&nbsp; Research</Eyebrow>
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-ink tracking-[-0.01em] leading-[1.08]">Research areas.</h2>
           </div>
           <div className="lg:pt-14">
-            <p className="text-base text-[#6B7280] leading-relaxed">
+            <p className="text-base text-body leading-relaxed">
               DORA Research focuses on the systems and architectures required to make AI execution possible.
             </p>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-border">
           {researchAreas.map((area, i) => (
-            <ResearchCard key={area.title} title={area.title} text={area.text} index={i + 1} />
+            <div key={area.title} className="border-r border-b border-border -mt-px -ml-px">
+              <ResearchCard title={area.title} text={area.text} index={i + 1} />
+            </div>
           ))}
         </div>
       </SectionWrapper>
@@ -139,62 +152,68 @@ export default function Home() {
       <SectionWrapper surface="default">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
           <div>
-            <p className="text-[11px] font-semibold text-[#9CA3AF] uppercase tracking-[0.16em] mb-6">Applied research</p>
-            <h2 className="text-3xl md:text-4xl font-semibold text-[#111111] tracking-[-0.015em] leading-tight mb-8">
-              From research to real systems
+            <Eyebrow>§ IV &nbsp;·&nbsp; Applied research</Eyebrow>
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-ink tracking-[-0.01em] leading-[1.08] mb-8 max-w-[18ch]">
+              From research to real systems.
             </h2>
             <div className="space-y-4">
-              <p className="text-base text-[#6B7280] leading-relaxed">
+              <p className="text-base text-body leading-relaxed">
                 DORA Research operates at the intersection of applied artificial intelligence, systems engineering, and workflow design.
               </p>
-              <p className="text-base text-[#6B7280] leading-relaxed">
+              <p className="text-base text-body leading-relaxed">
                 Our goal is to translate advances in AI into systems that can operate reliably in real environments.
               </p>
-              <p className="text-base text-[#111111] leading-relaxed font-medium">
+              <p className="text-base text-ink leading-relaxed font-medium">
                 We focus on systems that do work, not just systems that describe it.
               </p>
             </div>
           </div>
           <div className="flex items-center">
-            <div className="w-full bg-white border border-black/[0.07] rounded-2xl p-8 md:p-10 shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
-              <p className="text-[11px] font-semibold text-[#9CA3AF] uppercase tracking-[0.16em] mb-8">Pipeline</p>
+            <div className="w-full bg-card border border-border p-8 md:p-10">
+              <div className="flex items-baseline justify-between pb-4 mb-10 border-b border-border">
+                <p className="font-mono text-[11px] tracking-[0.14em] uppercase">
+                  <span className="text-ochre font-medium">Fig 2</span>
+                  <span className="text-ink-muted">&nbsp;·&nbsp;&nbsp;Pipeline</span>
+                </p>
+                <p className="font-mono text-[11px] tracking-[0.12em] uppercase text-ink">Research → Execution</p>
+              </div>
               <LinearDiagram steps={['Research', 'Architecture', 'System', 'Execution']} />
             </div>
           </div>
         </div>
       </SectionWrapper>
 
-      <SectionWrapper surface="white">
+      <SectionWrapper surface="card">
         <div className="max-w-3xl">
-          <p className="text-[11px] font-semibold text-[#9CA3AF] uppercase tracking-[0.16em] mb-8">Vision</p>
-          <h2 className="text-3xl md:text-5xl font-semibold text-[#111111] tracking-[-0.015em] leading-tight mb-10">
-            From assistants to operators
+          <Eyebrow>§ V &nbsp;·&nbsp; Vision</Eyebrow>
+          <h2 className="font-serif text-4xl md:text-6xl text-ink tracking-[-0.01em] leading-[1.08] mb-10 max-w-[20ch]">
+            From assistants to <em className="italic text-ochre">operators</em>.
           </h2>
-          <div className="space-y-6 border-l-2 border-black/[0.08] pl-8">
-            <p className="text-lg text-[#6B7280] leading-relaxed">The first generation of AI helped users find information.</p>
-            <p className="text-lg text-[#111111] leading-relaxed font-medium">The next generation will help users execute work.</p>
-            <p className="text-lg text-[#6B7280] leading-relaxed">DORA Research is building the foundations for that shift.</p>
+          <div className="space-y-6 border-l-2 border-ochre pl-8">
+            <p className="font-serif text-xl md:text-2xl text-body leading-[1.4]">The first generation of AI helped users find information.</p>
+            <p className="font-serif text-xl md:text-2xl text-ink leading-[1.4]">The next generation will help users execute work.</p>
+            <p className="font-serif text-xl md:text-2xl text-body leading-[1.4]">DORA Research is building the foundations for that shift.</p>
           </div>
         </div>
       </SectionWrapper>
 
       <SectionWrapper surface="default">
-        <div className="bg-white border border-black/[0.07] rounded-2xl p-10 md:p-14 lg:p-16 shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
-          <p className="text-[11px] font-semibold text-[#9CA3AF] uppercase tracking-[0.16em] mb-6">About</p>
-          <h2 className="text-2xl md:text-3xl font-semibold text-[#111111] tracking-[-0.015em] leading-tight mb-6 max-w-xl">
-            An applied AI and software research lab
+        <div className="bg-card border border-border p-10 md:p-14 lg:p-16">
+          <Eyebrow>§ VI &nbsp;·&nbsp; About</Eyebrow>
+          <h2 className="font-serif text-3xl md:text-4xl text-ink tracking-[-0.005em] leading-tight mb-8 max-w-xl">
+            An applied AI and software research lab.
           </h2>
           <div className="max-w-2xl space-y-4 mb-10">
-            <p className="text-base text-[#6B7280] leading-relaxed">
+            <p className="text-base text-body leading-relaxed">
               DORA Research is focused on building AI-native systems designed for real-world execution.
             </p>
-            <p className="text-base text-[#6B7280] leading-relaxed">
+            <p className="text-base text-body leading-relaxed">
               Our work explores how AI can move beyond generating answers and toward executing complex workflows safely and reliably.
             </p>
           </div>
-          <Link to="/about" className="inline-flex items-center gap-2 text-sm font-medium text-[#111111] hover:text-[#2563EB] transition-colors duration-200">
+          <Link to="/about" className="inline-flex items-center gap-2 text-sm font-medium text-ink hover:text-ochre transition-colors duration-200">
             About DORA Research
-            <span>→</span>
+            <span aria-hidden="true">→</span>
           </Link>
         </div>
       </SectionWrapper>

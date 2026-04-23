@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 
-const iconColor = 'rgba(0,0,0,0.04)'
-const sw = 0.75
+const iconColor = 'rgba(10,10,10,0.035)'
+const sw = 0.6
 
 const icons = [
   {
@@ -165,9 +165,9 @@ const icons = [
     svg: (
       <svg viewBox="0 0 200 200" fill="none">
         <g stroke={iconColor} strokeWidth={sw} strokeLinecap="round">
-          <rect x="20" y="80" width="35" height="35" rx="4"/>
-          <rect x="82" y="80" width="35" height="35" rx="4"/>
-          <rect x="145" y="80" width="35" height="35" rx="4"/>
+          <rect x="20" y="80" width="35" height="35"/>
+          <rect x="82" y="80" width="35" height="35"/>
+          <rect x="145" y="80" width="35" height="35"/>
           <line x1="55" y1="97" x2="82" y2="97"/>
           <line x1="76" y1="93" x2="82" y2="97"/>
           <line x1="76" y1="101" x2="82" y2="97"/>

@@ -26,12 +26,12 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-[#FAFAFA]/90 backdrop-blur-md border-b border-black/[0.08]' : 'bg-transparent'
+        scrolled ? 'bg-paper/90 backdrop-blur-md border-b border-border' : 'bg-transparent'
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link to="/" className="text-[#111111] font-semibold text-base tracking-tight select-none">
-          DORA Research
+        <Link to="/" className="font-mono text-[12px] tracking-[0.12em] uppercase text-ink font-medium select-none">
+          <span className="text-ochre">§</span>&nbsp;&nbsp;DORA Research
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -42,7 +42,7 @@ export default function Header() {
                 key={link.path}
                 to={link.path}
                 className={`text-sm transition-colors duration-200 ${
-                  isActive ? 'text-[#111111] font-medium' : 'text-[#6B7280] hover:text-[#111111]'
+                  isActive ? 'text-ink font-medium' : 'text-body hover:text-ink'
                 }`}
               >
                 {link.label}
@@ -56,21 +56,21 @@ export default function Header() {
           onClick={() => setMobileOpen((value) => !value)}
           aria-label="Toggle menu"
         >
-          <span className={`block w-5 h-px bg-[#111111] transition-all duration-200 ${mobileOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
-          <span className={`block w-5 h-px bg-[#111111] transition-all duration-200 ${mobileOpen ? 'opacity-0' : ''}`} />
-          <span className={`block w-5 h-px bg-[#111111] transition-all duration-200 ${mobileOpen ? '-rotate-45 -translate-y-[6px]' : ''}`} />
+          <span className={`block w-5 h-px bg-ink transition-all duration-200 ${mobileOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
+          <span className={`block w-5 h-px bg-ink transition-all duration-200 ${mobileOpen ? 'opacity-0' : ''}`} />
+          <span className={`block w-5 h-px bg-ink transition-all duration-200 ${mobileOpen ? '-rotate-45 -translate-y-[6px]' : ''}`} />
         </button>
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden bg-[#FAFAFA] border-b border-black/[0.08] px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-paper border-b border-border px-6 py-4 flex flex-col gap-4">
           {navLinks.map((link) => {
             const isActive = link.path === '/' ? location.pathname === '/' : location.pathname.startsWith(link.path)
             return (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm py-1 transition-colors ${isActive ? 'text-[#111111] font-medium' : 'text-[#6B7280]'}`}
+                className={`text-sm py-1 transition-colors ${isActive ? 'text-ink font-medium' : 'text-body'}`}
               >
                 {link.label}
               </Link>
