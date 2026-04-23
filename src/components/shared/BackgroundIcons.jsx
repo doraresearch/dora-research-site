@@ -52,7 +52,7 @@ const icons = [
     ),
   },
   {
-    key: 'neural-net',
+    key: 'orchestration',
     top: 320,
     left: '4vw',
     width: 260,
@@ -61,20 +61,31 @@ const icons = [
     svg: (
       <svg viewBox="0 0 260 220" fill="none">
         <g stroke={ink} strokeWidth={sw} fill="none">
-          {/* Input layer */}
-          <circle cx="30" cy="40" r="7"/><circle cx="30" cy="80" r="7"/><circle cx="30" cy="120" r="7"/><circle cx="30" cy="160" r="7"/>
-          {/* Hidden */}
-          <circle cx="120" cy="30" r="7"/><circle cx="120" cy="70" r="7"/><circle cx="120" cy="110" r="7"/><circle cx="120" cy="150" r="7"/><circle cx="120" cy="190" r="7"/>
-          {/* Output */}
-          <circle cx="220" cy="80" r="7"/><circle cx="220" cy="140" r="7"/>
-          {/* Connections (subset for clarity) */}
-          <line x1="37" y1="40" x2="113" y2="30"/><line x1="37" y1="40" x2="113" y2="70"/><line x1="37" y1="40" x2="113" y2="110"/>
-          <line x1="37" y1="80" x2="113" y2="30"/><line x1="37" y1="80" x2="113" y2="70"/><line x1="37" y1="80" x2="113" y2="110"/><line x1="37" y1="80" x2="113" y2="150"/>
-          <line x1="37" y1="120" x2="113" y2="70"/><line x1="37" y1="120" x2="113" y2="110"/><line x1="37" y1="120" x2="113" y2="150"/><line x1="37" y1="120" x2="113" y2="190"/>
-          <line x1="37" y1="160" x2="113" y2="110"/><line x1="37" y1="160" x2="113" y2="150"/><line x1="37" y1="160" x2="113" y2="190"/>
-          <line x1="127" y1="30" x2="213" y2="80"/><line x1="127" y1="70" x2="213" y2="80"/><line x1="127" y1="70" x2="213" y2="140"/>
-          <line x1="127" y1="110" x2="213" y2="80"/><line x1="127" y1="110" x2="213" y2="140"/>
-          <line x1="127" y1="150" x2="213" y2="140"/><line x1="127" y1="190" x2="213" y2="140"/>
+          {/* Control layer (top) */}
+          <rect x="90" y="20" width="80" height="32"/>
+          {/* Agents (bottom row) */}
+          <rect x="20" y="130" width="60" height="42"/>
+          <rect x="100" y="130" width="60" height="42"/>
+          <rect x="180" y="130" width="60" height="42"/>
+          {/* Control lines down to each agent */}
+          <line x1="130" y1="52" x2="50" y2="130"/>
+          <line x1="130" y1="52" x2="130" y2="130"/>
+          <line x1="130" y1="52" x2="210" y2="130"/>
+          {/* Lateral coordination lines between agents */}
+          <line x1="80" y1="151" x2="100" y2="151" strokeDasharray="3 3"/>
+          <line x1="160" y1="151" x2="180" y2="151" strokeDasharray="3 3"/>
+          {/* State/verify pins at top */}
+          <circle cx="102" cy="20" r="2" fill={ink} stroke="none"/>
+          <circle cx="130" cy="20" r="2" fill={ink} stroke="none"/>
+          <circle cx="158" cy="20" r="2" fill={ink} stroke="none"/>
+          {/* Verification arrow back up from middle agent */}
+          <path d="M130 172 Q 70 190, 50 195" strokeDasharray="2 4"/>
+        </g>
+        <g fontFamily="JetBrains Mono, monospace" fontSize="8" fill={ink} letterSpacing="1">
+          <text x="108" y="40">Control</text>
+          <text x="30" y="158">Agent A</text>
+          <text x="110" y="158">Agent B</text>
+          <text x="190" y="158">Agent C</text>
         </g>
       </svg>
     ),

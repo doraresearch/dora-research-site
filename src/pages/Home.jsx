@@ -1,25 +1,32 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import SectionWrapper from '@/components/shared/SectionWrapper'
 import ComparisonBlock from '@/components/shared/ComparisonBlock'
 import ConceptCard from '@/components/shared/ConceptCard'
-import ResearchCard from '@/components/shared/ResearchCard'
-import ExecutionDiagram from '@/components/shared/ExecutionDiagram'
-import LinearDiagram from '@/components/shared/LinearDiagram'
 
-const thesisCards = [
-  { title: 'State', text: 'Maintain structured operational context over time.' },
-  { title: 'Coordination', text: 'Integrate tools, systems, and environments.' },
-  { title: 'Execution', text: 'Perform actions safely and reliably.' },
+const principles = [
+  { title: 'State', text: 'Persistent context and continuity over time.' },
+  { title: 'Coordination', text: 'Integration across tools, services, and environments.' },
+  { title: 'Execution', text: 'The ability to safely perform actions, not just explain them.' },
+  { title: 'Safety', text: 'Clear constraints and control boundaries governing all behavior.' },
 ]
 
-const researchAreas = [
-  { title: 'Workflow Execution Systems', text: 'Architectures for structured, multi-step task execution in real environments.' },
-  { title: 'Stateful AI Systems', text: 'Persistent context, memory, and evolving operational state.' },
-  { title: 'Operator Architectures', text: 'Systems that coordinate tools, services, and data to complete work.' },
-  { title: 'Policy-Governed AI', text: 'Execution within defined safety, control, and operational boundaries.' },
-  { title: 'Human–AI Collaboration', text: 'Shared control between people and intelligent systems in complex workflows.' },
+const primitives = [
+  {
+    label: '01',
+    title: 'Orchestrated agents',
+    body: 'Execution is distributed across multiple specialized agents coordinated through a control layer that manages state, sequencing, and verification.',
+  },
+  {
+    label: '02',
+    title: 'Operational execution',
+    body: 'The objective is not to generate outputs, but to perform work. Systems must operate inside real workflows, interacting with tools, constraints, and changing environments.',
+  },
+  {
+    label: '03',
+    title: 'Persona-driven agents',
+    body: 'Real workflows involve multiple roles, incentives, and perspectives. Execution breaks down when all decisions are collapsed into a single agent. Agents are configured with distinct personas to reflect operators, teams, and users, enabling coordination, negotiation, and decision-making across roles.',
+  },
 ]
 
 const Eyebrow = ({ children, accent = false }) => (
@@ -28,11 +35,18 @@ const Eyebrow = ({ children, accent = false }) => (
   </p>
 )
 
+const SectionHeading = ({ children }) => (
+  <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-ink tracking-[-0.01em] leading-[1.08] max-w-[18ch]">
+    {children}
+  </h2>
+)
+
 export default function Home() {
-  useEffect(() => { document.title = 'DORA Research — AI That Executes' }, [])
+  useEffect(() => { document.title = 'DORA Research' }, [])
 
   return (
     <div>
+      {/* HERO */}
       <section className="max-w-6xl mx-auto px-6 pt-40 md:pt-56 pb-24 md:pb-32 relative">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -42,85 +56,156 @@ export default function Home() {
           <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-ochre mb-12 font-medium">
             DORA Research &nbsp;·&nbsp; Working paper &nbsp;·&nbsp; 2026.04
           </p>
-          <h1 className="font-serif text-6xl md:text-8xl lg:text-[112px] font-normal text-ink tracking-[-0.015em] leading-[1.02] mb-10 max-w-[14ch]">
-            AI that <em className="italic text-ochre">executes</em>.
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-[96px] font-normal text-ink tracking-[-0.015em] leading-[1.04] mb-10 max-w-[16ch]">
+            AI should not stop at answers.<br />
+            It should <em className="italic text-ochre">execute</em> workflows.
           </h1>
-          <p className="text-xl md:text-2xl text-ink max-w-xl leading-[1.45] mb-4 font-medium tracking-[-0.005em]">
-            DORA Research is an applied AI lab building AI-native systems that turn intelligence into execution.
-          </p>
-          <p className="text-base text-body max-w-md leading-relaxed mb-12">
-            Most AI systems stop at answers.<br />
-            We build systems that execute real-world workflows.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              to="/thesis"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-ink text-paper text-sm font-medium hover:bg-ochre transition-colors duration-200"
-            >
-              Our Thesis <span aria-hidden="true">→</span>
-            </Link>
-            <Link
-              to="/research"
-              className="inline-flex items-center px-6 py-3 bg-transparent border border-border-strong text-ink text-sm font-medium hover:border-ink transition-colors duration-200"
-            >
-              Research
-            </Link>
+          <div className="max-w-[38ch] space-y-5 mb-8">
+            <p className="text-lg md:text-xl text-ink leading-[1.55] font-medium tracking-[-0.005em]">
+              Most systems are still built for the former.<br />
+              DORA Research focuses on the latter.
+            </p>
+            <p className="text-base text-body leading-relaxed">
+              DORA Research is an AI research lab focused on systems that operate inside real environments, not just generate responses.
+            </p>
           </div>
         </motion.div>
-
-        <div className="mt-24 md:mt-32 bg-card border border-border p-8 md:p-12">
-          <div className="flex items-baseline justify-between pb-4 mb-10 border-b border-border">
-            <p className="font-mono text-[11px] tracking-[0.14em] uppercase">
-              <span className="text-ochre font-medium">Fig 1</span>
-              <span className="text-ink-muted">&nbsp;·&nbsp;&nbsp;Execution architecture</span>
-            </p>
-            <p className="font-mono text-[11px] tracking-[0.12em] uppercase text-ink">Operator model</p>
-          </div>
-          <ExecutionDiagram />
-        </div>
       </section>
 
+      {/* § I · ETHOS */}
       <SectionWrapper surface="card">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
           <div>
-            <Eyebrow>§ I &nbsp;·&nbsp; The execution gap</Eyebrow>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-ink tracking-[-0.01em] leading-[1.08] mb-8 max-w-[18ch]">
-              The gap between intelligence and execution.
-            </h2>
+            <Eyebrow>§ I &nbsp;·&nbsp; Ethos</Eyebrow>
+            <SectionHeading>Ethos.</SectionHeading>
           </div>
-          <div className="space-y-5 lg:pt-14">
-            <p className="text-base text-body leading-relaxed">
-              Modern AI systems are increasingly capable of answering questions, summarizing information, and generating recommendations.
+          <div className="space-y-5 lg:pt-12">
+            <p className="font-serif text-2xl md:text-3xl text-ink leading-[1.3] tracking-[-0.005em] max-w-[32ch]">
+              AI is not a question-answering interface. It is a system capable of performing work.
             </p>
-            <p className="text-base text-ink leading-relaxed font-medium">But real work requires more than reasoning.</p>
             <p className="text-base text-body leading-relaxed">
-              Execution requires structured context, persistent memory, coordination across tools, and action inside real environments.
+              Most of the field is focused on improving responses. We believe this is the wrong abstraction.
             </p>
-            <p className="text-base text-body leading-relaxed">DORA Research exists to help close that gap.</p>
+            <p className="text-base text-body leading-relaxed">
+              The value of AI emerges through execution, through systems that can carry context, operate under constraints, and act within real environments.
+            </p>
+            <p className="text-base text-ink leading-relaxed font-medium">
+              DORA Research is built around that belief.
+            </p>
+            <p className="text-base text-body leading-relaxed">
+              DORA Research is informed by direct work with applied AI systems and the challenges that emerge beyond the prompt-response layer.
+            </p>
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* § II · THE SHIFT */}
+      <SectionWrapper surface="default">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+          <div>
+            <Eyebrow>§ II &nbsp;·&nbsp; The shift</Eyebrow>
+            <SectionHeading>The shift.</SectionHeading>
+          </div>
+          <div className="space-y-5 lg:pt-12">
+            <p className="text-base text-body leading-relaxed">
+              Modern AI has made significant progress in reasoning, synthesis, and language.
+            </p>
+            <p className="text-base text-ink leading-relaxed font-medium">
+              But real-world value is not created at the point of answer.
+            </p>
+            <p className="text-base text-body leading-relaxed">
+              It is created through execution, across systems, constraints, and time.
+            </p>
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* § III · THE GAP */}
+      <SectionWrapper surface="card">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-4">
+          <div>
+            <Eyebrow>§ III &nbsp;·&nbsp; The gap</Eyebrow>
+            <SectionHeading>The gap.</SectionHeading>
+          </div>
+          <div className="space-y-5 lg:pt-12">
+            <p className="text-base text-body leading-relaxed">
+              There remains a fundamental gap between reasoning and execution.
+            </p>
+            <p className="text-base text-ink leading-relaxed font-medium">
+              Understanding and closing this gap is central to applied AI.
+            </p>
           </div>
         </div>
         <ComparisonBlock
-          left={{ title: 'Answering systems', text: 'Prompt → Response' }}
-          right={{ title: 'Executing systems', text: 'Context → State → Plan → Action → Verification' }}
+          left={{ title: 'Most systems today', text: 'Prompt → Response' }}
+          right={{ title: 'Real workflows require', text: 'Context → State → Plan → Action → Verification' }}
         />
       </SectionWrapper>
 
+      {/* § IV · WHY NOW */}
       <SectionWrapper surface="default">
-        <Eyebrow>§ II &nbsp;·&nbsp; Thesis</Eyebrow>
-        <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-ink tracking-[-0.01em] leading-[1.08] mb-8 max-w-[18ch]">
-          AI should <em className="italic text-ochre">execute</em> workflows.
-        </h2>
-        <div className="max-w-2xl space-y-4 mb-14">
-          <p className="text-base text-body leading-relaxed">
-            The first generation of AI systems focused on information retrieval and generation.
-          </p>
-          <p className="text-base text-body leading-relaxed">The next generation must focus on execution.</p>
-          <p className="text-base text-body leading-relaxed">
-            AI systems should be able to interpret complex environments, coordinate tools and data sources, and safely perform actions inside real workflows.
-          </p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+          <div>
+            <Eyebrow>§ IV &nbsp;·&nbsp; Why now</Eyebrow>
+            <SectionHeading>Why now.</SectionHeading>
+          </div>
+          <div className="space-y-5 lg:pt-12">
+            <p className="text-base text-body leading-relaxed">
+              Recent advances in model capability have made individual systems significantly more powerful.
+            </p>
+            <p className="text-base text-ink leading-relaxed font-medium">
+              As a result, the bottleneck is shifting.
+            </p>
+            <p className="text-base text-body leading-relaxed">
+              The limitation is no longer generating answers. It is coordinating execution across systems, environments, and time.
+            </p>
+            <p className="font-serif text-xl md:text-2xl text-ink leading-[1.4] max-w-[32ch] pt-2">
+              The frontier is moving from model capability to system design.
+            </p>
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-l border-border">
-          {thesisCards.map((card, i) => (
+      </SectionWrapper>
+
+      {/* § V · CORE PRIMITIVES */}
+      <SectionWrapper surface="card">
+        <Eyebrow>§ V &nbsp;·&nbsp; Core primitives</Eyebrow>
+        <SectionHeading>Core primitives.</SectionHeading>
+        <p className="text-base text-body leading-relaxed max-w-2xl mt-8 mb-14">
+          Execution systems require a different foundation. DORA Research builds around three core primitives.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-l border-border mb-16">
+          {primitives.map((p) => (
+            <div key={p.label} className="border-r border-b border-border -mt-px -ml-px bg-paper hover:bg-card transition-colors duration-200 p-8 md:p-10 flex flex-col gap-5">
+              <span className="font-mono text-[10px] tracking-[0.14em] uppercase text-ochre font-medium">{p.label} &nbsp;·&nbsp; Primitive</span>
+              <h3 className="font-serif text-2xl md:text-[26px] text-ink leading-[1.2] tracking-[-0.005em]">{p.title}</h3>
+              <p className="text-[15px] text-body leading-[1.6]">{p.body}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Pull quote */}
+        <figure className="border-y border-ochre py-10 md:py-14 max-w-4xl">
+          <blockquote className="font-serif text-3xl md:text-4xl lg:text-[44px] text-ink leading-[1.18] tracking-[-0.01em]">
+            Increasing model capability improves <em className="italic text-ochre">answers</em>.
+            <br />
+            Structured systems are what make <em className="italic text-ochre">execution</em> possible.
+          </blockquote>
+          <figcaption className="font-mono text-[11px] tracking-[0.14em] uppercase text-ink-muted mt-6">
+            Thesis &nbsp;·&nbsp; DORA Research
+          </figcaption>
+        </figure>
+      </SectionWrapper>
+
+      {/* § VI · PRINCIPLES */}
+      <SectionWrapper surface="default">
+        <Eyebrow>§ VI &nbsp;·&nbsp; Principles</Eyebrow>
+        <SectionHeading>Principles.</SectionHeading>
+        <p className="text-base text-body leading-relaxed max-w-2xl mt-8 mb-14">
+          Four constraints that govern how DORA Research approaches execution systems.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-l border-border">
+          {principles.map((card, i) => (
             <div key={card.title} className="border-r border-b border-border -mt-px -ml-px">
               <ConceptCard title={card.title} text={card.text} index={i + 1} />
             </div>
@@ -128,126 +213,40 @@ export default function Home() {
         </div>
       </SectionWrapper>
 
+      {/* § VII · CURRENT STAGE */}
       <SectionWrapper surface="card">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-14">
-          <div>
-            <Eyebrow>§ III &nbsp;·&nbsp; Research</Eyebrow>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-ink tracking-[-0.01em] leading-[1.08]">Research areas.</h2>
-          </div>
-          <div className="lg:pt-14">
-            <p className="text-base text-body leading-relaxed">
-              DORA Research focuses on the systems and architectures required to make AI execution possible.
-            </p>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-border">
-          {researchAreas.map((area, i) => (
-            <div key={area.title} className="border-r border-b border-border -mt-px -ml-px">
-              <ResearchCard title={area.title} text={area.text} index={i + 1} />
-            </div>
-          ))}
-        </div>
-      </SectionWrapper>
-
-      <SectionWrapper surface="default">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
           <div>
-            <Eyebrow>§ IV &nbsp;·&nbsp; Applied research</Eyebrow>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-ink tracking-[-0.01em] leading-[1.08] mb-8 max-w-[18ch]">
-              From research to real systems.
-            </h2>
-            <div className="space-y-4">
-              <p className="text-base text-body leading-relaxed">
-                DORA Research operates at the intersection of applied artificial intelligence, systems engineering, and workflow design.
-              </p>
-              <p className="text-base text-body leading-relaxed">
-                Our goal is to translate advances in AI into systems that can operate reliably in real environments.
-              </p>
-              <p className="text-base text-ink leading-relaxed font-medium">
-                We focus on systems that do work, not just systems that describe it.
-              </p>
-            </div>
+            <Eyebrow>§ VII &nbsp;·&nbsp; Current stage</Eyebrow>
+            <SectionHeading>Current stage.</SectionHeading>
           </div>
-          <div className="flex items-center">
-            <div className="w-full bg-card border border-border p-8 md:p-10">
-              <div className="flex items-baseline justify-between pb-4 mb-10 border-b border-border">
-                <p className="font-mono text-[11px] tracking-[0.14em] uppercase">
-                  <span className="text-ochre font-medium">Fig 2</span>
-                  <span className="text-ink-muted">&nbsp;·&nbsp;&nbsp;Pipeline</span>
-                </p>
-                <p className="font-mono text-[11px] tracking-[0.12em] uppercase text-ink">Research → Execution</p>
-              </div>
-              <LinearDiagram steps={['Research', 'Architecture', 'System', 'Execution']} />
-            </div>
+          <div className="space-y-5 lg:pt-12">
+            <p className="text-base text-ink leading-relaxed font-medium">
+              DORA Research is in an early stage, focused on developing and testing execution-oriented AI systems.
+            </p>
+            <p className="text-base text-body leading-relaxed">
+              We are working toward practical implementations while continuing to refine the underlying model.
+            </p>
           </div>
         </div>
       </SectionWrapper>
 
-      <SectionWrapper surface="card">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,2fr)_1fr] gap-12 lg:gap-20 items-start">
-          <div>
-            <Eyebrow>§ V &nbsp;·&nbsp; Vision</Eyebrow>
-            <h2 className="font-serif text-4xl md:text-6xl text-ink tracking-[-0.01em] leading-[1.08] mb-10 max-w-[20ch]">
-              From assistants to <em className="italic text-ochre">operators</em>.
-            </h2>
-            <div className="space-y-6 border-l-2 border-ochre pl-8">
-              <p className="font-serif text-xl md:text-2xl text-body leading-[1.4]">The first generation of AI helped users find information.</p>
-              <p className="font-serif text-xl md:text-2xl text-ink leading-[1.4]">The next generation will help users execute work.</p>
-              <p className="font-serif text-xl md:text-2xl text-body leading-[1.4]">DORA Research is building the foundations for that shift.</p>
-            </div>
-          </div>
-          <aside className="lg:pt-24">
-            <figure>
-              <div className="flex items-baseline justify-between pb-3 mb-5 border-b border-border">
-                <p className="font-mono text-[10px] tracking-[0.14em] uppercase">
-                  <span className="text-ochre font-medium">Fig 3</span>
-                  <span className="text-ink-muted">&nbsp;·&nbsp;&nbsp;σ(x) = 1 / (1 + e⁻ˣ)</span>
-                </p>
-              </div>
-              <svg viewBox="0 0 240 160" fill="none" className="w-full h-auto">
-                <g stroke="#0A0A0A" strokeWidth="1" fill="none">
-                  <line x1="30" y1="15" x2="30" y2="140"/>
-                  <line x1="30" y1="140" x2="225" y2="140"/>
-                  <line x1="27" y1="30" x2="33" y2="30"/>
-                  <line x1="27" y1="85" x2="33" y2="85"/>
-                  <line x1="125" y1="137" x2="125" y2="143"/>
-                  <path d="M35 135 C 70 135, 100 128, 125 85 C 150 42, 180 32, 220 32" strokeWidth="1.25" stroke="#B08A3E"/>
-                  <circle cx="125" cy="85" r="3" fill="#B08A3E" stroke="none"/>
-                </g>
-                <g fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#5A5A5A" letterSpacing="1">
-                  <text x="12" y="34">1</text>
-                  <text x="12" y="89">½</text>
-                  <text x="12" y="142">0</text>
-                  <text x="121" y="155" textAnchor="middle">0</text>
-                </g>
-                <text x="140" y="65" fontFamily="Instrument Serif, serif" fontStyle="italic" fontSize="14" fill="#0A0A0A">σ(x)</text>
-              </svg>
-              <figcaption className="mt-4 text-xs text-body leading-relaxed">
-                Assistant → operator: a continuous transition, not a binary flip. The midpoint is where AI begins to act, not only answer.
-              </figcaption>
-            </figure>
-          </aside>
-        </div>
-      </SectionWrapper>
-
+      {/* § VIII · CLOSING */}
       <SectionWrapper surface="default">
-        <div className="bg-card border border-border p-10 md:p-14 lg:p-16">
-          <Eyebrow>§ VI &nbsp;·&nbsp; About</Eyebrow>
-          <h2 className="font-serif text-3xl md:text-4xl text-ink tracking-[-0.005em] leading-tight mb-8 max-w-xl">
-            An applied AI and software research lab.
-          </h2>
-          <div className="max-w-2xl space-y-4 mb-10">
-            <p className="text-base text-body leading-relaxed">
-              DORA Research is focused on building AI-native systems designed for real-world execution.
+        <div className="max-w-3xl">
+          <Eyebrow>§ VIII &nbsp;·&nbsp; Long-term direction</Eyebrow>
+          <SectionHeading>The long-term direction.</SectionHeading>
+          <div className="space-y-6 border-l-2 border-ochre pl-8 mt-12">
+            <p className="font-serif text-xl md:text-2xl text-body leading-[1.4]">
+              The long-term value of AI will not come from better answers alone.
             </p>
-            <p className="text-base text-body leading-relaxed">
-              Our work explores how AI can move beyond generating answers and toward executing complex workflows safely and reliably.
+            <p className="font-serif text-xl md:text-2xl text-ink leading-[1.4]">
+              It will come from systems that can interpret environments, coordinate resources, and execute meaningful work.
+            </p>
+            <p className="font-serif text-xl md:text-2xl text-body leading-[1.4]">
+              DORA Research is focused on understanding and building toward that shift.
             </p>
           </div>
-          <Link to="/about" className="inline-flex items-center gap-2 text-sm font-medium text-ink hover:text-ochre transition-colors duration-200">
-            About DORA Research
-            <span aria-hidden="true">→</span>
-          </Link>
         </div>
       </SectionWrapper>
     </div>
