@@ -1,29 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-labelledby="favicon-title">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="favicon-title">
   <title id="favicon-title">DORA Research</title>
-  <rect width="512" height="512" rx="64" fill="#000000"/>
-  <g transform="translate(256, 256)">
-    <!-- Back layer of the D — offset for depth -->
-    <path
-      d="M-68,130 L-68,-130 Q-68,-160 -38,-160 L20,-160 Q140,-160 140,0 Q140,160 20,160 L-38,160 Q-68,160 -68,130 Z"
-      fill="#1a6bc4"
-      opacity="0.45"
-      transform="translate(18, 12)"
-    />
-    <!-- Front layer of the D -->
-    <path
-      d="M-68,130 L-68,-130 Q-68,-160 -38,-160 L20,-160 Q140,-160 140,0 Q140,160 20,160 L-38,160 Q-68,160 -68,130 Z"
-      fill="#0ea5e9"
-    />
-    <!-- Inner cutout to form the D shape -->
-    <path
-      d="M-14,108 L-14,-108 L20,-108 Q86,-108 86,0 Q86,108 20,108 Z"
-      fill="#000000"
-    />
-    <!-- Inner cutout on back layer -->
-    <path
-      d="M-14,108 L-14,-108 L20,-108 Q86,-108 86,0 Q86,108 20,108 Z"
-      fill="#000000"
-      transform="translate(18, 12)"
-    />
-  </g>
+  <rect width="64" height="64" fill="#F6F3EC"/>
+  <text
+    x="32"
+    y="48"
+    text-anchor="middle"
+    font-family="'Instrument Serif', Georgia, 'Times New Roman', serif"
+    font-size="56"
+    font-weight="400"
+    fill="#B08A3E"
+  >§</text>
 </svg>

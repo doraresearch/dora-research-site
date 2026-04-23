@@ -174,6 +174,79 @@ export default function Home() {
           Execution systems require a different foundation. DORA Research builds around three core primitives.
         </p>
 
+        {/* Fig 1: Orchestrated execution */}
+        <div className="bg-paper border border-border p-8 md:p-10 mb-16">
+          <div className="flex items-baseline justify-between pb-4 mb-8 border-b border-border flex-wrap gap-2">
+            <p className="font-mono text-[11px] tracking-[0.14em] uppercase">
+              <span className="text-ochre font-medium">Fig 1</span>
+              <span className="text-ink-muted">&nbsp;·&nbsp;&nbsp;Orchestrated execution with persona-driven agents</span>
+            </p>
+            <p className="font-mono text-[11px] tracking-[0.12em] uppercase text-ink">Control layer + 3 personas</p>
+          </div>
+          <div className="w-full overflow-x-auto">
+            <svg viewBox="0 0 800 340" fill="none" className="w-full h-auto max-w-[720px] mx-auto" aria-label="Orchestrated execution diagram">
+              {/* Control / Orchestrator box */}
+              <g>
+                <rect x="310" y="20" width="180" height="60" stroke="#0A0A0A" strokeWidth="1" fill="#FBFAF5"/>
+                <text x="400" y="50" textAnchor="middle" fontFamily="Instrument Serif, Georgia, serif" fontSize="20" fill="#0A0A0A">Control layer</text>
+                <text x="400" y="68" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#8C8A84" letterSpacing="1.4">ORCHESTRATOR · STATE · VERIFICATION</text>
+              </g>
+              {/* Dispatch arrows down to agents */}
+              <g stroke="#0A0A0A" strokeWidth="1" fill="none">
+                <line x1="350" y1="80" x2="170" y2="220"/>
+                <line x1="400" y1="80" x2="400" y2="220"/>
+                <line x1="450" y1="80" x2="630" y2="220"/>
+                <polyline points="168,215 170,220 172,215" strokeLinejoin="round"/>
+                <polyline points="398,215 400,220 402,215" strokeLinejoin="round"/>
+                <polyline points="628,215 630,220 632,215" strokeLinejoin="round"/>
+              </g>
+              {/* Arrow labels */}
+              <g fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#8C8A84" letterSpacing="1.4">
+                <text x="240" y="148" textAnchor="middle">DISPATCH</text>
+                <text x="420" y="148" textAnchor="middle">DISPATCH</text>
+                <text x="560" y="148" textAnchor="middle">DISPATCH</text>
+              </g>
+              {/* Agent A — Operator */}
+              <g>
+                <rect x="80" y="220" width="180" height="90" stroke="#0A0A0A" strokeWidth="1" fill="#FBFAF5"/>
+                <text x="170" y="250" textAnchor="middle" fontFamily="Instrument Serif, Georgia, serif" fontSize="18" fill="#0A0A0A">Agent A</text>
+                <line x1="100" y1="260" x2="240" y2="260" stroke="rgba(10,10,10,0.12)" strokeWidth="1"/>
+                <text x="170" y="278" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#B08A3E" letterSpacing="1.4" fontWeight="500">PERSONA · OPERATOR</text>
+                <text x="170" y="296" textAnchor="middle" fontFamily="Instrument Sans, sans-serif" fontSize="11" fill="#5A5A5A">Acts inside the system</text>
+              </g>
+              {/* Agent B — Analyst */}
+              <g>
+                <rect x="310" y="220" width="180" height="90" stroke="#0A0A0A" strokeWidth="1" fill="#FBFAF5"/>
+                <text x="400" y="250" textAnchor="middle" fontFamily="Instrument Serif, Georgia, serif" fontSize="18" fill="#0A0A0A">Agent B</text>
+                <line x1="330" y1="260" x2="470" y2="260" stroke="rgba(10,10,10,0.12)" strokeWidth="1"/>
+                <text x="400" y="278" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#B08A3E" letterSpacing="1.4" fontWeight="500">PERSONA · ANALYST</text>
+                <text x="400" y="296" textAnchor="middle" fontFamily="Instrument Sans, sans-serif" fontSize="11" fill="#5A5A5A">Interprets context</text>
+              </g>
+              {/* Agent C — User */}
+              <g>
+                <rect x="540" y="220" width="180" height="90" stroke="#0A0A0A" strokeWidth="1" fill="#FBFAF5"/>
+                <text x="630" y="250" textAnchor="middle" fontFamily="Instrument Serif, Georgia, serif" fontSize="18" fill="#0A0A0A">Agent C</text>
+                <line x1="560" y1="260" x2="700" y2="260" stroke="rgba(10,10,10,0.12)" strokeWidth="1"/>
+                <text x="630" y="278" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#B08A3E" letterSpacing="1.4" fontWeight="500">PERSONA · USER</text>
+                <text x="630" y="296" textAnchor="middle" fontFamily="Instrument Sans, sans-serif" fontSize="11" fill="#5A5A5A">Carries intent</text>
+              </g>
+              {/* Lateral coordination (dashed) */}
+              <g stroke="#8C8A84" strokeWidth="1" strokeDasharray="3 4" fill="none">
+                <line x1="260" y1="265" x2="310" y2="265"/>
+                <line x1="490" y1="265" x2="540" y2="265"/>
+              </g>
+              <text x="285" y="258" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="8" fill="#8C8A84" letterSpacing="1.2">COORD</text>
+              <text x="515" y="258" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="8" fill="#8C8A84" letterSpacing="1.2">COORD</text>
+              {/* Verification arrow back up from center agent */}
+              <g stroke="#B08A3E" strokeWidth="1" strokeDasharray="2 4" fill="none">
+                <path d="M380 220 Q 300 150 330 80"/>
+                <polyline points="326,84 330,80 334,86" strokeLinejoin="round" strokeDasharray="0"/>
+              </g>
+              <text x="270" y="130" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#B08A3E" letterSpacing="1.4" fontWeight="500">VERIFY / STATE</text>
+            </svg>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-l border-border mb-16">
           {primitives.map((p) => (
             <div key={p.label} className="border-r border-b border-border -mt-px -ml-px bg-paper hover:bg-card transition-colors duration-200 p-8 md:p-10 flex flex-col gap-5">
@@ -247,6 +320,29 @@ export default function Home() {
               DORA Research is focused on understanding and building toward that shift.
             </p>
           </div>
+        </div>
+
+        {/* Working paper clarifier */}
+        <div className="max-w-3xl mt-20 pt-10 border-t border-border">
+          <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-ink-muted mb-4 font-medium">On this document</p>
+          <p className="text-base text-body leading-relaxed">
+            This site is the lab's initial working paper. Further notes, figures, and writings will be published as the work matures.
+          </p>
+        </div>
+
+        {/* Contact */}
+        <div className="max-w-3xl mt-16 pt-10 border-t border-border">
+          <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-ochre mb-4 font-medium">Get in touch</p>
+          <p className="text-base text-body leading-relaxed mb-6 max-w-[44ch]">
+            If the thesis resonates, reach out. We are open to conversations with collaborators, technical talent, and investors.
+          </p>
+          <a
+            href="mailto:hello@dorareason.com"
+            className="inline-flex items-baseline gap-3 font-serif text-2xl md:text-3xl text-ink hover:text-ochre transition-colors duration-200"
+          >
+            hello@dorareason.com
+            <span aria-hidden="true" className="text-ochre">→</span>
+          </a>
         </div>
       </SectionWrapper>
     </div>
