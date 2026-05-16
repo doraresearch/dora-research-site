@@ -1,24 +1,25 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-border mt-32">
-      <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="flex flex-col md:flex-row justify-between gap-10">
+    <footer className="border-t border-[#101310]/12 bg-[#101310] text-[#F7F4ED]">
+      <div className="mx-auto max-w-6xl px-6 py-14 md:px-8">
+        <div className="grid gap-10 md:grid-cols-[1fr_auto] md:items-start">
           <div>
-            <p className="font-mono text-[12px] tracking-[0.12em] uppercase text-ink font-medium">
-              <span className="text-ochre">§</span>&nbsp;&nbsp;DORA Research
-            </p>
-            <p className="text-body text-sm mt-4 max-w-xs leading-relaxed">
-              An AI research lab focused on systems that operate inside real environments.
+            <p className="font-mono text-[12px] font-medium uppercase tracking-[0.12em]">DORA Research</p>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-[#F7F4ED]/70">
+              DORA builds enterprise AI above the model layer.
             </p>
           </div>
-          <div className="max-w-xs text-sm text-body leading-relaxed">
-            <p className="text-ink font-medium mb-2">Positioning statement</p>
-            <p>This site outlines what we believe, how we think AI systems should be built, and why this direction matters now.</p>
+          <div className="grid gap-2 text-sm text-[#F7F4ED]/70 md:text-right">
+            <a href="#how-it-works" className="hover:text-[#F7F4ED]">How it works</a>
+            <a href="#primitives" className="hover:text-[#F7F4ED]">Primitives</a>
+            <a href="#use-cases" className="hover:text-[#F7F4ED]">Use cases</a>
+            <a href="#research" className="hover:text-[#F7F4ED]">Research</a>
+            <a href="mailto:hello@dorareason.com" className="hover:text-[#F7F4ED]">Contact</a>
           </div>
         </div>
-        <div className="mt-16 pt-8 border-t border-border flex items-baseline justify-between">
-          <p className="font-mono text-[11px] tracking-[0.12em] uppercase text-ink-muted">© 2026 DORA Research, Inc.</p>
-          <p className="font-mono text-[11px] tracking-[0.12em] uppercase text-ink-muted">Working paper · 2026.04</p>
+        <div className="mt-14 flex flex-col gap-3 border-t border-[#F7F4ED]/12 pt-7 font-mono text-[11px] uppercase tracking-[0.12em] text-[#F7F4ED]/55 sm:flex-row sm:items-center sm:justify-between">
+          <p>© 2026 DORA Research, Inc.</p>
+          <p>Application · Orchestration · Harness</p>
         </div>
       </div>
     </footer>

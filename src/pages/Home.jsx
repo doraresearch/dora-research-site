@@ -1,356 +1,470 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
-import SectionWrapper from '@/components/shared/SectionWrapper'
-import ComparisonBlock from '@/components/shared/ComparisonBlock'
-import ConceptCard from '@/components/shared/ConceptCard'
 
-const principles = [
-  { title: 'State', text: 'Persistent context and continuity over time.' },
-  { title: 'Coordination', text: 'Integration across tools, services, and environments.' },
-  { title: 'Execution', text: 'The ability to safely perform actions, not just explain them.' },
-  { title: 'Safety', text: 'Clear constraints and control boundaries governing all behavior.' },
+const stackLayers = [
+  { layer: 'Enterprise Workflows', role: 'Daily work, teams, approvals, handoffs, and decisions.', status: 'Outcome' },
+  { layer: 'DORA Application Layer', role: 'Workflow-specific AI systems for real enterprise work.', status: 'Core focus' },
+  { layer: 'DORA Orchestration Layer', role: 'Parallel agent swarms, routing, handoffs, and coordination.', status: 'Core focus' },
+  { layer: 'DORA Harness Layer', role: 'Evaluations, constraints, observability, and deployment controls.', status: 'Core focus' },
+  { layer: 'Existing Model Layer', role: 'Foundation models selected by task, risk, and fit.', status: 'Model-agnostic' },
+  { layer: 'Data / Infrastructure / Compute', role: 'Data platforms, cloud infrastructure, storage, and compute.', status: 'Not our focus' },
+]
+
+const stackTable = [
+  ['Application layer', 'Core focus'],
+  ['Orchestration layer', 'Core focus'],
+  ['Harness layer', 'Core focus'],
+  ['Model layer', 'Model-agnostic'],
+  ['Data layer', 'Not our focus'],
+  ['Infrastructure', 'Not our focus'],
+  ['Compute', 'Not our focus'],
 ]
 
 const primitives = [
   {
-    label: '01',
-    title: 'Orchestrated agents',
-    body: 'Execution is distributed across multiple specialized agents coordinated through a control layer that manages state, sequencing, and verification.',
+    title: 'Coordinated enterprise workflows',
+    body: 'AI systems should follow the shape of real work. DORA coordinates agents across workflows, tasks, approvals, handoffs, knowledge flows, and decision points. Each system can be customized to how an organization actually operates, rather than forcing teams into generic AI tools.',
+    cue: 'workflow',
   },
   {
-    label: '02',
-    title: 'Operational execution',
-    body: 'The objective is not to generate outputs, but to perform work. Systems must operate inside real workflows, interacting with tools, constraints, and changing environments.',
+    title: 'Parallel agent swarms',
+    body: 'Important work rarely moves in a straight line. DORA uses multiple agents working in parallel to reason, compare, verify, and execute across different paths at once. Swarms improve coverage, depth, and robustness on complex work.',
+    cue: 'swarm',
   },
   {
-    label: '03',
-    title: 'Persona-driven agents',
-    body: 'Real workflows involve multiple roles, incentives, and perspectives. Execution breaks down when all decisions are collapsed into a single agent. Agents are configured with distinct personas to reflect operators, teams, and users, enabling coordination, negotiation, and decision-making across roles.',
+    title: 'Persona-based agents',
+    body: 'Every agent should not think the same way. DORA gives agents distinct roles, objectives, reasoning styles, constraints, and operating context. Personas make agent systems more controllable, interpretable, and useful for specialized work.',
+    cue: 'persona',
   },
 ]
 
-const Eyebrow = ({ children, accent = false }) => (
-  <p className={`font-mono text-[11px] tracking-[0.14em] uppercase mb-6 font-medium ${accent ? 'text-ochre' : 'text-ink-muted'}`}>
-    {children}
-  </p>
-)
+const workflowSteps = [
+  ['01 / WORKFLOW', 'Start with the enterprise workflow'],
+  ['02 / ROLES', 'Define agent roles and responsibilities'],
+  ['03 / PERSONAS', 'Assign personas and operating constraints'],
+  ['04 / ORCHESTRATION', 'Run agents in parallel through orchestration'],
+  ['05 / HARNESS', 'Evaluate, refine, and deploy'],
+]
 
-const SectionHeading = ({ children }) => (
-  <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-ink tracking-[-0.01em] leading-[1.08] max-w-[18ch]">
-    {children}
-  </h2>
-)
+const reliabilityPoints = [
+  ['Observable', 'Systems should expose how agents reason, route work, use context, and produce outputs.'],
+  ['Evaluated', "Outputs should be reviewed against the workflow's goals, constraints, and reliability requirements."],
+  ['Constrained', 'Agents should operate within defined roles, permissions, context boundaries, and review paths.'],
+  ['Deployable', 'Systems should move from prototype to daily use with workflows that can improve over time.'],
+]
 
-export default function Home() {
-  useEffect(() => { document.title = 'DORA Research' }, [])
+const services = [
+  ['Research', 'We study how AI systems operate in real environments: coordination, persona design, workflow reliability, evaluation, and safe execution.'],
+  ['System architecture', 'We map enterprise workflows into agent roles, operating constraints, handoffs, orchestration patterns, and evaluation loops.'],
+  ['Deployment', 'We help organizations move from prototype to dependable use with harnesses, review paths, and workflows that improve over time.'],
+]
+
+const useCases = [
+  ['Executive decision support', 'Coordinate agents across market, financial, operational, legal, and customer perspectives to support complex decisions.'],
+  ['Enterprise research and analysis', 'Run parallel research workflows that gather, compare, challenge, and synthesize information across domains.'],
+  ['Operational command workflows', 'Coordinate recurring operational work through agents, handoffs, evaluations, and escalation paths.'],
+  ['Customer intelligence', 'Analyze customer needs, objections, behavior, and opportunities through role-specific agents.'],
+  ['Compliance-sensitive workflows', 'Add review, traceability, and constraints to workflows where accuracy and accountability matter.'],
+  ['Multi-agent task execution', 'Break complex work into specialized roles that can reason, verify, and produce coordinated outputs.'],
+]
+
+function Section({ id, label, title, children, dark = false, field = false }) {
+  const background = dark ? 'bg-[#111412] text-[#F7F4ED]' : field ? 'bg-[#EEF2E8] text-[#101310]' : 'bg-[#F7F4ED] text-[#101310]'
+  const border = dark ? 'border-[#F7F4ED]/14' : 'border-[#101310]/12'
+  const labelColor = dark ? 'text-[#DDE8D2]/80' : 'text-[#6B7568]'
 
   return (
-    <div>
-      {/* HERO */}
-      <section className="max-w-6xl mx-auto px-6 pt-40 md:pt-56 pb-24 md:pb-32 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-ochre mb-12 font-medium">
-            DORA Research &nbsp;·&nbsp; Working paper &nbsp;·&nbsp; 2026.04
-          </p>
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-[96px] font-normal text-ink tracking-[-0.015em] leading-[1.04] mb-10 max-w-[16ch]">
-            AI should not stop at answers.<br />
-            It should <em className="italic text-ochre">execute</em> workflows.
-          </h1>
-          <div className="max-w-[38ch] space-y-5 mb-8">
-            <p className="text-lg md:text-xl text-ink leading-[1.55] font-medium tracking-[-0.005em]">
-              Most systems are still built for the former.<br />
-              DORA Research focuses on the latter.
+    <section id={id} className={`border-t ${border} ${background}`}>
+      <div className="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-28">
+        <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+          <div>
+            <p className={`mb-6 font-mono text-[11px] font-medium uppercase tracking-[0.14em] ${labelColor}`}>
+              {label}
             </p>
-            <p className="text-base text-body leading-relaxed">
-              DORA Research is an AI research lab focused on systems that operate inside real environments, not just generate responses.
-            </p>
+            <h2 className="max-w-[12ch] font-sans text-[clamp(36px,5vw,64px)] font-semibold leading-[1.02]">
+              {title}
+            </h2>
           </div>
-        </motion.div>
+          <div>{children}</div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ArrowIcon() {
+  return (
+    <svg viewBox="0 0 18 18" aria-hidden="true" className="h-4 w-4">
+      <path d="M3 9h11M9.5 4.5 14 9l-4.5 4.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter" />
+    </svg>
+  )
+}
+
+function PrimaryButton({ href, children, className = '' }) {
+  return (
+    <a
+      href={href}
+      className={`inline-flex h-12 items-center justify-center gap-3 border border-[#101310]/12 bg-[#DDE8D2] px-6 text-sm font-semibold text-[#101310] transition-colors duration-150 hover:bg-[#C9DABC] ${className}`}
+    >
+      {children}
+      <ArrowIcon />
+    </a>
+  )
+}
+
+function SecondaryButton({ href, children }) {
+  return (
+    <a
+      href={href}
+      className="inline-flex h-12 items-center justify-center gap-3 border border-[#101310]/16 bg-[#FBFAF5] px-6 text-sm font-semibold text-[#101310] transition-colors duration-150 hover:bg-[#EEF2E8]"
+    >
+      {children}
+      <ArrowIcon />
+    </a>
+  )
+}
+
+function StackDiagram({ compact = false }) {
+  return (
+    <figure className="min-w-0 overflow-hidden border border-[#101310]/12 bg-[#FBFAF5] p-4 md:p-5" aria-label="DORA AI stack diagram">
+      <div className="mb-4 flex items-start justify-between gap-4 border-b border-[#101310]/12 pb-3">
+        <figcaption className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">
+          FIG 1 / ABOVE THE MODEL LAYER
+        </figcaption>
+        <p className="hidden max-w-[18ch] text-right font-mono text-[10px] uppercase tracking-[0.12em] text-[#4F564D] sm:block">
+          Application / orchestration / harness
+        </p>
+      </div>
+      <div className="space-y-2">
+        {stackLayers.map((item, index) => {
+          const isDora = item.layer.startsWith('DORA')
+          const isBelow = index >= 4
+          return (
+            <div
+              key={item.layer}
+              className={`grid min-w-0 gap-3 overflow-hidden border p-4 ${compact ? '' : 'md:grid-cols-[1fr_auto] md:items-center'} ${
+                isDora
+                  ? 'border-[#101310]/18 bg-[#DDE8D2] text-[#101310]'
+                  : isBelow
+                    ? 'border-[#101310]/12 bg-[#F7F4ED] text-[#4F564D]'
+                    : 'border-[#101310]/12 bg-[#101310] text-[#F7F4ED]'
+              }`}
+            >
+              <div className="min-w-0">
+                <p className="break-words font-sans text-[15px] font-semibold">{item.layer}</p>
+                <p className={`mt-1 max-w-[17rem] break-words text-sm leading-relaxed sm:max-w-none ${isDora ? 'text-[#4F564D]' : 'text-current opacity-75'}`}>{item.role}</p>
+              </div>
+              <span
+                className={`w-fit border px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.12em] ${
+                  isDora ? 'border-[#101310]/20 text-[#4F564D]' : 'border-current/20 text-current'
+                }`}
+              >
+                {item.status}
+              </span>
+            </div>
+          )
+        })}
+      </div>
+    </figure>
+  )
+}
+
+function PrimitiveCue({ type }) {
+  if (type === 'workflow') {
+    return (
+      <div className="grid grid-cols-[1fr_28px_1fr_28px_1fr] items-center">
+        {['Intake', 'Review', 'Decision'].map((label, index) => (
+          <div key={label} className="contents">
+            <div className="border border-[#101310]/12 bg-[#EEF2E8] px-3 py-4 font-mono text-[10px] uppercase tracking-[0.12em] text-[#4F564D]">
+              {label}
+            </div>
+            {index < 2 && <div className="h-px bg-[#101310]/24" />}
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  if (type === 'swarm') {
+    return (
+      <div className="grid grid-cols-[1fr_1fr_1fr_auto] gap-2">
+        {['Research', 'Legal', 'Ops'].map((label) => (
+          <div key={label} className="border border-[#101310]/12 bg-[#111412] px-3 py-4 text-center font-mono text-[10px] uppercase tracking-[0.1em] text-[#F7F4ED]">
+            {label}
+          </div>
+        ))}
+        <div className="border border-[#101310]/12 bg-[#DDE8D2] px-3 py-4 font-mono text-[10px] uppercase tracking-[0.1em] text-[#4F564D]">
+          Synthesis
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="grid gap-2">
+      {['Strategy persona', 'Research persona', 'Compliance persona'].map((label) => (
+        <div key={label} className="flex items-center justify-between border border-[#101310]/12 bg-[#EEF2E8] px-3 py-3">
+          <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#4F564D]">{label}</span>
+          <span className="h-2 w-2 bg-[#B8C7A8]" />
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function MiniWorkflowVisual() {
+  return (
+    <div className="mt-12 border border-[#101310]/12 bg-[#EEF2E8] p-5">
+      <p className="mb-5 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">
+        FIG 2 / WORKFLOW ROUTING
+      </p>
+      <div className="grid gap-4 md:grid-cols-[1fr_1.2fr_1fr] md:items-center">
+        <div className="border border-[#101310]/18 bg-[#FBFAF5] p-5">
+          <p className="font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">Enterprise workflow</p>
+          <p className="mt-4 text-lg font-semibold leading-tight">Context, approvals, teams, systems, decisions</p>
+        </div>
+        <div className="grid grid-cols-3 gap-2">
+          {['Research', 'Review', 'Operate', 'Verify', 'Decide', 'Route'].map((node) => (
+            <div key={node} className="border border-[#101310]/14 bg-[#101310] px-3 py-4 text-center font-mono text-[10px] uppercase tracking-[0.1em] text-[#F7F4ED]">
+              {node}
+            </div>
+          ))}
+        </div>
+        <div className="border border-[#101310]/18 bg-[#DDE8D2] p-5">
+          <p className="font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-[#4F564D]">Reliable system</p>
+          <p className="mt-4 text-lg font-semibold leading-tight">Observable, constrained, role-aware, deployable</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default function Home() {
+  useEffect(() => {
+    document.title = 'DORA Research - Enterprise AI above the model layer'
+  }, [])
+
+  return (
+    <div className="bg-[#F7F4ED] text-[#101310]">
+      <section className="border-b border-[#101310]/12 bg-[#F7F4ED] text-[#101310]">
+        <div className="mx-auto grid min-h-[88vh] max-w-6xl min-w-0 items-center gap-12 px-6 pb-16 pt-28 md:px-8 md:pb-20 md:pt-32 lg:grid-cols-[0.9fr_1.1fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <p className="mb-7 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">
+              ABOVE THE MODEL LAYER
+            </p>
+            <h1 className="max-w-[8.8ch] font-sans text-[clamp(48px,7vw,88px)] font-semibold leading-[0.98] sm:max-w-[12ch]">
+              Enterprise AI above the model layer.
+            </h1>
+            <p className="mt-8 max-w-[20rem] text-[22px] font-medium leading-[1.45] text-[#101310] sm:max-w-[42rem] md:text-2xl">
+              DORA builds the application, orchestration, and harness layers that turn existing models into reliable systems for the workflows your organization depends on every day.
+            </p>
+            <p className="mt-6 max-w-[20rem] text-base leading-[1.7] text-[#4F564D] sm:max-w-[40rem] md:text-lg">
+              We coordinate enterprise workflows, orchestrate parallel agent swarms, and give each agent a role-specific persona, context, and operating constraints.
+            </p>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <PrimaryButton href="mailto:hello@dorareason.com">Talk to DORA</PrimaryButton>
+              <SecondaryButton href="#how-it-works">See how it works</SecondaryButton>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="min-w-0"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
+          >
+            <StackDiagram />
+          </motion.div>
+        </div>
       </section>
 
-      {/* § I · ETHOS */}
-      <SectionWrapper surface="card">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-          <div>
-            <Eyebrow>§ I &nbsp;·&nbsp; Ethos</Eyebrow>
-            <SectionHeading>Ethos.</SectionHeading>
-          </div>
-          <div className="space-y-5 lg:pt-12">
-            <p className="font-serif text-2xl md:text-3xl text-ink leading-[1.3] tracking-[-0.005em] max-w-[32ch]">
-              AI is not a question-answering interface. It is a system capable of performing work.
-            </p>
-            <p className="text-base text-body leading-relaxed">
-              Most of the field is focused on improving responses. We believe this is the wrong abstraction.
-            </p>
-            <p className="text-base text-body leading-relaxed">
-              The value of AI emerges through execution, through systems that can carry context, operate under constraints, and act within real environments.
-            </p>
-            <p className="text-base text-ink leading-relaxed font-medium">
-              DORA Research is built around that belief.
-            </p>
-            <p className="text-base text-body leading-relaxed">
-              DORA Research is informed by direct work with applied AI systems and the challenges that emerge beyond the prompt-response layer.
-            </p>
-          </div>
+      <Section id="problem" label="§ I / WHY DORA EXISTS" title="Models are powerful. Systems are missing.">
+        <div className="space-y-6 text-lg leading-[1.65] text-[#4F564D]">
+          <p>
+            Foundation models can generate, reason, and respond. But models alone do not make AI operational.
+          </p>
+          <p>
+            Enterprises need systems that understand context, coordinate across teams, execute multi-step work, and behave reliably in production environments.
+          </p>
+          <p className="font-semibold text-[#101310]">
+            DORA builds the systems layer where AI becomes useful inside real organizations.
+          </p>
         </div>
-      </SectionWrapper>
+        <MiniWorkflowVisual />
+      </Section>
 
-      {/* § II · THE SHIFT */}
-      <SectionWrapper surface="default">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-          <div>
-            <Eyebrow>§ II &nbsp;·&nbsp; The shift</Eyebrow>
-            <SectionHeading>The shift.</SectionHeading>
-          </div>
-          <div className="space-y-5 lg:pt-12">
-            <p className="text-base text-body leading-relaxed">
-              Modern AI has made significant progress in reasoning, synthesis, and language.
-            </p>
-            <p className="text-base text-ink leading-relaxed font-medium">
-              But real-world value is not created at the point of answer.
-            </p>
-            <p className="text-base text-body leading-relaxed">
-              It is created through execution, across systems, constraints, and time.
-            </p>
-          </div>
+      <Section id="stack" label="§ II / AI STACK" title="Built above the model layer." field>
+        <div className="space-y-6 text-lg leading-[1.65] text-[#4F564D]">
+          <p className="font-semibold text-[#101310]">DORA is model-agnostic.</p>
+          <p>
+            We do not compete at the foundation model, compute, infrastructure, or generic data layers. We build where AI becomes operational: the application, orchestration, and harness layers.
+          </p>
+          <p className="font-semibold text-[#101310]">
+            DORA does not build foundation models, data infrastructure, compute platforms, or generic AI infrastructure. We build the systems layer that turns existing models into dependable enterprise AI.
+          </p>
         </div>
-      </SectionWrapper>
-
-      {/* § III · THE GAP */}
-      <SectionWrapper surface="card">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-4">
-          <div>
-            <Eyebrow>§ III &nbsp;·&nbsp; The gap</Eyebrow>
-            <SectionHeading>The gap.</SectionHeading>
+        <div className="mt-12 border border-[#101310]/12 bg-[#FBFAF5]">
+          <div className="grid grid-cols-[1fr_auto] gap-4 border-b border-[#101310]/12 px-4 py-3 md:px-6">
+            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">Layer</p>
+            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">DORA's role</p>
           </div>
-          <div className="space-y-5 lg:pt-12">
-            <p className="text-base text-body leading-relaxed">
-              There remains a fundamental gap between reasoning and execution.
-            </p>
-            <p className="text-base text-ink leading-relaxed font-medium">
-              Understanding and closing this gap is central to applied AI.
-            </p>
-          </div>
-        </div>
-        <ComparisonBlock
-          left={{ title: 'Most systems today', text: 'Prompt → Response' }}
-          right={{ title: 'Real workflows require', text: 'Context → State → Plan → Action → Verification' }}
-        />
-      </SectionWrapper>
-
-      {/* § IV · WHY NOW */}
-      <SectionWrapper surface="default">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-          <div>
-            <Eyebrow>§ IV &nbsp;·&nbsp; Why now</Eyebrow>
-            <SectionHeading>Why now.</SectionHeading>
-          </div>
-          <div className="space-y-5 lg:pt-12">
-            <p className="text-base text-body leading-relaxed">
-              Recent advances in model capability have made individual systems significantly more powerful.
-            </p>
-            <p className="text-base text-ink leading-relaxed font-medium">
-              As a result, the bottleneck is shifting.
-            </p>
-            <p className="text-base text-body leading-relaxed">
-              The limitation is no longer generating answers. It is coordinating execution across systems, environments, and time.
-            </p>
-            <p className="font-serif text-xl md:text-2xl text-ink leading-[1.4] max-w-[32ch] pt-2">
-              The frontier is moving from model capability to system design.
-            </p>
-          </div>
-        </div>
-      </SectionWrapper>
-
-      {/* § V · CORE PRIMITIVES */}
-      <SectionWrapper surface="card">
-        <Eyebrow>§ V &nbsp;·&nbsp; Core primitives</Eyebrow>
-        <SectionHeading>Core primitives.</SectionHeading>
-        <p className="text-base text-body leading-relaxed max-w-2xl mt-8 mb-14">
-          Execution systems require a different foundation. DORA Research builds around three core primitives.
-        </p>
-
-        {/* Fig 1: Orchestrated execution */}
-        <div className="bg-paper border border-border p-8 md:p-10 mb-16">
-          <div className="flex items-baseline justify-between pb-4 mb-8 border-b border-border flex-wrap gap-2">
-            <p className="font-mono text-[11px] tracking-[0.14em] uppercase">
-              <span className="text-ochre font-medium">Fig 1</span>
-              <span className="text-ink-muted">&nbsp;·&nbsp;&nbsp;Orchestrated execution with persona-driven agents</span>
-            </p>
-            <p className="font-mono text-[11px] tracking-[0.12em] uppercase text-ink">Control layer + 3 personas</p>
-          </div>
-          <div className="w-full overflow-x-auto">
-            <svg viewBox="0 0 800 340" fill="none" className="w-full h-auto max-w-[720px] mx-auto" aria-label="Orchestrated execution diagram">
-              {/* Control / Orchestrator box */}
-              <g>
-                <rect x="310" y="20" width="180" height="60" stroke="#0A0A0A" strokeWidth="1" fill="#FBFAF5"/>
-                <text x="400" y="50" textAnchor="middle" fontFamily="Instrument Serif, Georgia, serif" fontSize="20" fill="#0A0A0A">Control layer</text>
-                <text x="400" y="68" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#8C8A84" letterSpacing="1.4">ORCHESTRATOR · STATE · VERIFICATION</text>
-              </g>
-              {/* Dispatch arrows down to agents */}
-              <g stroke="#0A0A0A" strokeWidth="1" fill="none">
-                <line x1="350" y1="80" x2="170" y2="220"/>
-                <line x1="400" y1="80" x2="400" y2="220"/>
-                <line x1="450" y1="80" x2="630" y2="220"/>
-                <polyline points="168,215 170,220 172,215" strokeLinejoin="round"/>
-                <polyline points="398,215 400,220 402,215" strokeLinejoin="round"/>
-                <polyline points="628,215 630,220 632,215" strokeLinejoin="round"/>
-              </g>
-              {/* Arrow labels */}
-              <g fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#8C8A84" letterSpacing="1.4">
-                <text x="240" y="148" textAnchor="middle">DISPATCH</text>
-                <text x="420" y="148" textAnchor="middle">DISPATCH</text>
-                <text x="560" y="148" textAnchor="middle">DISPATCH</text>
-              </g>
-              {/* Agent A — Operator */}
-              <g>
-                <rect x="80" y="220" width="180" height="90" stroke="#0A0A0A" strokeWidth="1" fill="#FBFAF5"/>
-                <text x="170" y="250" textAnchor="middle" fontFamily="Instrument Serif, Georgia, serif" fontSize="18" fill="#0A0A0A">Agent A</text>
-                <line x1="100" y1="260" x2="240" y2="260" stroke="rgba(10,10,10,0.12)" strokeWidth="1"/>
-                <text x="170" y="278" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#B08A3E" letterSpacing="1.4" fontWeight="500">PERSONA · OPERATOR</text>
-                <text x="170" y="296" textAnchor="middle" fontFamily="Instrument Sans, sans-serif" fontSize="11" fill="#5A5A5A">Acts inside the system</text>
-              </g>
-              {/* Agent B — Analyst */}
-              <g>
-                <rect x="310" y="220" width="180" height="90" stroke="#0A0A0A" strokeWidth="1" fill="#FBFAF5"/>
-                <text x="400" y="250" textAnchor="middle" fontFamily="Instrument Serif, Georgia, serif" fontSize="18" fill="#0A0A0A">Agent B</text>
-                <line x1="330" y1="260" x2="470" y2="260" stroke="rgba(10,10,10,0.12)" strokeWidth="1"/>
-                <text x="400" y="278" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#B08A3E" letterSpacing="1.4" fontWeight="500">PERSONA · ANALYST</text>
-                <text x="400" y="296" textAnchor="middle" fontFamily="Instrument Sans, sans-serif" fontSize="11" fill="#5A5A5A">Interprets context</text>
-              </g>
-              {/* Agent C — User */}
-              <g>
-                <rect x="540" y="220" width="180" height="90" stroke="#0A0A0A" strokeWidth="1" fill="#FBFAF5"/>
-                <text x="630" y="250" textAnchor="middle" fontFamily="Instrument Serif, Georgia, serif" fontSize="18" fill="#0A0A0A">Agent C</text>
-                <line x1="560" y1="260" x2="700" y2="260" stroke="rgba(10,10,10,0.12)" strokeWidth="1"/>
-                <text x="630" y="278" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#B08A3E" letterSpacing="1.4" fontWeight="500">PERSONA · USER</text>
-                <text x="630" y="296" textAnchor="middle" fontFamily="Instrument Sans, sans-serif" fontSize="11" fill="#5A5A5A">Carries intent</text>
-              </g>
-              {/* Lateral coordination (dashed) */}
-              <g stroke="#8C8A84" strokeWidth="1" strokeDasharray="3 4" fill="none">
-                <line x1="260" y1="265" x2="310" y2="265"/>
-                <line x1="490" y1="265" x2="540" y2="265"/>
-              </g>
-              <text x="285" y="258" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="8" fill="#8C8A84" letterSpacing="1.2">COORD</text>
-              <text x="515" y="258" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="8" fill="#8C8A84" letterSpacing="1.2">COORD</text>
-              {/* Verification arrow back up from center agent */}
-              <g stroke="#B08A3E" strokeWidth="1" strokeDasharray="2 4" fill="none">
-                <path d="M380 220 Q 300 150 330 80"/>
-                <polyline points="326,84 330,80 334,86" strokeLinejoin="round" strokeDasharray="0"/>
-              </g>
-              <text x="270" y="130" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#B08A3E" letterSpacing="1.4" fontWeight="500">VERIFY / STATE</text>
-            </svg>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-l border-border mb-16">
-          {primitives.map((p) => (
-            <div key={p.label} className="border-r border-b border-border -mt-px -ml-px bg-paper hover:bg-card transition-colors duration-200 p-8 md:p-10 flex flex-col gap-5">
-              <span className="font-mono text-[10px] tracking-[0.14em] uppercase text-ochre font-medium">{p.label} &nbsp;·&nbsp; Primitive</span>
-              <h3 className="font-serif text-2xl md:text-[26px] text-ink leading-[1.2] tracking-[-0.005em]">{p.title}</h3>
-              <p className="text-[15px] text-body leading-[1.6]">{p.body}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Pull quote */}
-        <figure className="border-y border-ochre py-10 md:py-14 max-w-4xl">
-          <blockquote className="font-serif text-3xl md:text-4xl lg:text-[44px] text-ink leading-[1.18] tracking-[-0.01em]">
-            Increasing model capability improves <em className="italic text-ochre">answers</em>.
-            <br />
-            Structured systems are what make <em className="italic text-ochre">execution</em> possible.
-          </blockquote>
-          <figcaption className="font-mono text-[11px] tracking-[0.14em] uppercase text-ink-muted mt-6">
-            Thesis &nbsp;·&nbsp; DORA Research
-          </figcaption>
-        </figure>
-      </SectionWrapper>
-
-      {/* § VI · PRINCIPLES */}
-      <SectionWrapper surface="default">
-        <Eyebrow>§ VI &nbsp;·&nbsp; Principles</Eyebrow>
-        <SectionHeading>Principles.</SectionHeading>
-        <p className="text-base text-body leading-relaxed max-w-2xl mt-8 mb-14">
-          Four constraints that govern how DORA Research approaches execution systems.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-l border-border">
-          {principles.map((card, i) => (
-            <div key={card.title} className="border-r border-b border-border -mt-px -ml-px">
-              <ConceptCard title={card.title} text={card.text} index={i + 1} />
-            </div>
-          ))}
-        </div>
-      </SectionWrapper>
-
-      {/* § VII · CURRENT STAGE */}
-      <SectionWrapper surface="card">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-          <div>
-            <Eyebrow>§ VII &nbsp;·&nbsp; Current stage</Eyebrow>
-            <SectionHeading>Current stage.</SectionHeading>
-          </div>
-          <div className="space-y-5 lg:pt-12">
-            <p className="text-base text-ink leading-relaxed font-medium">
-              DORA Research is in an early stage, focused on developing and testing execution-oriented AI systems.
-            </p>
-            <p className="text-base text-body leading-relaxed">
-              We are working toward practical implementations while continuing to refine the underlying model.
-            </p>
-            <div className="pt-6 border-t border-border">
-              <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-ink-muted mb-4 font-medium">Founder</p>
-              <p className="text-base text-body leading-relaxed">
-                DORA Research was founded by <span className="text-ink font-medium">John Brackens</span>, a technology and product executive with two decades of work in gaming, environments that require orchestrated execution across operators, analysts, and end-users. Previously at EveryMatrix Software and Esports Entertainment Group, with earlier roles at Activision Blizzard and DataBet.
+          {stackTable.map(([layer, role]) => (
+            <div key={layer} className="grid grid-cols-[1fr_auto] gap-4 border-b border-[#101310]/12 px-4 py-4 last:border-b-0 md:px-6">
+              <p className="font-semibold text-[#101310]">{layer}</p>
+              <p
+                className={`border px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.12em] ${
+                  role === 'Core focus'
+                    ? 'border-[#101310]/14 bg-[#DDE8D2] text-[#4F564D]'
+                    : 'border-[#101310]/12 text-[#6B7568]'
+                }`}
+              >
+                {role}
               </p>
             </div>
-          </div>
+          ))}
         </div>
-      </SectionWrapper>
+      </Section>
 
-      {/* § VIII · CLOSING */}
-      <SectionWrapper surface="default">
-        <div className="max-w-3xl">
-          <Eyebrow>§ VIII &nbsp;·&nbsp; Long-term direction</Eyebrow>
-          <SectionHeading>The long-term direction.</SectionHeading>
-          <div className="space-y-6 border-l-2 border-ochre pl-8 mt-12">
-            <p className="font-serif text-xl md:text-2xl text-body leading-[1.4]">
-              The long-term value of AI will not come from better answers alone.
-            </p>
-            <p className="font-serif text-xl md:text-2xl text-ink leading-[1.4]">
-              It will come from systems that can interpret environments, coordinate resources, and execute meaningful work.
-            </p>
-            <p className="font-serif text-xl md:text-2xl text-body leading-[1.4]">
-              DORA Research is focused on understanding and building toward that shift.
+      <section id="primitives" className="border-t border-[#101310]/12 bg-[#F7F4ED]">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-28">
+          <div className="max-w-3xl">
+            <p className="mb-6 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">§ III / PRIMITIVES</p>
+            <h2 className="font-sans text-[clamp(36px,5vw,64px)] font-semibold leading-[1.02]">The operating primitives of reliable AI work.</h2>
+            <p className="mt-6 max-w-2xl text-lg leading-[1.65] text-[#4F564D]">
+              DORA systems are built from three operating primitives: coordinated enterprise workflows, parallel agent swarms, and persona-based agents.
             </p>
           </div>
+          <div className="mt-14 grid border-l border-t border-[#101310]/12 md:grid-cols-3">
+            {primitives.map((primitive, index) => (
+              <article key={primitive.title} className="min-h-[380px] border-b border-r border-[#101310]/12 bg-[#FBFAF5] p-7 md:p-8">
+                <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">Primitive {index + 1}</p>
+                <div className="mt-8">
+                  <PrimitiveCue type={primitive.cue} />
+                </div>
+                <h3 className="mt-8 max-w-[13ch] font-sans text-2xl font-semibold leading-[1.08]">{primitive.title}</h3>
+                <p className="mt-6 text-[15px] leading-[1.65] text-[#4F564D]">{primitive.body}</p>
+              </article>
+            ))}
+          </div>
         </div>
+      </section>
 
-        {/* Working paper clarifier */}
-        <div className="max-w-3xl mt-20 pt-10 border-t border-border">
-          <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-ink-muted mb-4 font-medium">On this document</p>
-          <p className="text-base text-body leading-relaxed">
-            This site is the lab's initial working paper. Further notes, figures, and writings will be published as the work matures.
+      <Section id="how-it-works" label="§ IV / METHOD" title="From prompts to systems.">
+        <div className="space-y-6 text-lg leading-[1.65] text-[#4F564D]">
+          <p>Most organizations start with prompts. DORA helps them move to systems.</p>
+          <p>
+            A prompt is a single interaction. A system has structure: workflows, agents, roles, personas, evaluations, handoffs, interfaces, and operating constraints. It can be observed, refined, and trusted over time.
           </p>
         </div>
-
-        {/* Contact */}
-        <div className="max-w-3xl mt-16 pt-10 border-t border-border">
-          <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-ochre mb-4 font-medium">Get in touch</p>
-          <p className="text-base text-body leading-relaxed mb-6 max-w-[44ch]">
-            If the thesis resonates, reach out. We are open to conversations with collaborators, technical talent, and investors.
-          </p>
-          <a
-            href="mailto:hello@dorareason.com"
-            className="inline-flex items-baseline gap-3 font-serif text-2xl md:text-3xl text-ink hover:text-ochre transition-colors duration-200"
-          >
-            hello@dorareason.com
-            <span aria-hidden="true" className="text-ochre">→</span>
-          </a>
+        <div className="mt-12 border-l border-t border-[#101310]/12">
+          {workflowSteps.map(([label, step]) => (
+            <div key={label} className="grid gap-4 border-b border-r border-[#101310]/12 bg-[#FBFAF5] p-5 md:grid-cols-[180px_1fr] md:items-center md:p-6">
+              <p className="font-mono text-[12px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">{label}</p>
+              <p className="text-xl font-semibold leading-tight text-[#101310]">{step}</p>
+            </div>
+          ))}
         </div>
-      </SectionWrapper>
+        <div className="mt-8 border border-[#101310]/12 bg-[#EEF2E8] p-6">
+          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">Example workflow</p>
+          <p className="mt-4 text-lg leading-[1.65] text-[#4F564D]">
+            A strategic planning workflow might run market, customer, financial, legal, and operational agents in parallel, then synthesize their outputs through an evaluation harness before a recommendation reaches leadership.
+          </p>
+        </div>
+      </Section>
+
+      <Section id="reliability" label="§ V / RELIABILITY" title="Reliability is designed into the system." field>
+        <div className="space-y-6 text-lg leading-[1.65] text-[#4F564D]">
+          <p>
+            Reliable AI is not just better output. It is the ability to observe, evaluate, constrain, and improve how AI behaves inside real workflows.
+          </p>
+          <p>
+            DORA builds harnesses around agent systems so teams can see how work moves, where decisions happen, what context agents use, and how outputs are reviewed before deployment.
+          </p>
+        </div>
+        <div className="mt-12 grid border-l border-t border-[#101310]/12 sm:grid-cols-2">
+          {reliabilityPoints.map(([title, body]) => (
+            <article key={title} className="border-b border-r border-[#101310]/12 bg-[#FBFAF5] p-6">
+              <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">{title}</p>
+              <p className="mt-5 text-[15px] leading-[1.65] text-[#4F564D]">{body}</p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section id="services" label="§ VI / DEPLOYED SYSTEMS" title="From research to deployed systems." dark>
+        <div className="space-y-6 text-lg leading-[1.65] text-[#F7F4ED]/72">
+          <p>
+            DORA works with organizations to move from AI ambition to operational systems.
+          </p>
+          <p>
+            We combine research, workflow design, agent architecture, orchestration, harnesses, and deployment support so teams can rely on AI in daily work.
+          </p>
+        </div>
+        <div className="mt-12 grid border-l border-t border-[#F7F4ED]/14 md:grid-cols-3">
+          {services.map(([title, body]) => (
+            <article key={title} className="border-b border-r border-[#F7F4ED]/14 p-6">
+              <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#DDE8D2]/80">{title}</p>
+              <p className="mt-6 text-[15px] leading-[1.65] text-[#F7F4ED]/70">{body}</p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <section id="use-cases" className="border-t border-[#101310]/12 bg-[#EEF2E8]">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-28">
+          <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+            <div>
+              <p className="mb-6 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">§ VII / USE CASES</p>
+              <h2 className="max-w-[12ch] font-sans text-[clamp(36px,5vw,64px)] font-semibold leading-[1.02]">For work that cannot rely on one-shot generation.</h2>
+              <p className="mt-6 text-lg leading-[1.65] text-[#4F564D]">
+                DORA is designed for workflows where context, coordination, and reliability matter more than one-off output.
+              </p>
+            </div>
+            <div className="grid border-l border-t border-[#101310]/12 sm:grid-cols-2">
+              {useCases.map(([title, body]) => (
+                <article key={title} className="border-b border-r border-[#101310]/12 bg-[#FBFAF5] p-6">
+                  <h3 className="text-xl font-semibold leading-tight">{title}</h3>
+                  <p className="mt-4 text-[15px] leading-[1.6] text-[#4F564D]">{body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Section id="research" label="§ VIII / RESEARCH" title="Research that becomes deployable systems." dark>
+        <div className="space-y-6 text-lg leading-[1.65] text-[#F7F4ED]/72">
+          <p>
+            DORA's research focuses on how AI systems operate inside real environments: multi-agent coordination, persona design, orchestration patterns, workflow harnesses, evaluation, and reliability.
+          </p>
+          <p className="font-semibold text-[#F7F4ED]">
+            Our research is judged by whether it becomes useful, measurable, and deployable inside real organizations.
+          </p>
+        </div>
+        <div className="mt-12 grid gap-3 sm:grid-cols-2">
+          {['Multi-agent coordination', 'Persona design', 'Workflow harnesses', 'Reliability evaluation'].map((item) => (
+            <div key={item} className="border border-[#F7F4ED]/14 p-5 font-mono text-[11px] uppercase tracking-[0.12em] text-[#DDE8D2]">
+              {item}
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <section id="contact" className="border-t border-[#101310]/12 bg-[#DDE8D2]">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-28">
+          <div className="max-w-3xl">
+            <h2 className="font-sans text-[clamp(36px,5vw,64px)] font-semibold leading-[1.02]">Build enterprise AI above the model layer.</h2>
+            <p className="mt-8 max-w-2xl text-lg leading-[1.6] text-[#4F564D]">
+              For organizations ready to move beyond AI pilots and into dependable enterprise deployment.
+            </p>
+            <PrimaryButton href="mailto:hello@dorareason.com" className="mt-10">Talk to DORA</PrimaryButton>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

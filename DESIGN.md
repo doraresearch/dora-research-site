@@ -1,118 +1,285 @@
 # Design System — DORA Research
 
-Always read this file before making any visual or UI decision on this site. All
-font choices, colors, spacing, and aesthetic direction are defined here. Do not
-deviate without explicit approval.
+Always read this file before making any visual or UI decision on this site. All font choices, colors, spacing, component behavior, and aesthetic direction are defined here. Do not deviate without explicit approval.
 
 ## Product Context
-- **What this is:** Marketing and editorial site for DORA Research, an applied AI research lab.
-- **Who it's for:** Researchers, operators, founders, and engineers interested in AI systems that execute work, not just answer questions.
-- **Space:** Applied AI, workflow execution systems, operator architectures.
-- **Project type:** Static marketing site (React + Vite + Tailwind + Framer Motion).
+
+- **What this is:** Marketing site for DORA Research, an AI systems company operating between an applied research lab, enterprise product studio, and AI-native services company.
+- **Who it is for:** Enterprise leaders, operators, founders, technical teams, and transformation owners responsible for deploying AI into important daily workflows.
+- **Positioning:** DORA helps organizations build and deploy AI systems they can rely on every day across their most important work.
+- **Stack role:** DORA operates above the model layer, focusing on the application, orchestration, and harness layers of the AI stack.
+- **Not DORA:** DORA is not a foundation model company, data infrastructure company, compute company, core infrastructure company, or generic AI tooling company.
+- **Core primitives:** Coordinated enterprise workflows, parallel agent swarms, and unique personas per agent.
+- **Operating model:** DORA combines research, system design, implementation, and enterprise deployment.
+- **Project type:** Static marketing site using React + Vite + Tailwind + Framer Motion.
+
+## Strategic Design Direction
+
+DORA should feel like a serious enterprise AI systems company that turns existing models into dependable operational systems.
+
+- Light, precise, architectural, and high-trust.
+- Systems-led rather than SaaS-dashboard-led.
+- Enterprise-grade without feeling corporate-generic.
+- Research-backed without feeling academic or obscure.
+- Productized without pretending to be a self-serve horizontal SaaS app.
+- Calm, sparse, and legible.
+
+Do not make the site look like a dark-only AI research lab, purple-gradient AI SaaS page, chatbot company, decorative dashboard company, consumer productivity assistant, foundation model lab, data company, infrastructure company, or compute company.
+
+## Design Thesis
+
+DORA's clearest visual idea:
+
+> Existing models sit below. DORA sits above them. Enterprise work runs through DORA's application, orchestration, and harness layers.
+
+The homepage should make this idea visible before the user scrolls.
+
+The visual system is based on layered systems, workflow routing, enterprise work surfaces, agent roles, and harness/reliability concepts.
 
 ## Aesthetic Direction
-- **Direction:** Research-lab editorial. Bell Labs, Stripe Press, academic quarterly.
-- **Decoration level:** Intentional. Typography carries the brand. One subtle schematic background layer, hairline rules, mono figure captions.
-- **Mood:** Sober, measured, confident. A working paper, not a landing page.
-- **Anti-references:** Stripe, Linear, Vercel, generic AI-startup landing pages. No purple gradients, no rounded-bubble icons, no Tailwind blue, no Inter.
+
+**Warm-light enterprise systems.**
+
+Use a light-first visual system with warm paper backgrounds, sharp cards, restrained grid lines, and one muted systems accent. The hero should feel like a bright enterprise workspace or systems command surface, not a decorative product dashboard. The hero must show "above the model layer" through a stack-first diagram.
+
+Borrow only general category principles: clear hero copy, simple navigation, large product/system visual, workflow-oriented sections, platform-layer framing, calm high-trust colors, and strong contrast between strategic explanation and technical diagramming. Do not reference or imitate any specific company brand.
+
+Avoid overly rounded cards, animated blobs, fake dashboards, generic chat bubbles, purple-blue AI gradients, glowing nodes, robot or brain imagery, hype metrics, and self-serve SaaS language that makes DORA feel generic.
+
+## Brand Personality
+
+DORA should sound and look precise, serious, calm, technical but understandable, high-agency, operational, enterprise-ready, systems-oriented, confident without hype, and research-backed but deployment-focused.
+
+DORA should not sound promotional, buzzword-heavy, academic for its own sake, like a chatbot wrapper, or like a generic AI automation agency.
 
 ## Typography
 
-Three families, clearly assigned.
-
-- **Display / thesis:** `Instrument Serif` — 400 regular + italic. Used for `h1` and `h2`. Italic is used for emphasized words in the accent color.
-- **Body + UI:** `Instrument Sans` — 400, 500, 600. Default for paragraphs, lede text, buttons, navigation.
-- **Labels / eyebrows / system names / figure captions:** `JetBrains Mono` — 400, 500. Used at 10–12px with wide tracking, uppercased.
-
-Loaded from Google Fonts in `src/index.css`.
-
-### Scale
+- **Body + UI:** `Instrument Sans`, weights 400, 500, 600. Use for almost all headings, body, navigation, cards, tables, buttons, and diagrams.
+- **Research accent:** `Instrument Serif`, sparingly for one editorial pull quote, research statement, or section accent. Do not use for the main product headline.
+- **Labels / diagrams / captions:** `JetBrains Mono`, 10-12px, uppercase, wide tracking.
 
 | Role | Size | Line height | Family |
-|------|------|-------------|--------|
-| Hero display | `clamp(64px, 9vw, 112px)` | 1.02 | Serif |
-| H2 | `clamp(36px, 4.5vw, 56px)` | 1.08 | Serif |
-| H3 (card) | 20px | 1.2 | Serif |
-| Lede | 22px | 1.45 | Sans 500 |
-| Body | 17px | 1.7 | Sans 400 |
-| Small | 14px | 1.55 | Sans 400 |
-| Eyebrow | 11px | 1 | Mono 500 (tracking 0.14em, uppercase) |
-| Figure caption | 12px | 1 | Mono 500 (tracking 0.1em, uppercase) |
+|---|---:|---:|---|
+| Hero display | `clamp(48px, 7vw, 88px)` | 0.98 | Instrument Sans 600 |
+| H2 | `clamp(36px, 5vw, 64px)` | 1.02 | Instrument Sans 600 |
+| H3 | 22-28px | 1.08-1.2 | Instrument Sans 600 |
+| Lede | 22-24px | 1.45 | Instrument Sans 500 |
+| Body | 16-18px | 1.6-1.7 | Instrument Sans 400 |
+| Small | 14-15px | 1.5-1.6 | Instrument Sans 400 |
+| Diagram label | 10-12px | 1.2 | JetBrains Mono 500 |
 
-### Emphasis
+Use direct, plainspoken headlines. Avoid decorative headline treatments and excessive tracking on large text.
 
-Use italic Instrument Serif in the accent color for emphasized words inside headlines (e.g. "AI that *executes*."). Use Instrument Sans 500 weight for in-paragraph emphasis in ink color.
+## Color System
 
-## Color
+No Tailwind blue as a primary brand color.
 
-Paper, ink, and one archival accent. No gradients. No semantic color spam.
+| Token | Hex | Usage |
+|---|---|---|
+| `ink` | `#101310` | Primary text |
+| `dark` | `#111412` | Footer, dark technical bands, high-contrast panels |
+| `paper` | `#F7F4ED` | Main page background |
+| `surface` | `#FBFAF5` | Cards, panels, hero surfaces |
+| `field` | `#EEF2E8` | Alternate light sections and system fields |
+| `soft-green` | `#DDE8D2` | DORA focus layers, CTA surface, selected states |
+| `soft-green-hover` | `#C9DABC` | Primary CTA hover |
+| `body` | `#4F564D` | Body copy |
+| `muted` | `#6B7568` | Labels, metadata, secondary text |
+| `border` | `rgba(16,19,16,0.12)` | Hairlines on light backgrounds |
+| `border-strong` | `rgba(16,19,16,0.22)` | Table lines, technical dividers |
+| `border-dark` | `rgba(247,244,237,0.14)` | Hairlines on dark backgrounds |
+| `white` | `#FFFFFF` | Rare highlight surfaces |
+| `warning-muted` | `#E9D8B8` | Rare caution/evaluation states |
+| `signal` | `#B8C7A8` | Small active route/agent indicators |
 
-| Token | Hex | HSL | Usage |
-|-------|-----|-----|-------|
-| `paper` | `#F6F3EC` | `42 35% 94%` | Page background |
-| `card` | `#FBFAF5` | `50 33% 97%` | Card / surface background |
-| `ink` | `#0A0A0A` | `0 0% 4%` | Primary text, primary button bg |
-| `body` | `#5A5A5A` | `0 0% 35%` | Body paragraphs |
-| `muted` | `#8C8A84` | `45 4% 53%` | Eyebrows, muted labels |
-| `accent` | `#B08A3E` | `42 48% 47%` | Italic emphasis, hover states, one horizontal rule per page, figure numbers |
-| `accent-hover` | `#9A7934` | `42 49% 40%` | Hover state for accent |
-| `hairline` | `rgba(10,10,10,0.12)` | — | Dividers, card borders |
-| `hairline-strong` | `rgba(10,10,10,0.24)` | — | Hovered borders, diagram node borders |
-
-**Accent rule:** the accent appears in one or two places per viewport — never decoratively. It carries meaning (emphasis, hover, figure number).
-
-### Dark mode
-
-The site is single-mode (light) for now. A dark-mode extension of this palette uses paper `#141210`, ink `#F3EEE4`, body `#A8A39A`, muted `#6B6760`, accent `#D4AF5C` (lighter ochre). Not wired up yet.
-
-## Spacing
-
-- **Base unit:** 8px.
-- **Density:** Comfortable to spacious. Widen vertical air around hero and thesis moments.
-- **Scale:** 2xs(4) xs(8) sm(12) md(16) lg(24) xl(32) 2xl(48) 3xl(64) 4xl(96).
-- **Hero top padding:** `pt-40 md:pt-56` (was `pt-32 md:pt-44`).
-- **Section padding:** `py-24 md:py-32`.
+Use `paper` as the main background, `surface` for cards, `field` for alternate light technical sections, `soft-green` only for DORA focus layers and CTA/active states, and `dark` sparingly for the footer or one technical band.
 
 ## Layout
 
-- **Approach:** Grid-disciplined, with intentional asymmetry at hero and thesis moments.
-- **Max content width:** `max-w-6xl` (1152px).
-- **Side gutters:** `px-6` mobile, `px-8` desktop.
-- **Grids:** Two-column 1fr/2fr for "heading + body" pairs. Research cards use a 3-column hairline grid (no gaps, shared borders).
-- **Border radius:** `0` (sharp edges, always). No `rounded-*` utilities on cards, buttons, diagrams, or inputs. The only exception is the SVG icons in `BackgroundIcons.jsx`.
-- **Shadows:** None. Hairline borders carry separation instead.
+- **Max content width:** `max-w-6xl`.
+- **Gutters:** `px-6` mobile, `px-8` desktop.
+- **Section padding:** `py-20 md:py-28`.
+- **Hero minimum height:** `min-h-[88vh]` on desktop, content-driven height on mobile.
+- **Grid style:** Bordered grids, structured rows, stack diagrams, and workflow tables.
+- **Card style:** Sharp rectangles with subtle borders. Prefer `rounded-none`.
+- **Whitespace:** Generous, calm, premium.
+- **Rhythm:** Light hero -> light explanation -> field stack section -> primitives -> method -> dark services/research band -> light use cases -> CTA -> dark footer.
+
+## Header
+
+Fixed at top with light `paper` background, hairline bottom border, compact height, simple navigation, and one CTA.
+
+Navigation:
+
+- How it works
+- Primitives
+- Use cases
+- Research
+- Contact
+
+CTA: Talk to DORA. Use sharp rectangle, `ink` text on `soft-green`.
+
+## Buttons
+
+Primary buttons use `soft-green`, `ink` text, `soft-green-hover` on hover, a hairline border, and sharp rectangles. Secondary buttons are transparent or `surface` with `ink` text, hairline border, and a subtle `field` hover state.
+
+Preferred CTAs: Talk to DORA, See how it works, Explore the primitives, Build with DORA.
+
+Avoid: Get started free, Start for free, Unlock AI, Supercharge your team.
+
+## Homepage Structure
+
+1. Light hero with stack-first system visual.
+2. Problem section.
+3. Above-the-model-layer stack section.
+4. Core primitives.
+5. From prompts to systems.
+6. AI-native services / deployment model.
+7. Use cases.
+8. Research section.
+9. Final CTA.
+10. Footer.
+
+## Required Components
+
+### Stack Diagram
+
+Show where DORA sits in the AI stack:
+
+1. Enterprise Workflows
+2. DORA Application Layer
+3. DORA Orchestration Layer
+4. DORA Harness Layer
+5. Existing Model Layer
+6. Data / Infrastructure / Compute
+
+DORA layers must be grouped and visually emphasized with `soft-green`. Model, data, infrastructure, and compute must be visible but de-emphasized. Use mono labels, hairline borders, and keep it readable on mobile.
+
+### Primitive Cards
+
+Three sharp rectangular cards:
+
+1. Coordinated enterprise workflows
+2. Parallel agent swarms
+3. Persona-based agents
+
+Each card needs direct copy and a restrained diagram cue.
+
+### Workflow Flow
+
+Use structured rows with mono labels:
+
+1. `01 / WORKFLOW` Start with the enterprise workflow
+2. `02 / ROLES` Define agent roles and responsibilities
+3. `03 / PERSONAS` Assign personas and operating constraints
+4. `04 / ORCHESTRATION` Run agents in parallel through orchestration
+5. `05 / HARNESS` Evaluate, refine, and deploy
+
+### Use Case Cards
+
+Cards must be concise, serious, and avoid full-automation promises.
 
 ## Motion
 
-- **Approach:** Minimal-functional.
-- **Where:** Hero entrance only. One fade-up on the hero `h1` + lede. Everywhere else static.
-- **Easing:** `cubic-bezier(0.22, 1, 0.36, 1)` (ease-out).
-- **Duration:** 750ms for hero entrance. No transition longer than 200ms for hover states.
-- **Banned:** Per-section `whileInView` fade-ups. Parallax is OK for the subtle schematic icon layer (already implemented).
+Minimal and functional only.
 
-## Eyebrows and Figure Captions
+- Hero entrance only.
+- Optional subtle diagram entrance in hero.
+- Hero entrance duration: 750ms.
+- Hover transitions under 200ms.
 
-Replace decorative numerals with academic markers:
+Avoid per-section scroll animations, parallax, decorative motion, animated AI gimmicks, floating particles, glowing orbs, and continuous background animation.
 
-- Section eyebrows: `§ I · THE EXECUTION GAP`, `§ II · THESIS`, …
-- Figure captions: `FIG 1 · EXECUTION ARCHITECTURE`, `FIG 2 · PIPELINE`.
-- Working-paper banner on hero: `DORA RESEARCH · WORKING PAPER · 2026.04`.
-- Card tags: `01 · EXECUTION`, `02 · STATE` — mono in accent color, used on research cards only.
+## Copy Rules
 
-All eyebrows are JetBrains Mono, 11px, uppercase, tracking 0.14em.
+Use these prominently:
 
-## Components
+- "above the model layer"
+- "application, orchestration, and harness layers"
+- "model-agnostic"
+- "reliable AI systems"
+- "enterprise workflows"
+- "parallel agent swarms"
+- "persona-based agents"
 
-- **Buttons:** Sharp rectangles, no radius. Primary is solid ink with paper text and oxblood hover. Ghost is transparent with hairline border and ink text, hover tightens the border to full ink. No gradients, no shadows.
-- **Cards (research, concept):** Sharp hairline rectangles on card color. Mono tag in accent color, serif h3, sans body copy. Hover changes background from paper to card, no shadow.
-- **Figure cards:** Sharp hairline rectangles on card color. Figure caption strip at top with bottom-hairline separator. Mono figure number in accent on the left, mono title in ink on the right.
-- **Research grid:** Zero-gap grid with shared hairlines (top + left on the container, right + bottom on each cell). Feels like a printed table.
-- **Diagrams:** Sharp nodes, hairline borders, thin ink connectors with simple arrowheads. Labels in JetBrains Mono.
-- **Background icons:** Keep the existing parallax layer, but tune the color to `rgba(10,10,10,0.035)` and stroke width to 0.6 for a more refined feel.
+Required statement:
+
+> DORA does not build foundation models, data infrastructure, compute platforms, or generic AI infrastructure.
+
+Prefer systems nouns: workflow, harness, orchestration, evaluation, handoff, role, persona, constraint, context, deployment, reliability, system, traceability, operating layer, coordination, enterprise work.
+
+Avoid: unlock, supercharge, future of, revolutionize, AI-powered everything, agentic as vague filler, magical, autonomous everything, one AI for every team, copilot for X, chatbot, productivity assistant, AI employee, next-generation, transform your business overnight.
+
+## Homepage Copy
+
+### Hero
+
+Headline: Enterprise AI above the model layer.
+
+Subheadline: DORA builds the application, orchestration, and harness layers that turn existing models into reliable systems for the workflows your organization depends on every day.
+
+Supporting copy: We coordinate enterprise workflows, orchestrate parallel agent swarms, and give each agent a role-specific persona, context, and operating constraints.
+
+Primary CTA: Talk to DORA
+
+Secondary CTA: See how it works
+
+Hero label: ABOVE THE MODEL LAYER
+
+### Problem
+
+Headline: Models are powerful. Systems are missing.
+
+Copy: Foundation models can generate, reason, and respond. But models alone do not make AI operational.
+
+Enterprises need systems that understand context, coordinate across teams, execute multi-step work, and behave reliably in production environments.
+
+DORA builds the systems layer where AI becomes useful inside real organizations.
+
+### Stack
+
+Headline: Built above the model layer.
+
+Copy: DORA is model-agnostic.
+
+We do not compete at the foundation model, compute, infrastructure, or generic data layers. We build where AI becomes operational: the application, orchestration, and harness layers.
+
+DORA does not build foundation models, data infrastructure, compute platforms, or generic AI infrastructure. We build the systems layer that turns existing models into dependable enterprise AI.
+
+### Reliability
+
+Headline: Reliability is designed into the system.
+
+Copy: Reliable AI is not just better output. It is the ability to observe, evaluate, constrain, and improve how AI behaves inside real workflows.
+
+DORA builds harnesses around agent systems so teams can see how work moves, where decisions happen, what context agents use, and how outputs are reviewed before deployment.
+
+### From Research to Deployed Systems
+
+Headline: From research to deployed systems.
+
+Copy: DORA works with organizations to move from AI ambition to operational systems.
+
+We combine research, workflow design, agent architecture, orchestration, harnesses, and deployment support so teams can rely on AI in daily work.
+
+## Implementation Requirements
+
+- Use the existing React + Vite + Tailwind project structure.
+- Preserve maintainability and component clarity.
+- Use semantic sections and accessible markup.
+- Ensure responsive design.
+- Do not introduce unnecessary dependencies.
+- Use Framer Motion only if already installed, and only for the hero entrance.
+- Replace placeholder copy with final copy from this document.
+- Use actual layout and diagrams, not generic placeholders.
+- Make the homepage immediately communicate that DORA turns existing models into reliable enterprise AI systems through workflow coordination, parallel agent swarms, personas, orchestration, and harnesses.
 
 ## Decisions Log
 
 | Date | Decision | Rationale |
-|------|----------|-----------|
-| 2026-04-23 | Initial design system created | Shifted away from generic AI-startup editorial-minimal (Inter + Tailwind blue + rounded cards + cold `#FAFAFA`) toward research-lab editorial (Instrument Serif + ochre accent + sharp hairline grid + warm ivory paper). The category needs a differentiator; the existing system was literate but interchangeable with every Stripe-clone. |
-| 2026-04-23 | Accent locked as ochre `#B08A3E` | Chosen over oxblood, prussian blue, forest, and ink-only after side-by-side comparison. Ochre reads as manuscript / aged-paper / warm — pairs with the warm ivory paper and the Instrument Serif display to reinforce the scholarly working-paper aesthetic without feeling tech-y or corporate. |
+|---|---|---|
+| 2026-05-15 | Remodel homepage around above-the-model-layer positioning | DORA's clearest market distinction is not model capability or infrastructure. It is turning existing models into dependable, role-aware systems inside enterprise workflows. |
+| 2026-05-15 | Shift visual direction from academic research page to enterprise AI systems company | The previous research-lab editorial style preserved seriousness but did not communicate application, orchestration, and harness layers quickly enough for enterprise buyers. |
+| 2026-05-15 | Use light-first design instead of dark-first design | A lighter system can feel more modern, enterprise-accessible, and productized while still preserving seriousness through sharp rectangles, restrained color, stack diagrams, and precise copy. |
+| 2026-05-15 | Remove company-specific visual references | The site should not imitate another AI startup's brand or homepage structure. DORA needs its own systems-layer identity. |
+| 2026-05-15 | Add AI-native services section | DORA is not only a software surface. It combines research, system design, orchestration, harnesses, and deployment support for enterprise AI systems. |
