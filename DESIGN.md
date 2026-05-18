@@ -38,9 +38,9 @@ The visual system is based on layered systems, workflow routing, enterprise work
 
 ## Aesthetic Direction
 
-**Warm-light enterprise systems.**
+**Crisp systems architecture.**
 
-Use a light-first visual system with warm paper backgrounds, sharp cards, restrained grid lines, and one muted systems accent. The hero should feel like a bright enterprise workspace or systems command surface, not a decorative product dashboard. The hero must show "above the model layer" through a stack-first diagram.
+Use a light-first visual system with a clean technical base, white architecture panels, sharp structural dividers, and a cool blue systems signal. The site should feel technical, precise, modern, and enterprise-grade. It must not feel beige, dusty, parchment-like, boutique, or editorial-first. The hero should feel like an enterprise architecture artifact, not a decorative product dashboard. The hero must show "above the model layer" through a bespoke stack + flow + harness diagram.
 
 Borrow only general category principles: clear hero copy, simple navigation, large product/system visual, workflow-oriented sections, platform-layer framing, calm high-trust colors, and strong contrast between strategic explanation and technical diagramming. Do not reference or imitate any specific company brand.
 
@@ -72,42 +72,43 @@ Use direct, plainspoken headlines. Avoid decorative headline treatments and exce
 
 ## Color System
 
-No Tailwind blue as a primary brand color.
+The DORA site uses a crisp architecture palette with a deliberately cool systems signal. It should feel light, technical, and enterprise-grade, not beige, dusty, parchment-like, boutique, or editorial-first. Use the exact signal colors below rather than default Tailwind blue.
 
 | Token | Hex | Usage |
 |---|---|---|
-| `ink` | `#101310` | Primary text |
-| `dark` | `#111412` | Footer, dark technical bands, high-contrast panels |
-| `paper` | `#F7F4ED` | Main page background |
-| `surface` | `#FBFAF5` | Cards, panels, hero surfaces |
-| `field` | `#EEF2E8` | Alternate light sections and system fields |
-| `soft-green` | `#DDE8D2` | DORA focus layers, CTA surface, selected states |
-| `soft-green-hover` | `#C9DABC` | Primary CTA hover |
-| `body` | `#4F564D` | Body copy |
-| `muted` | `#6B7568` | Labels, metadata, secondary text |
-| `border` | `rgba(16,19,16,0.12)` | Hairlines on light backgrounds |
-| `border-strong` | `rgba(16,19,16,0.22)` | Table lines, technical dividers |
-| `border-dark` | `rgba(247,244,237,0.14)` | Hairlines on dark backgrounds |
-| `white` | `#FFFFFF` | Rare highlight surfaces |
-| `warning-muted` | `#E9D8B8` | Rare caution/evaluation states |
-| `signal` | `#B8C7A8` | Small active route/agent indicators |
+| `base` | `#F7F8FA` | Main page background |
+| `surface` | `#FFFFFF` | Cards, tables, diagrams, panels |
+| `surface-alt` | `#EEF1F4` | Neutral hover states and subtle alternate fields |
+| `ink` | `#050608` | Primary text, headlines, nav |
+| `graphite` | `#111418` | Dark research/deployment band, footer, dark buttons |
+| `body` | `#3B4148` | Paragraph text |
+| `muted` | `#6F7782` | Labels, metadata, secondary text |
+| `line` | `#DCE1E6` | Standard hairline borders |
+| `line-strong` | `#AEB7C2` | Stronger dividers, tables, architecture lines |
+| `signal` | `#7DD3FC` | DORA focus rails, route indicators, selected system states |
+| `signal-soft` | `#E0F7FF` | Subtle DORA layer backgrounds in diagrams only |
+| `deep-signal` | `#0284C7` | Link hovers, small active annotations, dark-section route endings |
+| `dark-text` | `#F8FAFC` | Text on graphite background |
+| `dark-muted` | `#CBD5E1` | Secondary text on graphite background |
 
-Use `paper` as the main background, `surface` for cards, `field` for alternate light technical sections, `soft-green` only for DORA focus layers and CTA/active states, and `dark` sparingly for the footer or one technical band.
+Use `base` as the main background, `surface` for diagrams and panels, `signal-soft` only for DORA layer backgrounds in diagrams or selected states, `signal` only for focus rails, route indicators, and selected states, and `graphite` for the dark research/deployment band, footer, and primary dark buttons.
+
+Do not use warm paper, beige, parchment, sage green, pale green section backgrounds throughout the page, purple AI gradients, neon glows, glassmorphism, or decorative blobs.
 
 ## Layout
 
-- **Max content width:** `max-w-6xl`.
-- **Gutters:** `px-6` mobile, `px-8` desktop.
+- **Max content width:** `max-w-[1440px]` on the homepage when the layout needs a more expansive enterprise architecture canvas.
+- **Gutters:** `px-6` mobile, `px-10` desktop.
 - **Section padding:** `py-20 md:py-28`.
 - **Hero minimum height:** `min-h-[88vh]` on desktop, content-driven height on mobile.
 - **Grid style:** Bordered grids, structured rows, stack diagrams, and workflow tables.
 - **Card style:** Sharp rectangles with subtle borders. Prefer `rounded-none`.
 - **Whitespace:** Generous, calm, premium.
-- **Rhythm:** Light hero -> light explanation -> field stack section -> primitives -> method -> dark services/research band -> light use cases -> CTA -> dark footer.
+- **Rhythm:** crisp light hero -> sparse problem -> iconic stack table -> primitive system cards -> workflow trace -> proof artifact -> reliability framework -> dark services/research band -> use-case table -> research agenda -> graphite CTA -> dark footer.
 
 ## Header
 
-Fixed at top with light `paper` background, hairline bottom border, compact height, simple navigation, and one CTA.
+Fixed at top with light `base` background, hairline bottom border, compact height, simple navigation, and one CTA.
 
 Navigation:
 
@@ -117,11 +118,11 @@ Navigation:
 - Research
 - Contact
 
-CTA: Talk to DORA. Use sharp rectangle, `ink` text on `soft-green`.
+CTA: Talk to DORA. Use a sharp rectangle with `graphite` background, `dark-text` text, and `ink` on hover.
 
 ## Buttons
 
-Primary buttons use `soft-green`, `ink` text, `soft-green-hover` on hover, a hairline border, and sharp rectangles. Secondary buttons are transparent or `surface` with `ink` text, hairline border, and a subtle `field` hover state.
+Primary buttons use `graphite`, `dark-text`, `ink` on hover, a hairline border, and sharp rectangles. Signal buttons are allowed only on graphite CTA sections. Secondary buttons are transparent or `surface` with `ink` text, hairline border, and a subtle `surface` hover state.
 
 Preferred CTAs: Talk to DORA, See how it works, Explore the primitives, Build with DORA.
 
@@ -129,16 +130,18 @@ Avoid: Get started free, Start for free, Unlock AI, Supercharge your team.
 
 ## Homepage Structure
 
-1. Light hero with stack-first system visual.
+1. Light hero with bespoke stack + flow + harness architecture visual.
 2. Problem section.
 3. Above-the-model-layer stack section.
 4. Core primitives.
 5. From prompts to systems.
-6. AI-native services / deployment model.
-7. Use cases.
-8. Research section.
-9. Final CTA.
-10. Footer.
+6. Example system / proof artifact.
+7. Reliability framework.
+8. Research / architecture / deployment pipeline.
+9. Use cases.
+10. Research agenda.
+11. Final CTA.
+12. Footer.
 
 ## Required Components
 
@@ -153,7 +156,7 @@ Show where DORA sits in the AI stack:
 5. Existing Model Layer
 6. Data / Infrastructure / Compute
 
-DORA layers must be grouped and visually emphasized with `soft-green`. Model, data, infrastructure, and compute must be visible but de-emphasized. Use mono labels, hairline borders, and keep it readable on mobile.
+DORA layers must be grouped and visually emphasized with `signal-soft` and a `signal` rail or marker. Model, data, infrastructure, and compute must be visible but de-emphasized. Use mono labels, hairline borders, route lines, brackets, and keep it readable on mobile.
 
 ### Primitive Cards
 
@@ -181,10 +184,11 @@ Cards must be concise, serious, and avoid full-automation promises.
 
 ## Motion
 
-Minimal and functional only.
+Minimal, functional, and purposeful only.
 
 - Hero entrance only.
 - Optional subtle diagram entrance in hero.
+- One premium route-line draw or hover-highlight interaction is allowed.
 - Hero entrance duration: 750ms.
 - Hover transitions under 200ms.
 

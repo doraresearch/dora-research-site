@@ -1,62 +1,43 @@
 import { useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 
-const stackLayers = [
-  { layer: 'Enterprise Workflows', role: 'Daily work, teams, approvals, handoffs, and decisions.', status: 'Outcome' },
-  { layer: 'DORA Application Layer', role: 'Workflow-specific AI systems for real enterprise work.', status: 'Core focus' },
-  { layer: 'DORA Orchestration Layer', role: 'Parallel agent swarms, routing, handoffs, and coordination.', status: 'Core focus' },
-  { layer: 'DORA Harness Layer', role: 'Evaluations, constraints, observability, and deployment controls.', status: 'Core focus' },
-  { layer: 'Existing Model Layer', role: 'Foundation models selected by task, risk, and fit.', status: 'Model-agnostic' },
-  { layer: 'Data / Infrastructure / Compute', role: 'Data platforms, cloud infrastructure, storage, and compute.', status: 'Not our focus' },
-]
-
-const stackTable = [
-  ['Application layer', 'Core focus'],
-  ['Orchestration layer', 'Core focus'],
-  ['Harness layer', 'Core focus'],
-  ['Model layer', 'Model-agnostic'],
-  ['Data layer', 'Not our focus'],
-  ['Infrastructure', 'Not our focus'],
-  ['Compute', 'Not our focus'],
+const stackRows = [
+  ['Application layer', 'Core focus', true],
+  ['Orchestration layer', 'Core focus', true],
+  ['Harness layer', 'Core focus', true],
+  ['Model layer', 'Model-agnostic', false],
+  ['Data layer', 'Not our focus', false],
+  ['Infrastructure', 'Not our focus', false],
+  ['Compute', 'Not our focus', false],
 ]
 
 const primitives = [
   {
+    label: '01 / Workflow',
     title: 'Coordinated enterprise workflows',
-    body: 'AI systems should follow the shape of real work. DORA coordinates agents across workflows, tasks, approvals, handoffs, knowledge flows, and decision points. Each system can be customized to how an organization actually operates, rather than forcing teams into generic AI tools.',
-    cue: 'workflow',
+    copy: 'AI systems should follow the shape of real work. DORA coordinates agents across workflows, tasks, approvals, handoffs, knowledge flows, and decision points.',
+    diagram: 'workflow',
   },
   {
+    label: '02 / Swarm',
     title: 'Parallel agent swarms',
-    body: 'Important work rarely moves in a straight line. DORA uses multiple agents working in parallel to reason, compare, verify, and execute across different paths at once. Swarms improve coverage, depth, and robustness on complex work.',
-    cue: 'swarm',
+    copy: 'Important work rarely moves in a straight line. DORA uses multiple agents working in parallel to reason, compare, verify, and execute across different paths at once.',
+    diagram: 'swarm',
   },
   {
+    label: '03 / Persona',
     title: 'Persona-based agents',
-    body: 'Every agent should not think the same way. DORA gives agents distinct roles, objectives, reasoning styles, constraints, and operating context. Personas make agent systems more controllable, interpretable, and useful for specialized work.',
-    cue: 'persona',
+    copy: 'Every agent should not think the same way. DORA gives agents distinct roles, objectives, reasoning styles, constraints, and operating context.',
+    diagram: 'persona',
   },
 ]
 
-const workflowSteps = [
-  ['01 / WORKFLOW', 'Start with the enterprise workflow'],
-  ['02 / ROLES', 'Define agent roles and responsibilities'],
-  ['03 / PERSONAS', 'Assign personas and operating constraints'],
-  ['04 / ORCHESTRATION', 'Run agents in parallel through orchestration'],
-  ['05 / HARNESS', 'Evaluate, refine, and deploy'],
-]
-
-const reliabilityPoints = [
-  ['Observable', 'Systems should expose how agents reason, route work, use context, and produce outputs.'],
-  ['Evaluated', "Outputs should be reviewed against the workflow's goals, constraints, and reliability requirements."],
-  ['Constrained', 'Agents should operate within defined roles, permissions, context boundaries, and review paths.'],
-  ['Deployable', 'Systems should move from prototype to daily use with workflows that can improve over time.'],
-]
-
-const services = [
-  ['Research', 'We study how AI systems operate in real environments: coordination, persona design, workflow reliability, evaluation, and safe execution.'],
-  ['System architecture', 'We map enterprise workflows into agent roles, operating constraints, handoffs, orchestration patterns, and evaluation loops.'],
-  ['Deployment', 'We help organizations move from prototype to dependable use with harnesses, review paths, and workflows that improve over time.'],
+const traceSteps = [
+  ['01', 'Workflow', 'Start with the enterprise workflow.'],
+  ['02', 'Roles', 'Define agent roles and responsibilities.'],
+  ['03', 'Personas', 'Assign personas and operating constraints.'],
+  ['04', 'Orchestration', 'Run agents in parallel through orchestration.'],
+  ['05', 'Harness', 'Evaluate, refine, and deploy.'],
 ]
 
 const useCases = [
@@ -68,402 +49,494 @@ const useCases = [
   ['Multi-agent task execution', 'Break complex work into specialized roles that can reason, verify, and produce coordinated outputs.'],
 ]
 
-function Section({ id, label, title, children, dark = false, field = false }) {
-  const background = dark ? 'bg-[#111412] text-[#F7F4ED]' : field ? 'bg-[#EEF2E8] text-[#101310]' : 'bg-[#F7F4ED] text-[#101310]'
-  const border = dark ? 'border-[#F7F4ED]/14' : 'border-[#101310]/12'
-  const labelColor = dark ? 'text-[#DDE8D2]/80' : 'text-[#6B7568]'
-
-  return (
-    <section id={id} className={`border-t ${border} ${background}`}>
-      <div className="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-28">
-        <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
-          <div>
-            <p className={`mb-6 font-mono text-[11px] font-medium uppercase tracking-[0.14em] ${labelColor}`}>
-              {label}
-            </p>
-            <h2 className="max-w-[12ch] font-sans text-[clamp(36px,5vw,64px)] font-semibold leading-[1.02]">
-              {title}
-            </h2>
-          </div>
-          <div>{children}</div>
-        </div>
-      </div>
-    </section>
-  )
-}
+const agenda = ['Multi-agent coordination', 'Persona design', 'Workflow harnesses', 'Evaluation and reliability', 'Human review paths']
 
 function ArrowIcon() {
   return (
     <svg viewBox="0 0 18 18" aria-hidden="true" className="h-4 w-4">
-      <path d="M3 9h11M9.5 4.5 14 9l-4.5 4.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter" />
+      <path d="M3 9h11M9.5 4.5 14 9l-4.5 4.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
     </svg>
   )
 }
 
-function PrimaryButton({ href, children, className = '' }) {
+function Button({ href, children, variant = 'primary' }) {
+  const classes = variant === 'secondary'
+    ? 'border-transparent bg-transparent text-[#050608] hover:border-[#DCE1E6] hover:bg-[#EEF1F4]'
+    : 'border-[#111418] bg-[#111418] text-[#F8FAFC] hover:-translate-y-px hover:bg-[#050608]'
+
   return (
-    <a
-      href={href}
-      className={`inline-flex h-12 items-center justify-center gap-3 border border-[#101310]/12 bg-[#DDE8D2] px-6 text-sm font-semibold text-[#101310] transition-colors duration-150 hover:bg-[#C9DABC] ${className}`}
-    >
+    <a href={href} className={`inline-flex min-h-[42px] items-center justify-center gap-2.5 border px-[18px] text-sm font-semibold leading-none transition duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7DD3FC] ${classes}`}>
       {children}
       <ArrowIcon />
     </a>
   )
 }
 
-function SecondaryButton({ href, children }) {
+function Eyebrow({ children, dark = false }) {
   return (
-    <a
-      href={href}
-      className="inline-flex h-12 items-center justify-center gap-3 border border-[#101310]/16 bg-[#FBFAF5] px-6 text-sm font-semibold text-[#101310] transition-colors duration-150 hover:bg-[#EEF2E8]"
-    >
+    <p className={`mb-[22px] inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase leading-none tracking-[0.12em] ${dark ? 'text-[#7DD3FC]' : 'text-[#0284C7]'}`}>
+      <span className="h-[7px] w-[7px] bg-[#7DD3FC]" />
       {children}
-      <ArrowIcon />
-    </a>
+    </p>
   )
 }
 
-function StackDiagram({ compact = false }) {
+function Container({ children, className = '' }) {
+  return <div className={`mx-auto w-full min-w-0 max-w-[100vw] px-5 md:max-w-[1280px] md:px-[clamp(20px,4vw,72px)] ${className}`}>{children}</div>
+}
+
+function AppIcon() {
   return (
-    <figure className="min-w-0 overflow-hidden border border-[#101310]/12 bg-[#FBFAF5] p-4 md:p-5" aria-label="DORA AI stack diagram">
-      <div className="mb-4 flex items-start justify-between gap-4 border-b border-[#101310]/12 pb-3">
-        <figcaption className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">
-          FIG 1 / ABOVE THE MODEL LAYER
-        </figcaption>
-        <p className="hidden max-w-[18ch] text-right font-mono text-[10px] uppercase tracking-[0.12em] text-[#4F564D] sm:block">
-          Application / orchestration / harness
-        </p>
-      </div>
-      <div className="space-y-2">
-        {stackLayers.map((item, index) => {
-          const isDora = item.layer.startsWith('DORA')
-          const isBelow = index >= 4
-          return (
-            <div
-              key={item.layer}
-              className={`grid min-w-0 gap-3 overflow-hidden border p-4 ${compact ? '' : 'md:grid-cols-[1fr_auto] md:items-center'} ${
-                isDora
-                  ? 'border-[#101310]/18 bg-[#DDE8D2] text-[#101310]'
-                  : isBelow
-                    ? 'border-[#101310]/12 bg-[#F7F4ED] text-[#4F564D]'
-                    : 'border-[#101310]/12 bg-[#101310] text-[#F7F4ED]'
-              }`}
-            >
-              <div className="min-w-0">
-                <p className="break-words font-sans text-[15px] font-semibold">{item.layer}</p>
-                <p className={`mt-1 max-w-[17rem] break-words text-sm leading-relaxed sm:max-w-none ${isDora ? 'text-[#4F564D]' : 'text-current opacity-75'}`}>{item.role}</p>
-              </div>
-              <span
-                className={`w-fit border px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.12em] ${
-                  isDora ? 'border-[#101310]/20 text-[#4F564D]' : 'border-current/20 text-current'
-                }`}
-              >
-                {item.status}
-              </span>
-            </div>
-          )
-        })}
-      </div>
-    </figure>
+    <svg className="h-9 w-9 text-[#050608]" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <rect x="8" y="8" width="12" height="12" stroke="currentColor" strokeWidth="2" />
+      <rect x="28" y="8" width="12" height="12" stroke="currentColor" strokeWidth="2" />
+      <rect x="8" y="28" width="12" height="12" stroke="currentColor" strokeWidth="2" />
+      <rect x="28" y="28" width="12" height="12" stroke="currentColor" strokeWidth="2" />
+    </svg>
   )
 }
 
-function PrimitiveCue({ type }) {
+function OrchestrationIcon() {
+  return (
+    <svg className="h-9 w-9 text-[#050608]" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <circle cx="10" cy="24" r="4" stroke="currentColor" strokeWidth="2" />
+      <circle cx="24" cy="10" r="4" stroke="currentColor" strokeWidth="2" />
+      <circle cx="24" cy="38" r="4" stroke="currentColor" strokeWidth="2" />
+      <circle cx="38" cy="24" r="4" stroke="currentColor" strokeWidth="2" />
+      <path d="M14 22L20 13M14 26L20 35M28 13L34 22M28 35L34 26" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  )
+}
+
+function HarnessIcon() {
+  return (
+    <svg className="h-9 w-9 text-[#050608]" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <path d="M24 6L39 12V23C39 32 33 39 24 43C15 39 9 32 9 23V12L24 6Z" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  )
+}
+
+function CubeIcon() {
+  return (
+    <svg className="h-9 w-9 text-[#050608]" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <path d="M24 6L39 15V33L24 42L9 33V15L24 6Z" stroke="currentColor" strokeWidth="2" />
+      <path d="M9 15L24 24L39 15M24 24V42" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  )
+}
+
+function DataIcon() {
+  return (
+    <svg className="h-9 w-9 text-[#050608]" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <ellipse cx="24" cy="12" rx="14" ry="6" stroke="currentColor" strokeWidth="2" />
+      <path d="M10 12V36C10 39 16 42 24 42C32 42 38 39 38 36V12" stroke="currentColor" strokeWidth="2" />
+      <path d="M10 24C10 27 16 30 24 30C32 30 38 27 38 24" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  )
+}
+
+function ArchRow({ icon, label, copy, focus = false }) {
+  return (
+    <div className={`grid min-h-[72px] gap-4 border px-5 py-5 md:grid-cols-[44px_170px_1fr] md:items-center md:gap-5 md:px-6 ${focus ? 'border-[#B9DBF0] bg-[#E0F7FF]' : 'border-[#AEB7C2] bg-[#FFFFFF]'}`}>
+      {icon}
+      <p className="font-mono text-[13px] font-bold uppercase leading-tight tracking-[0.04em] text-[#050608]">{label}</p>
+      <p className="text-[15px] leading-[1.45] text-[#3B4148]">{copy}</p>
+    </div>
+  )
+}
+
+function ArchitectureStack() {
+  return (
+    <div className="relative min-h-[520px] w-full min-w-0 max-w-[calc(100vw-40px)] border border-[#AEB7C2] bg-white/75 p-4 shadow-[0_24px_80px_rgba(17,20,24,0.05)] md:max-w-full md:p-[22px]">
+      <div className="absolute -left-20 top-[177px] hidden w-[68px] text-right font-mono text-xs font-bold uppercase tracking-[0.08em] text-[#0284C7] xl:block">
+        DORA systems layer
+      </div>
+      <div className="absolute -left-[34px] top-[110px] hidden h-[208px] w-6 border-y-2 border-l-2 border-[#7DD3FC] xl:block" />
+
+      <div className="flex min-h-[58px] flex-wrap items-center justify-center gap-4 border border-[#AEB7C2] bg-[#FFFFFF] px-4 py-5 text-center font-mono text-[13px] font-bold uppercase tracking-[0.06em] text-[#050608] md:gap-6 md:px-6">
+        <span>Enterprise Workflows</span>
+        <span className="hidden gap-2.5 min-[440px]:flex" aria-hidden="true">
+          {[0, 1, 2].map((i) => (
+            <span key={i} className="relative h-[18px] w-[18px] rounded-full border-[1.5px] border-[#050608] after:absolute after:-left-1 after:top-4 after:h-3 after:w-6 after:rounded-b-2xl after:border-[1.5px] after:border-t-0 after:border-[#050608]" />
+          ))}
+        </span>
+      </div>
+
+      <div className="flex h-[22px] items-center justify-center font-mono text-2xl text-[#6F7782]" aria-hidden="true">↕</div>
+
+      <div className="border-l-[3px] border-[#7DD3FC]">
+        <ArchRow icon={<AppIcon />} label="Application Layer" copy="Interfaces, experiences, and outcomes built for real enterprise work." focus />
+        <ArchRow icon={<OrchestrationIcon />} label="Orchestration Layer" copy="Parallel agents, routing, handoffs, and coordination across complex workflows." focus />
+        <ArchRow icon={<HarnessIcon />} label="Harness Layer" copy="Evaluation, review, observability, and controls for reliable execution." focus />
+      </div>
+
+      <div className="flex h-[22px] items-center justify-center font-mono text-2xl text-[#6F7782]" aria-hidden="true">↕</div>
+      <ArchRow icon={<CubeIcon />} label="Existing Model Layer" copy="Model-agnostic. DORA works with the best models available." />
+      <div className="flex h-[22px] items-center justify-center font-mono text-2xl text-[#6F7782]" aria-hidden="true">↕</div>
+      <ArchRow icon={<DataIcon />} label="Data / Infrastructure / Compute" copy="Not DORA's focus." />
+    </div>
+  )
+}
+
+function StackTable() {
+  return (
+    <div className="w-full overflow-x-auto">
+      <table className="w-full min-w-[520px] border-collapse border border-[#AEB7C2] bg-[#FFFFFF] text-[15px]">
+        <thead>
+          <tr>
+            <th className="border-b border-[#DCE1E6] bg-[#FBFCFD] px-[22px] py-[17px] text-left font-mono text-[11px] uppercase tracking-[0.08em] text-[#050608]">Layer</th>
+            <th className="border-b border-[#DCE1E6] bg-[#FBFCFD] px-[22px] py-[17px] text-left font-mono text-[11px] uppercase tracking-[0.08em] text-[#050608]">DORA's role</th>
+          </tr>
+        </thead>
+        <tbody>
+          {stackRows.map(([layer, role, focus]) => (
+            <tr key={layer}>
+              <td className={`border-b border-[#DCE1E6] px-[22px] py-[17px] align-top ${focus ? 'border-l-4 border-l-[#7DD3FC] bg-[#E0F7FF] font-semibold' : 'text-[#3B4148]'}`}>{layer}</td>
+              <td className={`border-b border-[#DCE1E6] px-[22px] py-[17px] align-top ${focus ? 'bg-[#E0F7FF] font-semibold text-[#050608]' : 'text-[#3B4148]'}`}>{role}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
+function MiniDiagram({ type }) {
   if (type === 'workflow') {
     return (
-      <div className="grid grid-cols-[1fr_28px_1fr_28px_1fr] items-center">
-        {['Intake', 'Review', 'Decision'].map((label, index) => (
-          <div key={label} className="contents">
-            <div className="border border-[#101310]/12 bg-[#EEF2E8] px-3 py-4 font-mono text-[10px] uppercase tracking-[0.12em] text-[#4F564D]">
-              {label}
-            </div>
-            {index < 2 && <div className="h-px bg-[#101310]/24" />}
-          </div>
-        ))}
-      </div>
+      <svg className="mt-8 h-[100px] w-full" viewBox="0 0 360 110" fill="none" aria-hidden="true">
+        <path d="M24 55H84M118 55H172M208 55H260M296 55H336" stroke="#050608" strokeWidth="2" />
+        <circle cx="24" cy="55" r="11" stroke="#050608" strokeWidth="2" />
+        <rect x="84" y="43" width="34" height="24" stroke="#050608" strokeWidth="2" />
+        <path d="M190 34L212 55L190 76L168 55L190 34Z" stroke="#050608" strokeWidth="2" />
+        <rect x="260" y="43" width="34" height="24" stroke="#050608" strokeWidth="2" />
+        <circle cx="336" cy="55" r="11" stroke="#050608" strokeWidth="2" />
+      </svg>
     )
   }
 
   if (type === 'swarm') {
     return (
-      <div className="grid grid-cols-[1fr_1fr_1fr_auto] gap-2">
-        {['Research', 'Legal', 'Ops'].map((label) => (
-          <div key={label} className="border border-[#101310]/12 bg-[#111412] px-3 py-4 text-center font-mono text-[10px] uppercase tracking-[0.1em] text-[#F7F4ED]">
-            {label}
-          </div>
-        ))}
-        <div className="border border-[#101310]/12 bg-[#DDE8D2] px-3 py-4 font-mono text-[10px] uppercase tracking-[0.1em] text-[#4F564D]">
-          Synthesis
-        </div>
-      </div>
+      <svg className="mt-8 h-[100px] w-full" viewBox="0 0 360 110" fill="none" aria-hidden="true">
+        <circle cx="28" cy="55" r="10" stroke="#050608" strokeWidth="2" />
+        <circle cx="332" cy="55" r="10" stroke="#050608" strokeWidth="2" />
+        <path d="M38 55C92 18 150 18 202 32C246 44 282 52 322 55" stroke="#050608" strokeWidth="1.6" />
+        <path d="M38 55C94 55 142 55 198 55C246 55 286 55 322 55" stroke="#050608" strokeWidth="1.6" />
+        <path d="M38 55C92 92 150 92 202 78C246 66 282 58 322 55" stroke="#050608" strokeWidth="1.6" />
+        <rect x="130" y="22" width="20" height="14" stroke="#050608" strokeWidth="1.5" />
+        <rect x="168" y="48" width="20" height="14" fill="#E0F7FF" stroke="#0284C7" strokeWidth="1.5" />
+        <rect x="130" y="74" width="20" height="14" stroke="#050608" strokeWidth="1.5" />
+        <rect x="236" y="41" width="20" height="14" fill="#E0F7FF" stroke="#0284C7" strokeWidth="1.5" />
+        <rect x="236" y="67" width="20" height="14" stroke="#050608" strokeWidth="1.5" />
+      </svg>
     )
   }
 
   return (
-    <div className="grid gap-2">
-      {['Strategy persona', 'Research persona', 'Compliance persona'].map((label) => (
-        <div key={label} className="flex items-center justify-between border border-[#101310]/12 bg-[#EEF2E8] px-3 py-3">
-          <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#4F564D]">{label}</span>
-          <span className="h-2 w-2 bg-[#B8C7A8]" />
+    <div className="mt-8 border border-[#AEB7C2] p-[18px]">
+      <p className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#050608]">Role</p>
+      <strong className="mb-3.5 mt-2 block">Financial Analyst</strong>
+      <div className="grid gap-3.5 text-[13px] sm:grid-cols-2">
+        <div>
+          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#0284C7]">Objective</p>
+          Evaluate financial impact and risk
+        </div>
+        <div>
+          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#0284C7]">Constraints</p>
+          Company data · assumptions · uncertainty
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function WorkflowTrace() {
+  const reduceMotion = useReducedMotion()
+
+  return (
+    <div className="relative grid gap-5 pt-6 lg:grid-cols-5">
+      <div className="absolute left-[38px] right-[38px] top-9 hidden h-0.5 bg-[#DCE1E6] lg:block" aria-hidden="true" />
+      <motion.div
+        className="absolute left-[38px] right-[38px] top-9 hidden h-0.5 origin-left bg-gradient-to-r from-[#7DD3FC] to-[#0284C7] lg:block"
+        initial={reduceMotion ? false : { scaleX: 0 }}
+        whileInView={reduceMotion ? {} : { scaleX: 1 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        aria-hidden="true"
+      />
+      {traceSteps.map(([num, label, copy]) => (
+        <div key={label} className="relative z-10">
+          <div className="mb-[18px] flex h-7 w-7 items-center justify-center rounded-full border border-[#0284C7] bg-[#FFFFFF] font-mono text-[11px] font-bold text-[#050608]">{num}</div>
+          <strong className="mb-2 block font-mono text-[11px] uppercase tracking-[0.07em] text-[#050608]">{label}</strong>
+          <p className="text-sm leading-[1.45] text-[#3B4148]">{copy}</p>
         </div>
       ))}
     </div>
   )
 }
 
-function MiniWorkflowVisual() {
+function ExampleSystem() {
+  const agents = ['Market agent', 'Customer agent', 'Financial agent', 'Legal agent', 'Operations agent']
+  const checks = ['Compare assumptions', 'Flag uncertainty', 'Route conflicts', 'Review recommendation']
+
   return (
-    <div className="mt-12 border border-[#101310]/12 bg-[#EEF2E8] p-5">
-      <p className="mb-5 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">
-        FIG 2 / WORKFLOW ROUTING
-      </p>
-      <div className="grid gap-4 md:grid-cols-[1fr_1.2fr_1fr] md:items-center">
-        <div className="border border-[#101310]/18 bg-[#FBFAF5] p-5">
-          <p className="font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">Enterprise workflow</p>
-          <p className="mt-4 text-lg font-semibold leading-tight">Context, approvals, teams, systems, decisions</p>
+    <section className="border-b border-[#DCE1E6] bg-[#F7F8FA] py-[90px]">
+      <Container className="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:items-center">
+        <div>
+          <Eyebrow>Example System</Eyebrow>
+          <h2 className="text-[clamp(34px,4.6vw,68px)] font-bold leading-[0.98] tracking-[-0.06em] text-[#050608]">Strategic planning workflow.</h2>
         </div>
-        <div className="grid grid-cols-3 gap-2">
-          {['Research', 'Review', 'Operate', 'Verify', 'Decide', 'Route'].map((node) => (
-            <div key={node} className="border border-[#101310]/14 bg-[#101310] px-3 py-4 text-center font-mono text-[10px] uppercase tracking-[0.1em] text-[#F7F4ED]">
-              {node}
+
+        <div className="grid min-h-[260px] gap-6 border border-[#AEB7C2] bg-[#FFFFFF] p-7 lg:grid-cols-[150px_1fr_230px_160px] lg:items-center">
+          <div>
+            <p className="mb-3.5 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-[#050608]">Input</p>
+            <div className="flex min-h-24 items-center justify-center border border-[#AEB7C2] bg-white p-5 text-center text-sm font-semibold leading-[1.35]">Market expansion question</div>
+          </div>
+          <div>
+            <p className="mb-3.5 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-[#050608]">Parallel Agents</p>
+            <div className="grid gap-[7px]">
+              {agents.map((agent) => (
+                <div key={agent} className="flex min-h-9 items-center justify-between border border-[#AEB7C2] bg-white px-3 py-2 text-sm font-semibold">
+                  {agent}
+                  <span className="h-2.5 w-2.5 rounded-sm border border-[#0284C7] bg-[#7DD3FC]" />
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+          <div>
+            <p className="mb-3.5 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-[#050608]">Harness</p>
+            <div className="min-h-[190px] border border-[#A8D5EC] bg-[#E0F7FF] p-5">
+              <ul className="grid gap-3.5">
+                {checks.map((check) => (
+                  <li key={check} className="flex items-center gap-2.5 text-sm text-[#050608] before:h-[7px] before:w-[7px] before:rounded-full before:bg-[#0284C7]">{check}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div>
+            <p className="mb-3.5 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-[#050608]">Output</p>
+            <div className="flex min-h-24 items-center justify-center border border-[#AEB7C2] bg-white p-5 text-center text-sm font-semibold leading-[1.35]">Leadership-ready decision brief</div>
+          </div>
         </div>
-        <div className="border border-[#101310]/18 bg-[#DDE8D2] p-5">
-          <p className="font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-[#4F564D]">Reliable system</p>
-          <p className="mt-4 text-lg font-semibold leading-tight">Observable, constrained, role-aware, deployable</p>
-        </div>
-      </div>
-    </div>
+      </Container>
+    </section>
   )
 }
 
 export default function Home() {
   useEffect(() => {
-    document.title = 'DORA Research - Enterprise AI above the model layer'
+    document.title = 'DORA - Enterprise AI above the model layer'
   }, [])
 
   return (
-    <div className="bg-[#F7F4ED] text-[#101310]">
-      <section className="border-b border-[#101310]/12 bg-[#F7F4ED] text-[#101310]">
-        <div className="mx-auto grid min-h-[88vh] max-w-6xl min-w-0 items-center gap-12 px-6 pb-16 pt-28 md:px-8 md:pb-20 md:pt-32 lg:grid-cols-[0.9fr_1.1fr]">
+    <div className="w-screen min-w-0 max-w-[100vw] overflow-hidden bg-[radial-gradient(circle_at_top_right,rgba(125,211,252,0.16),transparent_32rem),linear-gradient(180deg,#fff_0%,#F7F8FA_20%,#F7F8FA_100%)] text-[#050608]">
+      <section className="border-b border-[#DCE1E6] py-[72px]">
+        <Container className="grid min-w-0 gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(520px,1.1fr)] lg:items-center lg:gap-[clamp(48px,6vw,96px)]">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            className="min-w-0 pt-6"
           >
-            <p className="mb-7 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">
-              ABOVE THE MODEL LAYER
-            </p>
-            <h1 className="max-w-[8.8ch] font-sans text-[clamp(48px,7vw,88px)] font-semibold leading-[0.98] sm:max-w-[12ch]">
+            <Eyebrow>DORA Systems</Eyebrow>
+            <h1 className="max-w-[calc(100vw-40px)] break-words text-[clamp(38px,10.5vw,108px)] font-bold leading-[0.94] tracking-[-0.06em] text-[#050608] md:max-w-[680px] md:tracking-[-0.075em]">
               Enterprise AI above the model layer.
             </h1>
-            <p className="mt-8 max-w-[20rem] text-[22px] font-medium leading-[1.45] text-[#101310] sm:max-w-[42rem] md:text-2xl">
+            <p className="mt-[30px] max-w-[620px] text-[clamp(18px,1.6vw,22px)] leading-[1.42] text-[#3B4148]">
               DORA builds the application, orchestration, and harness layers that turn existing models into reliable systems for the workflows your organization depends on every day.
             </p>
-            <p className="mt-6 max-w-[20rem] text-base leading-[1.7] text-[#4F564D] sm:max-w-[40rem] md:text-lg">
-              We coordinate enterprise workflows, orchestrate parallel agent swarms, and give each agent a role-specific persona, context, and operating constraints.
-            </p>
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <PrimaryButton href="mailto:hello@dorareason.com">Talk to DORA</PrimaryButton>
-              <SecondaryButton href="#how-it-works">See how it works</SecondaryButton>
+            <div className="mt-7 flex flex-wrap items-center gap-x-[18px] gap-y-3 text-sm text-[#3B4148]">
+              {['Coordinated workflows', 'Parallel agent swarms', 'Persona-based agents'].map((item) => (
+                <span key={item} className="inline-flex items-center gap-2.5 before:h-[5px] before:w-[5px] before:rounded-full before:bg-[#7DD3FC]">{item}</span>
+              ))}
+            </div>
+            <div className="mt-[30px] flex flex-col gap-4 sm:flex-row">
+              <Button href="mailto:hello@dorareason.com">Talk to DORA</Button>
+              <Button href="#how-it-works" variant="secondary">See how it works</Button>
             </div>
           </motion.div>
 
           <motion.div
-            className="min-w-0"
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
+            className="min-w-0"
           >
-            <StackDiagram />
+            <ArchitectureStack />
           </motion.div>
-        </div>
+        </Container>
       </section>
 
-      <Section id="problem" label="§ I / WHY DORA EXISTS" title="Models are powerful. Systems are missing.">
-        <div className="space-y-6 text-lg leading-[1.65] text-[#4F564D]">
-          <p>
-            Foundation models can generate, reason, and respond. But models alone do not make AI operational.
-          </p>
-          <p>
-            Enterprises need systems that understand context, coordinate across teams, execute multi-step work, and behave reliably in production environments.
-          </p>
-          <p className="font-semibold text-[#101310]">
-            DORA builds the systems layer where AI becomes useful inside real organizations.
-          </p>
-        </div>
-        <MiniWorkflowVisual />
-      </Section>
-
-      <Section id="stack" label="§ II / AI STACK" title="Built above the model layer." field>
-        <div className="space-y-6 text-lg leading-[1.65] text-[#4F564D]">
-          <p className="font-semibold text-[#101310]">DORA is model-agnostic.</p>
-          <p>
-            We do not compete at the foundation model, compute, infrastructure, or generic data layers. We build where AI becomes operational: the application, orchestration, and harness layers.
-          </p>
-          <p className="font-semibold text-[#101310]">
-            DORA does not build foundation models, data infrastructure, compute platforms, or generic AI infrastructure. We build the systems layer that turns existing models into dependable enterprise AI.
-          </p>
-        </div>
-        <div className="mt-12 border border-[#101310]/12 bg-[#FBFAF5]">
-          <div className="grid grid-cols-[1fr_auto] gap-4 border-b border-[#101310]/12 px-4 py-3 md:px-6">
-            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">Layer</p>
-            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">DORA's role</p>
+      <section className="border-b border-[#DCE1E6]">
+        <Container className="grid gap-10 py-[78px] lg:grid-cols-[0.75fr_1.25fr] lg:gap-[clamp(40px,7vw,110px)]">
+          <div>
+            <Eyebrow>The Problem</Eyebrow>
+            <h2 className="text-[clamp(34px,4.6vw,68px)] font-bold leading-[0.98] tracking-[-0.06em] text-[#050608]">Models are powerful. Systems are missing.</h2>
           </div>
-          {stackTable.map(([layer, role]) => (
-            <div key={layer} className="grid grid-cols-[1fr_auto] gap-4 border-b border-[#101310]/12 px-4 py-4 last:border-b-0 md:px-6">
-              <p className="font-semibold text-[#101310]">{layer}</p>
-              <p
-                className={`border px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.12em] ${
-                  role === 'Core focus'
-                    ? 'border-[#101310]/14 bg-[#DDE8D2] text-[#4F564D]'
-                    : 'border-[#101310]/12 text-[#6B7568]'
-                }`}
-              >
-                {role}
-              </p>
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.9fr)]">
+            <div className="space-y-5">
+              <p className="text-[17px] leading-[1.62] text-[#3B4148]">Foundation models can generate, reason, and respond. But models alone do not make AI operational.</p>
+              <p className="text-[17px] leading-[1.62] text-[#3B4148]">Enterprises need systems that understand context, coordinate across teams, execute multi-step work, and behave reliably in production environments.</p>
             </div>
-          ))}
-        </div>
-      </Section>
-
-      <section id="primitives" className="border-t border-[#101310]/12 bg-[#F7F4ED]">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-28">
-          <div className="max-w-3xl">
-            <p className="mb-6 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">§ III / PRIMITIVES</p>
-            <h2 className="font-sans text-[clamp(36px,5vw,64px)] font-semibold leading-[1.02]">The operating primitives of reliable AI work.</h2>
-            <p className="mt-6 max-w-2xl text-lg leading-[1.65] text-[#4F564D]">
-              DORA systems are built from three operating primitives: coordinated enterprise workflows, parallel agent swarms, and persona-based agents.
-            </p>
+            <p className="text-[17px] leading-[1.62] text-[#3B4148]"><strong className="font-semibold text-[#050608]">DORA builds the systems layer where AI becomes useful inside real organizations.</strong></p>
           </div>
-          <div className="mt-14 grid border-l border-t border-[#101310]/12 md:grid-cols-3">
-            {primitives.map((primitive, index) => (
-              <article key={primitive.title} className="min-h-[380px] border-b border-r border-[#101310]/12 bg-[#FBFAF5] p-7 md:p-8">
-                <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">Primitive {index + 1}</p>
-                <div className="mt-8">
-                  <PrimitiveCue type={primitive.cue} />
+        </Container>
+      </section>
+
+      <section className="border-b border-[#DCE1E6] bg-[linear-gradient(180deg,#F7F8FA,#fff)] py-[82px]">
+        <Container className="grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(520px,1.2fr)] lg:gap-[clamp(50px,7vw,112px)]">
+          <div>
+            <Eyebrow>Built above the model layer</Eyebrow>
+            <h2 className="text-[clamp(34px,4.6vw,68px)] font-bold leading-[0.98] tracking-[-0.06em] text-[#050608]">Built above the model layer.</h2>
+          </div>
+          <div>
+            <p className="text-[17px] leading-[1.62] text-[#3B4148]"><strong className="font-semibold text-[#050608]">DORA is model-agnostic.</strong> We do not compete at the foundation model, compute, infrastructure, or generic data layers.</p>
+            <p className="mt-[18px] text-[17px] leading-[1.62] text-[#3B4148]">We build where AI becomes operational: the application, orchestration, and harness layers.</p>
+            <div className="mt-[34px]"><StackTable /></div>
+          </div>
+        </Container>
+      </section>
+
+      <section id="primitives" className="border-b border-[#DCE1E6] bg-[#FFFFFF] py-[90px]">
+        <Container>
+          <div className="mb-[42px] grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-end lg:gap-[clamp(40px,7vw,110px)]">
+            <div>
+              <Eyebrow>Our Primitives</Eyebrow>
+              <h2 className="text-[clamp(34px,4.6vw,68px)] font-bold leading-[0.98] tracking-[-0.06em] text-[#050608]">The operating primitives of reliable AI work.</h2>
+            </div>
+            <p className="text-[17px] leading-[1.62] text-[#3B4148]">DORA systems are built from three operating primitives: coordinated enterprise workflows, parallel agent swarms, and persona-based agents.</p>
+          </div>
+          <div className="grid gap-6 lg:grid-cols-3">
+            {primitives.map((primitive) => (
+              <article key={primitive.title} className="flex min-h-[370px] flex-col justify-between border border-[#AEB7C2] bg-[#FFFFFF] p-7">
+                <div>
+                  <p className="font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#0284C7]">{primitive.label}</p>
+                  <h3 className="mb-3.5 mt-[18px] text-[clamp(22px,2vw,30px)] font-semibold leading-[1.08] tracking-[-0.035em] text-[#050608]">{primitive.title}</h3>
+                  <p className="text-[15px] leading-[1.55] text-[#3B4148]">{primitive.copy}</p>
                 </div>
-                <h3 className="mt-8 max-w-[13ch] font-sans text-2xl font-semibold leading-[1.08]">{primitive.title}</h3>
-                <p className="mt-6 text-[15px] leading-[1.65] text-[#4F564D]">{primitive.body}</p>
+                <MiniDiagram type={primitive.diagram} />
               </article>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
-      <Section id="how-it-works" label="§ IV / METHOD" title="From prompts to systems.">
-        <div className="space-y-6 text-lg leading-[1.65] text-[#4F564D]">
-          <p>Most organizations start with prompts. DORA helps them move to systems.</p>
-          <p>
-            A prompt is a single interaction. A system has structure: workflows, agents, roles, personas, evaluations, handoffs, interfaces, and operating constraints. It can be observed, refined, and trusted over time.
-          </p>
-        </div>
-        <div className="mt-12 border-l border-t border-[#101310]/12">
-          {workflowSteps.map(([label, step]) => (
-            <div key={label} className="grid gap-4 border-b border-r border-[#101310]/12 bg-[#FBFAF5] p-5 md:grid-cols-[180px_1fr] md:items-center md:p-6">
-              <p className="font-mono text-[12px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">{label}</p>
-              <p className="text-xl font-semibold leading-tight text-[#101310]">{step}</p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-8 border border-[#101310]/12 bg-[#EEF2E8] p-6">
-          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">Example workflow</p>
-          <p className="mt-4 text-lg leading-[1.65] text-[#4F564D]">
-            A strategic planning workflow might run market, customer, financial, legal, and operational agents in parallel, then synthesize their outputs through an evaluation harness before a recommendation reaches leadership.
-          </p>
-        </div>
-      </Section>
-
-      <Section id="reliability" label="§ V / RELIABILITY" title="Reliability is designed into the system." field>
-        <div className="space-y-6 text-lg leading-[1.65] text-[#4F564D]">
-          <p>
-            Reliable AI is not just better output. It is the ability to observe, evaluate, constrain, and improve how AI behaves inside real workflows.
-          </p>
-          <p>
-            DORA builds harnesses around agent systems so teams can see how work moves, where decisions happen, what context agents use, and how outputs are reviewed before deployment.
-          </p>
-        </div>
-        <div className="mt-12 grid border-l border-t border-[#101310]/12 sm:grid-cols-2">
-          {reliabilityPoints.map(([title, body]) => (
-            <article key={title} className="border-b border-r border-[#101310]/12 bg-[#FBFAF5] p-6">
-              <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">{title}</p>
-              <p className="mt-5 text-[15px] leading-[1.65] text-[#4F564D]">{body}</p>
-            </article>
-          ))}
-        </div>
-      </Section>
-
-      <Section id="services" label="§ VI / DEPLOYED SYSTEMS" title="From research to deployed systems." dark>
-        <div className="space-y-6 text-lg leading-[1.65] text-[#F7F4ED]/72">
-          <p>
-            DORA works with organizations to move from AI ambition to operational systems.
-          </p>
-          <p>
-            We combine research, workflow design, agent architecture, orchestration, harnesses, and deployment support so teams can rely on AI in daily work.
-          </p>
-        </div>
-        <div className="mt-12 grid border-l border-t border-[#F7F4ED]/14 md:grid-cols-3">
-          {services.map(([title, body]) => (
-            <article key={title} className="border-b border-r border-[#F7F4ED]/14 p-6">
-              <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#DDE8D2]/80">{title}</p>
-              <p className="mt-6 text-[15px] leading-[1.65] text-[#F7F4ED]/70">{body}</p>
-            </article>
-          ))}
-        </div>
-      </Section>
-
-      <section id="use-cases" className="border-t border-[#101310]/12 bg-[#EEF2E8]">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-28">
-          <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+      <section id="how-it-works" className="border-b border-[#DCE1E6] bg-[#FFFFFF] py-[86px]">
+        <Container>
+          <div className="mb-[54px] grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:gap-[clamp(40px,6vw,92px)]">
             <div>
-              <p className="mb-6 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#6B7568]">§ VII / USE CASES</p>
-              <h2 className="max-w-[12ch] font-sans text-[clamp(36px,5vw,64px)] font-semibold leading-[1.02]">For work that cannot rely on one-shot generation.</h2>
-              <p className="mt-6 text-lg leading-[1.65] text-[#4F564D]">
-                DORA is designed for workflows where context, coordination, and reliability matter more than one-off output.
-              </p>
+              <Eyebrow>How it works</Eyebrow>
+              <h2 className="text-[clamp(34px,4.6vw,68px)] font-bold leading-[0.98] tracking-[-0.06em] text-[#050608]">From prompts to systems.</h2>
             </div>
-            <div className="grid border-l border-t border-[#101310]/12 sm:grid-cols-2">
-              {useCases.map(([title, body]) => (
-                <article key={title} className="border-b border-r border-[#101310]/12 bg-[#FBFAF5] p-6">
-                  <h3 className="text-xl font-semibold leading-tight">{title}</h3>
-                  <p className="mt-4 text-[15px] leading-[1.6] text-[#4F564D]">{body}</p>
-                </article>
-              ))}
-            </div>
+            <p className="text-[17px] leading-[1.62] text-[#3B4148]">Most organizations start with prompts. DORA helps them move to systems. A system has structure: workflows, agents, roles, personas, evaluations, handoffs, interfaces, and operating constraints.</p>
           </div>
-        </div>
+          <WorkflowTrace />
+        </Container>
       </section>
 
-      <Section id="research" label="§ VIII / RESEARCH" title="Research that becomes deployable systems." dark>
-        <div className="space-y-6 text-lg leading-[1.65] text-[#F7F4ED]/72">
-          <p>
-            DORA's research focuses on how AI systems operate inside real environments: multi-agent coordination, persona design, orchestration patterns, workflow harnesses, evaluation, and reliability.
-          </p>
-          <p className="font-semibold text-[#F7F4ED]">
-            Our research is judged by whether it becomes useful, measurable, and deployable inside real organizations.
-          </p>
-        </div>
-        <div className="mt-12 grid gap-3 sm:grid-cols-2">
-          {['Multi-agent coordination', 'Persona design', 'Workflow harnesses', 'Reliability evaluation'].map((item) => (
-            <div key={item} className="border border-[#F7F4ED]/14 p-5 font-mono text-[11px] uppercase tracking-[0.12em] text-[#DDE8D2]">
-              {item}
-            </div>
-          ))}
-        </div>
-      </Section>
+      <ExampleSystem />
 
-      <section id="contact" className="border-t border-[#101310]/12 bg-[#DDE8D2]">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-28">
-          <div className="max-w-3xl">
-            <h2 className="font-sans text-[clamp(36px,5vw,64px)] font-semibold leading-[1.02]">Build enterprise AI above the model layer.</h2>
-            <p className="mt-8 max-w-2xl text-lg leading-[1.6] text-[#4F564D]">
-              For organizations ready to move beyond AI pilots and into dependable enterprise deployment.
-            </p>
-            <PrimaryButton href="mailto:hello@dorareason.com" className="mt-10">Talk to DORA</PrimaryButton>
+      <section className="border-b border-[#DCE1E6] bg-[#FFFFFF] py-[90px]">
+        <Container className="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:gap-[clamp(42px,6vw,96px)]">
+          <div>
+            <Eyebrow>Reliability</Eyebrow>
+            <h2 className="text-[clamp(34px,4.6vw,68px)] font-bold leading-[0.98] tracking-[-0.06em] text-[#050608]">Reliability is designed into the system.</h2>
           </div>
-        </div>
+          <div className="grid border border-[#AEB7C2] bg-[#FFFFFF] sm:grid-cols-2">
+            {[
+              ['Observable', 'Systems expose how agents reason, route work, use context, and produce outputs.'],
+              ['Evaluated', 'Outputs are reviewed against goals, constraints, and reliability requirements.'],
+              ['Constrained', 'Agents operate within defined roles, permissions, context boundaries, and review paths.'],
+              ['Deployable', 'Systems move from prototype to daily use with workflows that improve over time.'],
+            ].map(([title, copy], index) => (
+              <div key={title} className={`min-h-[145px] border-[#DCE1E6] p-7 ${index % 2 === 0 ? 'sm:border-r' : ''} ${index < 2 ? 'border-b' : ''}`}>
+                <p className="mb-3 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#050608]">{title}</p>
+                <p className="text-sm leading-[1.5] text-[#3B4148]">{copy}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-[radial-gradient(circle_at_right_center,rgba(125,211,252,0.14),transparent_34rem),#111418] py-[90px] text-[#F8FAFC]">
+        <Container className="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:gap-[clamp(42px,6vw,96px)]">
+          <div>
+            <Eyebrow dark>Our Approach</Eyebrow>
+            <h2 className="text-[clamp(34px,4.6vw,68px)] font-bold leading-[0.98] tracking-[-0.06em]">From research to deployed systems.</h2>
+          </div>
+          <div className="relative grid gap-10 pt-2 lg:grid-cols-3">
+            <div className="absolute left-5 right-5 top-5 hidden h-px bg-gradient-to-r from-[#7DD3FC] to-[#0284C7] lg:block" />
+            {[
+              ['01 Research', 'We study how AI systems operate in real environments: coordination, persona design, workflow reliability, evaluation, and safe execution.'],
+              ['02 Architecture', 'We map enterprise workflows into agent roles, operating constraints, handoffs, orchestration patterns, and evaluation loops.'],
+              ['03 Deployment', 'We help organizations move from prototype to dependable use with harnesses, review paths, and workflows that improve over time.'],
+            ].map(([title, copy]) => (
+              <div key={title} className="relative z-10 pt-[38px] before:absolute before:left-0 before:top-[5px] before:h-7 before:w-7 before:rounded-full before:border before:border-[#7DD3FC] before:bg-[#111418]">
+                <p className="mb-4 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[#F8FAFC]">{title}</p>
+                <p className="text-[15px] leading-[1.55] text-[#CBD5E1]">{copy}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section id="use-cases" className="border-b border-[#DCE1E6] bg-[#FFFFFF] py-[88px]">
+        <Container className="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:gap-[clamp(42px,6vw,96px)]">
+          <div>
+            <Eyebrow>Use Cases</Eyebrow>
+            <h2 className="text-[clamp(34px,4.6vw,68px)] font-bold leading-[0.98] tracking-[-0.06em] text-[#050608]">For work that cannot rely on one-shot generation.</h2>
+          </div>
+          <div className="w-full overflow-x-auto">
+            <table className="w-full min-w-[640px] border-collapse border border-[#AEB7C2] bg-[#FFFFFF] text-[15px]">
+              <thead>
+                <tr>
+                  <th className="border-b border-[#DCE1E6] bg-[#FBFCFD] px-[22px] py-[17px] text-left font-mono text-[11px] uppercase tracking-[0.08em] text-[#050608]">Use case</th>
+                  <th className="border-b border-[#DCE1E6] bg-[#FBFCFD] px-[22px] py-[17px] text-left font-mono text-[11px] uppercase tracking-[0.08em] text-[#050608]">System behavior</th>
+                </tr>
+              </thead>
+              <tbody>
+                {useCases.map(([title, copy]) => (
+                  <tr key={title}>
+                    <td className="border-b border-[#DCE1E6] px-[22px] py-[17px] align-top font-medium text-[#050608]">{title}</td>
+                    <td className="border-b border-[#DCE1E6] px-[22px] py-[17px] align-top text-[#3B4148]">{copy}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Container>
+      </section>
+
+      <section id="research" className="border-b border-[#DCE1E6] bg-[#F7F8FA] py-[88px]">
+        <Container className="grid gap-10 lg:grid-cols-[0.65fr_1.35fr] lg:gap-[clamp(42px,6vw,96px)]">
+          <div>
+            <Eyebrow>Research Agenda</Eyebrow>
+            <h2 className="text-[clamp(34px,4.6vw,68px)] font-bold leading-[0.98] tracking-[-0.06em] text-[#050608]">Research that becomes deployable systems.</h2>
+          </div>
+          <div>
+            <p className="text-[17px] leading-[1.62] text-[#3B4148]">DORA's research focuses on how AI systems operate inside real environments: multi-agent coordination, persona design, orchestration patterns, workflow harnesses, evaluation, and reliability.</p>
+            <p className="mt-[18px] text-[17px] leading-[1.62] text-[#3B4148]">Our research is judged by whether it becomes useful, measurable, and deployable inside real organizations.</p>
+            <ul className="mt-7 border-t border-[#DCE1E6]">
+              {agenda.map((item) => (
+                <li key={item} className="flex items-center gap-3 border-b border-[#DCE1E6] py-4 font-medium text-[#050608] before:h-1.5 before:w-1.5 before:rounded-full before:bg-[#0284C7]">{item}</li>
+              ))}
+            </ul>
+          </div>
+        </Container>
+      </section>
+
+      <section id="contact" className="bg-[radial-gradient(circle_at_left_bottom,rgba(125,211,252,0.17),transparent_30rem),#111418] py-[86px] text-[#F8FAFC]">
+        <Container className="grid gap-10 lg:grid-cols-[0.9fr_0.7fr_auto] lg:items-center">
+          <div>
+            <Eyebrow dark>Get Started</Eyebrow>
+            <h2 className="max-w-[620px] text-[clamp(34px,4.6vw,68px)] font-bold leading-[0.98] tracking-[-0.06em]">Build enterprise AI above the model layer.</h2>
+          </div>
+          <p className="max-w-[480px] text-[17px] leading-[1.62] text-[#CBD5E1]">Move beyond AI pilots and into systems your organization can evaluate, improve, and rely on.</p>
+          <a href="mailto:hello@dorareason.com" className="inline-flex min-h-[42px] min-w-[180px] items-center justify-center gap-2.5 border border-[#FFFFFF] bg-[#FFFFFF] px-[18px] text-sm font-semibold leading-none text-[#050608] transition duration-150 hover:-translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7DD3FC]">
+            Talk to DORA
+            <ArrowIcon />
+          </a>
+        </Container>
       </section>
     </div>
   )

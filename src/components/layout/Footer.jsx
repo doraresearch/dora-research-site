@@ -1,25 +1,23 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-[#101310]/12 bg-[#101310] text-[#F7F4ED]">
-      <div className="mx-auto max-w-6xl px-6 py-14 md:px-8">
-        <div className="grid gap-10 md:grid-cols-[1fr_auto] md:items-start">
-          <div>
-            <p className="font-mono text-[12px] font-medium uppercase tracking-[0.12em]">DORA Research</p>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-[#F7F4ED]/70">
-              DORA builds enterprise AI above the model layer.
-            </p>
+    <footer className="border-t border-[#F8FAFC]/12 bg-[#111418] text-[#CBD5E1]">
+      <div className="mx-auto max-w-[1280px] px-5 py-11 md:px-[clamp(20px,4vw,72px)]">
+        <div className="flex flex-col justify-between gap-10 text-[13px] md:flex-row md:items-start">
+          <div className="max-w-md">
+            <strong className="mb-3 block text-lg text-[#F8FAFC]">DORA</strong>
+            <span>Enterprise AI above the model layer.</span>
           </div>
-          <div className="grid gap-2 text-sm text-[#F7F4ED]/70 md:text-right">
-            <a href="#how-it-works" className="hover:text-[#F7F4ED]">How it works</a>
-            <a href="#primitives" className="hover:text-[#F7F4ED]">Primitives</a>
-            <a href="#use-cases" className="hover:text-[#F7F4ED]">Use cases</a>
-            <a href="#research" className="hover:text-[#F7F4ED]">Research</a>
-            <a href="mailto:hello@dorareason.com" className="hover:text-[#F7F4ED]">Contact</a>
+          <div className="flex flex-wrap gap-6">
+            <a href="#how-it-works" className="hover:text-[#F8FAFC]">How it works</a>
+            <a href="#primitives" className="hover:text-[#F8FAFC]">Primitives</a>
+            <a href="#use-cases" className="hover:text-[#F8FAFC]">Use cases</a>
+            <a href="#research" className="hover:text-[#F8FAFC]">Research</a>
+            <a href="mailto:hello@dorareason.com" className="hover:text-[#F8FAFC]">Contact</a>
           </div>
         </div>
-        <div className="mt-14 flex flex-col gap-3 border-t border-[#F7F4ED]/12 pt-7 font-mono text-[11px] uppercase tracking-[0.12em] text-[#F7F4ED]/55 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-11 flex flex-col gap-3 border-t border-[#F8FAFC]/12 pt-7 font-mono text-[11px] uppercase tracking-[0.12em] text-[#CBD5E1] sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 DORA Research, Inc.</p>
-          <p>Application · Orchestration · Harness</p>
+          <p>Application / Orchestration / Harness</p>
         </div>
       </div>
     </footer>
