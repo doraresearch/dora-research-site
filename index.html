@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      document.documentElement.classList.add('js')
+    </script>
     <meta
       name="description"
       content="DORA builds enterprise AI above the model layer, turning existing models into reliable systems through application, orchestration, and harness layers."
@@ -12,9 +15,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;600&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;600&display=swap"
+      />
+    </noscript>
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -34,10 +45,22 @@
     <meta name="twitter:image" content="https://www.dorareason.com/og-image.png" />
     <meta name="twitter:image:alt" content="DORA Research: Enterprise AI above the model layer." />
 
-    <title>DORA Research</title>
+    <title>DORA Research — Enterprise AI above the model layer</title>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "DORA Research",
+        "url": "https://www.dorareason.com",
+        "description": "DORA builds the application, orchestration, and harness layers that turn existing models into reliable systems for enterprise workflows.",
+        "slogan": "Enterprise AI above the model layer",
+        "logo": "https://www.dorareason.com/og-image.png"
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

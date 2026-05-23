@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,jsx}'],
+  content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       fontFamily: {
@@ -10,21 +10,45 @@ export default {
       },
       borderRadius: {
         none: '0',
-        sm: '0',
-        md: '0',
-        lg: '0',
+        sm: '6px',
+        DEFAULT: '12px',
+        md: '14px',
+        lg: '18px',
+        xl: '20px',
+        '2xl': '26px',
+        full: '9999px',
+        // semantic (per DESIGN.md rounded scale)
+        panel: '12px',
+        card: '18px',
+        stage: '26px',
+        pill: '9999px',
+      },
+      backgroundImage: {
+        // Aurora spectral signature (cool, purple-free)
+        spectral: 'linear-gradient(90deg,#6EE7B7,#2DD4BF,#22D3EE,#38BDF8,#3B82F6)',
+        'spectral-v': 'linear-gradient(180deg,#6EE7B7,#2DD4BF,#22D3EE,#38BDF8,#3B82F6)',
       },
       colors: {
-        dark: '#111418',
-        graphite: '#111418',
+        dark: '#0C0F14',
+        graphite: '#0C0F14',
+        'olive-black': '#0C0F14',
         ink: '#050608',
-        base: '#F7F8FA',
+        base: '#FFFFFF',
+        soft: '#F7F8FA',
         paper: '#F7F8FA',
         surface: '#FFFFFF',
         'surface-alt': '#EEF1F4',
         body: '#3B4148',
         white: '#FFFFFF',
+        // Aurora stops
+        mint: '#6EE7B7',
+        teal: '#2DD4BF',
+        cyan: '#22D3EE',
+        sky: '#38BDF8',
+        blue: '#3B82F6',
+        // signal system
         signal: '#7DD3FC',
+        signal2: '#38BDF8',
         'signal-soft': '#E0F7FF',
         'deep-signal': '#0284C7',
         background: 'hsl(var(--background))',
@@ -58,16 +82,34 @@ export default {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
         },
-        border: '#DCE1E6',
-        line: '#DCE1E6',
+        border: '#E4E8ED',
+        line: '#E4E8ED',
         'line-strong': '#AEB7C2',
         'border-strong': '#AEB7C2',
         'border-dark': 'rgba(248,250,252,0.16)',
         'dark-text': '#F8FAFC',
         'dark-muted': '#CBD5E1',
-        'olive-black': '#111418',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
+      },
+      keyframes: {
+        'fade-up': {
+          from: { opacity: '0', transform: 'translateY(20px)' },
+          to: { opacity: '1', transform: 'none' },
+        },
+        'swarm-spin': {
+          to: { transform: 'rotate(360deg)' },
+        },
+        'core-pulse': {
+          '0%,100%': { opacity: '0.65' },
+          '50%': { opacity: '1' },
+        },
+      },
+      animation: {
+        'fade-up': 'fade-up .75s cubic-bezier(0.22,1,0.36,1) both',
+        'logo-spin': 'swarm-spin 22s linear infinite',
+        'eval-spin': 'swarm-spin 16s linear infinite',
+        'core-pulse': 'core-pulse 3.2s ease-in-out infinite',
       },
     },
   },
