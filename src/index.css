@@ -62,3 +62,182 @@
     color: #050608;
   }
 }
+
+@layer components {
+  .digital-bee-field {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .digital-bee-field::before {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(174, 183, 194, 0.18) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(174, 183, 194, 0.18) 1px, transparent 1px);
+    background-position: center;
+    background-size: 56px 56px;
+    mask-image: radial-gradient(circle at center, black, transparent 72%);
+    content: "";
+  }
+
+  .digital-bee-orbit {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border: 1px solid rgba(125, 211, 252, 0.22);
+    transform: translate(-50%, -50%) rotate(-8deg);
+  }
+
+  .digital-bee-orbit-a {
+    width: min(72vw, 980px);
+    height: min(42vw, 540px);
+  }
+
+  .digital-bee-orbit-b {
+    width: min(86vw, 1160px);
+    height: min(52vw, 660px);
+    transform: translate(-50%, -50%) rotate(9deg);
+  }
+
+  .digital-bee {
+    position: absolute;
+    left: var(--bee-left);
+    top: var(--bee-top);
+    display: grid;
+    width: 34px;
+    height: 22px;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    align-items: center;
+    opacity: 0.36;
+    transform: rotate(var(--bee-rotate)) scale(var(--bee-scale));
+    transform-origin: center;
+    animation: dora-bee-drift var(--bee-duration) ease-in-out var(--bee-delay) infinite alternate;
+  }
+
+  .digital-bee-body {
+    position: relative;
+    display: block;
+    height: 13px;
+    border: 1px solid #0284C7;
+    background:
+      linear-gradient(90deg, transparent 34%, rgba(2, 132, 199, 0.82) 34% 42%, transparent 42% 62%, rgba(2, 132, 199, 0.82) 62% 70%, transparent 70%),
+      #E0F7FF;
+  }
+
+  .digital-bee-body::before,
+  .digital-bee-body::after {
+    position: absolute;
+    top: 50%;
+    width: 5px;
+    height: 1px;
+    background: #0284C7;
+    content: "";
+  }
+
+  .digital-bee-body::before {
+    left: -6px;
+  }
+
+  .digital-bee-body::after {
+    right: -6px;
+  }
+
+  .digital-bee-wing {
+    display: block;
+    width: 12px;
+    height: 16px;
+    border: 1px solid rgba(2, 132, 199, 0.55);
+    background: rgba(125, 211, 252, 0.12);
+  }
+
+  .digital-bee-wing-left {
+    justify-self: end;
+    transform: skewY(-18deg);
+  }
+
+  .digital-bee-wing-right {
+    justify-self: start;
+    transform: skewY(18deg);
+  }
+
+  .digital-bee-logo {
+    position: relative;
+    display: inline-grid;
+    width: 28px;
+    height: 20px;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    align-items: center;
+  }
+
+  .digital-bee-logo::before,
+  .digital-bee-logo::after {
+    display: block;
+    width: 9px;
+    height: 14px;
+    border: 1px solid #0284C7;
+    background: rgba(125, 211, 252, 0.16);
+    content: "";
+  }
+
+  .digital-bee-logo::before {
+    justify-self: end;
+    transform: skewY(-18deg);
+  }
+
+  .digital-bee-logo::after {
+    justify-self: start;
+    transform: skewY(18deg);
+  }
+
+  .digital-bee-logo span {
+    display: block;
+    height: 12px;
+    border: 1px solid #0284C7;
+    background:
+      linear-gradient(90deg, transparent 34%, #0284C7 34% 44%, transparent 44% 60%, #0284C7 60% 70%, transparent 70%),
+      #E0F7FF;
+  }
+
+  @keyframes dora-bee-drift {
+    0% {
+      margin-left: -8px;
+      margin-top: 4px;
+    }
+
+    50% {
+      margin-left: 8px;
+      margin-top: -6px;
+      opacity: 0.56;
+    }
+
+    100% {
+      margin-left: -2px;
+      margin-top: 8px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .digital-bee {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .digital-bee-field::before {
+      background-size: 44px 44px;
+    }
+
+    .digital-bee {
+      opacity: 0.24;
+    }
+
+    .digital-bee-orbit-a,
+    .digital-bee-orbit-b {
+      width: 110vw;
+      height: 70vw;
+    }
+  }
+}

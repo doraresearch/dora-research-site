@@ -1,14 +1,13 @@
 import { useEffect } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 const stackRows = [
-  ['Application layer', 'Core focus', true],
-  ['Orchestration layer', 'Core focus', true],
-  ['Harness layer', 'Core focus', true],
-  ['Model layer', 'Model-agnostic', false],
-  ['Data layer', 'Not our focus', false],
-  ['Infrastructure', 'Not our focus', false],
-  ['Compute', 'Not our focus', false],
+  ['Enterprise workflows', 'Where work starts', false],
+  ['DORA application layer', 'Core focus', true],
+  ['DORA orchestration layer', 'Core focus', true],
+  ['DORA harness layer', 'Core focus', true],
+  ['Existing model layer', 'Model-agnostic', false],
+  ['Data / infrastructure / compute', 'Not our focus', false],
 ]
 
 const primitives = [
@@ -61,6 +60,31 @@ const useCases = [
 
 const agenda = ['Multi-agent coordination', 'Persona design', 'Workflow harnesses', 'Evaluation and reliability', 'Human review paths']
 
+const bees = [
+  ['7%', '18%', 0.74, -2, 18],
+  ['12%', '34%', 0.48, -8, 23],
+  ['19%', '14%', 0.6, -14, 20],
+  ['24%', '46%', 0.38, -5, 26],
+  ['31%', '24%', 0.52, -18, 22],
+  ['39%', '13%', 0.42, -11, 25],
+  ['45%', '39%', 0.7, -20, 18],
+  ['53%', '18%', 0.56, -6, 24],
+  ['61%', '31%', 0.44, -13, 28],
+  ['68%', '12%', 0.66, -3, 19],
+  ['76%', '24%', 0.5, -16, 23],
+  ['84%', '16%', 0.7, -9, 20],
+  ['91%', '35%', 0.4, -21, 26],
+  ['9%', '62%', 0.5, -15, 22],
+  ['18%', '74%', 0.34, -6, 29],
+  ['29%', '67%', 0.68, -24, 18],
+  ['38%', '82%', 0.44, -12, 25],
+  ['50%', '70%', 0.58, -4, 21],
+  ['59%', '86%', 0.36, -18, 28],
+  ['70%', '66%', 0.62, -8, 19],
+  ['81%', '76%', 0.48, -22, 24],
+  ['92%', '61%', 0.54, -10, 27],
+]
+
 function ArrowIcon() {
   return (
     <svg viewBox="0 0 18 18" aria-hidden="true" className="h-4 w-4">
@@ -72,10 +96,10 @@ function ArrowIcon() {
 function Button({ href, children, variant = 'primary' }) {
   const classes = variant === 'secondary'
     ? 'border-[#DCE1E6] bg-white text-[#050608] hover:border-[#AEB7C2] hover:bg-[#EEF1F4]'
-    : 'border-[#111418] bg-[#111418] text-[#F8FAFC] hover:-translate-y-px hover:bg-[#050608]'
+    : 'border-[#111418] bg-[#111418] text-[#F8FAFC] hover:bg-[#050608]'
 
   return (
-    <a href={href} className={`inline-flex min-h-12 items-center justify-center gap-2.5 border px-5 text-[15px] font-semibold leading-none transition duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7DD3FC] ${classes}`}>
+    <a href={href} className={`inline-flex min-h-12 items-center justify-center gap-2.5 border px-5 text-[15px] font-semibold leading-none transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7DD3FC] ${classes}`}>
       {children}
       <ArrowIcon />
     </a>
@@ -95,113 +119,135 @@ function Container({ children, className = '' }) {
   return <div className={`mx-auto w-full min-w-0 max-w-[100vw] px-5 md:max-w-[1440px] md:px-10 xl:px-14 ${className}`}>{children}</div>
 }
 
-function SectionHeading({ eyebrow, title, copy, dark = false, className = '' }) {
+function DigitalBeeSwarm() {
   return (
-    <div className={`min-w-0 ${className}`}>
-      <Eyebrow dark={dark}>{eyebrow}</Eyebrow>
-      <h2 className={`max-w-[calc(100vw-40px)] break-words text-[clamp(40px,5.2vw,80px)] font-bold leading-[0.94] tracking-[-0.065em] md:max-w-none ${dark ? 'text-[#F8FAFC]' : 'text-[#050608]'}`}>
-        {title}
-      </h2>
-      {copy ? <p className={`mt-6 max-w-2xl text-[18px] leading-[1.58] ${dark ? 'text-[#CBD5E1]' : 'text-[#3B4148]'}`}>{copy}</p> : null}
+    <div className="digital-bee-field" aria-hidden="true">
+      <div className="digital-bee-orbit digital-bee-orbit-a" />
+      <div className="digital-bee-orbit digital-bee-orbit-b" />
+      {bees.map(([left, top, scale, delay, duration], index) => (
+        <span
+          key={`${left}-${top}`}
+          className="digital-bee"
+          style={{
+            '--bee-left': left,
+            '--bee-top': top,
+            '--bee-scale': scale,
+            '--bee-delay': `${delay}s`,
+            '--bee-duration': `${duration}s`,
+            '--bee-rotate': `${index % 2 === 0 ? -10 : 12}deg`,
+          }}
+        >
+          <span className="digital-bee-wing digital-bee-wing-left" />
+          <span className="digital-bee-body" />
+          <span className="digital-bee-wing digital-bee-wing-right" />
+        </span>
+      ))}
     </div>
   )
 }
 
-function ArchitectureArtifact() {
-  const reduceMotion = useReducedMotion()
-  const layers = [
-    ['Application', 'Interfaces, work surfaces, outcomes'],
-    ['Orchestration', 'Parallel agents, roles, handoffs'],
-    ['Harness', 'Evaluation, review, deployment controls'],
+function CommandCenterArtifact() {
+  const workflowRows = [
+    ['Input', 'Market expansion question'],
+    ['Roles', 'Market / Customer / Financial / Legal'],
+    ['Conflict', 'Assumption mismatch flagged'],
+    ['Output', 'Leadership-ready decision brief'],
   ]
 
   return (
-    <motion.div
-      initial={reduceMotion ? false : { opacity: 0, y: 22 }}
-      animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-      transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
-      className="relative overflow-hidden border border-[#AEB7C2] bg-white shadow-[0_28px_90px_rgba(17,20,24,0.07)]"
-      aria-label="DORA stack flow harness architecture"
-    >
-      <div className="grid border-b border-[#DCE1E6] bg-[#FBFCFD] px-5 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-[#6F7782] md:grid-cols-[1fr_auto] md:px-7">
-        <span>Stack + Flow + Harness</span>
-        <span className="hidden text-[#0284C7] md:block">Above the model layer</span>
+    <div className="relative mx-auto overflow-hidden border-x border-[#F8FAFC]/10 py-10 lg:min-h-[620px] lg:py-16">
+      <div className="absolute inset-0 opacity-45" aria-hidden="true">
+        <div className="absolute left-[8%] top-[18%] h-px w-[84%] bg-[#F8FAFC]/10" />
+        <div className="absolute bottom-[18%] left-[14%] h-px w-[72%] bg-[#7DD3FC]/18" />
+        <div className="absolute left-[21%] top-0 h-full w-px bg-[#F8FAFC]/8" />
+        <div className="absolute right-[14%] top-0 h-full w-px bg-[#F8FAFC]/8" />
       </div>
 
-      <div className="grid gap-0 lg:grid-cols-[0.86fr_1.42fr_0.92fr]">
-        <div className="border-b border-[#DCE1E6] p-5 md:p-7 lg:border-b-0 lg:border-r">
-          <p className="font-mono text-[12px] font-bold uppercase tracking-[0.12em] text-[#050608]">Enterprise workflow</p>
-          <div className="mt-6 grid gap-3">
-            {['Question', 'Context', 'Constraints', 'Review path'].map((item, index) => (
-              <div key={item} className="group flex items-center gap-3">
-                <span className={`h-2.5 w-2.5 border ${index === 0 ? 'border-[#0284C7] bg-[#7DD3FC]' : 'border-[#AEB7C2] bg-white'}`} />
-                <span className="text-[15px] font-medium text-[#3B4148]">{item}</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-9 hidden h-[180px] border-l border-[#DCE1E6] pl-5 lg:block">
-            <div className="h-full border-l-2 border-[#7DD3FC]" />
-          </div>
-        </div>
-
-        <div className="relative border-b border-[#DCE1E6] p-5 md:p-7 lg:border-b-0 lg:border-r">
-          <div className="absolute left-7 top-7 hidden h-[calc(100%-56px)] w-5 border-y-2 border-l-2 border-[#7DD3FC] lg:block" aria-hidden="true" />
-          <div className="pl-0 lg:pl-11">
-            <div className="mb-4 flex items-center justify-between gap-4">
-              <p className="font-mono text-[12px] font-bold uppercase tracking-[0.12em] text-[#0284C7]">DORA systems layer</p>
-              <p className="hidden font-mono text-[11px] uppercase tracking-[0.12em] text-[#6F7782] sm:block">Application / Orchestration / Harness</p>
+      <div className="relative grid gap-6 px-5 md:px-10 lg:grid-cols-[1.08fr_0.82fr] lg:items-start">
+        <div className="border border-[#F8FAFC]/18 bg-white text-[#050608]">
+          <div className="flex items-center justify-between gap-4 border-b border-[#DCE1E6] bg-[#FBFCFD] px-5 py-4">
+            <div>
+              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#0284C7]">Workflow surface</p>
+              <h3 className="mt-2 text-2xl font-semibold leading-[1.08]">Expansion review</h3>
             </div>
-            <div className="grid border border-[#7DD3FC]/70 bg-[#E0F7FF]">
-              {layers.map(([label, copy], index) => (
-                <motion.div
-                  key={label}
-                  initial={reduceMotion ? false : { opacity: 0, x: -18 }}
-                  animate={reduceMotion ? {} : { opacity: 1, x: 0 }}
-                  transition={{ duration: 0.55, delay: 0.18 + index * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                  className="grid min-h-[108px] gap-3 border-b border-[#7DD3FC]/35 p-5 last:border-b-0 md:grid-cols-[170px_1fr] md:items-center md:p-6"
-                >
-                  <div>
-                    <p className="font-mono text-[13px] font-bold uppercase tracking-[0.08em] text-[#050608]">{label}</p>
-                    <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.12em] text-[#0284C7]">Layer 0{index + 1}</p>
+            <span className="hidden border border-[#AEB7C2] px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-[#6F7782] sm:inline-flex">
+              Live harness
+            </span>
+          </div>
+          <div className="grid border-b border-[#DCE1E6] lg:grid-cols-[0.72fr_1.28fr]">
+            <div className="border-b border-[#DCE1E6] p-5 lg:border-b-0 lg:border-r">
+              <p className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-[#050608]">Brief</p>
+              <p className="mt-4 text-[16px] leading-[1.55] text-[#3B4148]">
+                Evaluate the operational, financial, legal, and customer impact of entering a new regional market.
+              </p>
+            </div>
+            <div className="grid">
+              {workflowRows.map(([label, value], index) => (
+                <div key={label} className="grid min-h-16 grid-cols-[108px_1fr] border-b border-[#DCE1E6] last:border-b-0">
+                  <div className="flex items-center border-r border-[#DCE1E6] bg-[#FBFCFD] px-4 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-[#6F7782]">
+                    {label}
                   </div>
-                  <p className="text-[16px] leading-[1.5] text-[#3B4148]">{copy}</p>
-                </motion.div>
+                  <div className={`flex items-center px-4 text-[15px] font-medium ${index === 2 ? 'bg-[#E0F7FF] text-[#050608]' : 'text-[#3B4148]'}`}>
+                    {value}
+                  </div>
+                </div>
               ))}
             </div>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              <div className="border border-[#AEB7C2] bg-white p-4">
-                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-[#050608]">Model layer</p>
-                <p className="mt-2 text-sm leading-relaxed text-[#3B4148]">Existing models. Model-agnostic.</p>
+          </div>
+          <div className="grid gap-3 p-5 sm:grid-cols-4">
+            {['Context', 'Handoff', 'Evaluation', 'Review'].map((item, index) => (
+              <div key={item} className="border border-[#DCE1E6] p-3">
+                <span className={`mb-5 block h-2.5 w-2.5 ${index < 3 ? 'bg-[#7DD3FC]' : 'border border-[#0284C7]'}`} />
+                <p className="font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-[#050608]">{item}</p>
               </div>
-              <div className="border border-[#DCE1E6] bg-[#F7F8FA] p-4">
-                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-[#6F7782]">Data / Infra / Compute</p>
-                <p className="mt-2 text-sm leading-relaxed text-[#6F7782]">Visible, but not DORA's focus.</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
-        <div className="p-5 md:p-7">
-          <p className="font-mono text-[12px] font-bold uppercase tracking-[0.12em] text-[#050608]">Harness control</p>
-          <div className="mt-6 border border-[#AEB7C2]">
-            {['Observable', 'Evaluated', 'Constrained', 'Deployable'].map((item, index) => (
-              <div key={item} className="flex items-center justify-between border-b border-[#DCE1E6] px-4 py-4 last:border-b-0">
-                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-[#050608]">{item}</span>
-                <span className={`h-2.5 w-2.5 ${index < 3 ? 'bg-[#7DD3FC]' : 'border border-[#0284C7] bg-white'}`} />
-              </div>
-            ))}
+        <div className="grid gap-6 lg:pt-12">
+          <div className="border border-[#F8FAFC]/18 bg-[#F8FAFC] text-[#050608]">
+            <div className="border-b border-[#DCE1E6] px-5 py-4">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#0284C7]">Parallel agents</p>
+            </div>
+            <div className="grid">
+              {agents.map((agent, index) => (
+                <div key={agent} className="flex items-center justify-between gap-4 border-b border-[#DCE1E6] px-5 py-4 last:border-b-0">
+                  <span className="text-[15px] font-semibold">{agent}</span>
+                  <span className="flex items-center gap-3">
+                    <span className="hidden h-px w-16 bg-[#DCE1E6] sm:block" />
+                    <span className={`h-2.5 w-2.5 border border-[#0284C7] ${index < 4 ? 'bg-[#7DD3FC]' : 'bg-white'}`} />
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="mt-7 grid gap-2">
-            {agents.slice(0, 4).map((agent) => (
-              <div key={agent} className="flex items-center gap-3 text-sm text-[#3B4148]">
-                <span className="h-px flex-1 bg-[#DCE1E6]" />
-                <span className="whitespace-nowrap">{agent}</span>
-              </div>
-            ))}
+
+          <div className="border border-[#7DD3FC]/40 bg-[#111418] p-5 text-[#F8FAFC]">
+            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#7DD3FC]">Harness review</p>
+            <div className="mt-5 grid gap-3">
+              {harnessChecks.map((check) => (
+                <div key={check} className="flex items-center justify-between border border-[#F8FAFC]/12 px-4 py-3">
+                  <span className="text-[14px] font-medium text-[#CBD5E1]">{check}</span>
+                  <span className="h-2 w-2 bg-[#7DD3FC]" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
+  )
+}
+
+function SectionHeading({ eyebrow, title, copy, dark = false, className = '' }) {
+  return (
+    <div className={`min-w-0 ${className}`}>
+      <Eyebrow dark={dark}>{eyebrow}</Eyebrow>
+      <h2 className={`max-w-[calc(100vw-40px)] break-words text-4xl font-semibold leading-[1.02] sm:text-5xl lg:text-6xl md:max-w-none ${dark ? 'text-[#F8FAFC]' : 'text-[#050608]'}`}>
+        {title}
+      </h2>
+      {copy ? <p className={`mt-6 max-w-2xl text-[18px] leading-[1.58] ${dark ? 'text-[#CBD5E1]' : 'text-[#3B4148]'}`}>{copy}</p> : null}
+    </div>
   )
 }
 
@@ -259,7 +305,7 @@ function MiniDiagram({ type }) {
   return (
     <div className="mt-10 border border-[#AEB7C2] p-5">
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-[#050608]">Persona specification</p>
-      <strong className="mb-5 mt-3 block text-xl tracking-[-0.03em]">Financial analyst</strong>
+      <strong className="mb-5 mt-3 block text-xl">Financial analyst</strong>
       <div className="grid gap-4 text-[14px] text-[#3B4148] sm:grid-cols-2">
         <div>
           <p className="mb-1 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-[#0284C7]">Objective</p>
@@ -296,7 +342,7 @@ function ExampleArtifact() {
       <div className="mb-7 flex flex-col justify-between gap-4 border-b border-[#DCE1E6] pb-5 md:flex-row md:items-end">
         <div>
           <p className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-[#0284C7]">Proof artifact</p>
-          <h3 className="mt-3 text-[clamp(30px,3.5vw,54px)] font-bold leading-[0.96] tracking-[-0.055em] text-[#050608]">Example system: Strategic planning workflow.</h3>
+          <h3 className="mt-3 text-3xl font-semibold leading-[1.05] text-[#050608] sm:text-4xl lg:text-5xl">Example system: Strategic planning workflow.</h3>
         </div>
         <p className="max-w-xl text-[17px] leading-[1.55] text-[#3B4148]">
           A strategic planning workflow can run specialized agents in parallel, route conflicts through a harness, and produce a leadership-ready recommendation.
@@ -357,7 +403,7 @@ function ReliabilityHarness() {
     <div className="grid border border-[#AEB7C2] bg-white md:grid-cols-[0.55fr_1.45fr]">
       <div className="border-b border-[#DCE1E6] p-6 md:border-b-0 md:border-r md:p-8">
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-[#0284C7]">Harness framework</p>
-        <h3 className="mt-4 text-[clamp(30px,3.4vw,52px)] font-bold leading-[0.96] tracking-[-0.055em] text-[#050608]">Reliability is designed into the system.</h3>
+        <h3 className="mt-4 text-3xl font-semibold leading-[1.05] text-[#050608] sm:text-4xl lg:text-5xl">Reliability is designed into the system.</h3>
         <p className="mt-5 text-[17px] leading-[1.56] text-[#3B4148]">
           Reliable AI is not just better output. It is the ability to observe, evaluate, constrain, and improve how AI behaves inside real workflows.
         </p>
@@ -439,16 +485,26 @@ export default function Home() {
 
   return (
     <div className="w-screen min-w-0 max-w-[100vw] overflow-hidden bg-[#F7F8FA] text-[#050608] [&_*]:min-w-0">
-      <section className="border-b border-[#DCE1E6] bg-[radial-gradient(circle_at_top_right,rgba(125,211,252,0.18),transparent_34rem),linear-gradient(180deg,#FFFFFF_0%,#F7F8FA_100%)] pt-16 md:pt-20">
-        <Container className="pb-16 md:pb-24">
-          <div className="grid gap-10 xl:grid-cols-[0.95fr_0.75fr] xl:items-end">
+      <section className="relative isolate flex min-h-[calc(100svh-68px)] overflow-hidden border-b border-[#DCE1E6] bg-[#F7F8FA]">
+        <DigitalBeeSwarm />
+        <Container className="relative z-10 flex flex-1 items-center justify-center py-16 md:py-20">
+          <div className="mx-auto max-w-6xl text-center">
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
             >
-              <Eyebrow>DORA Systems</Eyebrow>
-              <h1 className="max-w-5xl text-[clamp(58px,9.2vw,140px)] font-bold leading-[0.88] tracking-[-0.082em] text-[#050608]">
+              <div className="mb-7 flex justify-center">
+                <span className="inline-flex items-center gap-3 text-[22px] font-semibold text-[#050608] sm:text-[26px]">
+                  <span className="inline-flex h-8 w-8 items-center justify-center" aria-hidden="true">
+                    <span className="digital-bee-logo">
+                      <span />
+                    </span>
+                  </span>
+                  DORA Research
+                </span>
+              </div>
+              <h1 className="mx-auto max-w-6xl text-[52px] font-semibold leading-[0.96] text-[#050608] sm:text-6xl lg:text-7xl xl:text-[92px]">
                 Enterprise AI above the model layer.
               </h1>
             </motion.div>
@@ -456,22 +512,36 @@ export default function Home() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
-              className="max-w-2xl xl:pb-2"
+              className="mx-auto mt-8 max-w-3xl"
             >
-              <p className="text-[clamp(20px,2.1vw,28px)] font-medium leading-[1.35] tracking-[-0.025em] text-[#3B4148]">
+              <p className="text-xl font-medium leading-[1.45] text-[#3B4148] sm:text-2xl">
                 DORA builds the application, orchestration, and harness layers that turn existing models into reliable systems for the workflows your organization depends on every day.
               </p>
-              <p className="mt-6 font-mono text-[12px] font-bold uppercase leading-relaxed tracking-[0.12em] text-[#050608]">
+              <p className="mx-auto mt-6 max-w-2xl font-mono text-[12px] font-bold uppercase leading-relaxed tracking-[0.12em] text-[#050608]">
                 Coordinated workflows. Parallel agent swarms. Persona-based agents.
               </p>
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
                 <Button href="mailto:hello@dorareason.com">Talk to DORA</Button>
                 <Button href="#how-it-works" variant="secondary">See how it works</Button>
               </div>
             </motion.div>
           </div>
-          <div className="mt-12 md:mt-16">
-            <ArchitectureArtifact />
+        </Container>
+      </section>
+
+      <section className="border-b border-[#111418] bg-[#050608] py-14 text-[#F8FAFC] md:py-20">
+        <Container>
+          <CommandCenterArtifact />
+          <div className="mt-14 grid gap-8 lg:grid-cols-[0.76fr_1.08fr] lg:items-end">
+            <SectionHeading
+              eyebrow="System reveal"
+              title="A swarm needs a harness."
+              copy="DORA turns parallel agent work into observable, evaluated, and deployable enterprise systems."
+              dark
+            />
+            <p className="text-[19px] leading-[1.58] text-[#CBD5E1]">
+              Existing models sit below. Enterprise work moves above them through DORA's application, orchestration, and harness layers.
+            </p>
           </div>
         </Container>
       </section>
@@ -511,7 +581,7 @@ export default function Home() {
               <article key={primitive.title} className="flex min-h-[460px] flex-col justify-between border border-[#AEB7C2] bg-white p-6 md:p-8">
                 <div>
                   <p className="font-mono text-[12px] font-bold uppercase tracking-[0.12em] text-[#0284C7]">{primitive.label}</p>
-                  <h3 className="mb-4 mt-6 text-[clamp(26px,2.2vw,36px)] font-bold leading-[0.98] tracking-[-0.05em] text-[#050608]">{primitive.title}</h3>
+                  <h3 className="mb-4 mt-6 text-2xl font-semibold leading-[1.1] text-[#050608] lg:text-3xl">{primitive.title}</h3>
                   <p className="text-[16px] leading-[1.6] text-[#3B4148]">{primitive.copy}</p>
                 </div>
                 <MiniDiagram type={primitive.diagram} />
@@ -551,7 +621,7 @@ export default function Home() {
           <div id="research" className="mt-14 grid gap-8 border-t border-[#DCE1E6] pt-12 lg:grid-cols-[0.78fr_1.22fr]">
             <div>
               <Eyebrow>Research Agenda</Eyebrow>
-              <h2 className="max-w-3xl text-[clamp(38px,4.4vw,68px)] font-bold leading-[0.96] tracking-[-0.06em] text-[#050608]">Research that becomes deployable systems.</h2>
+              <h2 className="max-w-3xl text-4xl font-semibold leading-[1.02] text-[#050608] sm:text-5xl lg:text-6xl">Research that becomes deployable systems.</h2>
             </div>
             <div>
               <p className="text-[18px] leading-[1.62] text-[#3B4148]">DORA's research focuses on how AI systems operate inside real environments: multi-agent coordination, persona design, orchestration patterns, workflow harnesses, evaluation, and reliability.</p>
@@ -571,10 +641,10 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <Eyebrow dark>Build with DORA</Eyebrow>
-              <h2 className="max-w-5xl text-[clamp(50px,7vw,112px)] font-bold leading-[0.9] tracking-[-0.075em] text-[#F8FAFC]">Build enterprise AI above the model layer.</h2>
+              <h2 className="max-w-5xl text-5xl font-semibold leading-[0.96] text-[#F8FAFC] sm:text-6xl lg:text-7xl xl:text-[88px]">Build enterprise AI above the model layer.</h2>
               <p className="mt-7 max-w-2xl text-[20px] leading-[1.52] text-[#CBD5E1]">Move beyond AI pilots and into systems your organization can evaluate, improve, and rely on.</p>
             </div>
-            <a href="mailto:hello@dorareason.com" className="inline-flex min-h-14 min-w-[210px] items-center justify-center gap-2.5 border border-white bg-white px-6 text-[15px] font-semibold leading-none text-[#050608] transition duration-150 hover:-translate-y-px hover:bg-[#E0F7FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7DD3FC]">
+            <a href="mailto:hello@dorareason.com" className="inline-flex min-h-14 min-w-[210px] items-center justify-center gap-2.5 border border-white bg-white px-6 text-[15px] font-semibold leading-none text-[#050608] transition-colors duration-150 hover:bg-[#E0F7FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7DD3FC]">
               Talk to DORA
               <ArrowIcon />
             </a>

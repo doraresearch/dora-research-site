@@ -60,8 +60,8 @@ DORA should not sound promotional, buzzword-heavy, academic for its own sake, li
 
 | Role | Size | Line height | Family |
 |---|---:|---:|---|
-| Hero display | `clamp(48px, 7vw, 88px)` | 0.98 | Instrument Sans 600 |
-| H2 | `clamp(36px, 5vw, 64px)` | 1.02 | Instrument Sans 600 |
+| Hero display | `48px / 60px / 72px / 88px` by breakpoint | 0.96 | Instrument Sans 600 |
+| H2 | `36px / 48px / 60px` by breakpoint | 1.02 | Instrument Sans 600 |
 | H3 | 22-28px | 1.08-1.2 | Instrument Sans 600 |
 | Lede | 22-24px | 1.45 | Instrument Sans 500 |
 | Body | 16-18px | 1.6-1.7 | Instrument Sans 400 |
@@ -104,7 +104,7 @@ Do not use warm paper, beige, parchment, sage green, pale green section backgrou
 - **Grid style:** Bordered grids, structured rows, stack diagrams, and workflow tables.
 - **Card style:** Sharp rectangles with subtle borders. Prefer `rounded-none`.
 - **Whitespace:** Generous, calm, premium.
-- **Rhythm:** crisp light hero -> sparse problem -> iconic stack table -> primitive system cards -> workflow trace -> proof artifact -> reliability framework -> dark services/research band -> use-case table -> research agenda -> graphite CTA -> dark footer.
+- **Rhythm:** crisp light hero with digital bee swarm -> dark command-center artifact -> sparse problem -> iconic stack table -> primitive system cards -> workflow trace -> proof artifact -> reliability framework -> dark services/research band -> use-case table -> research agenda -> graphite CTA -> dark footer.
 
 ## Header
 
@@ -130,18 +130,19 @@ Avoid: Get started free, Start for free, Unlock AI, Supercharge your team.
 
 ## Homepage Structure
 
-1. Light hero with bespoke stack + flow + harness architecture visual.
-2. Problem section.
-3. Above-the-model-layer stack section.
-4. Core primitives.
-5. From prompts to systems.
-6. Example system / proof artifact.
-7. Reliability framework.
-8. Research / architecture / deployment pipeline.
-9. Use cases.
-10. Research agenda.
-11. Final CTA.
-12. Footer.
+1. Light Antigravity-style launch hero with restrained digital bee swarm.
+2. Dark command-center artifact showing workflow, parallel agents, and harness review.
+3. Problem section.
+4. Above-the-model-layer stack section.
+5. Core primitives.
+6. From prompts to systems.
+7. Example system / proof artifact.
+8. Reliability framework.
+9. Research / architecture / deployment pipeline.
+10. Use cases.
+11. Research agenda.
+12. Final CTA.
+13. Footer.
 
 ## Required Components
 
@@ -178,6 +179,18 @@ Use structured rows with mono labels:
 4. `04 / ORCHESTRATION` Run agents in parallel through orchestration
 5. `05 / HARNESS` Evaluate, refine, and deploy
 
+### Command Center Artifact
+
+The dark post-hero section should mirror the cinematic product-stage rhythm of Antigravity while staying DORA-specific. It must show real system surfaces, not a fake dashboard: workflow brief, role-specific agents, conflict routing, and harness review.
+
+Rules:
+
+- Use a graphite/ink stage with white system surfaces.
+- Keep panels sharp, bordered, and product-like.
+- Show workflow, parallel agents, and harness controls together.
+- Avoid generic metrics, fake analytics charts, chat bubbles, glowing nodes, or decorative UI filler.
+- Keep the artifact static; the hero swarm is the only approved continuous ambient motion.
+
 ### Use Case Cards
 
 Cards must be concise, serious, and avoid full-automation promises.
@@ -189,6 +202,7 @@ Minimal, functional, and purposeful only.
 - Hero entrance only.
 - Optional subtle diagram entrance in hero.
 - One premium route-line draw or hover-highlight interaction is allowed.
+- Exception approved on 2026-05-21: the homepage hero may use a restrained digital bee swarm as the ambient field when mirroring the Antigravity-style launch layout. The swarm must feel geometric, systems-oriented, and precise rather than cute, cartoonish, or decorative filler.
 - Hero entrance duration: 750ms.
 - Hover transitions under 200ms.
 
@@ -287,3 +301,6 @@ We combine research, workflow design, agent architecture, orchestration, harness
 | 2026-05-15 | Use light-first design instead of dark-first design | A lighter system can feel more modern, enterprise-accessible, and productized while still preserving seriousness through sharp rectangles, restrained color, stack diagrams, and precise copy. |
 | 2026-05-15 | Remove company-specific visual references | The site should not imitate another AI startup's brand or homepage structure. DORA needs its own systems-layer identity. |
 | 2026-05-15 | Add AI-native services section | DORA is not only a software surface. It combines research, system design, orchestration, harnesses, and deployment support for enterprise AI systems. |
+| 2026-05-21 | Replace fluid hero type with breakpoint-based type scale | Keeps the site crisp and stable across viewport sizes while preserving the intended 88px desktop hero cap. |
+| 2026-05-21 | Adopt Antigravity-style launch layout with a digital bee swarm hero | User explicitly requested mirroring Antigravity's layout while replacing the star field with a swarm of digital bees. This is an intentional exception to the normal light architecture hero rules. |
+| 2026-05-22 | Extend Antigravity rhythm with a dark DORA command-center artifact | The reference site moves from launch hero into a cinematic product-stage section. DORA should echo that rhythm with workflow, parallel-agent, and harness-review surfaces rather than screenshots of an IDE. |

@@ -6,7 +6,7 @@ export default function SiteLayout() {
   return (
     <div className="min-h-screen bg-[#F7F8FA]">
       <Header />
-      <main>
+      <main className="pt-[68px]">
         <Outlet />
       </main>
       <Footer />

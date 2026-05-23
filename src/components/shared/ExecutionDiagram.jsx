@@ -15,17 +15,17 @@ export default function ExecutionDiagram() {
         {steps.map((step, i) => (
           <div key={step.label} className="contents">
             <div className="flex flex-col items-center">
-              <div className="w-28 md:w-32 bg-paper border border-border-strong px-4 py-4 flex flex-col items-center transition-colors duration-200 hover:bg-card">
-                <span className="font-mono text-[10px] text-ochre tracking-[0.16em] mb-2 font-medium">{roman[i]}</span>
+              <div className="flex w-28 flex-col items-center border border-line-strong bg-base px-4 py-4 transition-colors duration-150 hover:bg-surface md:w-32">
+                <span className="mb-2 font-mono text-[10px] font-medium tracking-[0.12em] text-deep-signal">{roman[i]}</span>
                 <span className="text-xs font-medium text-ink tracking-wide">{step.label}</span>
-                <span className="font-mono text-[9px] text-ink-muted mt-1 tracking-wider text-center leading-tight uppercase">{step.sub}</span>
+                <span className="mt-1 text-center font-mono text-[9px] uppercase leading-tight tracking-[0.12em] text-muted">{step.sub}</span>
               </div>
             </div>
             {i < steps.length - 1 && (
               <div className="flex items-center mx-1">
-                <div className="w-5 md:w-8 h-px bg-border-strong" />
+                <div className="h-px w-5 bg-line-strong md:w-8" />
                 <svg width="5" height="8" viewBox="0 0 6 10" fill="none" className="flex-shrink-0">
-                  <path d="M1 1L5 5L1 9" stroke="rgba(10,10,10,0.4)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M1 1L5 5L1 9" stroke="#AEB7C2" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
             )}

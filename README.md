@@ -1,15 +1,8 @@
 # DORA Research site
 
-Cleaned Vite + React + Tailwind marketing site reconstructed from the Base44 export.
+Static marketing site for DORA Research, an enterprise AI systems company.
 
-## What changed
-
-- Removed Base44 Vite plugin and SDK dependencies
-- Removed auth, query client, toaster, and other app scaffolding
-- Normalized routes to lowercase public paths
-- Added redirects from legacy `/Home`, `/Thesis`, `/Research`, `/About` paths
-- Preserved the editorial light-mode visual direction and page copy
-- Included a production build in `dist/`
+The current site is a single-page React/Vite homepage focused on DORA's above-the-model-layer positioning: application, orchestration, and harness layers for reliable enterprise AI systems.
 
 ## Run locally
 

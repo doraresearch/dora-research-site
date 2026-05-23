@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className="border-t border-[#F8FAFC]/12 bg-[#111418] text-[#CBD5E1]">
-      <div className="mx-auto max-w-[1280px] px-5 py-11 md:px-[clamp(20px,4vw,72px)]">
+      <div className="mx-auto max-w-[1280px] px-5 py-11 md:px-10 xl:px-14">
         <div className="flex flex-col justify-between gap-10 text-[13px] md:flex-row md:items-start">
           <div className="max-w-md">
             <strong className="mb-3 block text-lg text-[#F8FAFC]">DORA</strong>

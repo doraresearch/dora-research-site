@@ -1,15 +1,15 @@
 export default function ComparisonBlock({ left, right }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-0 mt-12 border-t border-l border-border">
-      <div className="bg-card p-8 md:p-10 border-r border-b border-border">
-        <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-ink-muted mb-6">{left.title}</p>
+    <div className="mt-12 grid grid-cols-1 gap-0 border-l border-t border-line md:grid-cols-2">
+      <div className="border-b border-r border-line bg-surface p-8 md:p-10">
+        <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.12em] text-muted">{left.title}</p>
         <p className="font-mono text-[13px] leading-loose tracking-wide text-body">
           {left.text}
         </p>
       </div>
-      <div className="bg-card p-8 md:p-10 border-r border-b border-border relative">
-        <span className="absolute top-0 left-0 w-full h-[2px] bg-ochre" aria-hidden="true" />
-        <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-ochre mb-6">{right.title}</p>
+      <div className="relative border-b border-r border-line bg-surface p-8 md:p-10">
+        <span className="absolute left-0 top-0 h-[2px] w-full bg-signal" aria-hidden="true" />
+        <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.12em] text-deep-signal">{right.title}</p>
         <p className="font-mono text-[13px] leading-loose tracking-wide text-ink">
           {right.text}
         </p>
