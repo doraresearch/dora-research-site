@@ -30,4 +30,14 @@ npm run preview  # preview prod build
 
 ## Deploy
 
-Auto-deploys on push to main via Vercel. SPA routing is handled in `vercel.json`.
+Production (`www.dorareason.com`) ships **manually** via the Vercel CLI — `git push` to `main` does **not** auto-deploy:
+
+```bash
+vercel --prod    # remote build + aliases the production domain
+```
+
+Auto-deploy is not currently wired: the Vercel project that owns the domain (`jbrackens-projects/dora-research-site`, personal scope) is not connected to the GitHub repo (no Vercel GitHub App, webhook, or commit checks). To enable push-to-deploy, connect the repo in Vercel → project → Settings → Git.
+
+Notes:
+- `.vercel/project.json` may show a team `orgId` (`team_Tfxzg…`) that's not accessible; the domain is actually served by the personal `jbrackens-projects` scope, and the Vercel MCP 403s on the team scope — use the Vercel CLI for deploys/inspection.
+- Build runs `tsc --noEmit && vite-react-ssg build` (prerendered static output in `dist/`). SPA fallback routing is in `vercel.json`.
