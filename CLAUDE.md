@@ -36,8 +36,9 @@ Production (`www.dorareason.com`) ships **manually** via the Vercel CLI — `git
 vercel --prod    # remote build + aliases the production domain
 ```
 
-Auto-deploy is not currently wired: the Vercel project that owns the domain (`jbrackens-projects/dora-research-site`, personal scope) is not connected to the GitHub repo (no Vercel GitHub App, webhook, or commit checks). To enable push-to-deploy, connect the repo in Vercel → project → Settings → Git.
+Auto-deploy is not currently wired: the Vercel project (`jbrackens-projects/dora-research-site`) is not connected to the GitHub repo (no Vercel GitHub App, webhook, or commit checks), and `vercel git connect` fails from the CLI ("Failed to connect doraresearch/dora-research-site") because the Vercel GitHub App is not installed on the `doraresearch` GitHub org. To enable push-to-deploy, a GitHub org admin must connect the repo in Vercel → project → Settings → Git (this installs the app).
 
 Notes:
-- `.vercel/project.json` may show a team `orgId` (`team_Tfxzg…`) that's not accessible; the domain is actually served by the personal `jbrackens-projects` scope, and the Vercel MCP 403s on the team scope — use the Vercel CLI for deploys/inspection.
+- `.vercel/project.json`'s `orgId` `team_Tfxzg…` is the id of the `jbrackens-projects` Vercel account (Vercel labels accounts as "teams") — the link is correct, not stale.
+- The connected **Vercel MCP** is authed to a different identity and 403s on this account; use the **Vercel CLI** (logged in as `jbrackens`) for deploys/inspection.
 - Build runs `tsc --noEmit && vite-react-ssg build` (prerendered static output in `dist/`). SPA fallback routing is in `vercel.json`.
