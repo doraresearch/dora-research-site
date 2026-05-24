@@ -31,8 +31,9 @@ function AgentGrid() {
         {Array.from({ length: 12 }).map((_, i) => (
           <div
             key={i}
+            style={on.has(i) ? { animationDelay: `${i * 0.18}s` } : undefined}
             className={`flex aspect-square items-center justify-center rounded-[9px] border font-mono text-[10px] ${
-              on.has(i) ? 'border-signal2 bg-[#0c1620] text-[#dff4ff] shadow-[0_0_18px_-6px_#38BDF8]' : 'border-[#232b35] bg-[#0e1218] text-[#5b6675]'
+              on.has(i) ? 'animate-cell-pulse border-signal2 bg-[#0c1620] text-[#dff4ff] shadow-[0_0_18px_-6px_#38BDF8]' : 'border-[#232b35] bg-[#0e1218] text-[#5b6675]'
             }`}
           >
             a{String(i + 1).padStart(2, '0')}

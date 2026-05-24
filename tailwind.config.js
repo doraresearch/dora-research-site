@@ -104,12 +104,17 @@ export default {
           '0%,100%': { opacity: '0.65' },
           '50%': { opacity: '1' },
         },
+        'cell-pulse': {
+          '0%,100%': { opacity: '1' },
+          '50%': { opacity: '0.5' },
+        },
       },
       animation: {
         'fade-up': 'fade-up .75s cubic-bezier(0.22,1,0.36,1) both',
         'logo-spin': 'swarm-spin 22s linear infinite',
         'eval-spin': 'swarm-spin 16s linear infinite',
         'core-pulse': 'core-pulse 3.2s ease-in-out infinite',
+        'cell-pulse': 'cell-pulse 1.8s ease-in-out infinite',
       },
     },
   },

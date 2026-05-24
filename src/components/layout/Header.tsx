@@ -26,7 +26,7 @@ export default function Header() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-soft/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-6 sm:px-8">
         <Link to="/" className="flex shrink-0 items-center gap-2.5 text-[18px] font-bold tracking-[-0.01em] text-ink" aria-label="DORA Research, home">
-          <Logo size={24} />
+          <Logo size={24} spin />
           DORA
         </Link>
 

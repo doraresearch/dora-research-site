@@ -85,11 +85,12 @@ export default function CommandStage() {
             Parallel agents <span className="text-signal2">04 Active</span>
           </p>
           <div className="flex flex-wrap gap-1.5">
-            {chips.map(([label, on]) => (
+            {chips.map(([label, on], i) => (
               <span
                 key={label}
+                style={on ? { animationDelay: `${i * 0.3}s` } : undefined}
                 className={`rounded-lg border px-2.5 py-1.5 font-mono text-[10.5px] ${
-                  on ? 'border-signal2 bg-[#0c1620] text-[#dff4ff] shadow-[0_0_16px_-5px_#38BDF8]' : 'border-[#2a3340] bg-[#0d1116] text-[#cbd5e1]'
+                  on ? 'animate-cell-pulse border-signal2 bg-[#0c1620] text-[#dff4ff] shadow-[0_0_16px_-5px_#38BDF8]' : 'border-[#2a3340] bg-[#0d1116] text-[#cbd5e1]'
                 }`}
               >
                 {label}
