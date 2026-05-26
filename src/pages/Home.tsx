@@ -4,10 +4,14 @@ import CommandStage from '@/components/home/CommandStage'
 import IconStrip from '@/components/home/IconStrip'
 import Problem from '@/components/home/Problem'
 import Category from '@/components/home/Category'
+import ParadigmShift from '@/components/home/ParadigmShift'
+import OperatingPhilosophy from '@/components/home/OperatingPhilosophy'
 import StackDiagram from '@/components/home/StackDiagram'
 import PrimitiveSpine from '@/components/home/PrimitiveSpine'
 import UseCases from '@/components/home/UseCases'
+import DeploymentModel from '@/components/home/DeploymentModel'
 import Outcomes from '@/components/home/Outcomes'
+import TrustLayer from '@/components/home/TrustLayer'
 import FinalCTA from '@/components/home/FinalCTA'
 
 export default function Home() {
@@ -27,10 +31,14 @@ export default function Home() {
 
       <Problem />
       <Category />
+      <ParadigmShift />
+      <OperatingPhilosophy />
       <StackDiagram />
       <PrimitiveSpine />
       <UseCases />
+      <DeploymentModel />
       <Outcomes />
+      <TrustLayer />
       <FinalCTA />
     </>
   )

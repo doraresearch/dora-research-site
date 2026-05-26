@@ -5,7 +5,7 @@ import Button from '@/components/ui/Button'
 
 const navItems: [string, string][] = [
   ['How it works', '#how-it-works'],
-  ['Primitives', '#primitives'],
+  ['Architecture', '#architecture'],
   ['Use cases', '#use-cases'],
   ['Outcomes', '#outcomes'],
   ['Contact', '#contact'],

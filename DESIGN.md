@@ -2,7 +2,7 @@
 
 Always read this file before making any visual or UI decision on this site. All font choices, colors, spacing, component behavior, and aesthetic direction are defined here. Do not deviate without explicit approval.
 
-> **2026-05-24 vertical repositioning:** DORA is now framed as **the AI deployment company for iGaming** — vertical operational infrastructure for gaming operators, not horizontal "enterprise AI." The site keeps the visual system (white airy base, dark rounded "stage" panels, Aurora gradient, swarm mark, pill buttons, motion suite — see 2026-05-23 entries) but rewrites positioning, sections, and copy. **Phase A** (shipped first): hero, problem, **new Category section**, stack/architecture (kept), primitive spine (kept), **8 iGaming use cases**, **new Outcomes section**, new CTA. **Phase B** (planned): Paradigm shift, Operating philosophy ("human-governed agentic operations"), Architecture rework to 5 pillars (+ Persistent operational memory), Deployment model, Trust layer.
+> **2026-05-24 vertical repositioning (Phase A + B both shipped):** DORA is framed as **the AI deployment company for iGaming** — vertical operational infrastructure for gaming operators, not horizontal "enterprise AI." The site keeps the visual system (white airy base, dark rounded "stage" panels, Aurora gradient, swarm mark, pill buttons, motion suite — see 2026-05-23 entries). Homepage now includes: hero, command-center stage, icon strip, problem, **Category** ("not a chatbot/BPO/operator/agency"), **Paradigm shift** ("from AI that chats to AI that acts"), **Operating philosophy** ("human-governed agentic operations" — agents handle / humans retain), stack diagram, **5-pillar architecture spine** (Operational workflows · Persona-based operational agents · Coordinated multi-agent systems · Persistent operational memory · Human-governed harness), **8 iGaming use cases**, **Deployment model** (Assess → Deploy → Validate → Expand → Productize), **Outcomes**, **Trust layer** (regulated operational environments with 8 safeguards), final CTA. Research section removed from homepage.
 
 ## Product Context
 
@@ -149,28 +149,24 @@ All buttons are **pills** (`999px`).
 
 Preferred CTAs (iGaming-tuned): *Assess your operator AI deployment opportunity*, *Map a gaming operations workflow*, *See where DORA runs*, *Evaluate operator margin impact*. Avoid: Talk to AI, Unlock AI, Supercharge your team, Get started free.
 
-## Homepage Structure (Phase A — shipped)
+## Homepage Structure (Phase A + B — shipped)
 
-1. **Header** — sticky, swarm mark + nav + pill CTA.
+1. **Header** — sticky, swarm mark + nav (How it works · Architecture · Use cases · Outcomes · Contact) + pill CTA.
 2. **Hero** — *AI-native operations infrastructure for iGaming.*
-3. **Command-center stage** — dark rounded panel with the continuous swarm + real iGaming system surfaces (player-retention workflow, parallel ops agents, harness review).
+3. **Command-center stage** (`#how-it-works`) — dark rounded panel with the continuous canvas swarm + real iGaming system surfaces (player-retention workflow, parallel ops agents, harness review).
 4. **Icon strip** — monochrome systems-icon row.
 5. **Problem** — *Gaming operators are digitally native. Their operations are not.*
 6. **Category** — *An AI deployment company for iGaming.* (Not a chatbot / BPO / casino operator / agency.)
-7. **Stack diagram** — *Built above the model layer* (operator-tuned framing).
-8. **Primitive spine** — 4 rows: Coordinated workflows, Parallel agent swarms, Persona-based agents, The harness. *Phase B reworks to 5 pillars (+ Persistent operational memory).*
-9. **Where DORA runs** — 8 iGaming operating functions (CRM & Retention, Customer Support, Compliance Operations, Fraud & Risk, Payments, Affiliate Operations, BI & Reporting, Trading Services).
-10. **Measured outcomes** — operator-impact list (cost, throughput, retention, compliance cadence, margin expansion).
-11. **Final CTA** — *Assess your operator AI deployment opportunity.*
-12. **Footer** — giant Aurora "DORA" wordmark + columns + meta with the swarm mark.
-
-### Phase B (planned)
-Insert these sections in a follow-up pass:
-- **Paradigm shift** — *From AI that chats to AI that acts.*
-- **Operating philosophy** — *Human-governed agentic operations* (agents do / humans retain).
-- **Architecture rework** — 5 pillars: Operational workflows · Persona-based operational agents · Coordinated multi-agent systems · Persistent operational memory · Human-governed harness.
-- **Deployment model** — 5 phases (Assess → Deploy → Validate → Expand → Productize).
-- **Trust layer** — built for regulated operational environments (permissions, audit trails, oversight).
+7. **Paradigm shift** — *From AI that chats — to AI that acts.* Centered Aurora moment + 2-col verb contrast (chats: drafts/suggests/answers ↔ acts: routes/executes/escalates/monitors/approves/reports).
+8. **Operating philosophy** — *Human-governed agentic operations.* Dark rounded stage with two columns: **Agents handle** (execution, monitoring, reporting, throughput, repetitive coordination) / **Humans retain** (strategic decisions, quality governance, escalations, compliance accountability, exceptions).
+9. **Stack diagram** — *Built above the model layer* (operator-tuned framing).
+10. **Architecture spine** (`#architecture`) — *Five pillars of operational intelligence.* Editorial rows alternating left/right: Operational workflows · Persona-based operational agents · Coordinated multi-agent systems · **Persistent operational memory** · Human-governed harness.
+11. **Where DORA runs** (`#use-cases`) — 8 iGaming operating functions (CRM & Retention, Customer Support, Compliance Operations, Fraud & Risk, Payments, Affiliate Operations, BI & Reporting, Trading Services).
+12. **Deployment model** — *How DORA deploys.* 5-phase numbered flow with Aurora signal line: Assess → Deploy → Validate → Expand → Productize.
+13. **Measured outcomes** (`#outcomes`) — operator-impact list (cost, throughput, retention, compliance cadence, margin expansion — 10 items).
+14. **Trust layer** — *Built for regulated operational environments.* Bracketed dark stage (harness-frame aesthetic) with 8 safeguards: scoped permissions · human review gates · audit trails · escalation rules · policy-aware agents · constrained execution · monitoring & evaluation · compliance-aligned workflows.
+15. **Final CTA** (`#contact`) — *Assess your operator AI deployment opportunity.*
+16. **Footer** — giant Aurora "DORA" wordmark + columns + meta with the swarm mark.
 
 ## Required Components
 
@@ -187,11 +183,17 @@ Show where DORA sits relative to models, while framing the operator context:
 
 The three DORA layers are grouped and emphasized with `signal-soft` fill, an **Aurora vertical rail**, and a "↳ DORA operates here" mono bracket. Layer rows stay sharp (radius 0).
 
-### Primitive Spine (Phase A)
+### Architecture Spine (Phase B shipped — 5 pillars)
 
-Four editorial rows (left text + mono index + Explore pill; right a dark rounded product-stage card): Coordinated enterprise workflows · Parallel agent swarms · Persona-based agents · The harness (instrument-rig frame visual).
+Five editorial rows (left text + mono index + Explore pill; right a dark rounded product-stage card), alternating left/right per row:
 
-*Phase B:* rebuild as 5 pillars to mirror the architecture story — adding **Persistent operational memory** as its own row with a card visual representing structured operational knowledge.
+1. **Operational workflows** — `WorkflowRail` visual (01-05 rails on dark stage).
+2. **Persona-based operational agents** — `PersonaCards` (Retention · Compliance · Risk role cards).
+3. **Coordinated multi-agent systems** — `AgentGrid` (12-cell grid with the live `cell-pulse` animation on active cells).
+4. **Persistent operational memory** — `MemoryLayers` (6 mono-labeled memory categories: POLICIES · DECISIONS · EXCEPTIONS · CUSTOMER PATTERNS · COMPLIANCE LOGIC · INSTITUTIONAL — with sample counts).
+5. **Human-governed harness** — `HarnessFrame` (instrument-rig: containment brackets + measurement ring + Aurora eval arc + CONTEXT/EVAL/CONSTRAINTS + REVIEW → DEPLOY readout).
+
+Section heading: *Five pillars of operational intelligence.* `id="architecture"`.
 
 ### Command Center Artifact
 
@@ -374,5 +376,6 @@ Secondary CTA: See where DORA runs
 | 2026-05-23 | Switch primary font Instrument Sans → Plus Jakarta Sans | More geometric / Google-Sans-like, closer to Antigravity. |
 | 2026-05-23 | Expand the motion suite | Continuous command-center canvas swarm (dark stage only), hero entrance, scroll-reveal fade-ups, rotating logo mark, eval-arc + core pulse. All `prefers-reduced-motion`-gated. |
 | 2026-05-23 | Harness visual resolved: harness frame (orb retired) | A glowing orb symbolized energy, not a harness. |
-| 2026-05-24 | **Vertical repositioning to iGaming AI deployment company (Phase A)** | Investor thesis is sharper than the current horizontal "enterprise AI" framing. DORA is *the AI deployment company for iGaming*, not a horizontal enterprise platform. Phase A ships: hero, problem, **Category section**, kept stack + spine, **8 iGaming use cases**, **Outcomes section**, new CTA. Phase B adds: Paradigm shift, Operating philosophy ("human-governed agentic operations"), Architecture rework to 5 pillars (+ Persistent operational memory), Deployment model, Trust layer. |
+| 2026-05-24 | **Vertical repositioning to iGaming AI deployment company (Phase A)** | Investor thesis is sharper than the current horizontal "enterprise AI" framing. DORA is *the AI deployment company for iGaming*, not a horizontal enterprise platform. Phase A ships: hero, problem, **Category section**, kept stack + spine, **8 iGaming use cases**, **Outcomes section**, new CTA. |
+| 2026-05-24 | **Phase B shipped — Paradigm shift, Operating philosophy, Architecture rework, Deployment model, Trust layer** | Completes the vertical pivot. Added `ParadigmShift` (chats → acts contrast), `OperatingPhilosophy` (dark stage: agents handle / humans retain), reworked the primitive spine to **5 pillars** including the new **Persistent operational memory** row with a `MemoryLayers` dark-card visual, added `DeploymentModel` (5-phase numbered flow with Aurora signal line), and `TrustLayer` (bracketed harness-frame dark stage with 8 safeguards). Renamed nav `Primitives → Architecture` (section id `#primitives` → `#architecture`). All sections use the existing visual vocabulary (Aurora, dark rounded stages, pills, mono labels, motion suite) — no design language change. |
 | 2026-05-24 | **Restore live cell-pulse animations** (CSS, not JS intervals) | The proto's chip/grid pulsing and header-logo spin were missing from the React port. Restored via a shared `cell-pulse` keyframe with staggered per-cell delays; reduced-motion-safe. |

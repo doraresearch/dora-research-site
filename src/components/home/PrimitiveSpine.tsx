@@ -1,4 +1,4 @@
-import { useId } from 'react'
+import { useId, type ReactNode } from 'react'
 import Container from '@/components/ui/Container'
 import Eyebrow from '@/components/ui/Eyebrow'
 import Button from '@/components/ui/Button'
@@ -8,7 +8,13 @@ const cardCls =
   'relative aspect-[16/10] overflow-hidden rounded-card border border-[#1b2027] bg-[radial-gradient(130%_130%_at_30%_0%,#141922,#0A0C10_65%)] p-5 shadow-[0_30px_70px_-55px_rgba(2,8,20,0.7)]'
 
 function WorkflowRail() {
-  const items = [['01 / WORKFLOW', 'START'], ['02 / ROLES', null], ['03 / PERSONAS', null], ['04 / ORCHESTRATION', null], ['05 / HARNESS', 'DEPLOY']]
+  const items: [string, string | null][] = [
+    ['01 / WORKFLOW', 'START'],
+    ['02 / ROLES', null],
+    ['03 / PERSONAS', null],
+    ['04 / ORCHESTRATION', null],
+    ['05 / HARNESS', 'DEPLOY'],
+  ]
   return (
     <div className={cardCls}>
       <div className="flex h-full flex-col justify-center gap-[7px]">
@@ -45,10 +51,10 @@ function AgentGrid() {
 }
 
 function PersonaCards() {
-  const roles = [
-    ['Analyst', 'Reads source data · drafts entries · cannot approve'],
-    ['Reviewer', 'Checks against policy · flags exceptions'],
-    ['Approver', 'Final sign-off · scoped to threshold'],
+  const roles: [string, string][] = [
+    ['Retention', 'Drafts campaigns · cannot mass-message · routes via CRM gate'],
+    ['Compliance', 'KYC/AML review · flags exceptions · audit-aligned'],
+    ['Risk', 'Behavioral signals · escalation routing · scoped to threshold'],
   ]
   return (
     <div className={cardCls}>
@@ -60,6 +66,33 @@ function PersonaCards() {
               <span className="font-mono text-[9.5px] tracking-[0.14em] text-signal2">ROLE</span>
             </p>
             <p className="mt-1 text-[11px] text-[#8b95a1]">{d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function MemoryLayers() {
+  const layers: [string, string, boolean][] = [
+    ['POLICIES', '124 active rules', true],
+    ['DECISIONS', '8.2K logged · review-ready', true],
+    ['EXCEPTIONS', '47 patterns mapped', true],
+    ['CUSTOMER PATTERNS', '12 cohorts · live', false],
+    ['COMPLIANCE LOGIC', '23 jurisdictions', false],
+    ['INSTITUTIONAL', 'growing', false],
+  ]
+  return (
+    <div className={cardCls}>
+      <div className="flex h-full flex-col justify-center gap-1.5">
+        <p className="mb-1 flex justify-between font-mono text-[10px] uppercase tracking-[0.14em] text-[#aeb7c2]">
+          Operational memory <span className="text-signal2">● ACTIVE</span>
+        </p>
+        {layers.map(([label, data, primary]) => (
+          <div key={label} className="flex items-center gap-2.5 rounded-[9px] border border-[#232b35] bg-[#0e1218] px-3 py-2 font-mono text-[10.5px] text-[#cbd5e1]">
+            <span className={`h-[6px] w-[6px] shrink-0 rounded-full ${primary ? 'bg-signal2 shadow-[0_0_8px_#38BDF8]' : 'bg-[#2a3340]'}`} aria-hidden="true" />
+            <span className="font-semibold text-[#dff4ff]">{label}</span>
+            <span className="ml-auto text-[9.5px] text-[#7a8694]">{data}</span>
           </div>
         ))}
       </div>
@@ -108,30 +141,60 @@ function HarnessFrame() {
   )
 }
 
-const rows = [
-  { ix: '01 — WORKFLOWS', title: 'Coordinated enterprise workflows', copy: 'Turn real multi-team work into systems agents can execute, hand off, and trace from first step to deployment.', Visual: WorkflowRail },
-  { ix: '02 — SWARMS', title: 'Parallel agent swarms', copy: 'Run many role-specific agents at once through orchestration, with conflict routing and handoffs handled by the system, not by people.', Visual: AgentGrid },
-  { ix: '03 — PERSONAS', title: 'Persona-based agents', copy: 'Every agent carries a role, the context it needs, and the operating constraints it must respect, so behavior stays predictable in production.', Visual: PersonaCards },
+type Row = { ix: string; title: ReactNode; copy: string; Visual: () => JSX.Element }
+
+const rows: Row[] = [
   {
-    ix: '04 — HARNESS',
+    ix: '01 — WORKFLOWS',
+    title: 'Operational workflows',
+    copy: 'Map real iGaming processes across CRM, support, compliance, fraud, payments, affiliates, reporting, and trading — into systems agents can execute, hand off, and trace from first step to deployment.',
+    Visual: WorkflowRail,
+  },
+  {
+    ix: '02 — PERSONAS',
+    title: 'Persona-based operational agents',
+    copy: 'Role-specific agents — retention, compliance, risk, payments, affiliates, reporting — each with the context they need and the operating constraints they must respect.',
+    Visual: PersonaCards,
+  },
+  {
+    ix: '03 — COORDINATION',
+    title: 'Coordinated multi-agent systems',
+    copy: 'Specialized agents coordinate across departments, hand off work, share context, and escalate exceptions — without people stitching it together by hand.',
+    Visual: AgentGrid,
+  },
+  {
+    ix: '04 — MEMORY',
     title: (
       <>
-        Reliability, <span className="font-serif font-normal italic">designed in</span>
+        Persistent <span className="font-serif font-normal italic">operational memory</span>
       </>
     ),
-    copy: 'The harness wraps every agent system so teams can see how work moves, where decisions happen, what context agents use, and how outputs are reviewed before they ship.',
+    copy: 'Capture workflows, policies, decisions, exceptions, customer patterns, compliance logic, and institutional knowledge — so the system gets sharper each cycle instead of starting from zero.',
+    Visual: MemoryLayers,
+  },
+  {
+    ix: '05 — HARNESS',
+    title: (
+      <>
+        Human-governed <span className="font-serif font-normal italic">harness</span>
+      </>
+    ),
+    copy: 'Monitor, evaluate, constrain, approve, and audit agentic execution before sensitive actions ship — so trust grows with deployment, not in spite of it.',
     Visual: HarnessFrame,
   },
 ]
 
 export default function PrimitiveSpine() {
   return (
-    <section id="primitives" className="bg-base py-16 sm:py-20">
+    <section id="architecture" className="bg-base py-16 sm:py-20">
       <Container>
-        <Reveal className="mb-2 max-w-[30ch]">
-          <Eyebrow className="mb-3">The DORA primitives</Eyebrow>
-          <h2 className="text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-4xl lg:text-[42px]">Four surfaces that make AI operational.</h2>
+        <Reveal className="mb-2 max-w-[32ch]">
+          <Eyebrow className="mb-3">The DORA architecture</Eyebrow>
+          <h2 className="text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-4xl lg:text-[42px]">Five pillars of operational intelligence.</h2>
           <span className="mt-4 block h-[3px] w-16 rounded bg-spectral" aria-hidden="true" />
+          <p className="mt-5 max-w-[64ch] text-[16px] leading-[1.6] text-body">
+            Agents are the execution layer. The durable value is the operational intelligence system around them — context, coordination, memory, and human-governed review.
+          </p>
         </Reveal>
 
         {rows.map((r, i) => (
