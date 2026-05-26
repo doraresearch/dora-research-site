@@ -8,6 +8,7 @@ import ParadigmShift from '@/components/home/ParadigmShift'
 import OperatingPhilosophy from '@/components/home/OperatingPhilosophy'
 import StackDiagram from '@/components/home/StackDiagram'
 import PrimitiveSpine from '@/components/home/PrimitiveSpine'
+import WithdrawalReview from '@/components/home/WithdrawalReview'
 import UseCases from '@/components/home/UseCases'
 import DeploymentModel from '@/components/home/DeploymentModel'
 import Outcomes from '@/components/home/Outcomes'
@@ -35,6 +36,7 @@ export default function Home() {
       <OperatingPhilosophy />
       <StackDiagram />
       <PrimitiveSpine />
+      <WithdrawalReview />
       <UseCases />
       <DeploymentModel />
       <Outcomes />
