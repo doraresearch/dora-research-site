@@ -7,7 +7,7 @@ const navItems: [string, string][] = [
   ['How it works', '#how-it-works'],
   ['Primitives', '#primitives'],
   ['Use cases', '#use-cases'],
-  ['Research', '#research'],
+  ['Outcomes', '#outcomes'],
   ['Contact', '#contact'],
 ]
 
@@ -39,7 +39,7 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:block">
-          <Button href="mailto:hello@dorareason.com">Talk to DORA</Button>
+          <Button href="mailto:hello@dorareason.com">Assess deployment</Button>
         </div>
 
         <button
@@ -69,7 +69,7 @@ export default function Header() {
             </a>
           ))}
           <Button href="mailto:hello@dorareason.com" className="mt-4 w-full" onClick={() => setOpen(false)}>
-            Talk to DORA
+            Assess deployment
           </Button>
         </nav>
       </div>

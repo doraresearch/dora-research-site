@@ -2,24 +2,24 @@ import SwarmCanvas from './SwarmCanvas'
 import Logo from '@/components/Logo'
 
 const rails: [string, boolean][] = [
-  ['01 / WORKFLOW — Quarterly close', true],
-  ['02 / ROLES — Analyst · Reviewer · Approver', true],
-  ['03 / PERSONAS — context + constraints', true],
+  ['01 / WORKFLOW — VIP player retention', true],
+  ['02 / ROLES — Retention · Support · Risk · Compliance', true],
+  ['03 / PERSONAS — context + policy constraints', true],
   ['04 / ORCHESTRATION — running', false],
   ['05 / HARNESS — pending review', false],
 ]
 
 const chips: [string, boolean][] = [
-  ['analyst·01', true],
-  ['analyst·02', true],
-  ['reviewer', false],
-  ['router', true],
-  ['approver', false],
-  ['context', true],
+  ['vip-care', true],
+  ['segmenter', true],
+  ['support', false],
+  ['crm-router', true],
+  ['risk', false],
+  ['compliance', true],
   ['audit', false],
 ]
 
-const checks = ['Context traced end to end', 'Output evaluated vs policy', 'Constraints respected']
+const checks = ['Player context traced', 'Action evaluated vs policy', 'Compliance constraints respected']
 
 function Check() {
   return (
@@ -113,7 +113,7 @@ export default function CommandStage() {
           ))}
           <p className="mt-3 flex items-center gap-2 rounded-lg border border-[#1f3a4d] bg-[#08161f] px-2.5 py-2 font-mono text-[10px] uppercase tracking-[0.12em] text-[#dff4ff]">
             <span className="h-[7px] w-[7px] rounded-full bg-signal shadow-[0_0_8px_#7DD3FC]" />
-            Ready for deployment
+            Approved for action
           </p>
         </div>
       </div>

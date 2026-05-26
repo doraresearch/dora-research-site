@@ -2,11 +2,15 @@ import Container from '@/components/ui/Container'
 import Eyebrow from '@/components/ui/Eyebrow'
 import Reveal from '@/components/ui/Reveal'
 
-const cases = [
-  ['01 / FINANCE', 'Financial close & reporting', 'Coordinate analysts, reviewers, and approvers across a multi-team quarterly close.'],
-  ['02 / OPERATIONS', 'Customer operations', 'Route, draft, and review high-volume operational work with role-scoped agents.'],
-  ['03 / RISK', 'Regulatory & risk review', 'Run structured checks with traceable context and human sign-off before action.'],
-  ['04 / ENGINEERING', 'Engineering workflows', 'Parallelize investigation and implementation under a reviewable harness.'],
+const cases: [string, string, string][] = [
+  ['01 / CRM', 'CRM & Retention', 'AI-native player lifecycle management — segmentation, campaign orchestration, and VIP workflow support.'],
+  ['02 / SUPPORT', 'Customer Support', 'Human-governed player operations with escalation, QA, policy checks, and multilingual execution.'],
+  ['03 / COMPLIANCE', 'Compliance Operations', 'KYC, AML, document review, regulatory workflows, and audit-ready escalation trails.'],
+  ['04 / RISK', 'Fraud & Risk', 'Behavioral monitoring, abuse detection, anomaly review, and operational risk triage.'],
+  ['05 / PAYMENTS', 'Payments', 'Reconciliation, routing support, treasury coordination, and payment-risk workflows.'],
+  ['06 / AFFILIATES', 'Affiliate Operations', 'Partner onboarding, reconciliation, monitoring, and campaign operations.'],
+  ['07 / BI', 'BI & Reporting', 'Real-time operational intelligence, anomaly detection, and executive reporting.'],
+  ['08 / TRADING', 'Trading Services', 'Exposure monitoring, trading workflow intelligence, and decision-support operations.'],
 ]
 
 export default function UseCases() {
@@ -16,10 +20,10 @@ export default function UseCases() {
         <Reveal>
           <div className="flex flex-wrap items-baseline justify-between gap-3">
             <div>
-              <h2 className="text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-4xl lg:text-[42px]">Where DORA runs.</h2>
+              <h2 className="text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-4xl lg:text-[42px]">Where DORA runs inside gaming operators.</h2>
               <span className="mt-4 block h-[3px] w-16 rounded bg-spectral" aria-hidden="true" />
             </div>
-            <Eyebrow>Selected use cases</Eyebrow>
+            <Eyebrow>Operating functions</Eyebrow>
           </div>
 
           <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

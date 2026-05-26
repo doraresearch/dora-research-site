@@ -32,7 +32,7 @@ export default function StackDiagram() {
           </div>
 
           <div className="ml-5 mt-7 sm:ml-6">
-            <Layer faded label="Enterprise workflows" meta="INPUT · REAL WORK" />
+            <Layer faded label="Gaming operations" meta="INPUT · REAL WORK" />
             <div>
               <span className="mb-2 mt-4 inline-block font-mono text-[11px] uppercase tracking-[0.12em] text-deep-signal">↳ DORA operates here</span>
               <div className="relative">
@@ -46,8 +46,8 @@ export default function StackDiagram() {
             <Layer faded label="Data · Infrastructure · Compute" meta="NOT DORA" />
           </div>
 
-          <p className="mt-6 max-w-[74ch] text-[13.5px] leading-[1.6] text-muted">
-            DORA does not build foundation models, data infrastructure, compute platforms, or generic AI infrastructure. We build the systems layer that turns existing models into dependable enterprise AI.
+          <p className="mt-6 max-w-[78ch] text-[13.5px] leading-[1.6] text-muted">
+            DORA does not build foundation models, data infrastructure, compute platforms, or casino operations. We deploy the operational layer that turns existing models into AI-native gaming operations.
           </p>
         </Reveal>
       </Container>

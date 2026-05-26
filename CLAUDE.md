@@ -1,12 +1,14 @@
 # DORA Research site
 
-Static marketing site for DORA Research, an enterprise AI systems company. Stack: React 18 + Vite + Tailwind + Framer Motion + react-router-dom. Current public surface: single-page homepage with sections for how it works, primitives, use cases, research, and contact. Deployed on Vercel.
+Static marketing site for DORA Research — **the AI deployment company for iGaming**. DORA deploys human-governed agentic systems across gaming operations (CRM, support, compliance, fraud, payments, affiliates, BI, trading) to reduce manual workload and expand operator margins. Stack: React 18 + TypeScript + Vite + Tailwind + react-router-dom, prerendered via vite-react-ssg (no framer-motion). Current public surface: single-page homepage. Deployed on Vercel (manual `vercel --prod`).
 
 ## Design System
 
 Always read `DESIGN.md` before making any visual or UI decision. All font choices, colors, spacing, and aesthetic direction are defined there. Do not deviate without explicit approval. Flag any code that doesn't match `DESIGN.md`.
 
 Direction (2026-05-23): the site is intentionally **Antigravity-leaning** — white airy base, cinematic dark **rounded** "stage" panels, big geometric sans, an **Aurora** spectral signature, **pill** buttons, a **swarm** brand mark, and a defined motion suite. This reversed the old sharp/cool-blue-only/no-gradient/minimal-motion rules. `DESIGN.md` is authoritative; this list is a quick reference.
+
+Positioning (2026-05-24): DORA is **the AI deployment company for iGaming** — vertical operational infrastructure for gaming operators, not horizontal "enterprise AI." Frame copy around gaming operators, regulated environments, deployment-led model, and measurable operator margin impact. Avoid generic "enterprise AI" framing as primary, chatbot/copilot/BPO/automation-agency framing entirely. **Phase A** shipped: hero, problem, **Category** ("not a chatbot / BPO / casino operator"), kept stack + spine, **8 iGaming use cases** (CRM, Support, Compliance, Fraud, Payments, Affiliates, BI, Trading), **Outcomes** section, new CTA *Assess your operator AI deployment opportunity*. **Phase B planned**: Paradigm shift, *Human-governed agentic operations*, Architecture rework to 5 pillars (+ Persistent operational memory), Deployment model, Trust layer.
 
 Key invariants:
 - **Type:** Plus Jakarta Sans (400-800) for hero, headings, body, UI, cards, buttons, diagrams. Instrument Serif (italic) is a sparse accent only. JetBrains Mono for labels, captions, diagram annotations.
