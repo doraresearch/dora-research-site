@@ -34,6 +34,12 @@ export default function UseCases() {
               </div>
             ))}
           </div>
+          <a
+            href="/operator-workflows"
+            className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-deep-signal transition-colors hover:text-ink"
+          >
+            See operator workflows <span aria-hidden="true">&rarr;</span>
+          </a>
         </Reveal>
       </Container>
     </section>

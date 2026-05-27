@@ -11,12 +11,12 @@ export default function FinalCTA() {
           <h2 className="mx-auto max-w-[30ch] text-[30px] font-bold leading-[1.05] tracking-[-0.03em] text-white sm:text-4xl lg:text-[44px]">
             Build the first agentic workflow inside your <span className="font-serif font-normal italic">operation</span>.
           </h2>
-          <p className="mx-auto mt-4 max-w-[60ch] text-[16px] leading-[1.6] text-dark-muted">
-            DORA starts with one high-friction workflow, proves measurable value, then expands into the agentic operating layer across the business.
+          <p className="mx-auto mt-4 max-w-[64ch] text-[16px] leading-[1.6] text-dark-muted">
+            DORA starts with one high-friction workflow, maps the systems, policies, handoffs, and success metrics, then deploys the agentic layer where the economics are immediate.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="mailto:hello@dorareason.com" variant="signal" arrow>
-              Start deployment assessment
+              Map your first workflow
             </Button>
             <Button href="#use-cases" variant="white">
               See where DORA runs

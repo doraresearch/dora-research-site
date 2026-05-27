@@ -11,11 +11,11 @@ const stages: [string, string][] = [
   ['Escalate / Learn', 'Route exceptions to human teams and preserve decisions, rationale, overrides, timestamps, communications, and feedback.'],
 ]
 
-const metrics: [string, string, string][] = [
-  ['18-25 min', '4-7 min', 'Average analyst time per escalated case'],
-  ['25-35', '90-120', 'Cases per analyst per day'],
-  ['24-72 hrs', '2-12 hrs', 'Withdrawal-to-resolution time'],
-  ['8-12%', '3-5%', 'False-positive hold rate'],
+const metrics: [string, string, string, string][] = [
+  ['~70% faster review', '18-25 min', '4-7 min', 'Average analyst time per escalated case'],
+  ['3x+ throughput', '25-35', '90-120', 'Cases per analyst per day'],
+  ['Up to 80% faster resolution', '24-72 hrs', '2-12 hrs', 'Withdrawal-to-resolution time'],
+  ['50%+ fewer false-positive holds', '8-12%', '3-5%', 'False-positive hold rate'],
 ]
 
 function Chevron() {
@@ -66,20 +66,29 @@ export default function WithdrawalReview() {
 
         <Reveal className="mt-10">
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {metrics.map(([before, after, caption]) => (
+            {metrics.map(([anchor, before, after, caption]) => (
               <div key={caption} className="rounded-card bg-graphite p-5 text-dark-text">
-                <p className="text-[22px] font-bold leading-tight sm:text-[24px]">
-                  <span className="text-dark-muted">{before}</span>
-                  <span className="mx-2 text-signal">&rarr;</span>
-                  <span className="text-spectral bg-spectral bg-clip-text text-transparent">{after}</span>
+                <p className="text-spectral bg-spectral bg-clip-text text-[22px] font-bold leading-[1.1] tracking-[-0.01em] text-transparent sm:text-[24px]">
+                  {anchor}
                 </p>
-                <p className="mt-3 text-[12.5px] leading-[1.5] text-dark-muted">{caption}</p>
+                <p className="mt-3 text-[14px] font-semibold leading-tight">
+                  <span className="text-dark-muted">{before}</span>
+                  <span className="mx-1.5 text-signal">&rarr;</span>
+                  <span className="text-white">{after}</span>
+                </p>
+                <p className="mt-2 text-[12.5px] leading-[1.5] text-dark-muted">{caption}</p>
               </div>
             ))}
           </div>
           <p className="mt-3 font-mono text-[11px] italic text-muted">
             Pilot targets vary by operator volume, data availability, risk policy, automation permissions, jurisdiction, and degree of integration.
           </p>
+          <a
+            href="/example/withdrawal-review"
+            className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-deep-signal transition-colors hover:text-ink"
+          >
+            View the withdrawal review pattern <span aria-hidden="true">&rarr;</span>
+          </a>
         </Reveal>
       </Container>
     </section>

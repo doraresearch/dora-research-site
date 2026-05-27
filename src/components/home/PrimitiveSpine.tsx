@@ -34,6 +34,12 @@ export default function PrimitiveSpine() {
               </div>
             ))}
           </div>
+          <a
+            href="/operating-model"
+            className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-deep-signal transition-colors hover:text-ink"
+          >
+            Explore the operating model <span aria-hidden="true">&rarr;</span>
+          </a>
         </Reveal>
       </Container>
     </section>

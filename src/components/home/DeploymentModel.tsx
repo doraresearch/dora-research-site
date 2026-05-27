@@ -12,7 +12,7 @@ const phases: [string, string, string][] = [
 
 export default function DeploymentModel() {
   return (
-    <section className="bg-base py-16 sm:py-20">
+    <section id="deployment" className="bg-base py-16 sm:py-20">
       <Container>
         <Reveal>
           <Eyebrow className="mb-3">Deployment model</Eyebrow>

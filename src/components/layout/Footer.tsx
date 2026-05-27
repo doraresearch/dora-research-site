@@ -2,7 +2,7 @@ import Container from '@/components/ui/Container'
 import Logo from '@/components/Logo'
 
 const cols: [string, [string, string][]][] = [
-  ['Product', [['How it works', '#how-it-works'], ['Operating model', '#operating-model'], ['Example', '#deployment-pattern'], ['Use cases', '#use-cases']]],
+  ['Product', [['How it works', '#how-it-works'], ['Where it runs', '#use-cases'], ['Deployment', '#deployment']]],
   ['Company', [['Contact', 'mailto:hello@dorareason.com'], ['Careers', '#']]],
 ]
 
