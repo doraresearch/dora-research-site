@@ -37,11 +37,16 @@ export default function WithdrawalReview() {
       <Container>
         {/* HEADER + INTRO */}
         <Reveal>
-          <Eyebrow className="mb-3">Deployment pattern</Eyebrow>
+          <Eyebrow className="mb-3">One deployment pattern</Eyebrow>
           <h2 className="text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-4xl lg:text-[42px]">
             High-value withdrawal <span className="font-serif font-normal italic">risk review</span>.
           </h2>
           <span className="mt-4 block h-[3px] w-16 rounded bg-spectral" aria-hidden="true" />
+
+          <p className="mt-5 max-w-[72ch] text-[15px] leading-[1.6] text-body">
+            <span className="mr-2 font-mono text-[10px] uppercase tracking-[0.16em] text-deep-signal">One example</span>
+            The same agentic operating pattern runs across CRM, support, compliance, fraud, payments, affiliates, BI, and trading.
+          </p>
 
           <div className="mt-7 grid gap-8 lg:grid-cols-2 lg:gap-12">
             <p className="text-[16.5px] leading-[1.7] text-body">
