@@ -5,9 +5,9 @@ import Reveal from '@/components/ui/Reveal'
 
 const stages: [string, string][] = [
   ['Trigger', 'High-value withdrawal or risk signal detected.'],
-  ['Gather Intelligence', 'Payments, KYC, gameplay, AML, device intelligence, bonuses, related accounts, support, and prior reviews.'],
-  ['Link Signals', 'Specialist agents connect evidence across functions to identify patterns missed inside isolated tools or queues.'],
-  ['Act Under Policy', 'Approved automation path, or escalation for edge cases, low confidence, AML triggers, KYC gaps, or policy exceptions.'],
+  ['Gather Intelligence', 'Payments, KYC, gameplay, AML, device, bonuses, related accounts, support, prior reviews.'],
+  ['Link Signals', 'Specialist agents connect evidence across functions and surface cross-workflow patterns.'],
+  ['Act Under Policy', 'Approved automation path or escalation for edge cases, low confidence, AML triggers, KYC gaps, or policy exceptions.'],
   ['Audit + Learning', 'Evidence, reasoning, recommendation, decision, override, timestamps, communication, and feedback preserved.'],
 ]
 
@@ -43,21 +43,16 @@ export default function WithdrawalReview() {
           </h2>
           <span className="mt-4 block h-[3px] w-16 rounded bg-spectral" aria-hidden="true" />
 
-          <p className="mt-5 max-w-[72ch] text-[15px] leading-[1.6] text-body">
-            <span className="mr-2 font-mono text-[10px] uppercase tracking-[0.16em] text-deep-signal">One example</span>
-            The same agentic operating pattern runs across CRM, support, compliance, fraud, payments, affiliates, BI, and trading.
-          </p>
-
           <div className="mt-7 grid gap-8 lg:grid-cols-2 lg:gap-12">
             <p className="text-[16.5px] leading-[1.7] text-body">
-              High-value withdrawals are one of the highest-friction moments in gaming operations. Operators must determine whether to release, verify, hold, reject, refund, or escalate &mdash; based on payment history, KYC records, gameplay behavior, AML signals, device intelligence, related accounts, bonus history, support history, and prior fraud reviews.
+              High-value withdrawals are one of the highest-friction moments in gaming operations. Operators must decide whether to release, verify, hold, reject, refund, or escalate based on signals across payments, KYC, gameplay, AML, device intelligence, bonuses, related accounts, support, and prior reviews.
             </p>
             <div className="space-y-4 text-[16.5px] leading-[1.7] text-body">
               <p className="text-[18px] font-semibold leading-[1.5] text-ink">
                 Most systems flag, score, or route cases inside one function. DORA links intelligence across operator functions and acts on it under policy.
               </p>
               <p>
-                DORA deploys a governed agentic operating layer into the withdrawal review process. It gathers intelligence across payments, KYC, gameplay, AML, devices, bonuses, related accounts, support, and prior reviews, links those signals into one operational view, applies operator policy, and produces a case package with evidence-linked reasoning &mdash; auto-resolving low-risk cases inside policy and escalating edge cases to humans.
+                DORA gathers the relevant evidence, connects the signals, applies operator policy, determines whether the case fits an approved automation path or requires escalation, and produces an audit-ready case package for controlled execution.
               </p>
             </div>
           </div>
@@ -69,20 +64,20 @@ export default function WithdrawalReview() {
             <div className="rounded-card border border-line bg-white p-6">
               <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Before DORA</p>
               <p className="text-[14.5px] leading-[1.6] text-body">
-                Fraud and risk teams gather evidence manually across payments, KYC, gameplay, support, device intelligence, AML systems, related-account checks, and prior reviews.
+                Fraud and risk teams manually gather evidence across disconnected systems.
               </p>
             </div>
             <div className="relative overflow-hidden rounded-card border border-[#bfe9fb] bg-signal-soft p-6">
               <span className="absolute inset-x-0 top-0 h-[3px] bg-spectral" aria-hidden="true" />
               <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.16em] text-deep-signal">With DORA</p>
               <p className="text-[14.5px] leading-[1.6] text-ink">
-                Specialist agents gather intelligence across connected operator systems, <strong>link signals across payments, KYC, gameplay, AML, support, bonuses, and related accounts</strong>, apply operator policy, determine the correct automation or escalation path, draft required outputs, and preserve the audit trail.
+                DORA links intelligence across payments, KYC, gameplay, AML, support, bonuses, and related accounts, then routes the case through policy-bounded automation or human escalation.
               </p>
             </div>
             <div className="rounded-card bg-graphite p-6 text-dark-text">
               <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.16em] text-signal">Result</p>
               <p className="text-[14.5px] leading-[1.6] text-dark-muted">
-                Average review time drops from <strong className="text-white">18-25 min → 4-7 min</strong> per escalated case. Target throughput: <strong className="text-white">25-35 → 90-120 cases / analyst / day</strong> over a 90-day pilot.
+                Escalated review time targets drop from <strong className="text-white">18-25 min to 4-7 min</strong>, while analyst throughput targets increase from <strong className="text-white">25-35 to 90-120 cases per day</strong>.
               </p>
             </div>
           </div>
@@ -124,16 +119,6 @@ export default function WithdrawalReview() {
           <p className="mt-3 font-mono text-[11px] italic text-muted">
             Pilot targets vary by operator volume, data availability, risk policy, automation permissions, jurisdiction, and degree of integration.
           </p>
-        </Reveal>
-
-        {/* SMALL SECONDARY CTA */}
-        <Reveal className="mt-8 text-center">
-          <a
-            href="mailto:hello@dorareason.com?subject=Map%20this%20workflow%20for%20our%20operation"
-            className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-deep-signal transition-colors hover:text-ink"
-          >
-            Map this workflow for your operation <span aria-hidden="true">→</span>
-          </a>
         </Reveal>
       </Container>
     </section>
