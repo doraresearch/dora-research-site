@@ -3,14 +3,12 @@ import Eyebrow from '@/components/ui/Eyebrow'
 import Reveal from '@/components/ui/Reveal'
 
 const safeguards: [string, string][] = [
-  ['Scoped permissions', 'agents act only within bounded surfaces'],
-  ['Human review gates', 'sensitive actions wait for approval'],
-  ['Audit trails', 'every action logged and replayable'],
-  ['Escalation rules', 'edge cases route to people, not models'],
-  ['Policy-aware agents', 'rules embedded in agent context'],
-  ['Constrained execution', 'tool access limited per role'],
-  ['Monitoring & evaluation', 'live observability across the harness'],
-  ['Compliance-aligned workflows', 'regulator-ready by construction'],
+  ['Scoped permissions', 'Agents act only within bounded surfaces.'],
+  ['Human review gates', 'Sensitive actions wait for approval.'],
+  ['Audit trails', 'Every action logged and replayable.'],
+  ['Escalation rules', 'Edge cases route to people, not models.'],
+  ['Policy-aware agents', 'Operator rules embedded in agent context.'],
+  ['Compliance-aligned workflows', 'Regulator-ready by construction.'],
 ]
 
 function Corner({ pos }: { pos: 'tl' | 'tr' | 'bl' | 'br' }) {
@@ -36,18 +34,13 @@ export default function TrustLayer() {
     <section className="bg-base py-16 sm:py-20">
       <Container>
         <Reveal>
-          <div className="mb-7 flex flex-wrap items-baseline justify-between gap-3">
-            <div>
-              <h2 className="text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-4xl lg:text-[42px]">
-                Built for <span className="font-serif font-normal italic">regulated</span> operational environments.
-              </h2>
-              <span className="mt-4 block h-[3px] w-16 rounded bg-spectral" aria-hidden="true" />
-            </div>
-            <Eyebrow>Trust layer</Eyebrow>
-          </div>
-
-          <p className="mb-7 max-w-[68ch] text-[16px] leading-[1.6] text-body">
-            DORA systems are designed for controlled deployment inside regulated gaming operations — bounded, audited, and accountable by construction.
+          <Eyebrow className="mb-3">Governance</Eyebrow>
+          <h2 className="text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-4xl lg:text-[44px]">
+            Built for <span className="font-serif font-normal italic">regulated</span> operational environments.
+          </h2>
+          <span className="mt-4 block h-[3px] w-16 rounded bg-spectral" aria-hidden="true" />
+          <p className="mb-7 mt-5 max-w-[72ch] text-[16.5px] leading-[1.7] text-body">
+            DORA deploys inside regulated gaming environments — bounded, audited, and accountable by construction.
           </p>
 
           <div className="relative overflow-hidden rounded-stage border border-[#1c2026] bg-[radial-gradient(120%_150%_at_50%_-10%,#161a22_0%,#0B0D11_62%)] p-6 shadow-[0_50px_90px_-55px_rgba(5,6,8,0.65)] sm:p-8">

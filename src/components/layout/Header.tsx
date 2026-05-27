@@ -5,9 +5,9 @@ import Button from '@/components/ui/Button'
 
 const navItems: [string, string][] = [
   ['How it works', '#how-it-works'],
-  ['Architecture', '#architecture'],
+  ['Operating model', '#operating-model'],
+  ['Example', '#deployment-pattern'],
   ['Use cases', '#use-cases'],
-  ['Outcomes', '#outcomes'],
   ['Contact', '#contact'],
 ]
 
@@ -39,7 +39,7 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:block">
-          <Button href="mailto:hello@dorareason.com">Assess deployment</Button>
+          <Button href="mailto:hello@dorareason.com">Map your first workflow</Button>
         </div>
 
         <button
@@ -69,7 +69,7 @@ export default function Header() {
             </a>
           ))}
           <Button href="mailto:hello@dorareason.com" className="mt-4 w-full" onClick={() => setOpen(false)}>
-            Assess deployment
+            Map your first workflow
           </Button>
         </nav>
       </div>

@@ -2,24 +2,24 @@ import SwarmCanvas from './SwarmCanvas'
 import Logo from '@/components/Logo'
 
 const rails: [string, boolean][] = [
-  ['01 / WORKFLOW — VIP player retention', true],
-  ['02 / ROLES — Retention · Support · Risk · Compliance', true],
+  ['01 / WORKFLOW — High-value withdrawal review', true],
+  ['02 / ROLES — Payments · Risk · KYC · Compliance', true],
   ['03 / PERSONAS — context + policy constraints', true],
   ['04 / ORCHESTRATION — running', false],
   ['05 / HARNESS — pending review', false],
 ]
 
 const chips: [string, boolean][] = [
-  ['vip-care', true],
-  ['segmenter', true],
-  ['support', false],
-  ['crm-router', true],
+  ['payments', true],
+  ['kyc-checks', true],
+  ['fraud', false],
+  ['aml', true],
   ['risk', false],
   ['compliance', true],
   ['audit', false],
 ]
 
-const checks = ['Player context traced', 'Action evaluated vs policy', 'Compliance constraints respected']
+const checks = ['Cross-function context linked', 'Action evaluated vs operator policy', 'Compliance constraints respected']
 
 function Check() {
   return (

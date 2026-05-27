@@ -2,16 +2,12 @@ import Container from '@/components/ui/Container'
 import Hero from '@/components/home/Hero'
 import CommandStage from '@/components/home/CommandStage'
 import IconStrip from '@/components/home/IconStrip'
-import Problem from '@/components/home/Problem'
-import Category from '@/components/home/Category'
 import ParadigmShift from '@/components/home/ParadigmShift'
-import OperatingPhilosophy from '@/components/home/OperatingPhilosophy'
-import StackDiagram from '@/components/home/StackDiagram'
+import Problem from '@/components/home/Problem'
 import PrimitiveSpine from '@/components/home/PrimitiveSpine'
 import WithdrawalReview from '@/components/home/WithdrawalReview'
 import UseCases from '@/components/home/UseCases'
 import DeploymentModel from '@/components/home/DeploymentModel'
-import Outcomes from '@/components/home/Outcomes'
 import TrustLayer from '@/components/home/TrustLayer'
 import FinalCTA from '@/components/home/FinalCTA'
 
@@ -30,16 +26,12 @@ export default function Home() {
         <IconStrip />
       </div>
 
-      <Problem />
-      <Category />
       <ParadigmShift />
-      <OperatingPhilosophy />
-      <StackDiagram />
+      <Problem />
       <PrimitiveSpine />
       <WithdrawalReview />
       <UseCases />
       <DeploymentModel />
-      <Outcomes />
       <TrustLayer />
       <FinalCTA />
     </>

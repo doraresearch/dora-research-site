@@ -2,7 +2,7 @@ import Container from '@/components/ui/Container'
 import Logo from '@/components/Logo'
 
 const cols: [string, [string, string][]][] = [
-  ['Product', [['How it works', '#how-it-works'], ['Architecture', '#architecture'], ['Use cases', '#use-cases'], ['Outcomes', '#outcomes']]],
+  ['Product', [['How it works', '#how-it-works'], ['Operating model', '#operating-model'], ['Example', '#deployment-pattern'], ['Use cases', '#use-cases']]],
   ['Company', [['Contact', 'mailto:hello@dorareason.com'], ['Careers', '#']]],
 ]
 
@@ -11,8 +11,8 @@ export default function Footer() {
     <footer className="border-t border-line bg-base pt-10">
       <Container>
         <div className="flex flex-wrap justify-between gap-8 pb-7">
-          <p className="max-w-[44ch] text-[15px] leading-[1.6] text-body">
-            The AI deployment company for iGaming. DORA deploys human-governed agentic systems across gaming operations — CRM, support, compliance, fraud, payments, affiliates, BI, and trading.
+          <p className="max-w-[48ch] text-[15px] leading-[1.6] text-body">
+            The agentic operations layer for iGaming. DORA deploys always-on agentic systems into core operator functions — payments, KYC, fraud, compliance, support, CRM, affiliates, BI, and trading.
           </p>
           <div className="flex gap-12">
             {cols.map(([title, links]) => (
@@ -36,7 +36,7 @@ export default function Footer() {
           <span className="inline-flex items-center gap-2.5">
             <Logo size={17} spin />© 2026 DORA Research
           </span>
-          <span>AI-native operations · iGaming</span>
+          <span>Agentic operations · iGaming</span>
         </div>
       </Container>
     </footer>
