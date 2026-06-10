@@ -1,11 +1,12 @@
+import Button from '@/components/ui/Button'
 import Container from '@/components/ui/Container'
 import Eyebrow from '@/components/ui/Eyebrow'
 import Reveal from '@/components/ui/Reveal'
 
-const traits: [string, string][] = [
-  ['High-volume queues', 'Cases never stop arriving.'],
-  ['Cross-functional context', 'The right decision rarely lives in one system.'],
-  ['Measurable economics', 'Time, throughput, error, escalation, and resolution can be quantified.'],
+const traits: [string, string, string][] = [
+  ['01', 'High-volume queues', 'Withdrawals, KYC, fraud, support, affiliates, trading — cases never stop arriving.'],
+  ['02', 'Cross-functional context', 'The right decision rarely lives in one system — it spans accounts, payments, risk, and policy.'],
+  ['03', 'Measurable economics', 'Time, throughput, error, escalation, and resolution can be quantified — and improved.'],
 ]
 
 export default function Problem() {
@@ -13,22 +14,34 @@ export default function Problem() {
     <section className="bg-soft py-16 sm:py-20">
       <Container>
         <Reveal>
-          <Eyebrow className="mb-3">Why iGaming</Eyebrow>
-          <h2 className="text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-4xl lg:text-[44px]">
-            iGaming runs on high-volume operational <span className="font-serif font-normal italic">judgment</span>.
-          </h2>
-          <span className="mt-4 block h-[3px] w-16 rounded bg-spectral" aria-hidden="true" />
-          <p className="mt-5 max-w-[78ch] text-[16.5px] leading-[1.7] text-body">
-            Operators rely on teams to review withdrawals, verify identities, monitor fraud, manage compliance, handle support escalations, coordinate CRM, review affiliates, reconcile reporting, and detect trading anomalies. These workflows are measurable, policy-bound, and exposed to missed context, inconsistent execution, and human fatigue.
-          </p>
+          <div className="relative overflow-hidden rounded-stage bg-graphite px-6 py-12 text-center sm:px-10 sm:py-14 lg:px-14 lg:py-16">
+            <span className="absolute inset-x-0 top-0 h-[2px] bg-spectral" aria-hidden="true" />
 
-          <div className="mt-9 grid gap-4 md:grid-cols-3">
-            {traits.map(([title, copy]) => (
-              <div key={title} className="rounded-card border border-line bg-white p-5">
-                <p className="text-[15.5px] font-semibold leading-[1.35] text-ink">{title}</p>
-                <p className="mt-2 text-[14px] leading-[1.6] text-body">{copy}</p>
-              </div>
-            ))}
+            <Eyebrow chip dark className="mb-4">Why iGaming</Eyebrow>
+            <h2 className="mx-auto max-w-[26ch] text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-dark-text sm:text-4xl lg:text-[42px]">
+              iGaming runs on high-volume operational <span className="font-serif font-normal italic">judgment</span>.
+            </h2>
+            <p className="mx-auto mt-5 max-w-[66ch] text-[15px] leading-[1.7] text-dark-muted sm:text-[15.5px]">
+              Operators rely on teams to review withdrawals, verify identities, monitor fraud, manage compliance, handle support escalations, coordinate CRM, review affiliates, reconcile reporting, and detect trading anomalies. These workflows are measurable, policy-bound, and exposed to missed context, inconsistent execution, and human fatigue.
+            </p>
+
+            <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-6">
+              {traits.map(([n, title, copy]) => (
+                <div key={title} className="flex flex-col items-center">
+                  <p className="font-serif text-[52px] italic leading-none tracking-[0.04em] text-dark-muted/70 sm:text-[60px]" aria-hidden="true">
+                    {n}
+                  </p>
+                  <h3 className="mt-5 text-[19px] font-semibold leading-[1.3] tracking-[-0.01em] text-dark-text">{title}</h3>
+                  <p className="mt-3 max-w-[32ch] text-[13.5px] leading-[1.6] text-dark-muted">{copy}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-12">
+              <Button href="#contact" variant="signal" arrow>
+                Map your first workflow
+              </Button>
+            </div>
           </div>
         </Reveal>
       </Container>

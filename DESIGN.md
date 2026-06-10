@@ -153,11 +153,11 @@ Preferred CTAs (iGaming-tuned): *Assess your operator AI deployment opportunity*
 
 1. **Header** — sticky, swarm mark + nav (How it works · Architecture · Use cases · Outcomes · Contact) + pill CTA.
 2. **Hero** — *AI-native operations infrastructure for iGaming.*
-3. **Command-center stage** (`#how-it-works`) — dark rounded panel with the continuous canvas swarm + real iGaming system surfaces (player-retention workflow, parallel ops agents, harness review).
+3. **Operations stage** (`#how-it-works`, 2026-06-10 — replaces the command-center console) — cinematic dark rounded panel (reference: turing.com hero): continuous **Aurora ribbon** canvas (flowing gradient light streams + sparse star specks) behind one centered statement — mono eyebrow *HOW DORA WORKS*, H2 **"Gather. Reason. Act. Escalate. *Learn.*"** (serif accent on *Learn*), one dark-muted sub-line. Corner containment brackets kept (harness vocabulary); subtle radial vignette protects text legibility. No console panels, chips, or fake system surfaces.
 4. **Icon strip** — monochrome systems-icon row.
-5. **Problem** — *Gaming operators are digitally native. Their operations are not.*
+5. **Problem / Why iGaming** (2026-06-10) — *iGaming runs on high-volume operational judgment.* A dark rounded graphite stage (reference: Frontdesk's "from zero to fully operational in minutes" band): 2px Aurora topline, centered dark chip eyebrow, white H2 with serif accent, centered dark-muted lede (the operator-workflow paragraph), then **three centered numbered columns** — giant Instrument Serif italic numerals (`01 02 03`, ~52-60px, `dark-muted/70`) over white semibold titles (High-volume queues · Cross-functional context · Measurable economics) and short dark-muted one-liners — closed by a centered **signal pill** CTA (*Map your first workflow* → `#contact`; signal pill allowed: graphite stage). Replaced the soft section + 3 white trait cards.
 6. **Category** — *An AI deployment company for iGaming.* (Not a chatbot / BPO / casino operator / agency.)
-7. **Paradigm shift** — *From AI that chats — to AI that acts.* Centered Aurora moment + 2-col verb contrast (chats: drafts/suggests/answers ↔ acts: routes/executes/escalates/monitors/approves/reports).
+7. **Paradigm shift / Why now** (`#why-now`, 2026-06-10) — *The operating model is changing.* Centered header (chip eyebrow · H2 with serif accent · Aurora underline · lede), then **two contrast panels** in the Frontdesk journey-panel anatomy (reference: "every stage of the customer journey"): **01 Human-heavy operations** (the old way — muted: solid `line-strong` number, muted mono tagline *the old way · scale by adding people*, no Aurora) and **02 Agentic-native operations** (the new way — accented: Aurora-clipped number, 2px spectral topline, deep-signal tagline *the new way · scale by deploying systems*). Each panel (`rounded-stage`, `bg-soft`, hairline border): number + bold title, mono tagline, description, and a 2×2 grid of white mini-cards with **composed mini-illustration sketches** (white shapes + `line-strong` strokes on `surface-alt`, viewBox 120×56 — multi-element UI vignettes in the Frontdesk sketch style, not single icons; signal/deep-signal accents appear **only** on the new-way panel: blue checks, network hub, escalation-to-human). Old-way cards: manual context gathering (overlapping windows) · siloed signals (disconnected boxes) · inconsistent decisions (misaligned mixed ✓/✗) · repetitive synthesis (person↔docs loop). New-way cards: context assembled · cross-function reasoning · consistent execution (aligned ✓s) · humans on exceptions. A dashed mono connector between panels (*the operating shift — from headcount to deployed systems*) and a closing pill: *Outcomes feed operational memory*. Preserves the old-way/new-way meaning of the original contrast table.
 8. **Operating philosophy** — *Human-governed agentic operations.* Dark rounded stage with two columns: **Agents handle** (execution, monitoring, reporting, throughput, repetitive coordination) / **Humans retain** (strategic decisions, quality governance, escalations, compliance accountability, exceptions).
 9. **Stack diagram** — *Built above the model layer* (operator-tuned framing).
 10. **Architecture spine** (`#architecture`) — *Five pillars of operational intelligence.* Editorial rows alternating left/right: Operational workflows · Persona-based operational agents · Coordinated multi-agent systems · **Persistent operational memory** · Human-governed harness.
@@ -196,15 +196,13 @@ Five editorial rows (left text + mono index + Explore pill; right a dark rounded
 
 Section heading: *Five pillars of operational intelligence.* `id="architecture"`.
 
-### Command Center Artifact
+### Operations Stage (2026-06-10 — replaces the Command Center console)
 
-A dark, rounded graphite stage with the continuous Aurora swarm behind **real iGaming system surfaces** — not a fake dashboard:
+A cinematic dark rounded graphite stage in the Turing-hero treatment, recolored to the Aurora signature:
 
-- **Workflow brief** — a real iGaming workflow (e.g., player retention, fraud triage, compliance review) with 5 rails.
-- **Parallel agents** — live chips representing operations agents (e.g., retention · support · fraud · payments · compliance).
-- **Harness review** — context traced, output evaluated, constraints respected → "Ready for action" / "Deploy."
-
-Avoid generic metrics, fake analytics charts, chat bubbles, or decorative UI filler.
+- **`AuroraRibbons` canvas** — two to three flowing ribbon bundles (silky filament lines + soft glow strokes, additive `lighter` compositing) sweeping diagonally across the stage, drawn with Aurora-stop linear gradients that fade at both edges (mint→cyan→sky and blue→sky→teal — cool only, never Turing's warm gold), plus sparse twinkling star specks. SSR-safe; reduced-motion → one static frame; pauses when the tab is hidden; DPR capped at 2.
+- **Content** — one centered statement only: mono eyebrow (*HOW DORA WORKS*), H2 *"Gather. Reason. Act. Escalate. Learn."* with the serif italic accent on *Learn*, one dark-muted sub-line about the human-governed loop. No buttons (hero CTAs sit directly above), no console chrome, no fake panels.
+- **Frame** — corner containment brackets (harness vocabulary), radial-tinted graphite background, soft under-stage shadow, and a subtle center vignette overlay between canvas and text for legibility.
 
 ### Harness Visual — the harness frame
 
@@ -216,22 +214,19 @@ In motion contexts the eval arc rotates slowly (~16s) and the core gently pulses
 
 A huge "DORA" set in Plus Jakarta Sans 800 with the Aurora gradient via `background-clip:text` — the Antigravity-style brand close.
 
-### Use Case Cards (Phase A — 8 iGaming functions)
+### Use Case Cards (2026-06-10 — hub grid)
 
-A 4-column grid (responsive: 1 col mobile, 2 cols tablet, 4 cols desktop) showing the 8 operating functions where DORA runs inside gaming operators:
+A centered **hub grid**: the 8 operating functions arranged around a central DORA hub cell (layout reference: Frontdesk's "all your customer communications, one agentic platform" section, translated into the DORA system).
 
-| Function | Card copy |
-|---|---|
-| **CRM & Retention** | AI-native player lifecycle management — segmentation, campaign orchestration, VIP workflow support. |
-| **Customer Support** | Human-governed player operations with escalation, QA, policy checks, and multilingual execution. |
-| **Compliance Operations** | KYC, AML, document review, regulatory workflows, audit-ready escalation trails. |
-| **Fraud & Risk** | Behavioral monitoring, abuse detection, anomaly review, operational risk triage. |
-| **Payments** | Reconciliation, routing support, treasury coordination, payment-risk workflows. |
-| **Affiliate Operations** | Partner onboarding, reconciliation, monitoring, campaign operations. |
-| **BI & Reporting** | Real-time operational intelligence, anomaly detection, executive reporting. |
-| **Trading Services** | Exposure monitoring, trading workflow intelligence, decision-support operations. |
+- **Desktop (lg):** 3×3 grid — 4 function cards, the DORA hub in the center cell, 4 function cards.
+- **Tablet (sm):** 2 columns; the hub spans the full row (`col-span-2`) mid-grid.
+- **Mobile:** single column; the hub stacks mid-list.
+- **Section header is centered** (chip eyebrow · H2 with serif accent · Aurora underline `mx-auto` · short lede) — an intentional exception to the default left-aligned section headers.
+- **Function cards:** white, hairline `line` border, `rounded-card`, centered content — icon chip → bold title → small body description. Aurora top-border accent on hover (kept).
+- **Icon chips:** 40px rounded-[12px] squares whose hues sweep the Aurora stops across the grid (cool only, no purple/warm): background = an Aurora stop at 13-18% alpha; icon stroke = a deepened same-hue tone for contrast — mint→`#059669`, teal→`#0D9488`, cyan→`#0891B2`, sky→`#0284C7` (= deep-signal), blue→`#2563EB`. Icons are 1.6-stroke line glyphs in the IconStrip style.
+- **Hub cell:** graphite, `rounded-card`, static 2px Aurora topline, white swarm mark + "DORA" wordmark, mono label "ONE AGENTIC OPERATIONS LAYER", small `white/[0.06]` bordered pill linking to `#deployment-pattern`. (Frontdesk's violet-gradient hub is banned here — the graphite stage cell + Aurora hairline is the DORA translation.)
 
-Concise, serious, regulated-tone — no full-automation promises. Aurora top-border accent on hover.
+Current card copy lives in `src/components/home/UseCases.tsx` (titles: Payments & withdrawals · KYC & compliance · Fraud & risk · Support · CRM & VIP · Affiliates · BI & reporting · Trading; descriptions are "Agents …" action sentences). Concise, serious, regulated-tone — no full-automation promises.
 
 ## Motion
 
@@ -240,7 +235,7 @@ Motion is functional and restrained but uses a defined signature set. **Every mo
 Approved motion:
 
 1. **Hero entrance** — sequential fade-up of eyebrow → headline → lede → CTAs → stage (~750ms total).
-2. **Command-center swarm** — continuous `<canvas>` particle/"bee" swarm, confined to the dark command-center stage.
+2. **Aurora ribbon flow** — continuous `<canvas>` flowing light-ribbon animation (plus twinkling specks), confined to the dark operations stage (2026-06-10 — replaces the particle swarm canvas; the swarm survives as the brand mark).
 3. **Swarm logo mark** — slow rotation (~22s linear) in header + footer; static elsewhere.
 4. **Scroll reveals** — subtle fade-up + ~20px translate as major sections enter the viewport (IntersectionObserver, once each, ~600ms).
 5. **Live command center** — agent chips pulse on staggered CSS `cell-pulse` (1.8s); spine agent grid cells pulse on the same animation with different stagger delays.
@@ -381,3 +376,8 @@ Secondary CTA: See where DORA runs
 | 2026-05-24 | **Phase B shipped — Paradigm shift, Operating philosophy, Architecture rework, Deployment model, Trust layer** | Completes the vertical pivot. Added `ParadigmShift` (chats → acts contrast), `OperatingPhilosophy` (dark stage: agents handle / humans retain), reworked the primitive spine to **5 pillars** including the new **Persistent operational memory** row with a `MemoryLayers` dark-card visual, added `DeploymentModel` (5-phase numbered flow with Aurora signal line), and `TrustLayer` (bracketed harness-frame dark stage with 8 safeguards). Renamed nav `Primitives → Architecture` (section id `#primitives` → `#architecture`). All sections use the existing visual vocabulary (Aurora, dark rounded stages, pills, mono labels, motion suite) — no design language change. |
 | 2026-05-24 | **Deployment-pattern proof module** — high-value withdrawal risk review | Added a flagship proof section (`WithdrawalReview` → `#deployment-pattern`) between the Architecture spine and Use Cases. Single concrete deployment example that makes the 5-pillar framework feel real: intro + trust callout + agentic-vs-rules explainer + Before/With/Result cards + 5-stage flow + six-agent panel (Payment Fraud · AML · Account Behavior · Identity · Account Linking → Case Synthesis Orchestrator) + mock decision panel (composite risk score 72/100 with Aurora bar, recommended path, drivers, escalation reason, analyst options, audit trail) + 7-row ROI table (90-day pilot targets). Uses the existing harness-frame brackets aesthetic on the mock panel. |
 | 2026-05-24 | **Restore live cell-pulse animations** (CSS, not JS intervals) | The proto's chip/grid pulsing and header-logo spin were missing from the React port. Restored via a shared `cell-pulse` keyframe with staggered per-cell delays; reduced-motion-safe. |
+| 2026-06-10 | **Use-cases section → hub grid** (user-requested match to Frontdesk's "one agentic platform" section) | The 8 function cards now orbit a central graphite DORA hub cell (3×3 desktop, hub spans the row on tablet); section header centered; cards gain Aurora-hue icon chips (deepened same-hue strokes on light tints). Frontdesk's violet gradient hub translated to a graphite stage cell with an Aurora topline per the no-purple rule. Mono per-card index labels retired in favor of icon chips. |
+| 2026-06-10 | **Why-now section → journey stage panels** (user-requested match to Frontdesk's "every stage of the customer journey" section) | Replaced the old-way/new-way contrast table with three soft rounded stage panels — 01 Gather · 02 Reason · 03 Act & learn — mapping the verbs already in the lede. Each panel: Aurora-clipped giant number (wordmark treatment), mono deep-signal tagline, description carrying the old/new contrast, 2×2 mini-card grid of abstract monochrome glyphs. Dashed mono connectors narrate the handoff between stages; closing "Outcomes feed operational memory" pill ties back to the memory pillar. Header centered like the use-cases hub grid. |
+| 2026-06-10 | **Why-iGaming section → dark numbered-columns stage** (user-requested match to Frontdesk's "from zero to fully operational in minutes" band) | The soft section + 3 white trait cards became a dark rounded graphite stage: Aurora topline, centered white header + lede, three columns with giant Instrument Serif italic numerals (their `font-light italic` slate numerals → our serif accent), white titles, dark-muted one-liners, and a centered signal-pill CTA. Trait copy lightly expanded to fill the reference's description weight. Adds a mid-page conversion point. |
+| 2026-06-10 | **Why-now corrected to two contrast panels + commercial-grade mini-illustrations** (user feedback) | The 3-stage journey version (Gather/Reason/Act) had changed the section's meaning. Rebuilt as two panels in the same anatomy: 01 Human-heavy operations (old way, fully muted) → dashed "operating shift" connector → 02 Agentic-native operations (new way, Aurora number + spectral topline + deep-signal accents). The lone-icon glyphs (called out as weak) were replaced with composed multi-element UI vignettes (overlapping windows, disconnected vs linked nodes, misaligned vs aligned checks, person↔docs loop, escalation-to-human) — color appears only on the new-way panel, so the old/new contrast is carried by the artwork too. |
+| 2026-06-10 | **Command-center console → Aurora-ribbon operations stage** (user feedback: console section "doesn't make sense"; requested turing.com hero treatment) | The fake-console surfaces (workflow brief rails, agent chips, harness checklist, session chrome) were replaced with a cinematic minimal stage: new `AuroraRibbons` canvas — flowing gradient light streams in Aurora hues (Turing's warm gold ribbons recolored cool per the palette rule) + star specks — behind a single centered statement ("Gather. Reason. Act. Escalate. Learn."). Corner brackets kept. `SwarmCanvas` deleted; the swarm lives on as the brand mark. Motion suite item 2 updated accordingly. |
