@@ -4,9 +4,9 @@ import Eyebrow from '@/components/ui/Eyebrow'
 import Reveal from '@/components/ui/Reveal'
 
 const traits: [string, string, string][] = [
-  ['01', 'High-volume queues', 'Withdrawals, KYC, fraud, support, affiliates, trading — cases never stop arriving.'],
-  ['02', 'Cross-functional context', 'The right decision rarely lives in one system — it spans accounts, payments, risk, and policy.'],
-  ['03', 'Measurable economics', 'Time, throughput, error, escalation, and resolution can be quantified — and improved.'],
+  ['01', 'Coverage from day one', 'Players, regulators, and payment partners don’t wait for scale.'],
+  ['02', 'A team per function', 'Support, KYC, payments, risk, VIP, compliance, and reporting — staffed separately.'],
+  ['03', 'Headcount scales with volume', 'Routine cases grow linearly. Margins compress as you grow.'],
 ]
 
 export default function Problem() {
@@ -17,12 +17,12 @@ export default function Problem() {
           <div className="relative overflow-hidden rounded-stage bg-graphite px-6 py-12 text-center sm:px-10 sm:py-14 lg:px-14 lg:py-16">
             <span className="absolute inset-x-0 top-0 h-[2px] bg-spectral" aria-hidden="true" />
 
-            <Eyebrow chip dark className="mb-4">Why iGaming</Eyebrow>
+            <Eyebrow chip dark className="mb-4">The problem</Eyebrow>
             <h2 className="mx-auto max-w-[26ch] text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-dark-text sm:text-4xl lg:text-[42px]">
-              iGaming runs on high-volume operational <span className="font-serif font-normal italic">judgment</span>.
+              Operators build ops teams <span className="font-serif font-normal italic">too early</span>.
             </h2>
             <p className="mx-auto mt-5 max-w-[66ch] text-[15px] leading-[1.7] text-dark-muted sm:text-[15.5px]">
-              Operators rely on teams to review withdrawals, verify identities, monitor fraud, manage compliance, handle support escalations, coordinate CRM, review affiliates, reconcile reporting, and detect trading anomalies. These workflows are measurable, policy-bound, and exposed to missed context, inconsistent execution, and human fatigue.
+              Support, KYC, payments, risk, VIP, compliance, reporting — coverage is required from day one, so operators hire a team per function before the business has the scale to justify it. Routine work swallows the headcount; judgment gets the leftovers.
             </p>
 
             <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-6">
@@ -38,8 +38,8 @@ export default function Problem() {
             </div>
 
             <div className="mt-12">
-              <Button href="#contact" variant="signal" arrow>
-                Map your first workflow
+              <Button href="mailto:hello@dorareason.com" variant="signal" arrow>
+                Map your AI operations team
               </Button>
             </div>
           </div>

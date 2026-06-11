@@ -15,9 +15,9 @@ export default function DeploymentModel() {
     <section id="deployment" className="bg-base py-16 sm:py-20">
       <Container>
         <Reveal>
-          <Eyebrow className="mb-3">Deployment model</Eyebrow>
+          <Eyebrow className="mb-3">The expansion story</Eyebrow>
           <h2 className="text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-4xl lg:text-[44px]">
-            Start with one workflow. Expand into the <span className="font-serif font-normal italic">operating layer</span>.
+            Start with core functions. Scale into an agent-native <span className="font-serif font-normal italic">operating model</span>.
           </h2>
           <span className="mt-4 block h-[3px] w-16 rounded bg-spectral" aria-hidden="true" />
 

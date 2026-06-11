@@ -144,11 +144,11 @@ export default function UseCases() {
           <div className="text-center">
             <Eyebrow chip className="mb-4">Where DORA runs</Eyebrow>
             <h2 className="mx-auto max-w-[24ch] text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-4xl lg:text-[44px]">
-              Core functions ready for <span className="font-serif font-normal italic">agentic operations</span>.
+              Operational agents across <span className="font-serif font-normal italic">core functions</span>.
             </h2>
             <span className="mx-auto mt-4 block h-[3px] w-16 rounded bg-spectral" aria-hidden="true" />
             <p className="mx-auto mt-5 max-w-[62ch] text-[16.5px] leading-[1.7] text-body">
-              Eight operating functions, one operations layer. Each runs the same governed pattern &mdash; agents act under policy, humans review exceptions, and every action is audited.
+              Eight operating functions, one agent-native layer. Each runs the same governed pattern &mdash; agents handle the routine path, humans review exceptions, and every action is audited.
             </p>
           </div>
 
@@ -164,7 +164,7 @@ export default function UseCases() {
                 <span className="text-[21px] font-extrabold tracking-[-0.02em] text-dark-text">DORA</span>
               </div>
               <p className="mt-2.5 font-mono text-[10px] uppercase tracking-[0.16em] text-dark-muted">
-                One agentic operations layer
+                One agent-native operations layer
               </p>
               <a
                 href="#deployment-pattern"

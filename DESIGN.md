@@ -2,6 +2,8 @@
 
 Always read this file before making any visual or UI decision on this site. All font choices, colors, spacing, component behavior, and aesthetic direction are defined here. Do not deviate without explicit approval.
 
+> **2026-06-11 outcome-led repositioning:** DORA is **the agent-native operations layer for iGaming** — operators get **operational agents** (not generic "AI agents") for core functions (support · KYC · payments · risk · VIP · compliance · reporting) to **launch lean, operate safely, and scale without a traditional operations org**. Recurring trust theme: *Autonomous where safe. Human-controlled where it matters.* DORA is **not the gaming platform** — it runs the business around it. "Gather. Reason. Act. Escalate. Learn." is the five-step product model (how-it-works), not the value proposition. Primary CTA everywhere: **Map your AI operations team**. See the Homepage Structure list below for the current flow.
+>
 > **2026-05-24 vertical repositioning (Phase A + B both shipped):** DORA is framed as **the AI deployment company for iGaming** — vertical operational infrastructure for gaming operators, not horizontal "enterprise AI." The site keeps the visual system (white airy base, dark rounded "stage" panels, Aurora gradient, swarm mark, pill buttons, motion suite — see 2026-05-23 entries). Homepage now includes: hero, command-center stage, icon strip, problem, **Category** ("not a chatbot/BPO/operator/agency"), **Paradigm shift** ("from AI that chats to AI that acts"), **Operating philosophy** ("human-governed agentic operations" — agents handle / humans retain), stack diagram, **5-pillar architecture spine** (Operational workflows · Persona-based operational agents · Coordinated multi-agent systems · Persistent operational memory · Human-governed harness), **8 iGaming use cases**, **Deployment model** (Assess → Deploy → Validate → Expand → Productize), **Outcomes**, **Trust layer** (regulated operational environments with 8 safeguards), final CTA. Research section removed from homepage.
 
 ## Product Context
@@ -134,9 +136,9 @@ The DORA mark is a **swarm** — a coordinated ring of particles (the "orbit rin
 
 Sticky/translucent light `soft` background, hairline bottom border, 64px height, simple navigation, one pill CTA. The header logo **spins** (Aurora swarm).
 
-Navigation: How it works · Primitives · Use cases · Research · Contact.
+Navigation (2026-06-11): How it works · Agents · Where it runs · Deployment · Contact.
 
-CTA: **Assess deployment** (formerly "Talk to DORA" — Phase A updates the CTA label). On ≤860px the links collapse to a hamburger that toggles a dropdown menu (links + CTA).
+CTA: **Map your AI operations team**. On ≤860px the links collapse to a hamburger that toggles a dropdown menu (links + CTA).
 
 ## Buttons
 
@@ -147,27 +149,25 @@ All buttons are **pills** (`999px`).
 - **Ghost:** transparent, `ink` text, `line-strong` border.
 - **Signal pill:** `signal` background, dark text — allowed only on the dark/graphite CTA band.
 
-Preferred CTAs (iGaming-tuned): *Assess your operator AI deployment opportunity*, *Map a gaming operations workflow*, *See where DORA runs*, *Evaluate operator margin impact*. Avoid: Talk to AI, Unlock AI, Supercharge your team, Get started free.
+Preferred CTAs (2026-06-11): **Map your AI operations team** (the primary, used in header, hero, problem stage, and final CTA), *See example deployment*, *See agent modules*, *See where DORA runs*. Avoid generic CTAs: Learn more, Get started, Talk to AI, Unlock AI, Supercharge your team.
 
-## Homepage Structure (Phase A + B — shipped)
+## Homepage Structure (2026-06-11 — outcome-led flow)
 
-1. **Header** — sticky, swarm mark + nav (How it works · Architecture · Use cases · Outcomes · Contact) + pill CTA.
-2. **Hero** — *AI-native operations infrastructure for iGaming.*
-3. **Operations stage** (`#how-it-works`, 2026-06-10 — replaces the command-center console) — cinematic dark rounded panel (reference: turing.com hero): continuous **Aurora ribbon** canvas (flowing gradient light streams + sparse star specks) behind one centered statement — mono eyebrow *HOW DORA WORKS*, H2 **"Gather. Reason. Act. Escalate. *Learn.*"** (serif accent on *Learn*), one dark-muted sub-line. Corner containment brackets kept (harness vocabulary); subtle radial vignette protects text legibility. No console panels, chips, or fake system surfaces.
+1. **Header** — sticky, swarm mark + nav (How it works · Agents · Where it runs · Deployment · Contact) + pill CTA *Map your AI operations team*.
+2. **Hero** (outcome-led) — *The agent-native operations layer for iGaming.* Sub: operational agents for core functions — launch lean, operate safely, scale without a traditional operations org. Trust microline (*Autonomous where safe. Human-controlled where it matters.*), CTAs (*Map your AI operations team* · *See example deployment*), and a mono functions strip (SUPPORT · KYC · PAYMENTS · RISK · VIP · COMPLIANCE · REPORTING) immediately below.
+3. **Core promise** — *Launch with operational capacity from day one.* 3 cards: Launch lean · Operate safely · Scale without linear headcount.
 4. **Icon strip** — monochrome systems-icon row.
-5. **Problem / Why iGaming** (2026-06-10) — *iGaming runs on high-volume operational judgment.* A dark rounded graphite stage (reference: Frontdesk's "from zero to fully operational in minutes" band): 2px Aurora topline, centered dark chip eyebrow, white H2 with serif accent, centered dark-muted lede (the operator-workflow paragraph), then **three centered numbered columns** — giant Instrument Serif italic numerals (`01 02 03`, ~52-60px, `dark-muted/70`) over white semibold titles (High-volume queues · Cross-functional context · Measurable economics) and short dark-muted one-liners — closed by a centered **signal pill** CTA (*Map your first workflow* → `#contact`; signal pill allowed: graphite stage). Replaced the soft section + 3 white trait cards.
-6. **Category** — *An AI deployment company for iGaming.* (Not a chatbot / BPO / casino operator / agency.)
-7. **Paradigm shift / Why now** (`#why-now`, 2026-06-10) — *The operating model is changing.* Centered header (chip eyebrow · H2 with serif accent · Aurora underline · lede), then **two contrast panels** in the Frontdesk journey-panel anatomy (reference: "every stage of the customer journey"): **01 Human-heavy operations** (the old way — muted: solid `line-strong` number, muted mono tagline *the old way · scale by adding people*, no Aurora) and **02 Agentic-native operations** (the new way — accented: Aurora-clipped number, 2px spectral topline, deep-signal tagline *the new way · scale by deploying systems*). Each panel (`rounded-stage`, `bg-soft`, hairline border): number + bold title, mono tagline, description, and a 2×2 grid of white mini-cards with **composed mini-illustration sketches** (white shapes + `line-strong` strokes on `surface-alt`, viewBox 120×56 — multi-element UI vignettes in the Frontdesk sketch style, not single icons; signal/deep-signal accents appear **only** on the new-way panel: blue checks, network hub, escalation-to-human). Old-way cards: manual context gathering (overlapping windows) · siloed signals (disconnected boxes) · inconsistent decisions (misaligned mixed ✓/✗) · repetitive synthesis (person↔docs loop). New-way cards: context assembled · cross-function reasoning · consistent execution (aligned ✓s) · humans on exceptions. A dashed mono connector between panels (*the operating shift — from headcount to deployed systems*) and a closing pill: *Outcomes feed operational memory*. Preserves the old-way/new-way meaning of the original contrast table.
-8. **Operating philosophy** — *Human-governed agentic operations.* Dark rounded stage with two columns: **Agents handle** (execution, monitoring, reporting, throughput, repetitive coordination) / **Humans retain** (strategic decisions, quality governance, escalations, compliance accountability, exceptions).
-9. **Stack diagram** — *Built above the model layer* (operator-tuned framing).
-10. **Architecture spine** (`#architecture`) — *Five pillars of operational intelligence.* Editorial rows alternating left/right: Operational workflows · Persona-based operational agents · Coordinated multi-agent systems · **Persistent operational memory** · Human-governed harness.
-11. **Deployment pattern proof** (`#deployment-pattern`) — *High-value withdrawal risk review.* Flagship proof module showing one concrete DORA deployment. Sections: header + intro + trust callout ("DORA never auto-files regulatory reports") + "Why this is agentic" explainer block + Before/With/Result cards + 5-stage flow (Trigger → Data Assembly → Agent Review → Policy Decision + Human Escalation → Audit + Feedback) + 6-agent panel (5 specialists feeding the Case Synthesis Orchestrator) + mock decision panel (composite risk score, recommended path, drivers, escalation reason, analyst options, audit trail) + 7-row ROI table (90-day pilot targets).
-12. **Where DORA runs** (`#use-cases`) — 8 iGaming operating functions (CRM & Retention, Customer Support, Compliance Operations, Fraud & Risk, Payments, Affiliate Operations, BI & Reporting, Trading Services).
-13. **Deployment model** — *How DORA deploys.* 5-phase numbered flow with Aurora signal line: Assess → Deploy → Validate → Expand → Productize.
-14. **Measured outcomes** (`#outcomes`) — operator-impact list (cost, throughput, retention, compliance cadence, margin expansion — 10 items).
-15. **Trust layer** — *Built for regulated operational environments.* Bracketed dark stage (harness-frame aesthetic) with 8 safeguards: scoped permissions · human review gates · audit trails · escalation rules · policy-aware agents · constrained execution · monitoring & evaluation · compliance-aligned workflows.
-16. **Final CTA** (`#contact`) — *Assess your operator AI deployment opportunity.*
-17. **Footer** — giant Aurora "DORA" wordmark + columns + meta with the swarm mark.
+5. **Problem** — *Operators build ops teams too early.* Dark rounded graphite stage (Aurora topline, centered white header + lede, three Instrument-Serif-italic numbered columns: Coverage from day one · A team per function · Headcount scales with volume) + centered signal-pill CTA.
+6. **What DORA replaces** (`#why-now`) — exact commercial-hook lede ("Instead of hiring separate teams for support, KYC, payments, risk, VIP, compliance, and reporting before scale…") + two contrast panels in the journey-panel anatomy: **01 Human-heavy operations** (muted; tagline *the old way · a team per function*) → dashed *operating shift* connector → **02 Agent-native operations** (Aurora number + spectral topline; tagline *the new way · one operations layer*); composed mini-illustration vignettes (color only on the new way); closing *Outcomes feed operational memory* pill.
+7. **Platform line** — centered separator band: *DORA is not your gaming platform. It's the agent-native operations layer that runs the business around it.*
+8. **Operational agents across core functions** (`#use-cases`) — centered hub grid: 8 icon-chip function cards orbiting the graphite DORA hub cell (mono label *One agent-native operations layer*, pill → `#deployment-pattern`).
+9. **How it works** (`#how-it-works`) — Aurora-ribbon stage: *Gather. Reason. Act. Escalate. Learn.* (serif accent on *Learn*), trust sub-line, and **five definition columns** (01 · GATHER … 05 · LEARN — the five-step product model; first four definitions verbatim from the 2026-06-11 direction, Learn ties to operational memory).
+10. **Agent modules** (`#agent-modules`) — *Start with the agents you need.* 5 example module cards (Support · KYC · Payments · Risk · Reporting Agent) with Aurora icon chips; mono caption *example modules · scoped per operator — not the full catalog*; link *See one in production →* `#deployment-pattern`.
+11. **Deployment-pattern proof** (`#deployment-pattern`) — *High-value withdrawal risk review.* Flagship proof module (intro + trust callout + agentic-vs-rules explainer + Before/With/Result + 5-stage flow + 6-agent panel + mock decision panel + ROI table) — unchanged.
+12. **Expansion story** (`#deployment`) — *Start with core functions. Scale into an agent-native operating model.* 5-phase numbered flow with Aurora signal line: Assess → Deploy → Validate → Expand → Productize.
+13. **Trust layer** — eyebrow *Built for operators, not demos*; H2 *Autonomous where safe. Human-controlled where it matters.* Bracketed dark stage with 8 safeguards: human approval paths · permissioned actions · audit logs · escalation rules · operator-configured playbooks · compliance-aware workflows · existing-stack integration · monitoring & evaluation.
+14. **Final CTA** (`#contact`) — *Map your AI operations team.* (signal pill + *See agent modules*).
+15. **Footer** — giant Aurora "DORA" wordmark + columns + meta with the swarm mark (*Operational agents · iGaming*).
 
 ## Required Components
 
@@ -184,17 +184,9 @@ Show where DORA sits relative to models, while framing the operator context:
 
 The three DORA layers are grouped and emphasized with `signal-soft` fill, an **Aurora vertical rail**, and a "↳ DORA operates here" mono bracket. Layer rows stay sharp (radius 0).
 
-### Architecture Spine (Phase B shipped — 5 pillars)
+### Architecture Spine — REMOVED 2026-06-11
 
-Five editorial rows (left text + mono index + Explore pill; right a dark rounded product-stage card), alternating left/right per row:
-
-1. **Operational workflows** — `WorkflowRail` visual (01-05 rails on dark stage).
-2. **Persona-based operational agents** — `PersonaCards` (Retention · Compliance · Risk role cards).
-3. **Coordinated multi-agent systems** — `AgentGrid` (12-cell grid with the live `cell-pulse` animation on active cells).
-4. **Persistent operational memory** — `MemoryLayers` (6 mono-labeled memory categories: POLICIES · DECISIONS · EXCEPTIONS · CUSTOMER PATTERNS · COMPLIANCE LOGIC · INSTITUTIONAL — with sample counts).
-5. **Human-governed harness** — `HarnessFrame` (instrument-rig: containment brackets + measurement ring + Aurora eval arc + CONTEXT/EVAL/CONSTRAINTS + REVIEW → DEPLOY readout).
-
-Section heading: *Five pillars of operational intelligence.* `id="architecture"`.
+The 5-pillar editorial spine (later simplified into an "operating model" strip of Gather→Learn cards) was removed from the homepage: it duplicated the How-DORA-Works stage's five-step model. `PrimitiveSpine.tsx` is deleted. The pillar visuals (WorkflowRail · PersonaCards · AgentGrid · MemoryLayers · HarnessFrame) are retired with it; the harness-frame aesthetic lives on in the trust layer and proof module.
 
 ### Operations Stage (2026-06-10 — replaces the Command Center console)
 
@@ -248,26 +240,24 @@ Avoid: parallax, motion outside this list, motion that isn't reduced-motion-gate
 
 ## Copy Rules
 
-Use prominently:
+Use prominently (2026-06-11):
 
-- "**AI-native operations infrastructure for iGaming**"
-- "**AI deployment company for iGaming**"
-- "**human-governed agentic operations**" / "human-governed oversight"
-- "gaming operators" / "iGaming operators"
-- "bounded agent deployment"
-- "measurable operator impact" / "operating margin"
-- "regulated operational environments"
-- "operating functions: CRM, Support, Compliance, Fraud, Payments, Affiliates, BI, Trading"
+- "**the agent-native operations layer for iGaming**" (the category line)
+- "**operational agents**" — NOT generic "AI agents"
+- "**launch lean**" / "from day one" / "scale without a traditional operations org" / "scale without adding headcount linearly"
+- "**Autonomous where safe. Human-controlled where it matters.**" (recurring trust theme)
+- "human escalation" / "human approval paths" / "operator controls" / "audit-ready workflows" / "operator-configured playbooks"
+- core functions: "**support, KYC, payments, risk, VIP, compliance, reporting**" (must appear immediately below the hero)
+- "DORA is not your gaming platform — it runs the business around it" (platform separator)
+- "Gather. Reason. Act. Escalate. Learn." (the five-step product model — how it works, not the tagline)
+- "gaming operators" / "iGaming operators" · "regulated operational environments"
 - "above the model layer" (kept — secondary architectural framing)
-- "application, orchestration, and harness layers"
-- "reliable AI systems"
-- "parallel agent swarms" / "persona-based agents"
 
 Required statement (kept, reframed):
 
 > DORA does not build foundation models, data infrastructure, compute platforms, casino operations, or generic AI infrastructure. We deploy the operational layer that runs AI-native gaming operations.
 
-Avoid: "Enterprise AI" as the primary framing (vertical iGaming first), generic horizontal enterprise use cases as primary, chatbot, copilot for X, AI employee, automation agency, BPO, unlock, supercharge, revolutionize, magical, autonomous everything, future of, next-generation, transform your business overnight.
+Avoid: "Enterprise AI" as the primary framing (vertical iGaming first), generic horizontal enterprise use cases as primary, chatbot, copilot for X, AI employee, automation agency, BPO, unlock, supercharge, revolutionize, magical, autonomous everything, future of, next-generation, transform your business overnight. Also avoid (2026-06-11, compensating for the "Research" name): "researching the future of operations", "agentic intelligence", "AI transformation", "unlocking operational potential", and "AI agents" as the primary product term — the site must read as operational infrastructure, not a lab or consultancy.
 
 ## Homepage Copy (Phase A)
 
@@ -381,3 +371,5 @@ Secondary CTA: See where DORA runs
 | 2026-06-10 | **Why-iGaming section → dark numbered-columns stage** (user-requested match to Frontdesk's "from zero to fully operational in minutes" band) | The soft section + 3 white trait cards became a dark rounded graphite stage: Aurora topline, centered white header + lede, three columns with giant Instrument Serif italic numerals (their `font-light italic` slate numerals → our serif accent), white titles, dark-muted one-liners, and a centered signal-pill CTA. Trait copy lightly expanded to fill the reference's description weight. Adds a mid-page conversion point. |
 | 2026-06-10 | **Why-now corrected to two contrast panels + commercial-grade mini-illustrations** (user feedback) | The 3-stage journey version (Gather/Reason/Act) had changed the section's meaning. Rebuilt as two panels in the same anatomy: 01 Human-heavy operations (old way, fully muted) → dashed "operating shift" connector → 02 Agentic-native operations (new way, Aurora number + spectral topline + deep-signal accents). The lone-icon glyphs (called out as weak) were replaced with composed multi-element UI vignettes (overlapping windows, disconnected vs linked nodes, misaligned vs aligned checks, person↔docs loop, escalation-to-human) — color appears only on the new-way panel, so the old/new contrast is carried by the artwork too. |
 | 2026-06-10 | **Command-center console → Aurora-ribbon operations stage** (user feedback: console section "doesn't make sense"; requested turing.com hero treatment) | The fake-console surfaces (workflow brief rails, agent chips, harness checklist, session chrome) were replaced with a cinematic minimal stage: new `AuroraRibbons` canvas — flowing gradient light streams in Aurora hues (Turing's warm gold ribbons recolored cool per the palette rule) + star specks — behind a single centered statement ("Gather. Reason. Act. Escalate. Learn."). Corner brackets kept. `SwarmCanvas` deleted; the swarm lives on as the brand mark. Motion suite item 2 updated accordingly. |
+| 2026-06-11 | **Outcome-led repositioning: agent-native operations layer + operational agents** (10-point user direction) | Hero now leads with outcome (launch lean · operate safely · scale without a traditional ops org) + functions strip; "Gather. Reason. Act. Escalate. Learn." moved into the how-it-works stage as the five-step product model (definitions verbatim; Learn restored same day per user); new sections: **Core promise**, **What DORA replaces** (retitled contrast panels with the commercial-hook lede), **Platform line** (not your gaming platform), **Agent modules** (5 example modules: Support · KYC · Payments · Risk · Reporting); trust layer reframed *Built for operators, not demos* with the recurring line *Autonomous where safe. Human-controlled where it matters.* + playbooks/integration safeguards; deployment model retitled as the expansion story; every CTA → **Map your AI operations team**; terminology standardized ("agentic"→"agent-native" layer, "AI agents"→"operational agents"); page reflowed hero → promise → problem → replaces → platform line → solution → how-it-works → modules → proof → architecture → expansion → trust → CTA; nav gains **Agents** (`#agent-modules`). |
+| 2026-06-11 | **Operating-model section removed** (user: redundant) | The `#operating-model` strip ("DORA deploys agents that operate inside the business" + five Gather→Learn cards, the descendant of the 5-pillar architecture spine) duplicated the How-DORA-Works stage's five-step columns. `PrimitiveSpine.tsx` deleted; page now flows proof → expansion story. |

@@ -2,7 +2,7 @@ import Container from '@/components/ui/Container'
 import Logo from '@/components/Logo'
 
 const cols: [string, [string, string][]][] = [
-  ['Product', [['How it works', '#how-it-works'], ['Where it runs', '#use-cases'], ['Deployment', '#deployment']]],
+  ['Product', [['How it works', '#how-it-works'], ['Agents', '#agent-modules'], ['Where it runs', '#use-cases'], ['Deployment', '#deployment']]],
   ['Company', [['Contact', 'mailto:hello@dorareason.com'], ['Careers', '#']]],
 ]
 
@@ -12,7 +12,7 @@ export default function Footer() {
       <Container>
         <div className="flex flex-wrap justify-between gap-8 pb-7">
           <p className="max-w-[48ch] text-[15px] leading-[1.6] text-body">
-            The agentic operations layer for iGaming. DORA deploys always-on agentic systems into core operator functions — payments, KYC, fraud, compliance, support, CRM, affiliates, BI, and trading.
+            The agent-native operations layer for iGaming. DORA gives operators operational agents across core functions — support, KYC, payments, risk, VIP, compliance, and reporting — so teams launch lean and scale safely.
           </p>
           <div className="flex gap-12">
             {cols.map(([title, links]) => (
@@ -36,7 +36,7 @@ export default function Footer() {
           <span className="inline-flex items-center gap-2.5">
             <Logo size={17} spin />© 2026 DORA Research
           </span>
-          <span>Agentic operations · iGaming</span>
+          <span>Operational agents · iGaming</span>
         </div>
       </Container>
     </footer>

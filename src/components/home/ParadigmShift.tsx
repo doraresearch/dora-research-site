@@ -19,7 +19,7 @@ const ways: Way[] = [
   {
     n: '01',
     title: 'Human-heavy operations',
-    tagline: 'The old way · scale by adding people',
+    tagline: 'The old way · a team per function',
     copy: 'Analysts gather context manually. Tools flag and score in isolation. Decisions vary by team, tool, and analyst — and scaling a queue means hiring into it.',
     accent: false,
     cards: [
@@ -95,9 +95,9 @@ const ways: Way[] = [
   },
   {
     n: '02',
-    title: 'Agentic-native operations',
-    tagline: 'The new way · scale by deploying systems',
-    copy: 'Agents gather context across systems, reason across functions before acting, and apply policy, documentation, and escalation consistently. Humans supervise the exceptions.',
+    title: 'Agent-native operations',
+    tagline: 'The new way · one operations layer',
+    copy: 'Operational agents gather context across systems, reason against policy, and complete the routine path. Humans are brought in for judgment calls, sensitive decisions, and exceptions.',
     accent: true,
     cards: [
       {
@@ -223,13 +223,13 @@ export default function ParadigmShift() {
       <Container>
         <Reveal>
           <div className="text-center">
-            <Eyebrow chip className="mb-4">Why now</Eyebrow>
+            <Eyebrow chip className="mb-4">The old model, made explicit</Eyebrow>
             <h2 className="mx-auto max-w-[22ch] text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-4xl lg:text-[44px]">
-              The operating model is <span className="font-serif font-normal italic">changing</span>.
+              What DORA <span className="font-serif font-normal italic">replaces</span>.
             </h2>
             <span className="mx-auto mt-4 block h-[3px] w-16 rounded bg-spectral" aria-hidden="true" />
-            <p className="mx-auto mt-5 max-w-[64ch] text-[16.5px] leading-[1.7] text-body">
-              Traditional operators scale by adding people. Agentic operators scale by deploying systems that gather, reason, act, escalate, and learn.
+            <p className="mx-auto mt-5 max-w-[68ch] text-[16.5px] leading-[1.7] text-body">
+              Instead of hiring separate teams for support, KYC, payments, risk, VIP, compliance, and reporting before scale, DORA gives operators an agent-native operations layer that handles routine workflows and escalates the decisions that need human judgment.
             </p>
           </div>
         </Reveal>
