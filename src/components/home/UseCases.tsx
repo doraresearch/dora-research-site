@@ -15,46 +15,10 @@ type UseCase = {
 // Icon chips sweep the Aurora hues (deepened for contrast on light tints) — cool only, per DESIGN.md.
 const cases: UseCase[] = [
   {
-    title: 'Payments & withdrawals',
-    copy: 'Agents review, release, verify, hold, refund, and escalate payment flows.',
+    title: 'Support',
+    copy: 'Triages player issues, drafts responses, and escalates sensitive cases.',
     tint: 'rgba(110,231,183,0.18)',
     stroke: '#059669',
-    icon: (
-      <>
-        <rect x="3" y="6.5" width="18" height="12" rx="2" />
-        <path d="M3 10.5h18M7 15h4" />
-      </>
-    ),
-  },
-  {
-    title: 'KYC & compliance',
-    copy: 'Agents connect identity, verification, source-of-funds, sanctions, and policy checks.',
-    tint: 'rgba(45,212,191,0.16)',
-    stroke: '#0D9488',
-    icon: (
-      <>
-        <path d="M12 3.5l7.5 3.5v4.7c0 4.6-3.2 7-7.5 8.4-4.3-1.4-7.5-3.8-7.5-8.4V7z" />
-        <path d="M9 11.8l2.1 2.1 4-4.1" />
-      </>
-    ),
-  },
-  {
-    title: 'Fraud & risk',
-    copy: 'Agents link device, behavior, transaction, account, and prior-case signals.',
-    tint: 'rgba(34,211,238,0.15)',
-    stroke: '#0891B2',
-    icon: (
-      <>
-        <path d="M12 4.5L21 19.5H3z" />
-        <path d="M12 10.5v4M12 16.8h.01" />
-      </>
-    ),
-  },
-  {
-    title: 'Support',
-    copy: 'Agents route escalations, draft responses, surface context, and preserve case history.',
-    tint: 'rgba(56,189,248,0.15)',
-    stroke: '#0284C7',
     icon: (
       <>
         <path d="M4.5 13.5a7.5 7.5 0 0 1 15 0" />
@@ -65,8 +29,44 @@ const cases: UseCase[] = [
     ),
   },
   {
-    title: 'CRM & VIP',
-    copy: 'Agents coordinate offers, retention, risk controls, support context, and player value.',
+    title: 'KYC',
+    copy: 'Collects documents, runs checks, flags exceptions, and routes approvals.',
+    tint: 'rgba(45,212,191,0.16)',
+    stroke: '#0D9488',
+    icon: (
+      <>
+        <path d="M12 3.5l7.5 3.5v4.7c0 4.6-3.2 7-7.5 8.4-4.3-1.4-7.5-3.8-7.5-8.4V7z" />
+        <path d="M9 11.8l2.1 2.1 4-4.1" />
+      </>
+    ),
+  },
+  {
+    title: 'Payments',
+    copy: 'Monitors deposits, withdrawals, chargebacks, and unresolved cases.',
+    tint: 'rgba(34,211,238,0.15)',
+    stroke: '#0891B2',
+    icon: (
+      <>
+        <rect x="3" y="6.5" width="18" height="12" rx="2" />
+        <path d="M3 10.5h18M7 15h4" />
+      </>
+    ),
+  },
+  {
+    title: 'Risk & fraud',
+    copy: 'Surfaces suspicious patterns, bonus abuse, and cases needing review.',
+    tint: 'rgba(56,189,248,0.15)',
+    stroke: '#0284C7',
+    icon: (
+      <>
+        <path d="M12 4.5L21 19.5H3z" />
+        <path d="M12 10.5v4M12 16.8h.01" />
+      </>
+    ),
+  },
+  {
+    title: 'VIP & CRM',
+    copy: 'Coordinates offers, retention, and player value with risk context.',
     tint: 'rgba(59,130,246,0.13)',
     stroke: '#2563EB',
     icon: (
@@ -78,22 +78,21 @@ const cases: UseCase[] = [
     ),
   },
   {
-    title: 'Affiliates',
-    copy: 'Agents review traffic quality, bonus abuse, disputes, and commercial performance.',
+    title: 'Compliance',
+    copy: 'Tracks obligations, assembles evidence, and prepares regulator-ready reviews.',
     tint: 'rgba(45,212,191,0.16)',
     stroke: '#0D9488',
     icon: (
       <>
-        <circle cx="6" cy="12" r="2.3" />
-        <circle cx="18" cy="6" r="2.3" />
-        <circle cx="18" cy="18" r="2.3" />
-        <path d="M8.1 10.9l7.8-3.8M8.1 13.1l7.8 3.8" />
+        <path d="M6 3.5h8l4 4v13H6z" />
+        <path d="M14 3.5V8h4" />
+        <path d="M9.5 13.5l2 2 3.5-3.5" />
       </>
     ),
   },
   {
     title: 'BI & reporting',
-    copy: 'Agents turn operational activity into decision, trend, and leadership reporting.',
+    copy: 'Generates operational summaries, shift reports, and exception logs.',
     tint: 'rgba(34,211,238,0.15)',
     stroke: '#0891B2',
     icon: (
@@ -104,8 +103,8 @@ const cases: UseCase[] = [
     ),
   },
   {
-    title: 'Trading',
-    copy: 'Agents escalate exposure, suspicious patterns, pricing anomalies, and operational exceptions.',
+    title: 'Trading & sportsbook',
+    copy: 'Escalates exposure, pricing anomalies, and operational exceptions.',
     tint: 'rgba(56,189,248,0.15)',
     stroke: '#0284C7',
     icon: (
@@ -142,13 +141,13 @@ export default function UseCases() {
       <Container>
         <Reveal>
           <div className="text-center">
-            <Eyebrow chip className="mb-4">Where DORA runs</Eyebrow>
+            <Eyebrow chip className="mb-4">Core functions</Eyebrow>
             <h2 className="mx-auto max-w-[24ch] text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-4xl lg:text-[44px]">
-              Operational agents across <span className="font-serif font-normal italic">core functions</span>.
+              What your AI operations team <span className="font-serif font-normal italic">handles</span>.
             </h2>
             <span className="mx-auto mt-4 block h-[3px] w-16 rounded bg-spectral" aria-hidden="true" />
-            <p className="mx-auto mt-5 max-w-[62ch] text-[16.5px] leading-[1.7] text-body">
-              Eight operating functions, one agent-native layer. Each runs the same governed pattern &mdash; agents handle the routine path, humans review exceptions, and every action is audited.
+            <p className="mx-auto mt-5 max-w-[58ch] text-[16.5px] leading-[1.7] text-body">
+              Agents handle the routine path. Humans approve where it matters. Every action is audited.
             </p>
           </div>
 
@@ -170,7 +169,7 @@ export default function UseCases() {
                 href="#deployment-pattern"
                 className="mt-5 inline-flex items-center gap-1.5 rounded-pill border border-white/15 bg-white/[0.06] px-4 py-2 text-[12px] font-semibold text-dark-text transition-colors hover:bg-white/10"
               >
-                See a deployment pattern <span aria-hidden="true">&rarr;</span>
+                See a workflow example <span aria-hidden="true">&rarr;</span>
               </a>
             </div>
 

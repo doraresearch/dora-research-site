@@ -10,7 +10,7 @@ const safeguards: [string, string][] = [
   ['Operator-configured playbooks', 'Your policies define what agents can do.'],
   ['Compliance-aware workflows', 'Regulator-ready by construction.'],
   ['Existing-stack integration', 'Runs inside the systems you already use.'],
-  ['Monitoring & evaluation', 'Agent quality measured continuously.'],
+  ['Monitoring & review', 'Agent quality measured continuously.'],
 ]
 
 function Corner({ pos }: { pos: 'tl' | 'tr' | 'bl' | 'br' }) {
@@ -42,7 +42,7 @@ export default function TrustLayer() {
           </h2>
           <span className="mt-4 block h-[3px] w-16 rounded bg-spectral" aria-hidden="true" />
           <p className="mb-7 mt-5 max-w-[72ch] text-[16.5px] leading-[1.7] text-body">
-            DORA deploys inside regulated gaming environments — bounded, audited, accountable by construction, and integrated with the systems you already run.
+            Built for regulated iGaming. Every agent runs with human approval paths, permissioned actions, and audit logs — under your policies, from day one.
           </p>
 
           <div className="relative overflow-hidden rounded-stage border border-[#1c2026] bg-[radial-gradient(120%_150%_at_50%_-10%,#161a22_0%,#0B0D11_62%)] p-6 shadow-[0_50px_90px_-55px_rgba(5,6,8,0.65)] sm:p-8">

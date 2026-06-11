@@ -5,8 +5,8 @@ import Button from '@/components/ui/Button'
 
 const navItems: [string, string][] = [
   ['How it works', '#how-it-works'],
-  ['Agents', '#agent-modules'],
-  ['Where it runs', '#use-cases'],
+  ['Functions', '#use-cases'],
+  ['Example', '#deployment-pattern'],
   ['Deployment', '#deployment'],
   ['Contact', '#contact'],
 ]
@@ -30,7 +30,7 @@ export default function Header() {
           DORA
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-7 whitespace-nowrap lg:flex" aria-label="Primary">
           {navItems.map(([label, href]) => (
             <a key={label} href={href} className="text-sm font-medium text-body transition-colors hover:text-ink">
               {label}
@@ -38,13 +38,13 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <Button href="mailto:hello@dorareason.com">Map your AI operations team</Button>
         </div>
 
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center md:hidden"
+          className="flex h-10 w-10 items-center justify-center lg:hidden"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           aria-controls="mobile-menu"
@@ -60,7 +60,7 @@ export default function Header() {
 
       <div
         id="mobile-menu"
-        className={`absolute inset-x-0 top-16 border-b border-line bg-white/95 backdrop-blur-md transition-opacity duration-200 md:hidden ${open ? 'visible opacity-100' : 'invisible opacity-0'}`}
+        className={`absolute inset-x-0 top-16 border-b border-line bg-white/95 backdrop-blur-md transition-opacity duration-200 lg:hidden ${open ? 'visible opacity-100' : 'invisible opacity-0'}`}
       >
         <nav className="flex flex-col px-6 py-3" aria-label="Mobile">
           {navItems.map(([label, href]) => (

@@ -20,12 +20,12 @@ const ways: Way[] = [
     n: '01',
     title: 'Human-heavy operations',
     tagline: 'The old way · a team per function',
-    copy: 'Analysts gather context manually. Tools flag and score in isolation. Decisions vary by team, tool, and analyst — and scaling a queue means hiring into it.',
+    copy: 'Premature headcount, fragmented tools, and Slack-and-ticket handoffs — an expensive operations buildout before volume justifies it.',
     accent: false,
     cards: [
       {
-        title: 'Manual context gathering',
-        caption: 'Analysts open systems one by one',
+        title: 'Slack & ticket handoffs',
+        caption: 'Cases bounce between people and channels',
         art: (
           <>
             <rect x="16" y="6" width="42" height="28" rx="3" fill="#FFFFFF" stroke="#C9D0D9" />
@@ -41,8 +41,8 @@ const ways: Way[] = [
         ),
       },
       {
-        title: 'Siloed signals',
-        caption: 'Tools flag and score in isolation',
+        title: 'Fragmented tools',
+        caption: 'Signals split across dashboards and queues',
         art: (
           <>
             <rect x="10" y="16" width="26" height="24" rx="3" fill="#FFFFFF" stroke="#AEB7C2" />
@@ -58,7 +58,7 @@ const ways: Way[] = [
         ),
       },
       {
-        title: 'Inconsistent decisions',
+        title: 'Inconsistent escalation',
         caption: 'Outcomes vary by team and analyst',
         art: (
           <>
@@ -75,8 +75,8 @@ const ways: Way[] = [
         ),
       },
       {
-        title: 'Repetitive synthesis',
-        caption: 'People stitch each case together',
+        title: 'Repetitive reviews',
+        caption: 'The same checks, rebuilt case by case',
         art: (
           <>
             <circle cx="27" cy="19" r="6" fill="#FFFFFF" stroke="#AEB7C2" />
@@ -97,7 +97,7 @@ const ways: Way[] = [
     n: '02',
     title: 'Agent-native operations',
     tagline: 'The new way · one operations layer',
-    copy: 'Operational agents gather context across systems, reason against policy, and complete the routine path. Humans are brought in for judgment calls, sensitive decisions, and exceptions.',
+    copy: 'Agents prepare the case, apply your rules, and complete the routine path. Humans approve where judgment matters — with a complete audit trail.',
     accent: true,
     cards: [
       {
@@ -223,7 +223,7 @@ export default function ParadigmShift() {
       <Container>
         <Reveal>
           <div className="text-center">
-            <Eyebrow chip className="mb-4">The old model, made explicit</Eyebrow>
+            <Eyebrow chip className="mb-4">What changes</Eyebrow>
             <h2 className="mx-auto max-w-[22ch] text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-4xl lg:text-[44px]">
               What DORA <span className="font-serif font-normal italic">replaces</span>.
             </h2>
@@ -253,17 +253,6 @@ export default function ParadigmShift() {
           </Reveal>
         </div>
 
-        <Reveal>
-          <div className="mt-7 flex justify-center">
-            <span className="inline-flex items-center gap-2 rounded-pill border border-line bg-soft px-4 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-body">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 text-deep-signal" aria-hidden="true">
-                <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3" />
-                <path d="M19.5 4v4h-4" />
-              </svg>
-              Outcomes feed operational memory
-            </span>
-          </div>
-        </Reveal>
       </Container>
     </section>
   )

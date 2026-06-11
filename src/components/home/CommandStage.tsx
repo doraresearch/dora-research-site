@@ -1,11 +1,11 @@
 import AuroraRibbons from './AuroraRibbons'
 
 const steps: [string, string, string][] = [
-  ['01', 'Gather', 'Agents collect context from tools, teams, transactions, tickets, and operational systems.'],
-  ['02', 'Reason', 'Agents interpret what happened, apply rules, identify risk, and determine next steps.'],
-  ['03', 'Act', 'Agents complete approved tasks, update systems, route workflows, and trigger follow-ups.'],
-  ['04', 'Escalate', 'Humans are brought in for judgment calls, sensitive decisions, and exceptions.'],
-  ['05', 'Learn', 'Outcomes feed back into operational memory, improving rules, playbooks, and future decisions.'],
+  ['01', 'Gather', 'Collect context from tools and systems.'],
+  ['02', 'Reason', 'Apply operator rules and workflow logic.'],
+  ['03', 'Act', 'Complete approved actions or prepare decisions.'],
+  ['04', 'Escalate', 'Route exceptions to humans.'],
+  ['05', 'Learn', 'Improve playbooks and operational memory over time.'],
 ]
 
 type CornerPos = 'tl' | 'tr' | 'bl' | 'br'

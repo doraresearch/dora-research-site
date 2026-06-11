@@ -5,7 +5,7 @@ import Reveal from '@/components/ui/Reveal'
 
 const traits: [string, string, string][] = [
   ['01', 'Coverage from day one', 'Players, regulators, and payment partners don’t wait for scale.'],
-  ['02', 'A team per function', 'Support, KYC, payments, risk, VIP, compliance, and reporting — staffed separately.'],
+  ['02', 'A team per function', 'Separate hires, tools, and queues — before volume justifies them.'],
   ['03', 'Headcount scales with volume', 'Routine cases grow linearly. Margins compress as you grow.'],
 ]
 
@@ -22,7 +22,7 @@ export default function Problem() {
               Operators build ops teams <span className="font-serif font-normal italic">too early</span>.
             </h2>
             <p className="mx-auto mt-5 max-w-[66ch] text-[15px] leading-[1.7] text-dark-muted sm:text-[15.5px]">
-              Support, KYC, payments, risk, VIP, compliance, reporting — coverage is required from day one, so operators hire a team per function before the business has the scale to justify it. Routine work swallows the headcount; judgment gets the leftovers.
+              Operators are expected to build support, KYC, payments, risk, VIP, compliance, and reporting capacity before they have the scale to justify a full operations org. DORA changes that model.
             </p>
 
             <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-6">
