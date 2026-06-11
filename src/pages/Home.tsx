@@ -1,7 +1,6 @@
-import Container from '@/components/ui/Container'
 import Hero from '@/components/home/Hero'
 import CommercialStrip from '@/components/home/CommercialStrip'
-import CommandStage from '@/components/home/CommandStage'
+import HowDoraWorks from '@/components/home/HowDoraWorks'
 import ParadigmShift from '@/components/home/ParadigmShift'
 import PlatformLine from '@/components/home/PlatformLine'
 import Problem from '@/components/home/Problem'
@@ -21,13 +20,7 @@ export default function Home() {
       <PlatformLine />
       <UseCases />
       <WithdrawalReview />
-
-      <section id="how-it-works" className="bg-base py-16 sm:py-20">
-        <Container>
-          <CommandStage />
-        </Container>
-      </section>
-
+      <HowDoraWorks />
       <DeploymentModel />
       <TrustLayer />
       <FinalCTA />
