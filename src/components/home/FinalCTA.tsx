@@ -11,15 +11,12 @@ export default function FinalCTA() {
           <h2 className="mx-auto max-w-[30ch] text-balance text-[30px] font-bold leading-[1.05] tracking-[-0.03em] text-white sm:text-[36px] lg:text-[44px]">
             Map your first <span className="font-serif font-normal italic">operational agent</span>.
           </h2>
-          <p className="mx-auto mt-4 max-w-[58ch] text-[16px] leading-[1.6] text-dark-muted">
-            Start with one workflow. Define the rules, controls, systems, and success metrics. Expand once the operating model is proven.
+          <p className="mx-auto mt-4 max-w-[50ch] text-[16px] leading-[1.6] text-dark-muted">
+            One workflow. Scoped, permissioned, measured. Expand once it proves out.
           </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-8">
             <Button href="mailto:hello@dorareason.com" variant="signal" arrow>
               Map your AI operations team
-            </Button>
-            <Button href="#deployment-pattern" variant="white">
-              See a workflow example
             </Button>
           </div>
         </Reveal>
