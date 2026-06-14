@@ -50,7 +50,7 @@ export default {
         signal: '#7DD3FC',
         signal2: '#38BDF8',
         'signal-soft': '#E0F7FF',
-        'deep-signal': '#0284C7',
+        'deep-signal': '#0369A1',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

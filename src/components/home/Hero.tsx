@@ -23,7 +23,7 @@ export default function Hero() {
           <p className="mx-auto mt-7 max-w-[58ch] text-[18px] font-medium leading-[1.55] text-body sm:text-xl">
             DORA gives operators operational agents for core functions, helping them launch lean, operate safely, and scale without a traditional operations org.
           </p>
-          <p className="mx-auto mt-3 font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted">
+          <p className="mx-auto mt-3 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
             The agent-native operations layer for iGaming
           </p>
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">

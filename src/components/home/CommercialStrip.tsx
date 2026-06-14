@@ -16,7 +16,7 @@ export default function CommercialStrip() {
           <div className="grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
             {cells.map(([label, value]) => (
               <div key={label} className="bg-white p-5">
-                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-deep-signal">{label}</p>
+                <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-deep-signal">{label}</p>
                 <p className="mt-2 text-[15px] font-medium leading-[1.55] text-ink">{value}</p>
               </div>
             ))}

@@ -49,7 +49,7 @@ export default function DeploymentModel() {
               <ol className="space-y-1">
                 {steps.map((step, i) => (
                   <li key={step} className="relative flex items-center gap-4 py-2">
-                    <span className="z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-pill border border-deep-signal bg-white font-mono text-[10.5px] font-bold text-ink">
+                    <span className="z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-pill border border-deep-signal bg-white font-mono text-[11px] font-bold text-ink">
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <span className="text-[15px] font-medium leading-[1.4] text-ink">{step}</span>
@@ -59,7 +59,7 @@ export default function DeploymentModel() {
             </div>
 
             <div className="rounded-card border border-line bg-white p-6 sm:p-7">
-              <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-deep-signal">What you get</p>
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-deep-signal">What you get</p>
               <ul className="mt-4 space-y-3">
                 {deliverables.map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-[14.5px] font-medium text-ink">
