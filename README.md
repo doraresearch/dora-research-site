@@ -1,8 +1,6 @@
 # DORA Research site
 
-Static marketing site for DORA Research, an enterprise AI systems company.
-
-The current site is a single-page React/Vite homepage focused on DORA's above-the-model-layer positioning: application, orchestration, and harness layers for reliable enterprise AI systems.
+Static marketing site for DORA Research — the AI deployment company for iGaming. Single-page React/Vite homepage. DORA gives operators operational agents for core functions (support, KYC, payments, risk, VIP, compliance, reporting).
 
 ## Run locally
 
