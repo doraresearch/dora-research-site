@@ -51,7 +51,7 @@ export default function WithdrawalReview() {
           </p>
           <a
             href="/example/withdrawal-review"
-            className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-deep-signal transition-colors hover:text-ink"
+            className="mt-6 inline-flex items-center gap-2 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-deep-signal transition-colors hover:text-ink"
           >
             View the full withdrawal review pattern <span aria-hidden="true">&rarr;</span>
           </a>
