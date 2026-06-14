@@ -32,7 +32,7 @@ export default function Header() {
 
         <nav className="hidden items-center gap-7 whitespace-nowrap lg:flex" aria-label="Primary">
           {navItems.map(([label, href]) => (
-            <a key={label} href={href} className="text-sm font-medium text-body transition-colors hover:text-ink">
+            <a key={label} href={href} className="py-3 text-sm font-medium text-body transition-colors hover:text-ink">
               {label}
             </a>
           ))}
