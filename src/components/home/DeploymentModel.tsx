@@ -35,7 +35,7 @@ export default function DeploymentModel() {
       <Container>
         <Reveal>
           <Eyebrow className="mb-3">How we deploy</Eyebrow>
-          <h2 className="text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-4xl lg:text-[44px]">
+          <h2 className="text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-[36px] lg:text-[44px]">
             How we deploy inside your <span className="font-serif font-normal italic">operation</span>.
           </h2>
           <span className="mt-4 block h-[3px] w-16 rounded bg-spectral" aria-hidden="true" />

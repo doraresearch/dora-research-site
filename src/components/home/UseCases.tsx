@@ -142,7 +142,7 @@ export default function UseCases() {
         <Reveal>
           <div className="text-center">
             <Eyebrow chip className="mb-4">Core functions</Eyebrow>
-            <h2 className="mx-auto max-w-[24ch] text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-4xl lg:text-[44px]">
+            <h2 className="mx-auto max-w-[24ch] text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-[36px] lg:text-[44px]">
               What your AI operations team <span className="font-serif font-normal italic">handles</span>.
             </h2>
             <span className="mx-auto mt-4 block h-[3px] w-16 rounded bg-spectral" aria-hidden="true" />
