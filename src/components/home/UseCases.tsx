@@ -167,7 +167,7 @@ export default function UseCases() {
               </p>
               <a
                 href="#deployment-pattern"
-                className="mt-5 inline-flex items-center gap-1.5 rounded-pill border border-white/15 bg-white/[0.06] px-4 py-2 text-[12px] font-semibold text-dark-text transition-colors hover:bg-white/10"
+                className="mt-5 inline-flex min-h-[44px] items-center gap-1.5 rounded-pill border border-white/15 bg-white/[0.06] px-5 py-2.5 text-[12px] font-semibold text-dark-text transition-colors hover:bg-white/10"
               >
                 See a workflow example <span aria-hidden="true">&rarr;</span>
               </a>
