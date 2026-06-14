@@ -17,9 +17,9 @@ export default function Footer() {
           <div className="flex gap-12">
             {cols.map(([title, links]) => (
               <div key={title}>
-                <p className="mb-3 text-[13px] font-semibold text-ink">{title}</p>
+                <p className="mb-3 text-[14px] font-semibold text-ink">{title}</p>
                 {links.map(([label, href]) => (
-                  <a key={label} href={href} className="mb-2 block text-[13px] text-muted transition-colors hover:text-ink">
+                  <a key={label} href={href} className="block py-1.5 text-[14px] text-muted transition-colors hover:text-ink">
                     {label}
                   </a>
                 ))}
