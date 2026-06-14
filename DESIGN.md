@@ -92,7 +92,7 @@ A crisp light architecture palette with the cool **Aurora** spectral signature.
 | `line-strong` | `#AEB7C2` | Stronger dividers, tables, architecture lines |
 | `signal` | `#7DD3FC` | Solid UI accents: stage dots, selected states, signal pill |
 | `signal-soft` | `#E0F7FF` | DORA layer backgrounds in the stack diagram |
-| `deep-signal` | `#0284C7` | Link hovers, small active annotations, mono index labels |
+| `deep-signal` | `#0369A1` | Link hovers, small active annotations, mono index labels |
 | `dark-text` | `#F8FAFC` | Text on dark/graphite |
 | `dark-muted` | `#CBD5E1` | Secondary text on dark/graphite |
 
@@ -221,7 +221,7 @@ A centered **hub grid**: the 8 operating functions arranged around a central DOR
 - **Mobile:** single column; the hub stacks mid-list.
 - **Section header is centered** (chip eyebrow · H2 with serif accent · Aurora underline `mx-auto` · short lede) — an intentional exception to the default left-aligned section headers.
 - **Function cards:** white, hairline `line` border, `rounded-card`, centered content — icon chip → bold title → small body description. Aurora top-border accent on hover (kept).
-- **Icon chips:** 40px rounded-[12px] squares whose hues sweep the Aurora stops across the grid (cool only, no purple/warm): background = an Aurora stop at 13-18% alpha; icon stroke = a deepened same-hue tone for contrast — mint→`#059669`, teal→`#0D9488`, cyan→`#0891B2`, sky→`#0284C7` (= deep-signal), blue→`#2563EB`. Icons are 1.6-stroke line glyphs in the IconStrip style.
+- **Icon chips:** 40px rounded-[12px] squares whose hues sweep the Aurora stops across the grid (cool only, no purple/warm): background = an Aurora stop at 13-18% alpha; icon stroke = a deepened same-hue tone for contrast — mint→`#059669`, teal→`#0D9488`, cyan→`#0891B2`, sky→`#0369A1` (= deep-signal), blue→`#2563EB`. Icons are 1.6-stroke line glyphs in the IconStrip style.
 - **Hub cell:** graphite, `rounded-card`, static 2px Aurora topline, white swarm mark + "DORA" wordmark, mono label "ONE AGENTIC OPERATIONS LAYER", small `white/[0.06]` bordered pill linking to `#deployment-pattern`. (Frontdesk's violet-gradient hub is banned here — the graphite stage cell + Aurora hairline is the DORA translation.)
 
 Current card copy lives in `src/components/home/UseCases.tsx` (titles: Payments & withdrawals · KYC & compliance · Fraud & risk · Support · CRM & VIP · Affiliates · BI & reporting · Trading; descriptions are "Agents …" action sentences). Concise, serious, regulated-tone — no full-automation promises.
