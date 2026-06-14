@@ -37,7 +37,7 @@ export default function TrustLayer() {
       <Container>
         <Reveal>
           <Eyebrow className="mb-3">Built for operators, not demos</Eyebrow>
-          <h2 className="text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-[36px] lg:text-[44px]">
+          <h2 className="text-balance text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-ink sm:text-[36px] lg:text-[44px]">
             Autonomous where safe. <span className="font-serif font-normal italic">Human-controlled</span> where it matters.
           </h2>
           <span className="mt-4 block h-[3px] w-16 rounded bg-spectral" aria-hidden="true" />

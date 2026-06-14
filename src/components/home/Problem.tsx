@@ -18,7 +18,7 @@ export default function Problem() {
             <span className="absolute inset-x-0 top-0 h-[2px] bg-spectral" aria-hidden="true" />
 
             <Eyebrow chip dark className="mb-4">The problem</Eyebrow>
-            <h2 className="mx-auto max-w-[26ch] text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-dark-text sm:text-[36px] lg:text-[42px]">
+            <h2 className="mx-auto max-w-[26ch] text-balance text-[28px] font-bold leading-[1.05] tracking-[-0.03em] text-dark-text sm:text-[36px] lg:text-[42px]">
               Operators build ops teams <span className="font-serif font-normal italic">too early</span>.
             </h2>
             <p className="mx-auto mt-5 max-w-[66ch] text-[15px] leading-[1.7] text-dark-muted sm:text-[15.5px]">

@@ -13,7 +13,7 @@ export default function Hero() {
         <div className="mt-7 animate-fade-up" style={{ animationDelay: '120ms' }}>
           <div className="relative mx-auto inline-block pl-7 text-left">
             <span className="absolute bottom-1 left-0 top-1 w-[6px] rounded bg-spectral-v" aria-hidden="true" />
-            <h1 className="max-w-[20ch] text-[44px] font-bold leading-[0.96] tracking-[-0.04em] text-ink sm:text-6xl lg:text-7xl xl:text-[78px]">
+            <h1 className="max-w-[20ch] text-balance text-[44px] font-bold leading-[0.96] tracking-[-0.04em] text-ink sm:text-6xl lg:text-7xl xl:text-[78px]">
               The AI operations team for <span className="font-serif font-normal italic">iGaming</span>.
             </h1>
           </div>
