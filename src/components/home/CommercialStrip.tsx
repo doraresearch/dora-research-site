@@ -17,7 +17,7 @@ export default function CommercialStrip() {
             {cells.map(([label, value]) => (
               <div key={label} className="bg-white p-5">
                 <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-deep-signal">{label}</p>
-                <p className="mt-2 text-[13.5px] font-medium leading-[1.55] text-ink">{value}</p>
+                <p className="mt-2 text-[15px] font-medium leading-[1.55] text-ink">{value}</p>
               </div>
             ))}
           </div>
