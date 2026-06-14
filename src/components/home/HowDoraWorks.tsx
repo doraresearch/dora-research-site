@@ -8,7 +8,7 @@ import Logo from '@/components/Logo'
 
 type Step = { title: string; copy: string; visual: ReactNode }
 
-const panelCls = 'rounded-[12px] border border-[#232b35] bg-[#11151b]/90'
+const panelCls = 'rounded-[12px] border border-dark-line bg-dark-panel/90'
 const monoCls = 'font-mono uppercase tracking-[0.14em]'
 
 function MiniCheck({ dim = false }: { dim?: boolean }) {
@@ -39,14 +39,14 @@ const steps: Step[] = [
       <div className="flex w-full max-w-[470px] items-center gap-3 sm:gap-4">
         <div className="grid flex-1 grid-cols-1 gap-2 sm:grid-cols-2">
           {sources.map((s) => (
-            <div key={s} className={`${panelCls} flex items-center gap-1.5 px-2.5 py-2 ${monoCls} text-[9.5px] text-[#9aa3ad]`}>
+            <div key={s} className={`${panelCls} flex items-center gap-1.5 px-2.5 py-2 ${monoCls} text-[9.5px] text-dark-label`}>
               <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-signal2 shadow-[0_0_6px_#38BDF8]" aria-hidden="true" />
               {s}
             </div>
           ))}
         </div>
         <FlowLines />
-        <div className="flex-1 rounded-[14px] border border-[#1f3a4d] bg-[#0c1620] p-4 text-center shadow-[0_0_34px_-14px_#38BDF8]">
+        <div className="flex-1 rounded-[14px] border border-[#1f3a4d] bg-dark-deeper p-4 text-center shadow-[0_0_34px_-14px_#38BDF8]">
           <Logo size={22} variant="white" className="mx-auto" />
           <p className={`mt-2.5 ${monoCls} text-[9.5px] text-[#dff4ff]`}>Context assembled</p>
           <p className={`mt-1.5 ${monoCls} text-[9px] text-[#6f7782]`}>9 sources · linked</p>
@@ -86,7 +86,7 @@ const steps: Step[] = [
             <span
               key={d}
               className={`rounded-lg border px-3 py-1.5 ${monoCls} text-[9.5px] ${
-                i === 0 ? 'border-signal2 bg-[#0c1620] text-[#dff4ff] shadow-[0_0_16px_-6px_#38BDF8]' : 'border-[#232b35] bg-[#0d1116] text-[#5b6675]'
+                i === 0 ? 'border-signal2 bg-dark-deeper text-[#dff4ff] shadow-[0_0_16px_-6px_#38BDF8]' : 'border-dark-line bg-[#0d1116] text-[#5b6675]'
               }`}
             >
               {d}
@@ -101,7 +101,7 @@ const steps: Step[] = [
     copy: 'DORA completes approved tasks, prepares decisions, updates systems, routes cases, and triggers follow-ups inside the workflows you define.',
     visual: (
       <div className="flex w-full max-w-[470px] items-center gap-3 sm:gap-4">
-        <div className="flex-1 rounded-[14px] border border-[#1f3a4d] bg-[#0c1620] p-4 text-center shadow-[0_0_34px_-14px_#38BDF8]">
+        <div className="flex-1 rounded-[14px] border border-[#1f3a4d] bg-dark-deeper p-4 text-center shadow-[0_0_34px_-14px_#38BDF8]">
           <Logo size={22} variant="white" className="mx-auto" />
           <p className={`mt-2.5 ${monoCls} text-[9.5px] text-[#dff4ff]`}>Executing</p>
           <p className={`mt-1.5 ${monoCls} text-[9px] text-[#6f7782]`}>Under policy</p>
@@ -110,7 +110,7 @@ const steps: Step[] = [
         <div className="flex-1 space-y-1.5">
           {actions.map((a) => (
             <div key={a} className={`${panelCls} flex items-center justify-between gap-2 px-2.5 py-1.5`}>
-              <span className={`${monoCls} text-[9.5px] text-[#9aa3ad]`}>{a}</span>
+              <span className={`${monoCls} text-[9.5px] text-dark-label`}>{a}</span>
               <MiniCheck />
             </div>
           ))}
@@ -131,9 +131,9 @@ const steps: Step[] = [
           <span className="h-7 w-px border-l border-dashed border-signal2/70" aria-hidden="true" />
           <p className={`${monoCls} text-[9px] text-[#6f7782]`}>Full context attached</p>
         </div>
-        <div className="rounded-[14px] border border-[#1f3a4d] bg-[#0c1620] p-4 shadow-[0_0_34px_-14px_#38BDF8]">
+        <div className="rounded-[14px] border border-[#1f3a4d] bg-dark-deeper p-4 shadow-[0_0_34px_-14px_#38BDF8]">
           <div className="flex items-center gap-2.5">
-            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-[#2e3a47] bg-[#11151b]" aria-hidden="true">
+            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-dark-line-accent bg-dark-panel" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="#9aa3ad" strokeWidth="1.7" className="h-3.5 w-3.5">
                 <circle cx="12" cy="8.5" r="3" />
                 <path d="M5.5 19.5c1.3-3.2 3.6-4.8 6.5-4.8s5.2 1.6 6.5 4.8" strokeLinecap="round" />
@@ -146,14 +146,14 @@ const steps: Step[] = [
           </div>
           <div className="mt-3 flex flex-wrap gap-1.5">
             {['Evidence', 'Rationale', 'Audit trail'].map((t) => (
-              <span key={t} className={`rounded-md border border-[#232b35] bg-[#11151b] px-2 py-1 ${monoCls} text-[8.5px] text-[#9aa3ad]`}>
+              <span key={t} className={`rounded-md border border-dark-line bg-dark-panel px-2 py-1 ${monoCls} text-[8.5px] text-dark-label`}>
                 {t}
               </span>
             ))}
           </div>
           <div className="mt-3.5 flex gap-2">
             <span className={`rounded-pill bg-signal px-3.5 py-1.5 ${monoCls} text-[9.5px] font-bold text-[#04263a]`}>Approve</span>
-            <span className={`rounded-pill border border-[#2e3a47] px-3.5 py-1.5 ${monoCls} text-[9.5px] text-[#9aa3ad]`}>Override</span>
+            <span className={`rounded-pill border border-dark-line-accent px-3.5 py-1.5 ${monoCls} text-[9.5px] text-dark-label`}>Override</span>
           </div>
         </div>
       </div>
@@ -176,7 +176,7 @@ const steps: Step[] = [
               ['Patterns captured', '+14 this week'],
             ].map(([k, v]) => (
               <div key={k} className="flex items-center justify-between">
-                <p className={`${monoCls} text-[9.5px] text-[#9aa3ad]`}>{k}</p>
+                <p className={`${monoCls} text-[9.5px] text-dark-label`}>{k}</p>
                 <p className={`${monoCls} text-[9.5px] text-[#dff4ff]`}>{v}</p>
               </div>
             ))}
@@ -195,7 +195,7 @@ const steps: Step[] = [
               <span
                 key={h}
                 style={{ height: `${h}px` }}
-                className={`w-2 rounded-sm ${i >= 3 ? 'bg-signal2 shadow-[0_0_8px_-2px_#38BDF8]' : 'bg-[#2e3a47]'}`}
+                className={`w-2 rounded-sm ${i >= 3 ? 'bg-signal2 shadow-[0_0_8px_-2px_#38BDF8]' : 'bg-dark-line-accent'}`}
               />
             ))}
           </div>

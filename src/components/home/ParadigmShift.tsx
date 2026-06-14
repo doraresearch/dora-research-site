@@ -114,8 +114,8 @@ const ways: Way[] = [
             <path d="M36 12c10 0 14 13 24 15M36 28h24M36 44c10 0 14-13 24-15" stroke="#C9D0D9" />
             <rect x="64" y="10" width="42" height="36" rx="3" fill="#FFFFFF" stroke="#AEB7C2" />
             <path d="M70 19h30M70 25h30M70 31h20" stroke="#C9D0D9" />
-            <circle cx="98" cy="38.5" r="5" fill="#E0F7FF" stroke="#0284C7" />
-            <path d="M95.9 38.5l1.5 1.5 2.7-2.9" stroke="#0284C7" />
+            <circle cx="98" cy="38.5" r="5" fill="#E0F7FF" stroke="#0369A1" />
+            <path d="M95.9 38.5l1.5 1.5 2.7-2.9" stroke="#0369A1" />
           </>
         ),
       },
@@ -129,8 +129,8 @@ const ways: Way[] = [
             <circle cx="23" cy="44" r="5.5" fill="#FFFFFF" stroke="#AEB7C2" />
             <circle cx="97" cy="12" r="5.5" fill="#FFFFFF" stroke="#AEB7C2" />
             <circle cx="97" cy="44" r="5.5" fill="#FFFFFF" stroke="#AEB7C2" />
-            <circle cx="60" cy="28" r="7.5" fill="#E0F7FF" stroke="#0284C7" />
-            <circle cx="60" cy="28" r="2.4" fill="#0284C7" stroke="none" />
+            <circle cx="60" cy="28" r="7.5" fill="#E0F7FF" stroke="#0369A1" />
+            <circle cx="60" cy="28" r="2.4" fill="#0369A1" stroke="none" />
           </>
         ),
       },
@@ -140,12 +140,12 @@ const ways: Way[] = [
         art: (
           <>
             <path d="M14 14h58M14 28h58M14 42h58" stroke="#C9D0D9" />
-            <circle cx="96" cy="14" r="6" fill="#E0F7FF" stroke="#0284C7" />
-            <path d="M93.6 14l1.7 1.7 3-3.2" stroke="#0284C7" />
-            <circle cx="96" cy="28" r="6" fill="#E0F7FF" stroke="#0284C7" />
-            <path d="M93.6 28l1.7 1.7 3-3.2" stroke="#0284C7" />
-            <circle cx="96" cy="42" r="6" fill="#E0F7FF" stroke="#0284C7" />
-            <path d="M93.6 42l1.7 1.7 3-3.2" stroke="#0284C7" />
+            <circle cx="96" cy="14" r="6" fill="#E0F7FF" stroke="#0369A1" />
+            <path d="M93.6 14l1.7 1.7 3-3.2" stroke="#0369A1" />
+            <circle cx="96" cy="28" r="6" fill="#E0F7FF" stroke="#0369A1" />
+            <path d="M93.6 28l1.7 1.7 3-3.2" stroke="#0369A1" />
+            <circle cx="96" cy="42" r="6" fill="#E0F7FF" stroke="#0369A1" />
+            <path d="M93.6 42l1.7 1.7 3-3.2" stroke="#0369A1" />
           </>
         ),
       },
@@ -159,9 +159,9 @@ const ways: Way[] = [
             <path d="M30 41l1.4 1.4 2.5-2.7" stroke="#AEB7C2" />
             <circle cx="88" cy="41" r="5" fill="#FFFFFF" stroke="#AEB7C2" />
             <path d="M86 41l1.4 1.4 2.5-2.7" stroke="#AEB7C2" />
-            <path d="M60 41V29" stroke="#0284C7" strokeDasharray="2.5 2.5" />
-            <circle cx="60" cy="14" r="4.2" fill="#E0F7FF" stroke="#0284C7" />
-            <path d="M52 26.5c1.6-4.2 4.4-6.3 8-6.3s6.4 2.1 8 6.3" fill="none" stroke="#0284C7" />
+            <path d="M60 41V29" stroke="#0369A1" strokeDasharray="2.5 2.5" />
+            <circle cx="60" cy="14" r="4.2" fill="#E0F7FF" stroke="#0369A1" />
+            <path d="M52 26.5c1.6-4.2 4.4-6.3 8-6.3s6.4 2.1 8 6.3" fill="none" stroke="#0369A1" />
           </>
         ),
       },

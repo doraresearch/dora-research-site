@@ -61,7 +61,7 @@ export default function TrustLayer() {
 
             <div className="grid gap-3 sm:grid-cols-2">
               {safeguards.map(([title, sub]) => (
-                <div key={title} className="flex items-start gap-3 rounded-[12px] border border-[#232b35] bg-[#11151b]/85 px-4 py-3.5">
+                <div key={title} className="flex items-start gap-3 rounded-[12px] border border-dark-line bg-dark-panel/85 px-4 py-3.5">
                   <Check />
                   <div>
                     <p className="text-[14px] font-semibold text-[#dff4ff]">{title}</p>

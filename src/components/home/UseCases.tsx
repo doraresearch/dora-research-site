@@ -56,7 +56,7 @@ const cases: UseCase[] = [
     title: 'Risk & fraud',
     copy: 'Surfaces suspicious patterns, bonus abuse, and cases needing review.',
     tint: 'rgba(56,189,248,0.15)',
-    stroke: '#0284C7',
+    stroke: '#0369A1',
     icon: (
       <>
         <path d="M12 4.5L21 19.5H3z" />
@@ -106,7 +106,7 @@ const cases: UseCase[] = [
     title: 'Trading & sportsbook',
     copy: 'Escalates exposure, pricing anomalies, and operational exceptions.',
     tint: 'rgba(56,189,248,0.15)',
-    stroke: '#0284C7',
+    stroke: '#0369A1',
     icon: (
       <>
         <path d="M3 16.5L9.5 10l4 3.5 7.5-7" />
