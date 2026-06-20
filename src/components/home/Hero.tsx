@@ -1,41 +1,105 @@
+import { useEffect, useRef, useState } from 'react'
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
-import Eyebrow from '@/components/ui/Eyebrow'
+import AuroraCanvas from './AuroraCanvas'
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const [scrollProgress, setScrollProgress] = useState(0)
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReduced) return
+
+    const onScroll = () => {
+      const section = sectionRef.current
+      if (!section) return
+      const rect = section.getBoundingClientRect()
+      const totalScroll = rect.height - window.innerHeight
+      const progress = Math.max(0, Math.min(1, -rect.top / totalScroll))
+      setScrollProgress(progress)
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const contentOpacity = 1 - scrollProgress * 2.5
+  const contentTranslate = scrollProgress * -60
+
   return (
-    <section className="relative isolate bg-base">
-      <Container className="pb-8 pt-20 text-center sm:pt-24">
-        <span className="inline-block animate-fade-up">
-          <Eyebrow chip>DORA · Operational agents for iGaming</Eyebrow>
-        </span>
+    <section ref={sectionRef} className="relative h-[300vh] bg-base">
+      {/* Sticky viewport */}
+      <div className="sticky top-0 h-screen overflow-hidden">
+        <AuroraCanvas />
 
-        <div className="mt-7 animate-fade-up" style={{ animationDelay: '120ms' }}>
-          <div className="relative mx-auto inline-block pl-7 text-left">
-            <span className="absolute bottom-1 left-0 top-1 w-[6px] rounded bg-spectral-v" aria-hidden="true" />
-            <h1 className="max-w-[20ch] text-balance text-[44px] font-bold leading-[0.96] tracking-[-0.04em] text-ink sm:text-6xl lg:text-7xl xl:text-[78px]">
-              The AI operations team for <span className="font-serif font-normal italic">iGaming</span>.
-            </h1>
+        {/* Radial vignette overlay */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_center,transparent_30%,#050608_90%)]" />
+
+        <Container className="relative z-10 flex h-full flex-col items-center justify-center text-center">
+          <div
+            style={{
+              opacity: Math.max(0, contentOpacity),
+              transform: `translateY(${contentTranslate}px)`,
+              transition: 'none',
+            }}
+          >
+            <span className="inline-block animate-fade-up">
+              <span className="inline-flex items-center gap-2 rounded-pill border border-white/[0.08] bg-white/[0.04] px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white/50">
+                <span className="h-1.5 w-1.5 rounded-full bg-mint" />
+                AI Operations Layer
+              </span>
+            </span>
+
+            <div className="mt-8 animate-fade-up" style={{ animationDelay: '120ms' }}>
+              <h1 className="mx-auto max-w-[20ch] text-balance text-[44px] font-bold leading-[0.94] tracking-[-0.04em] text-white sm:text-7xl lg:text-8xl xl:text-[96px]">
+                Operations intelligence.{' '}
+                <span className="text-spectral">Built for infrastructure.</span>
+              </h1>
+            </div>
+
+            <div className="animate-fade-up" style={{ animationDelay: '240ms' }}>
+              <p className="mx-auto mt-8 max-w-[52ch] text-[18px] font-medium leading-[1.55] text-white/60 sm:text-xl">
+                Built for the teams that keep infrastructure running. DORA handles the routine — alerts, diagnostics, runbooks, escalations — so your engineers focus on what requires judgment.
+              </p>
+
+              <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <Button href="mailto:hello@dorareason.com" arrow>
+                  See what DORA automates
+                </Button>
+                <Button href="#how-it-works" variant="secondary">
+                  How it works
+                </Button>
+              </div>
+            </div>
+
+            {/* Roles strip */}
+            <div className="mt-16 animate-fade-up" style={{ animationDelay: '400ms' }}>
+              <div className="flex flex-wrap items-center justify-center gap-6 font-mono text-[12px] uppercase tracking-[0.14em] text-white/30">
+                <span>Database Administrators</span>
+                <span className="hidden h-1 w-1 rounded-full bg-white/20 sm:block" />
+                <span>System Administrators</span>
+                <span className="hidden h-1 w-1 rounded-full bg-white/20 sm:block" />
+                <span>NOC Engineers</span>
+              </div>
+            </div>
+          </div>
+        </Container>
+
+        {/* Scroll indicator */}
+        <div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          style={{ opacity: Math.max(0, 1 - scrollProgress * 5) }}
+        >
+          <div className="flex flex-col items-center gap-2">
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/20">Scroll</span>
+            <div className="h-8 w-px bg-gradient-to-b from-white/20 to-transparent" />
           </div>
         </div>
 
-        <div className="animate-fade-up" style={{ animationDelay: '240ms' }}>
-          <p className="mx-auto mt-7 max-w-[58ch] text-[18px] font-medium leading-[1.55] text-body sm:text-xl">
-            DORA gives operators operational agents for core functions, helping them launch lean, operate safely, and scale without a traditional operations org.
-          </p>
-          <p className="mx-auto mt-3 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
-            The agent-native operations layer for iGaming
-          </p>
-          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button href="mailto:hello@dorareason.com" arrow>
-              Map your AI operations team
-            </Button>
-            <Button href="#deployment-pattern" variant="secondary">
-              See a workflow example
-            </Button>
-          </div>
-        </div>
-      </Container>
+        {/* Bottom gradient fade */}
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-base to-transparent" />
+      </div>
     </section>
   )
 }

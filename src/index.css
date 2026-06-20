@@ -17,38 +17,20 @@
     /* Aurora spectral signature (cool, purple-free) */
     --spectral: linear-gradient(90deg, #6EE7B7, #2DD4BF, #22D3EE, #38BDF8, #3B82F6);
     --spectral-v: linear-gradient(180deg, #6EE7B7, #2DD4BF, #22D3EE, #38BDF8, #3B82F6);
-
-    --background: 0 0% 100%;
-    --foreground: 225 23% 3%;
-    --card: 0 0% 100%;
-    --card-foreground: 225 23% 3%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 225 23% 3%;
-    --primary: 225 23% 3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 17% 97%;
-    --secondary-foreground: 225 23% 3%;
-    --muted: 210 14% 95%;
-    --muted-foreground: 212 8% 47%;
-    --accent: 199 94% 74%;
-    --accent-foreground: 225 23% 3%;
-    --destructive: 0 70% 42%;
-    --destructive-foreground: 42 35% 94%;
-    --border: 210 20% 91%;
-    --input: 210 20% 91%;
-    --ring: 199 94% 74%;
-    --radius: 0.75rem;
   }
 
   html {
     scroll-behavior: smooth;
+    background: #050608;
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply antialiased;
     font-family: var(--font-sans);
     font-size: 17px;
     line-height: 1.55;
+    color: rgba(255, 255, 255, 0.6);
+    background: #050608;
   }
 
   section[id] {
@@ -61,11 +43,10 @@
   }
 
   ::selection {
-    background: #7DD3FC;
+    background: #22D3EE;
     color: #050608;
   }
 
-  /* Visible keyboard focus everywhere */
   :focus-visible {
     outline: 2px solid #0369A1;
     outline-offset: 2px;
@@ -80,20 +61,50 @@
     background-clip: text;
     color: transparent;
   }
+
+  /* Frosted glass surface */
+  .glass {
+    background: rgba(12, 15, 20, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Frosted nav pill */
+  .nav-pill {
+    background: rgba(12, 15, 20, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 9999px;
+  }
+}
+
+/* Smooth scroll via Lenis */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 /* Scroll-reveal (progressive enhancement; content stays visible without JS) */
 .js [data-reveal] {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .js [data-reveal].is-visible {
   opacity: 1;
   transform: none;
 }
 
-/* Accessibility: respect reduced-motion globally (canvas swarm is also JS-gated) */
+/* Accessibility: respect reduced-motion globally */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

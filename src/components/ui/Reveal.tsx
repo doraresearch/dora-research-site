@@ -1,12 +1,15 @@
 import type { ReactNode } from 'react'
 import useReveal from '@/hooks/useReveal'
 
-// Progressive-enhancement fade-up. Base hidden state is CSS scoped to
-// `.js [data-reveal]`, so without JS the content is simply visible.
-export default function Reveal({ className = '', children }: { className?: string; children: ReactNode }) {
+export default function Reveal({ className = '', delay = 0, children }: { className?: string; delay?: number; children: ReactNode }) {
   const ref = useReveal<HTMLDivElement>()
   return (
-    <div ref={ref} data-reveal className={className}>
+    <div
+      ref={ref}
+      data-reveal
+      className={className}
+      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+    >
       {children}
     </div>
   )
