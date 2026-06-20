@@ -1,3 +1,4 @@
+import { useRef, useState, useEffect, useCallback } from 'react'
 import Container from '@/components/ui/Container'
 import Reveal from '@/components/ui/Reveal'
 
@@ -35,6 +36,35 @@ const metrics = [
 ]
 
 export default function Capabilities() {
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
+
+  const updateScrollState = useCallback(() => {
+    const el = scrollRef.current
+    if (!el) return
+    setCanScrollLeft(el.scrollLeft > 2)
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 2)
+  }, [])
+
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+    updateScrollState()
+    el.addEventListener('scroll', updateScrollState, { passive: true })
+    window.addEventListener('resize', updateScrollState)
+    return () => {
+      el.removeEventListener('scroll', updateScrollState)
+      window.removeEventListener('resize', updateScrollState)
+    }
+  }, [updateScrollState])
+
+  const scroll = (dir: 'left' | 'right') => {
+    const el = scrollRef.current
+    if (!el) return
+    el.scrollBy({ left: dir === 'left' ? -290 : 290, behavior: 'smooth' })
+  }
+
   return (
     <section id="outcomes" className="relative bg-graphite py-24 sm:py-32">
       <Container>
@@ -49,11 +79,31 @@ export default function Capabilities() {
                 Track what matters after deployment.
               </p>
             </div>
+            <div className="flex shrink-0 gap-2">
+              <button
+                type="button"
+                aria-label="Scroll left"
+                onClick={() => scroll('left')}
+                disabled={!canScrollLeft}
+                className="flex h-10 w-10 items-center justify-center rounded-[10px] border border-white/[0.08] bg-white/[0.04] text-white/60 transition-colors hover:bg-white/[0.08] disabled:opacity-25 disabled:hover:bg-white/[0.04]"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4"><path d="M15 18l-6-6 6-6" /></svg>
+              </button>
+              <button
+                type="button"
+                aria-label="Scroll right"
+                onClick={() => scroll('right')}
+                disabled={!canScrollRight}
+                className="flex h-10 w-10 items-center justify-center rounded-[10px] border border-white/[0.08] bg-white/[0.04] text-white/60 transition-colors hover:bg-white/[0.08] disabled:opacity-25 disabled:hover:bg-white/[0.04]"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4"><path d="M9 18l6-6-6-6" /></svg>
+              </button>
+            </div>
           </div>
         </Reveal>
 
         <div className="relative">
-          <div className="-mx-2 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div ref={scrollRef} className="-mx-2 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <div className="relative flex gap-4 px-2" style={{ minWidth: 'max-content' }}>
               {/* Aurora connecting bar behind cards */}
               <div className="absolute left-[calc(135px+8px)] right-[calc(135px+8px)] top-1/2 -translate-y-1/2">
