@@ -19,7 +19,7 @@ export default function Footer() {
               <div key={title}>
                 <p className="mb-3 text-[14px] font-semibold text-white/80">{title}</p>
                 {links.map(([label, href]) => (
-                  <a key={label} href={href} className="block py-1.5 text-[14px] text-white/40 transition-colors hover:text-white/80">
+                  <a key={label} href={href} className="block min-h-[44px] py-2.5 text-[14px] text-white/40 transition-colors hover:text-white/80">
                     {label}
                   </a>
                 ))}
