@@ -26,7 +26,7 @@ export default function Trust() {
               </p>
               <h2 className="mt-4 max-w-[26ch] text-[28px] font-bold leading-[1.06] tracking-[-0.03em] text-white/90 sm:text-[36px]">
                 Built for production{' '}
-                <span className="text-white/40">environments.</span>
+                <span className="text-spectral">environments.</span>
               </h2>
 
               <div className="mt-10 grid gap-6 sm:grid-cols-2">

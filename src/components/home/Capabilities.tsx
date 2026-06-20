@@ -43,7 +43,7 @@ export default function Capabilities() {
             <div>
               <h2 className="max-w-[24ch] text-[32px] font-bold leading-[1.06] tracking-[-0.03em] text-white sm:text-[42px]">
                 Measure the work removed{' '}
-                <span className="text-white/40">from the queue.</span>
+                <span className="text-spectral">from the queue.</span>
               </h2>
               <p className="mt-3 text-[16px] leading-[1.6] text-white/40">
                 Track what matters after deployment.
@@ -53,10 +53,24 @@ export default function Capabilities() {
         </Reveal>
 
         <div className="-mx-2 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <div className="flex gap-4 px-2" style={{ minWidth: 'max-content' }}>
+          <div className="relative flex gap-4 px-2" style={{ minWidth: 'max-content' }}>
+            {/* Aurora connecting bar behind cards */}
+            <div className="absolute left-[calc(135px+8px)] right-[calc(135px+8px)] top-1/2 -translate-y-1/2">
+              <div className="h-[2px] rounded-full bg-gradient-to-r from-[#6EE7B7] via-[#22D3EE] to-[#3B82F6] opacity-50" />
+              <div className="absolute inset-x-0 -top-[3px] h-[8px] rounded-full bg-gradient-to-r from-[#6EE7B7] via-[#22D3EE] to-[#3B82F6] opacity-15 blur-[4px]" />
+              {metrics.map((_, i) => (
+                i < metrics.length - 1 && (
+                  <span
+                    key={i}
+                    className="absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-[#22D3EE] opacity-60 shadow-[0_0_6px_rgba(34,211,238,0.4)]"
+                    style={{ left: `${((i + 1) / (metrics.length - 1)) * 100}%`, transform: 'translate(-50%, -50%)' }}
+                  />
+                )
+              ))}
+            </div>
             {metrics.map((m, i) => (
               <Reveal key={m.label} delay={i * 60}>
-                <div className="flex h-[260px] w-[270px] flex-col items-center justify-between rounded-[16px] border border-white/[0.06] bg-white/[0.04] px-6 pb-7 pt-8 transition-colors hover:bg-white/[0.07]">
+                <div className="relative flex h-[260px] w-[270px] flex-col items-center justify-between rounded-[16px] border border-white/[0.06] bg-graphite px-6 pb-7 pt-8 transition-colors hover:border-white/[0.10] hover:bg-white/[0.04]">
                   <span className="inline-block rounded-pill border border-white/[0.12] bg-white/[0.06] px-3.5 py-1 font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-white/60">
                     {m.tag}
                   </span>
