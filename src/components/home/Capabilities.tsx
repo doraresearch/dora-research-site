@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import Container from '@/components/ui/Container'
 import Reveal from '@/components/ui/Reveal'
 
@@ -35,20 +35,58 @@ const metrics = [
   },
 ]
 
+const CARD_W = 270
+const GAP = 16
+const CARD_STEP = CARD_W + GAP
+const SET_OFFSET = metrics.length * CARD_STEP
+
+const extendedMetrics = [...metrics, ...metrics]
+
+function Card({ m }: { m: (typeof metrics)[number] }) {
+  return (
+    <div className="relative flex h-[260px] w-[270px] shrink-0 flex-col items-center justify-between rounded-card border border-white/[0.06] bg-graphite px-6 pb-7 pt-8 transition-colors hover:border-white/[0.10] hover:bg-white/[0.04]">
+      <span className="inline-block rounded-pill border border-white/[0.12] bg-white/[0.06] px-3.5 py-1 font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-white/60">
+        {m.tag}
+      </span>
+      <h3 className="text-center text-[18px] font-bold leading-[1.3] text-white/85">
+        {m.label}
+      </h3>
+      <p className="text-center font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-white/25">
+        {m.description}
+      </p>
+    </div>
+  )
+}
+
 export default function Capabilities() {
   const scrollRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+    const handleScrollEnd = () => {
+      if (el.scrollLeft >= SET_OFFSET) {
+        el.style.scrollBehavior = 'auto'
+        el.scrollLeft -= SET_OFFSET
+        el.style.scrollBehavior = ''
+      }
+    }
+    el.addEventListener('scrollend', handleScrollEnd)
+    return () => el.removeEventListener('scrollend', handleScrollEnd)
+  }, [])
 
   const scroll = (dir: 'left' | 'right') => {
     const el = scrollRef.current
     if (!el) return
-    const atEnd = el.scrollLeft >= el.scrollWidth - el.clientWidth - 2
-    const atStart = el.scrollLeft <= 2
-    if (dir === 'right' && atEnd) {
-      el.scrollTo({ left: 0, behavior: 'smooth' })
-    } else if (dir === 'left' && atStart) {
-      el.scrollTo({ left: el.scrollWidth, behavior: 'smooth' })
+    if (dir === 'left' && el.scrollLeft <= 2) {
+      el.style.scrollBehavior = 'auto'
+      el.scrollLeft += SET_OFFSET
+      el.style.scrollBehavior = ''
+      requestAnimationFrame(() => {
+        el.scrollBy({ left: -CARD_STEP, behavior: 'smooth' })
+      })
     } else {
-      el.scrollBy({ left: dir === 'left' ? -290 : 290, behavior: 'smooth' })
+      el.scrollBy({ left: dir === 'right' ? CARD_STEP : -CARD_STEP, behavior: 'smooth' })
     }
   }
 
@@ -94,34 +132,25 @@ export default function Capabilities() {
               <div className="absolute left-[calc(135px+8px)] right-[calc(135px+8px)] top-1/2 -translate-y-1/2">
                 <div className="h-[2px] rounded-full bg-spectral opacity-50" />
                 <div className="absolute inset-x-0 -top-[3px] h-[8px] rounded-full bg-spectral opacity-15 blur-[4px]" />
-                {metrics.map((_, i) => (
-                  i < metrics.length - 1 && (
+                {extendedMetrics.map((_, i) => (
+                  i < extendedMetrics.length - 1 && (
                     <span
                       key={i}
                       className="absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-signal opacity-60 shadow-[0_0_6px_var(--color-signal)]"
-                      style={{ left: `${((i + 1) / (metrics.length - 1)) * 100}%`, transform: 'translate(-50%, -50%)' }}
+                      style={{ left: `${((i + 1) / (extendedMetrics.length - 1)) * 100}%`, transform: 'translate(-50%, -50%)' }}
                     />
                   )
                 ))}
               </div>
-              {metrics.map((m, i) => (
-                <Reveal key={m.label} delay={i * 60}>
-                  <div className="relative flex h-[260px] w-[270px] flex-col items-center justify-between rounded-card border border-white/[0.06] bg-graphite px-6 pb-7 pt-8 transition-colors hover:border-white/[0.10] hover:bg-white/[0.04]">
-                    <span className="inline-block rounded-pill border border-white/[0.12] bg-white/[0.06] px-3.5 py-1 font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-white/60">
-                      {m.tag}
-                    </span>
-                    <h3 className="text-center text-[18px] font-bold leading-[1.3] text-white/85">
-                      {m.label}
-                    </h3>
-                    <p className="text-center font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-white/25">
-                      {m.description}
-                    </p>
-                  </div>
+              {extendedMetrics.map((m, i) => (
+                <Reveal key={`${m.tag}-${i}`} delay={(i % metrics.length) * 60}>
+                  <Card m={m} />
                 </Reveal>
               ))}
             </div>
           </div>
-          {/* Scroll fade affordance */}
+          {/* Scroll fade affordances */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-graphite to-transparent" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-graphite to-transparent" />
         </div>
       </Container>
