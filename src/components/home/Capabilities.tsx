@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useCallback } from 'react'
+import { useRef } from 'react'
 import Container from '@/components/ui/Container'
 import Reveal from '@/components/ui/Reveal'
 
@@ -37,32 +37,19 @@ const metrics = [
 
 export default function Capabilities() {
   const scrollRef = useRef<HTMLDivElement>(null)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(true)
-
-  const updateScrollState = useCallback(() => {
-    const el = scrollRef.current
-    if (!el) return
-    setCanScrollLeft(el.scrollLeft > 2)
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 2)
-  }, [])
-
-  useEffect(() => {
-    const el = scrollRef.current
-    if (!el) return
-    updateScrollState()
-    el.addEventListener('scroll', updateScrollState, { passive: true })
-    window.addEventListener('resize', updateScrollState)
-    return () => {
-      el.removeEventListener('scroll', updateScrollState)
-      window.removeEventListener('resize', updateScrollState)
-    }
-  }, [updateScrollState])
 
   const scroll = (dir: 'left' | 'right') => {
     const el = scrollRef.current
     if (!el) return
-    el.scrollBy({ left: dir === 'left' ? -290 : 290, behavior: 'smooth' })
+    const atEnd = el.scrollLeft >= el.scrollWidth - el.clientWidth - 2
+    const atStart = el.scrollLeft <= 2
+    if (dir === 'right' && atEnd) {
+      el.scrollTo({ left: 0, behavior: 'smooth' })
+    } else if (dir === 'left' && atStart) {
+      el.scrollTo({ left: el.scrollWidth, behavior: 'smooth' })
+    } else {
+      el.scrollBy({ left: dir === 'left' ? -290 : 290, behavior: 'smooth' })
+    }
   }
 
   return (
@@ -84,8 +71,7 @@ export default function Capabilities() {
                 type="button"
                 aria-label="Scroll left"
                 onClick={() => scroll('left')}
-                disabled={!canScrollLeft}
-                className="flex h-10 w-10 items-center justify-center rounded-[10px] border border-white/[0.08] bg-white/[0.04] text-white/60 transition-colors hover:bg-white/[0.08] disabled:opacity-25 disabled:hover:bg-white/[0.04]"
+                className="flex h-10 w-10 items-center justify-center rounded-[10px] border border-white/[0.08] bg-white/[0.04] text-white/60 transition-colors hover:bg-white/[0.08]"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4"><path d="M15 18l-6-6 6-6" /></svg>
               </button>
@@ -93,8 +79,7 @@ export default function Capabilities() {
                 type="button"
                 aria-label="Scroll right"
                 onClick={() => scroll('right')}
-                disabled={!canScrollRight}
-                className="flex h-10 w-10 items-center justify-center rounded-[10px] border border-white/[0.08] bg-white/[0.04] text-white/60 transition-colors hover:bg-white/[0.08] disabled:opacity-25 disabled:hover:bg-white/[0.04]"
+                className="flex h-10 w-10 items-center justify-center rounded-[10px] border border-white/[0.08] bg-white/[0.04] text-white/60 transition-colors hover:bg-white/[0.08]"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4"><path d="M9 18l6-6-6-6" /></svg>
               </button>
