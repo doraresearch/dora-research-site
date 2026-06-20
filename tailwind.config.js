@@ -27,21 +27,21 @@ export default {
         'spectral-v': 'linear-gradient(180deg,#6EE7B7,#2DD4BF,#22D3EE,#38BDF8,#3B82F6)',
       },
       colors: {
-        // Dark-first base
+        // Light-first base
         dark: '#050608',
         graphite: '#0C0F14',
         ink: '#050608',
-        base: '#050608',
-        soft: '#0C0F14',
-        surface: '#111519',
-        'surface-alt': '#181C22',
-        // Text on dark
+        base: '#FFFFFF',
+        soft: '#F7F8FA',
+        surface: '#F0F2F5',
+        'surface-alt': '#E8EAEE',
+        // Text on light
         white: '#FFFFFF',
-        body: 'rgba(255,255,255,0.6)',
-        muted: 'rgba(255,255,255,0.4)',
-        'text-primary': 'rgba(255,255,255,0.9)',
-        'text-secondary': 'rgba(255,255,255,0.6)',
-        'text-tertiary': 'rgba(255,255,255,0.4)',
+        body: '#3B4148',
+        muted: '#6F7782',
+        'text-primary': '#050608',
+        'text-secondary': '#3B4148',
+        'text-tertiary': '#6F7782',
         // Aurora stops
         mint: '#6EE7B7',
         teal: '#2DD4BF',
@@ -53,12 +53,12 @@ export default {
         signal2: '#38BDF8',
         'signal-soft': '#E0F7FF',
         'deep-signal': '#0369A1',
-        // Borders on dark
-        border: 'rgba(255,255,255,0.08)',
-        'border-strong': 'rgba(255,255,255,0.14)',
-        line: 'rgba(255,255,255,0.08)',
-        'line-strong': 'rgba(255,255,255,0.14)',
-        // Dark panel system
+        // Borders on light
+        border: '#E4E8ED',
+        'border-strong': '#AEB7C2',
+        line: '#E4E8ED',
+        'line-strong': '#AEB7C2',
+        // Dark panel system (hero, footer, dark stages)
         'dark-text': '#F8FAFC',
         'dark-muted': '#CBD5E1',
         'dark-panel': '#11151b',

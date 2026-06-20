@@ -80,17 +80,17 @@ const capabilities = [
 
 export default function Capabilities() {
   return (
-    <section id="capabilities" className="relative bg-base py-24 sm:py-32">
+    <section id="capabilities" className="relative bg-white py-24 sm:py-32">
       {/* Subtle divider */}
-      <div className="absolute inset-x-0 top-0 mx-auto h-px max-w-[600px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+      <div className="absolute inset-x-0 top-0 mx-auto h-px max-w-[600px] bg-gradient-to-r from-transparent via-line to-transparent" />
 
       <Container>
         <Reveal>
           <div className="text-center">
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/40">
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
               Capabilities
             </p>
-            <h2 className="mx-auto mt-4 max-w-[24ch] text-[32px] font-bold leading-[1.04] tracking-[-0.03em] text-white/90 sm:text-[42px]">
+            <h2 className="mx-auto mt-4 max-w-[24ch] text-[32px] font-bold leading-[1.04] tracking-[-0.03em] text-ink sm:text-[42px]">
               The full ops surface.{' '}
               <span className="font-serif font-normal italic">Covered.</span>
             </h2>
@@ -100,12 +100,12 @@ export default function Capabilities() {
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((cap, i) => (
             <Reveal key={cap.title} delay={i * 80}>
-              <div className="group rounded-card border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-200 hover:border-white/[0.12] hover:bg-white/[0.04]">
+              <div className="group rounded-card border border-line bg-soft p-6 transition-all duration-200 hover:border-line-strong hover:bg-surface">
                 <div className={`mb-4 flex h-10 w-10 items-center justify-center rounded-[10px] ${cap.bgColor} ${cap.color}`}>
                   {cap.icon}
                 </div>
-                <h3 className="text-[17px] font-bold text-white/90">{cap.title}</h3>
-                <p className="mt-2 text-[14px] leading-[1.6] text-white/45">{cap.description}</p>
+                <h3 className="text-[17px] font-bold text-ink">{cap.title}</h3>
+                <p className="mt-2 text-[14px] leading-[1.6] text-body">{cap.description}</p>
               </div>
             </Reveal>
           ))}

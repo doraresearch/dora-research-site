@@ -28,7 +28,7 @@ export default function Hero() {
   const contentTranslate = scrollProgress * -60
 
   return (
-    <section ref={sectionRef} className="relative h-[300vh] bg-base">
+    <section ref={sectionRef} className="relative h-[300vh] bg-dark">
       {/* Sticky viewport */}
       <div className="sticky top-0 h-screen overflow-hidden">
         <AuroraCanvas />
@@ -64,10 +64,10 @@ export default function Hero() {
               </p>
 
               <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Button href="mailto:hello@dorareason.com" arrow>
+                <Button href="mailto:hello@dorareason.com" variant="white" arrow>
                   See what DORA automates
                 </Button>
-                <Button href="#how-it-works" variant="secondary">
+                <Button href="#how-it-works" variant="dark-ghost">
                   How it works
                 </Button>
               </div>
@@ -98,7 +98,7 @@ export default function Hero() {
         </div>
 
         {/* Bottom gradient fade */}
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-base to-transparent" />
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-dark to-transparent" />
       </div>
     </section>
   )

@@ -67,15 +67,15 @@ export default function HowItWorks() {
   const [active, setActive] = useState(0)
 
   return (
-    <section id="how-it-works" className="relative bg-base py-24 sm:py-32">
-      <div className="absolute inset-x-0 top-0 mx-auto h-px max-w-[600px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+    <section id="how-it-works" className="relative bg-soft py-24 sm:py-32">
+      <div className="absolute inset-x-0 top-0 mx-auto h-px max-w-[600px] bg-gradient-to-r from-transparent via-line to-transparent" />
 
       <Container>
         <Reveal>
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/40">
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
             Operating model
           </p>
-          <h2 className="mt-4 text-[32px] font-bold leading-[1.04] tracking-[-0.03em] text-white/90 sm:text-[42px]">
+          <h2 className="mt-4 text-[32px] font-bold leading-[1.04] tracking-[-0.03em] text-ink sm:text-[42px]">
             How DORA works.
           </h2>
         </Reveal>
@@ -87,7 +87,7 @@ export default function HowItWorks() {
               <Reveal key={step.num} delay={i * 60}>
                 <button
                   type="button"
-                  className={`w-full rounded-lg text-left transition-all duration-300 ${active === i ? 'bg-white/[0.04]' : 'hover:bg-white/[0.02]'}`}
+                  className={`w-full rounded-lg text-left transition-all duration-300 ${active === i ? 'bg-ink/[0.03]' : 'hover:bg-ink/[0.02]'}`}
                   onClick={() => setActive(i)}
                   onMouseEnter={() => setActive(i)}
                   aria-expanded={active === i}
@@ -98,12 +98,12 @@ export default function HowItWorks() {
                       {active === i && (
                         <span className="mr-3 h-8 w-[3px] rounded-full bg-spectral-v" />
                       )}
-                      <span className={`font-mono text-[13px] font-semibold ${active === i ? 'text-cyan' : 'text-white/25'}`}>
+                      <span className={`font-mono text-[13px] font-semibold ${active === i ? 'text-deep-signal' : 'text-ink/20'}`}>
                         {step.num}
                       </span>
                     </div>
                     <div className="flex-1">
-                      <p className={`text-[17px] font-bold transition-colors ${active === i ? 'text-white/90' : 'text-white/50'}`}>
+                      <p className={`text-[17px] font-bold transition-colors ${active === i ? 'text-ink' : 'text-ink/40'}`}>
                         {step.title}
                       </p>
                       <div
@@ -113,7 +113,7 @@ export default function HowItWorks() {
                         style={{ gridTemplateRows: active === i ? '1fr' : '0fr' }}
                       >
                         <div className="overflow-hidden">
-                          <p className="pt-2 text-[14px] leading-[1.6] text-white/45">
+                          <p className="pt-2 text-[14px] leading-[1.6] text-body">
                             {step.description}
                           </p>
                         </div>

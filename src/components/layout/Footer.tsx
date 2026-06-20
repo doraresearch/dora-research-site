@@ -8,7 +8,7 @@ const cols: [string, [string, string][]][] = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/[0.06] bg-base pt-10">
+    <footer className="border-t border-white/[0.06] bg-dark pt-10">
       <Container>
         <div className="flex flex-wrap justify-between gap-8 pb-7">
           <p className="max-w-[48ch] text-[15px] leading-[1.6] text-white/50">

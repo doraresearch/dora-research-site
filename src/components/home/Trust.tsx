@@ -13,13 +13,13 @@ const safeguards = [
 
 export default function Trust() {
   return (
-    <section id="contact" className="relative bg-base py-24 sm:py-32">
-      <div className="absolute inset-x-0 top-0 mx-auto h-px max-w-[600px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+    <section id="contact" className="relative bg-white py-24 sm:py-32">
+      <div className="absolute inset-x-0 top-0 mx-auto h-px max-w-[600px] bg-gradient-to-r from-transparent via-line to-transparent" />
 
       <Container>
-        {/* Trust section */}
+        {/* Trust section — dark stage panel */}
         <Reveal>
-          <div className="rounded-stage border border-white/[0.06] bg-white/[0.02] p-8 sm:p-12 lg:p-16">
+          <div className="rounded-stage border border-white/[0.06] bg-graphite p-8 sm:p-12 lg:p-16">
             {/* Corner brackets */}
             <div className="relative">
               {['top-0 left-0', 'top-0 right-0 rotate-90', 'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'].map((pos) => (
@@ -51,11 +51,11 @@ export default function Trust() {
         {/* CTA */}
         <Reveal>
           <div className="mt-24 text-center sm:mt-32">
-            <h2 className="mx-auto max-w-[22ch] text-[36px] font-bold leading-[1.02] tracking-[-0.04em] text-white/90 sm:text-[48px]">
+            <h2 className="mx-auto max-w-[22ch] text-[36px] font-bold leading-[1.02] tracking-[-0.04em] text-ink sm:text-[48px]">
               Start running your operations{' '}
               <span className="text-spectral">on AI</span>.
             </h2>
-            <p className="mx-auto mt-6 max-w-[52ch] text-[18px] leading-[1.55] text-white/50">
+            <p className="mx-auto mt-6 max-w-[52ch] text-[18px] leading-[1.55] text-body">
               DORA deploys alongside your existing team — no rip-and-replace, no black box. Start with one workflow and expand on your terms.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">

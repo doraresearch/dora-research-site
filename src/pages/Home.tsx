@@ -9,6 +9,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <div className="h-24 bg-gradient-to-b from-dark to-white" />
       <Roles />
       <Problem />
       <Capabilities />

@@ -21,7 +21,7 @@
 
   html {
     scroll-behavior: smooth;
-    background: #050608;
+    background: #FFFFFF;
   }
 
   body {
@@ -29,8 +29,8 @@
     font-family: var(--font-sans);
     font-size: 17px;
     line-height: 1.55;
-    color: rgba(255, 255, 255, 0.6);
-    background: #050608;
+    color: #3B4148;
+    background: #FFFFFF;
   }
 
   section[id] {
@@ -44,7 +44,7 @@
 
   ::selection {
     background: #22D3EE;
-    color: #050608;
+    color: #FFFFFF;
   }
 
   :focus-visible {
@@ -62,15 +62,32 @@
     color: transparent;
   }
 
-  /* Frosted glass surface */
-  .glass {
+  /* Frosted glass surface — dark variant (hero overlay, mobile menu on hero) */
+  .glass-dark {
     background: rgba(12, 15, 20, 0.7);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
   }
 
-  /* Frosted nav pill */
+  /* Frosted glass surface — light variant (content area) */
+  .glass {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Frosted nav pill — light */
   .nav-pill {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 9999px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Frosted nav pill — dark (over hero) */
+  .nav-pill-dark {
     background: rgba(12, 15, 20, 0.6);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);

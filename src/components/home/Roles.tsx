@@ -43,13 +43,13 @@ const roles = [
 
 export default function Roles() {
   return (
-    <section className="relative bg-base py-24 sm:py-32">
+    <section className="relative bg-white py-24 sm:py-32">
       <Container>
         <Reveal>
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/40">
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
             Built for operations teams
           </p>
-          <h2 className="mt-4 max-w-[22ch] text-[32px] font-bold leading-[1.04] tracking-[-0.03em] text-white/90 sm:text-[42px]">
+          <h2 className="mt-4 max-w-[22ch] text-[32px] font-bold leading-[1.04] tracking-[-0.03em] text-ink sm:text-[42px]">
             Built for the teams that{' '}
             <span className="font-serif font-normal italic">own</span> the stack.
           </h2>
@@ -58,17 +58,17 @@ export default function Roles() {
         <div className="mt-14 grid gap-5 sm:grid-cols-3">
           {roles.map((role, i) => (
             <Reveal key={role.title} delay={i * 100}>
-              <div className="group rounded-card border border-white/[0.06] bg-white/[0.02] p-7 transition-colors hover:border-white/[0.12] hover:bg-white/[0.04]">
-                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-[12px] bg-white/[0.06] text-cyan">
+              <div className="group rounded-card border border-line bg-soft p-7 transition-colors hover:border-line-strong hover:bg-surface">
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-[12px] bg-deep-signal/10 text-deep-signal">
                   {role.icon}
                 </div>
-                <h3 className="text-[17px] font-bold text-white/90">{role.title}</h3>
-                <p className="mt-3 text-[15px] leading-[1.6] text-white/50">{role.description}</p>
+                <h3 className="text-[17px] font-bold text-ink">{role.title}</h3>
+                <p className="mt-3 text-[15px] leading-[1.6] text-body">{role.description}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {role.capabilities.map((cap) => (
                     <span
                       key={cap}
-                      className="rounded-pill border border-white/[0.06] bg-white/[0.03] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-white/40"
+                      className="rounded-pill border border-line bg-white px-3 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-muted"
                     >
                       {cap}
                     </span>
