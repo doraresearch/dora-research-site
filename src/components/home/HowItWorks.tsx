@@ -171,8 +171,8 @@ export default function HowItWorks() {
                       )}
                       {step.visual.kind === 'escalation' && (
                         <div className="flex items-center gap-4">
-                          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3">
-                            <p className="text-[13px] font-medium text-amber-400">{step.visual.from}</p>
+                          <div className="rounded-lg border border-sky/30 bg-sky/10 px-4 py-3">
+                            <p className="text-[13px] font-medium text-sky">{step.visual.from}</p>
                           </div>
                           <div className="flex-1 border-t border-dashed border-white/20" />
                           <div className="rounded-lg border border-cyan/30 bg-cyan/10 px-4 py-3">
