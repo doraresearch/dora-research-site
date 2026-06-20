@@ -420,11 +420,15 @@ export default function Platform() {
         </Reveal>
 
         <Reveal>
-          <div className="mx-auto mt-12 grid max-w-[720px] grid-cols-3 rounded-2xl border border-line">
+          <div role="tablist" aria-label="Product sections" className="mx-auto mt-12 grid max-w-[720px] grid-cols-3 rounded-2xl border border-line">
             {tabs.map((tab, i) => (
               <button
                 key={tab.label}
                 type="button"
+                role="tab"
+                aria-selected={activeTab === i}
+                aria-controls={`tabpanel-${tab.hash}`}
+                id={`tab-${tab.hash}`}
                 className={`py-4 text-center text-[17px] font-bold transition-all duration-300 ${
                   activeTab === i
                     ? 'rounded-2xl bg-soft text-ink'
@@ -438,13 +442,14 @@ export default function Platform() {
           </div>
         </Reveal>
 
-        <div className="mt-10 grid gap-8 lg:grid-cols-[45%_1fr]">
+        <div className="mt-10 grid gap-8 lg:grid-cols-[45%_1fr]" id={`tabpanel-${currentTab.hash}`} role="tabpanel" aria-labelledby={`tab-${currentTab.hash}`}>
           <div key={activeTab} className="min-h-[400px]">
             {currentItems.map((item, i) => (
               <button
                 key={item.title}
                 type="button"
                 className="w-full text-left"
+                aria-expanded={activeItem === i}
                 onClick={() => setActiveItem(i)}
                 onMouseEnter={() => setActiveItem(i)}
               >

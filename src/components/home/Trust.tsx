@@ -24,7 +24,7 @@ export default function Trust() {
               <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/40">
                 Trust &amp; control
               </p>
-              <h2 className="mt-4 max-w-[26ch] text-[28px] font-bold leading-[1.06] tracking-[-0.03em] text-white/90 sm:text-[36px]">
+              <h2 className="mt-4 max-w-[26ch] text-[32px] font-bold leading-[1.06] tracking-[-0.03em] text-white/90 sm:text-[42px]">
                 Built for production{' '}
                 <span className="text-spectral">environments.</span>
               </h2>
