@@ -4,10 +4,10 @@ import Logo from '@/components/Logo'
 import Button from '@/components/ui/Button'
 
 const navItems: [string, string][] = [
-  ['How it works', '#how-it-works'],
-  ['Capabilities', '#capabilities'],
-  ['Use cases', '#use-cases'],
-  ['Contact', '#contact'],
+  ['Product', '#product'],
+  ['Teammates', '#teammates'],
+  ['Control', '#control'],
+  ['Deployment', '#deployment'],
 ]
 
 export default function Header() {
@@ -21,7 +21,7 @@ export default function Header() {
     }
     const onScroll = () => {
       setScrolled(window.scrollY > 40)
-      setPastHero(window.scrollY > window.innerHeight * 1.8)
+      setPastHero(window.scrollY > window.innerHeight * 0.6)
     }
     window.addEventListener('keydown', onKey)
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -61,7 +61,7 @@ export default function Header() {
 
         <div className="hidden lg:block">
           <Button href="mailto:hello@dorareason.com" variant={pastHero ? 'primary' : 'white'}>
-            Get early access
+            Map your first workflow
           </Button>
         </div>
 
@@ -105,7 +105,7 @@ export default function Header() {
             </a>
           ))}
           <Button href="mailto:hello@dorareason.com" className="mt-4 w-full" onClick={() => setOpen(false)}>
-            Get early access
+            Map your first workflow
           </Button>
         </nav>
       </div>

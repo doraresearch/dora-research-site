@@ -2,8 +2,8 @@ import Container from '@/components/ui/Container'
 import Logo from '@/components/Logo'
 
 const cols: [string, [string, string][]][] = [
-  ['Product', [['How it works', '#how-it-works'], ['Capabilities', '#capabilities'], ['Use cases', '#use-cases']]],
-  ['Company', [['Contact', 'mailto:hello@dorareason.com'], ['Careers', '#']]],
+  ['Product', [['How it works', '#product'], ['Teammates', '#teammates'], ['Control', '#control']]],
+  ['Company', [['Contact', 'mailto:hello@dorareason.com'], ['Deployment', '#deployment']]],
 ]
 
 export default function Footer() {
@@ -12,7 +12,7 @@ export default function Footer() {
       <Container>
         <div className="flex flex-wrap justify-between gap-8 pb-7">
           <p className="max-w-[48ch] text-[15px] leading-[1.6] text-white/50">
-            The AI operations environment for DBAs, system administrators, and NOC teams. DORA gives ops teams AI agents that understand infrastructure, triage alerts, and execute runbooks — so you can operate at scale without scaling headcount.
+            DORA builds secure AI teammates that reduce human touches across recurring infrastructure operations — from alert triage to incident resolution.
           </p>
           <div className="flex gap-12">
             {cols.map(([title, links]) => (
@@ -36,7 +36,7 @@ export default function Footer() {
           <span className="inline-flex items-center gap-2.5">
             <Logo size={17} spin />© 2026 DORA Research
           </span>
-          <span>AI operations · Applied AI</span>
+          <span>Secure AI teammates for infrastructure operations</span>
         </div>
       </Container>
     </footer>

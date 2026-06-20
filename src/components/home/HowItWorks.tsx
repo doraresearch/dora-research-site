@@ -13,52 +13,62 @@ const steps: { num: string; title: string; description: string; visual: StepVisu
   {
     num: '01',
     title: 'Observe',
-    description: 'DORA connects to your monitoring stack — Datadog, PagerDuty, CloudWatch, Prometheus, your CMDB — and builds a live model of your environment. Every alert, metric, and log is ingested and correlated.',
+    description: 'DORA connects to observability, ticketing, cloud, databases, chat, runbooks, and internal tools — building a live model of system signals across your stack.',
     visual: {
       kind: 'sources',
-      sources: ['Datadog', 'PagerDuty', 'CloudWatch', 'Prometheus', 'Splunk'],
-      label: 'Context assembled',
+      sources: ['Datadog', 'PagerDuty', 'CloudWatch', 'Prometheus', 'Jira', 'Slack'],
+      label: 'System signals ingested',
     },
   },
   {
     num: '02',
-    title: 'Reason',
-    description: 'When an event occurs, DORA evaluates it against historical patterns, runbooks, and operational context. It classifies severity, identifies root cause candidates, and determines the appropriate response path.',
+    title: 'Diagnose',
+    description: 'When an event occurs, DORA evaluates it against historical patterns, runbooks, and operational context. It identifies likely causes and determines the appropriate response path.',
     visual: {
       kind: 'checks',
-      checks: ['Severity classification', 'Root cause analysis', 'Impact assessment', 'Historical correlation'],
-      label: 'Decision path selected',
+      checks: ['Pattern matching', 'Root cause analysis', 'Impact assessment', 'Runbook lookup'],
+      label: 'Likely cause identified',
     },
   },
   {
     num: '03',
-    title: 'Act',
-    description: 'For known patterns with approved remediation, DORA executes autonomously — restarting services, scaling resources, clearing queues, applying patches. Every action is logged and auditable.',
+    title: 'Execute',
+    description: 'For known patterns with approved workflows, DORA executes autonomously — restarting services, scaling resources, clearing queues, running patches. Every action is logged.',
     visual: {
       kind: 'actions',
       actions: ['Restart service', 'Scale resources', 'Clear queue', 'Apply patch', 'Update DNS', 'Rotate creds'],
-      label: 'Executing remediation',
+      label: 'Approved workflow executed',
     },
   },
   {
     num: '04',
+    title: 'Verify',
+    description: 'After execution, DORA confirms recovery — checking metrics, validating service health, and ensuring the fix holds. No silent failures.',
+    visual: {
+      kind: 'checks',
+      checks: ['Metric recovery', 'Service health', 'SLO compliance', 'Regression check'],
+      label: 'Recovery confirmed',
+    },
+  },
+  {
+    num: '05',
+    title: 'Document',
+    description: 'Every resolution — automated or human-driven — is documented with full context: what happened, what was tried, what worked, and what to watch.',
+    visual: {
+      kind: 'items',
+      items: ['Timeline → Ticket', 'Actions → Audit log', 'Outcome → Knowledge base'],
+      label: 'Result documented',
+    },
+  },
+  {
+    num: '06',
     title: 'Escalate',
-    description: 'When DORA encounters something outside its approved scope — novel failures, ambiguous signals, high-risk changes — it escalates to the right human with full context, diagnostics, and recommended actions.',
+    description: 'When DORA encounters something outside its approved scope — novel failures, ambiguous signals, high-risk changes — it escalates to the right human with full context and recommended actions.',
     visual: {
       kind: 'escalation',
       from: 'Exception detected',
       to: 'Human review',
       label: 'Context-rich escalation',
-    },
-  },
-  {
-    num: '05',
-    title: 'Learn',
-    description: 'Every resolution — automated or human-driven — feeds back into DORA\'s operational memory. New patterns become new playbooks. Response times improve. The system gets smarter with every incident.',
-    visual: {
-      kind: 'items',
-      items: ['Pattern → Playbook', 'Resolution → Memory', 'Feedback → Improvement'],
-      label: 'Operational memory updated',
     },
   },
 ]
@@ -67,16 +77,16 @@ export default function HowItWorks() {
   const [active, setActive] = useState(0)
 
   return (
-    <section id="how-it-works" className="relative bg-soft py-24 sm:py-32">
+    <section id="product" className="relative bg-white py-24 sm:py-32">
       <div className="absolute inset-x-0 top-0 mx-auto h-px max-w-[600px] bg-gradient-to-r from-transparent via-line to-transparent" />
 
       <Container>
         <Reveal>
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
-            Operating model
+            How it works
           </p>
           <h2 className="mt-4 text-[32px] font-bold leading-[1.04] tracking-[-0.03em] text-ink sm:text-[42px]">
-            How DORA works.
+            From alert to outcome.
           </h2>
         </Reveal>
 
@@ -207,12 +217,18 @@ export default function HowItWorks() {
                   {steps[active].num} · {steps[active].title}
                 </p>
                 <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/20">
-                  operating loop
+                  workflow execution
                 </p>
               </div>
             </div>
           </Reveal>
         </div>
+
+        <Reveal>
+          <p className="mx-auto mt-12 max-w-[600px] text-center text-[15px] leading-[1.6] text-muted">
+            This is not a chatbot. It is role-level execution for recurring operational work.
+          </p>
+        </Reveal>
       </Container>
     </section>
   )

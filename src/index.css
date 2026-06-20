@@ -110,6 +110,15 @@ html.lenis, html.lenis body {
   overflow: hidden;
 }
 
+/* Marquee scroll */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 36s linear infinite;
+}
+
 /* Scroll-reveal (progressive enhancement; content stays visible without JS) */
 .js [data-reveal] {
   opacity: 0;

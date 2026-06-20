@@ -287,7 +287,6 @@ function draw(
 
 export default function AuroraCanvas({ className = '' }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const scrollRef = useRef(0)
   const mouseRef = useRef({ x: -1000, y: -1000 })
   const particlesRef = useRef<Particle[]>([])
   const blobsRef = useRef<Blob[]>(createBlobs())
@@ -321,8 +320,8 @@ export default function AuroraCanvas({ className = '' }: { className?: string })
       const heroSection = canvas!.closest('section')
       if (!heroSection) return
       const rect = heroSection.getBoundingClientRect()
-      const totalScroll = rect.height - window.innerHeight
-      scrollRef.current = Math.max(0, Math.min(1, -rect.top / totalScroll))
+      const visible = rect.bottom > 0 && rect.top < window.innerHeight
+      hidden = document.hidden || !visible
     }
     window.addEventListener('scroll', onScroll, { passive: true })
 
@@ -344,7 +343,7 @@ export default function AuroraCanvas({ className = '' }: { className?: string })
 
       draw(
         ctx!, rect.width, rect.height, time,
-        scrollRef.current,
+        0,
         mouseRef.current.x, mouseRef.current.y,
         blobsRef.current,
         particlesRef.current,
