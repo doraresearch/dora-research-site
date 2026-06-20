@@ -91,9 +91,10 @@ export default function HowItWorks() {
                   onClick={() => setActive(i)}
                   onMouseEnter={() => setActive(i)}
                   aria-expanded={active === i}
+                  aria-controls={`step-panel-${step.num}`}
                 >
                   <div className="flex items-start gap-4 px-5 py-4">
-                    <div className={`flex items-center ${active === i ? '' : ''}`}>
+                    <div className="flex items-center">
                       {active === i && (
                         <span className="mr-3 h-8 w-[3px] rounded-full bg-spectral-v" />
                       )}
@@ -106,6 +107,8 @@ export default function HowItWorks() {
                         {step.title}
                       </p>
                       <div
+                        id={`step-panel-${step.num}`}
+                        role="region"
                         className="grid transition-all duration-500"
                         style={{ gridTemplateRows: active === i ? '1fr' : '0fr' }}
                       >
