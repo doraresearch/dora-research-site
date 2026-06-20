@@ -88,7 +88,7 @@ function createParticles(w: number, h: number): Particle[] {
 
 function drawAuroraBand(
   ctx: CanvasRenderingContext2D,
-  w: number, h: number,
+  w: number, _h: number,
   time: number,
   yBase: number,
   colorA: [number, number, number],
