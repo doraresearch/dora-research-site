@@ -15,7 +15,7 @@ function Sep() {
 function Row({ s, label, value }: { s: 'ok' | 'warn' | 'run' | 'wait' | 'no'; label: string; value?: string }) {
   const icon = {
     ok: <span className="text-mint">✓</span>,
-    warn: <span className="text-amber-400">⚠</span>,
+    warn: <span className="text-signal">⚠</span>,
     run: <span className="inline-block h-1.5 w-1.5 rounded-full bg-mint" />,
     wait: <span className="text-white/30">○</span>,
     no: <span className="text-white/35">✗</span>,
