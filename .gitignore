@@ -7,3 +7,6 @@ dist.nosync
 .superpowers
 .claude
 .gstack/
+
+# gstack browse screenshot artifacts
+.gstack-screenshots/
