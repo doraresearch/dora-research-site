@@ -5,7 +5,7 @@ import Reveal from '@/components/ui/Reveal'
 /* ─── Panel building blocks ─────────────────────────── */
 
 function PH({ children }: { children: string }) {
-  return <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.16em] text-white/35">{children}</p>
+  return <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.16em] text-white/50">{children}</p>
 }
 
 function Sep() {
@@ -17,13 +17,13 @@ function Row({ s, label, value }: { s: 'ok' | 'warn' | 'run' | 'wait' | 'no'; la
     ok: <span className="text-mint">✓</span>,
     warn: <span className="text-signal">⚠</span>,
     run: <span className="inline-block h-1.5 w-1.5 rounded-full bg-mint" />,
-    wait: <span className="text-white/30">○</span>,
-    no: <span className="text-white/35">✗</span>,
+    wait: <span className="text-white/50">○</span>,
+    no: <span className="text-white/50">✗</span>,
   }[s]
   return (
     <div className="flex items-center gap-2.5 py-[3px] font-mono text-[12px] leading-[1.7]">
       <span className="flex w-4 shrink-0 items-center justify-center">{icon}</span>
-      <span className="text-white/40">{label}</span>
+      <span className="text-white/50">{label}</span>
       {value && (
         <>
           <span className="flex-1" />
@@ -37,7 +37,7 @@ function Row({ s, label, value }: { s: 'ok' | 'warn' | 'run' | 'wait' | 'no'; la
 function Bar({ label, pct }: { label: string; pct: number }) {
   return (
     <div className="flex items-center gap-3 py-[3px] font-mono text-[12px] leading-[1.7]">
-      <span className="w-[120px] text-white/40">{label}</span>
+      <span className="w-[120px] text-white/50">{label}</span>
       <span className="flex-1">
         <span className="flex h-[6px] overflow-hidden rounded-full bg-white/[0.10]">
           <span className="rounded-full bg-mint/60" style={{ width: `${pct}%` }} />
@@ -49,7 +49,7 @@ function Bar({ label, pct }: { label: string; pct: number }) {
 }
 
 function Foot({ children }: { children: string }) {
-  return <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.14em] text-white/30">{children}</p>
+  return <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.14em] text-white/50">{children}</p>
 }
 
 /* ─── Panel content per tab/item ─────────────────────── */
@@ -75,7 +75,7 @@ const platformPanels: React.ReactNode[] = [
     <Row s="ok" label="Runbook" value="RB-0047 available" />
     <Sep />
     <div className="flex items-center gap-3 py-[3px] font-mono text-[12px]">
-      <span className="text-white/40">Confidence</span>
+      <span className="text-white/50">Confidence</span>
       <span className="flex-1">
         <span className="flex h-[6px] overflow-hidden rounded-full bg-white/[0.10]">
           <span className="rounded-full bg-mint/60" style={{ width: '92%' }} />
@@ -94,7 +94,7 @@ const platformPanels: React.ReactNode[] = [
     <Row s="ok" label="Restore traffic" value="1.2s" />
     <Row s="run" label="Post-exec health check" value="running" />
     <Sep />
-    <div className="font-mono text-[11px] text-white/40">Total elapsed: 8.4s · 5 steps · 0 errors</div>
+    <div className="font-mono text-[11px] text-white/50">Total elapsed: 8.4s · 5 steps · 0 errors</div>
     <Foot>Runbook executed · all actions logged</Foot>
   </div>,
   // Verify
@@ -141,7 +141,7 @@ const teammatePanels: React.ReactNode[] = [
     <Row s="ok" label="MED   cert expiry in 72h" value="escalated" />
     <Row s="wait" label="LOW   disk usage 78% staging" value="queued" />
     <Sep />
-    <div className="font-mono text-[11px] text-white/40">Auto-resolved: 4 · Escalated: 2 · Pending: 1</div>
+    <div className="font-mono text-[11px] text-white/50">Auto-resolved: 4 · Escalated: 2 · Pending: 1</div>
     <Foot>7 alerts triaged · 3 resolved without human</Foot>
   </div>,
   // DBA
@@ -153,7 +153,7 @@ const teammatePanels: React.ReactNode[] = [
     <Row s="ok" label="Connections" value="342 / 500" />
     <Row s="ok" label="Last backup" value="02:00 UTC · verified" />
     <Sep />
-    <div className="font-mono text-[11px] text-white/40">Next: index rebuild · Sat 03:00 UTC</div>
+    <div className="font-mono text-[11px] text-white/50">Next: index rebuild · Sat 03:00 UTC</div>
     <Foot>5 checks passed · 1 under investigation</Foot>
   </div>,
   // Sys Admin
@@ -165,7 +165,7 @@ const teammatePanels: React.ReactNode[] = [
     <Row s="ok" label="prod-cache-01..03" value="healthy" />
     <Sep />
     <Bar label="Patch compliance" pct={97} />
-    <div className="font-mono text-[11px] text-white/40">1 drift alert · auto-remediation queued</div>
+    <div className="font-mono text-[11px] text-white/50">1 drift alert · auto-remediation queued</div>
     <Foot>46 / 47 hosts compliant</Foot>
   </div>,
   // Incident
@@ -214,12 +214,12 @@ const deployPanels: React.ReactNode[] = [
         <span className="text-white/60">Restart prod-api-03</span>
         <span className="text-mint">96% conf</span>
       </div>
-      <div className="mt-1 font-mono text-[10px] text-white/35">matches RB-0047 · awaiting approval</div>
+      <div className="mt-1 font-mono text-[10px] text-white/50">matches RB-0047 · awaiting approval</div>
     </div>
     <Row s="ok" label="Scale cache-02 replicas" value="approved 4m ago" />
     <Row s="ok" label="Clear dead-letter queue" value="approved 12m ago" />
     <Sep />
-    <div className="font-mono text-[11px] text-white/40">Approved: 18 · Rejected: 1 · Overrides: 0</div>
+    <div className="font-mono text-[11px] text-white/50">Approved: 18 · Rejected: 1 · Overrides: 0</div>
     <Foot>Human review on every action</Foot>
   </div>,
   // Autonomous
@@ -231,7 +231,7 @@ const deployPanels: React.ReactNode[] = [
     <Row s="no" label="Database failover" value="requires approval" />
     <Row s="no" label="Config changes" value="requires approval" />
     <Sep />
-    <div className="font-mono text-[11px] text-white/40">Autonomous: 12 patterns · Gated: 5 patterns</div>
+    <div className="font-mono text-[11px] text-white/50">Autonomous: 12 patterns · Gated: 5 patterns</div>
     <Foot>Bounded autonomy · full audit trail</Foot>
   </div>,
   // Measure
@@ -504,10 +504,10 @@ export default function Platform() {
             </div>
 
             <div className="mt-4 flex items-center justify-between border-t border-white/[0.10] pt-4">
-              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/30">
+              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/50">
                 {currentTab.label} &middot; {currentItems[activeItem]?.title}
               </p>
-              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/30">DORA</p>
+              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/50">DORA</p>
             </div>
           </div>
         </div>
