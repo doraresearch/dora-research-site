@@ -198,10 +198,10 @@ export default function Capabilities() {
         </Reveal>
 
         <div className="relative">
-          <div ref={scrollRef} className="-mx-2 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex gap-4 px-2" style={{ minWidth: 'max-content' }}>
+          <div ref={scrollRef} className="-mx-2 snap-x snap-mandatory overflow-x-auto pb-2 sm:snap-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex gap-4 px-[calc((100vw-300px)/2)] sm:px-2" style={{ minWidth: 'max-content' }}>
               {extendedMetrics.map((m, i) => (
-                <Reveal key={`${m.tag}-${i}`} delay={(i % metrics.length) * 60}>
+                <Reveal key={`${m.tag}-${i}`} delay={(i % metrics.length) * 60} className="snap-center">
                   <MetricCard m={m} />
                 </Reveal>
               ))}
