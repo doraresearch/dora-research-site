@@ -2,45 +2,40 @@
 
 Always read this file before making any visual or UI decision on this site. All font choices, colors, spacing, component behavior, and aesthetic direction are defined here. Do not deviate without explicit approval.
 
-> **2026-06-11 (later) commercial-grade pass:** same strategy, tighter hierarchy. Hero headline is now **"The AI operations team for iGaming."** (buyer-readable); "the agent-native operations layer for iGaming" demoted to a mono **category support line** under the hero sub. New **commercial strip** under the hero (Deploy agents across · Start with · Measure · Control). The **withdrawal-review example moved up** (after functions) and compressed to copy + five target-metric cards. Functions section renamed **"What your AI operations team handles."** (8 cards incl. Compliance, absorbing the agent-modules copy; AgentModules + CorePromise + IconStrip sections removed). Deployment section is now a **services engagement**: "How we deploy inside your operation." — 7 numbered steps + a "What you get" deliverables card. ~30% copy cut; avoid "agentic systems", "governed pattern", "bounded by construction", "durable operating infrastructure", and overusing "operating model". Nav: How it works · Functions · Example · Deployment · Contact (desktop nav ≥lg).
->
-> **2026-06-11 outcome-led repositioning:** DORA is **the agent-native operations layer for iGaming** — operators get **operational agents** (not generic "AI agents") for core functions (support · KYC · payments · risk · VIP · compliance · reporting) to **launch lean, operate safely, and scale without a traditional operations org**. Recurring trust theme: *Autonomous where safe. Human-controlled where it matters.* DORA is **not the gaming platform** — it runs the business around it. "Gather. Reason. Act. Escalate. Learn." is the five-step product model (how-it-works), not the value proposition. Primary CTA everywhere: **Map your AI operations team**. See the Homepage Structure list below for the current flow.
->
-> **2026-05-24 vertical repositioning (Phase A + B both shipped):** DORA is framed as **the AI deployment company for iGaming** — vertical operational infrastructure for gaming operators, not horizontal "enterprise AI." The site keeps the visual system (white airy base, dark rounded "stage" panels, Aurora gradient, swarm mark, pill buttons, motion suite — see 2026-05-23 entries). Homepage now includes: hero, command-center stage, icon strip, problem, **Category** ("not a chatbot/BPO/operator/agency"), **Paradigm shift** ("from AI that chats to AI that acts"), **Operating philosophy** ("human-governed agentic operations" — agents handle / humans retain), stack diagram, **5-pillar architecture spine** (Operational workflows · Persona-based operational agents · Coordinated multi-agent systems · Persistent operational memory · Human-governed harness), **8 iGaming use cases**, **Deployment model** (Assess → Deploy → Validate → Expand → Productize), **Outcomes**, **Trust layer** (regulated operational environments with 8 safeguards), final CTA. Research section removed from homepage.
+> **2026-06-21 reconciliation — CURRENT POSITIONING:** This document was reconciled to the **built/shipped site**, which is the **infrastructure-operations** product: *"Secure AI teammates for infrastructure operations."* The **visual system below remains authoritative and unchanged** (white airy base, dark rounded "stage" panels, Aurora cool gradient, swarm mark, Plus Jakarta Sans, pill buttons, motion suite). The **identity, homepage structure, and copy sections were rewritten** to match the build. The earlier **iGaming** positioning (entries previously here, and the Decisions Log below dated 2026-05-24 → 2026-06-12) is **historical/superseded** — none of that copy appears in the build. Treat the Decisions Log as history; treat the sections below as current.
 
 ## Product Context
 
-- **What this is:** Marketing site for DORA Research — the **AI deployment company for iGaming**. Vertical operational infrastructure for gaming operators.
-- **Who it is for:** Gaming operators — executives and operational leaders responsible for CRM, customer support, compliance, fraud & risk, payments, affiliates, BI & reporting, QA, and trading services. Buyers care about operational cost, throughput, regulatory posture, and operating margin.
-- **Positioning:** DORA deploys **human-governed agentic systems** across iGaming operations to reduce manual workload, accelerate execution, and expand operating margins.
-- **Not DORA:** DORA is **not** a foundation model company, casino operator, BPO provider, generic chatbot, automation agency, or a horizontal "enterprise AI" platform.
-- **Core primitives** (Phase A shipped — Phase B reworks to 5): coordinated workflows, parallel agent swarms, persona-based agents. *Phase B adds:* persistent operational memory and the human-governed harness as explicit pillars.
-- **Operating model:** Deployment-led — workflow assessment → bounded agent deployment → operational validation → expanded permissions → infrastructure licensing.
-- **Project type:** Static (SSG) marketing site using React 18 + TypeScript + Vite + Tailwind, prerendered via `vite-react-ssg`.
+- **What this is:** Marketing site for **DORA** — **secure AI teammates for infrastructure operations**. DORA turns recurring alerts, diagnostics, runbooks, and escalations into AI-executed workflows across an operator's existing stack.
+- **Who it is for:** Infrastructure & operations engineers and their leaders — DBAs, SREs, NOC, DevOps, platform/cloud/security operations, QA. Buyers care about toil reduction, throughput per engineer, time-to-triage, escalation quality, and operating without scaling headcount linearly.
+- **Positioning:** DORA runs recurring operational work as AI-executed workflows across the existing stack (Datadog, PagerDuty, CloudWatch, Prometheus, Slack, Jira, cloud, databases), reducing human touches per task while keeping engineers in control.
+- **Not DORA:** DORA is **not** a foundation-model company, a chatbot/copilot, an observability or monitoring vendor, or a BPO/services agency. It executes operational workflows on top of the tools the team already runs.
+- **Product model:** **Observe → Diagnose → Execute → Verify → Document (→ Escalate)** — surfaced in the Platform section's accordion under *"Full-stack operations."*
+- **Trust model:** *Autonomous where safe. Human-controlled where it matters.* Scoped access, human approval paths, audit-ready history, gradual trust model.
+- **Project type:** Static (SSG) single-page marketing site using React 18 + TypeScript + Vite + Tailwind, prerendered via `vite-react-ssg`.
 
 ## Strategic Design Direction
 
-DORA should feel like **an AI deployment company built for iGaming operators** — vertical, operator-credible, regulated-environment-trustworthy, deployment-led.
+DORA should feel like **an AI operations product built for infrastructure engineers** — technical, production-credible, control-emphatic, calm.
 
-- Vertical, not horizontal: iGaming is the **category**, not a use case.
-- Operator-grade, not generic enterprise.
-- Regulated-environment-credible: bounded permissions, audit trails, human oversight visible in the design language.
+- Engineer-credible, not generic enterprise: the vocabulary is alerts, runbooks, triage, escalation, SLOs.
+- Control visible in the design language: scoped access, human approval paths, audit trails.
 - Light, precise, architectural, high-trust.
-- Calm, sparse, and legible — selling commercial outcomes, not technology.
+- Calm, sparse, and legible — selling measurable toil reduction, not technology.
 
-Do not make the site look like a casino brand, a chatbot/copilot company, a BPO/services agency, a generic horizontal AI platform, an automation marketplace, a consumer productivity assistant, or another foundation-model lab.
+Do not make the site look like a chatbot/copilot company, a BPO/services agency, a generic horizontal AI platform, an observability/monitoring dashboard, a consumer productivity assistant, or a foundation-model lab.
 
 ## Design Thesis
 
 DORA's clearest one-line idea:
 
-> **DORA is building the AI-native operational layer for the global iGaming industry.**
+> **Secure AI teammates that execute recurring infrastructure-operations work, with engineers in control.**
 
-Supporting frame (still useful — and the visual stack diagram still works for it):
+Supporting frame:
 
-> Existing models sit below. DORA sits above them, deploying human-governed agentic systems directly into gaming operations.
+> Recurring alerts, diagnostics, runbooks, and escalations become AI-executed workflows across the team's existing stack — higher throughput without scaling headcount linearly.
 
-The homepage should make the vertical framing visible above the fold: iGaming, deployment-led, human-governed, operator-measurable.
+The homepage should make this clear above the fold: infrastructure operations, AI-executed workflows, human-controlled, measurable toil reduction.
 
 ## Aesthetic Direction
 
@@ -52,14 +47,14 @@ Still avoid: purple / violet / magenta or warm gradient hues (keep Aurora cool: 
 
 ## Brand Personality
 
-DORA should sound and look **operator-aware, regulated-environment-credible, deployment-focused, outcomes-driven, human-governance-emphatic, calm, precise** — talking to gaming operations leaders about measurable margin impact, not pitching technology to engineers.
+DORA should sound and look **engineer-aware, production-credible, control-emphatic, outcomes-driven, calm, precise** — talking to infrastructure & operations engineers about measurable toil reduction and throughput, not pitching hype.
 
-DORA should not sound promotional, hype-y, "AI-revolution" framing, chatbot/copilot framing, BPO/services-agency framing, or like a horizontal enterprise AI vendor.
+DORA should not sound promotional, hype-y, "AI-revolution" framing, chatbot/copilot framing, BPO/services-agency framing, or like a generic horizontal enterprise AI vendor.
 
 ## Typography
 
 - **Body + UI:** `Plus Jakarta Sans` (400–800).
-- **Research accent:** `Instrument Serif` (italic), sparing — one or two editorial accents.
+- **Research accent:** `Instrument Serif` (italic), sparing — one or two editorial accents. *(Currently **unused in the build** — the shipped site renders only Plus Jakarta Sans + JetBrains Mono.)*
 - **Labels / diagrams / captions:** `JetBrains Mono`, 10–12px, uppercase, wide tracking.
 
 | Role | Size | Line height | Family |
@@ -138,9 +133,9 @@ The DORA mark is a **swarm** — a coordinated ring of particles (the "orbit rin
 
 Sticky/translucent light `soft` background, hairline bottom border, 64px height, simple navigation, one pill CTA. The header logo **spins** (Aurora swarm).
 
-Navigation (2026-06-11): How it works · Agents · Where it runs · Deployment · Contact.
+Navigation: **Product · Teammates · Control · Deployment** (anchors `#product` · `#teammates` · `#control` · `#deployment`). Desktop nav at `lg+`; hamburger below.
 
-CTA: **Map your AI operations team**. On ≤860px the links collapse to a hamburger that toggles a dropdown menu (links + CTA).
+CTA: **Map your first workflow**. Below `lg` the links collapse to a hamburger that toggles a dropdown menu (links + CTA).
 
 ## Buttons
 
@@ -151,27 +146,26 @@ All buttons are **pills** (`999px`).
 - **Ghost:** transparent, `ink` text, `line-strong` border.
 - **Signal pill:** `signal` background, dark text — allowed only on the dark/graphite CTA band.
 
-Preferred CTAs (2026-06-11): **Map your AI operations team** (the primary, used in header, hero, problem stage, and final CTA), *See example deployment*, *See agent modules*, *See where DORA runs*. Avoid generic CTAs: Learn more, Get started, Talk to AI, Unlock AI, Supercharge your team.
+Preferred CTAs: **Map your first workflow** (the primary — used in header, hero, and final CTA) and *How it works* (secondary / dark-ghost in the hero). Avoid generic CTAs: Learn more, Get started, Talk to AI, Unlock AI, Supercharge your team.
 
-## Homepage Structure (2026-06-11 — commercial-grade flow)
+## Homepage Structure (2026-06-21 — built site)
 
-1. **Header** — sticky, swarm mark + nav (How it works · Functions · Example · Deployment · Contact) + pill CTA *Map your AI operations team*. Desktop nav at `lg+`; hamburger below.
-2. **Hero** — *The AI operations team for iGaming.* Subhead: "DORA gives operators operational agents for core functions, helping them launch lean, operate safely, and scale without a traditional operations org." Mono category line beneath: *the agent-native operations layer for iGaming*. CTAs: *Map your AI operations team* · *See a workflow example* (`#deployment-pattern`).
-3. **Commercial strip** — 4-cell hairline card row directly under the hero: **Deploy agents across** (Support · KYC · Payments · Risk · VIP · Compliance · Reporting) · **Start with** (one workflow) · **Measure** (review time · throughput · escalation quality · cost-to-serve) · **Control** (approvals · permissions · audit logs · playbooks).
-4. **Problem** — dark numbered stage: *Operators build ops teams too early.* Lede: "Operators are expected to build support, KYC, payments, risk, VIP, compliance, and reporting capacity before they have the scale to justify a full operations org. DORA changes that model." + signal CTA.
-5. **What DORA replaces** (`#why-now`) — commercial-hook lede + two contrast panels; old-way cards are buyer pains: *Slack & ticket handoffs · Fragmented tools · Inconsistent escalation · Repetitive reviews*. (Memory pill removed.)
-6. **Platform line** — *DORA is not your gaming platform…* separator band.
-7. **Core functions** (`#use-cases`) — *What your AI operations team handles.* One-line lede; hub grid of 8 verb-led function cards (**Support · KYC · Payments · Risk & fraud · VIP & CRM · Compliance · BI & reporting · Trading & sportsbook**) around the graphite DORA hub (pill → *See a workflow example*). Absorbs the former agent-modules copy.
-8. **Example deployment** (`#deployment-pattern`) — *High-value withdrawal review.* Compressed: one connective paragraph ("DORA connects payments, KYC, AML, gameplay, device, bonus, support, and prior-case signals…") + **five graphite target-metric cards** (Faster review cycles 24–72 hrs→2–12 hrs · Higher reviewer throughput 25–35→90–120 · Fewer unnecessary holds 8–12%→3–5% · Better escalation quality · Complete audit trail) + pilot-variance footnote + link to `/example/withdrawal-review`.
-9. **How it works** (`#how-it-works`, 2026-06-12 — interactive) — *How DORA works.* (eyebrow *Operating model*). Two-column interactive explainer (reference: withpanacea.com "How Panacea supports you"): **left 45% = five accordion items** (01 Gather · 02 Reason · 03 Act · 04 Escalate · 05 Learn — Gather expanded on load; one open at a time; hover/click/focus all set the active item; real `<button>` triggers with `aria-expanded`/`aria-controls`; smooth `grid-rows` height transition, reduced-motion-gated; active item = `bg-soft` + vertical Aurora accent bar + deep-signal number). **Right 55% = dark rounded visual panel** (graphite stage, corner brackets, `AuroraRibbons` at 35% opacity + vignette) with **five crossfading operational vignettes** built from in-stage UI-card idioms: Gather = source chips → flow lines → "context assembled" core; Reason = case-evaluation checklist + confidence bar + Proceed/Hold/Escalate path chips; Act = executing core → six action rows with checks; Escalate = exception card → dashed context line → human-review card (Evidence/Rationale/Audit-trail tags, Approve/Override pills); Learn = operational-memory panel + outcomes-feed-playbooks loop + ascending bars. Bottom chrome: mono `0X · STEP` + *operating loop*. Mobile: accordion stacks above the visual; tap drives state.
-10. **How we deploy** (`#deployment`) — *How we deploy inside your operation.* Services engagement: 7 numbered steps (map workflow → permissions → systems → approval rules → controlled deploy → measure → expand) + **"What you get"** card (workflow map · agent playbook · integration plan · human approval rules · pilot dashboard · expansion roadmap).
-11. **Trust layer** — *Autonomous where safe. Human-controlled where it matters.* Eyebrow *built for operators, not demos*; 8 safeguards (incl. operator-configured playbooks, existing-stack integration, monitoring & review).
-12. **Final CTA** (`#contact`) — *Map your first operational agent.* "Start with one workflow. Define the rules, controls, systems, and success metrics. Expand once the operating model is proven." Buttons: *Map your AI operations team* · *See a workflow example*.
-13. **Footer** — giant Aurora wordmark + columns + meta (*Operational agents · iGaming*).
+Rendered order is defined in `src/pages/Home.tsx`: Hero → (gradient divider) → Problem → Platform → Trust → Capabilities → ClosingCTA → Footer.
 
-Removed in the commercial pass: **Core promise** section, **Agent modules** section (copy merged into Core functions), **Icon strip**.
+1. **Header** (`src/components/layout/Header.tsx`) — sticky, swarm `<Logo/>` + nav (**Product · Teammates · Control · Deployment**) + pill CTA *Map your first workflow*. Translucent; flips light/dark as it passes the hero. Desktop nav at `lg+`; hamburger dropdown below.
+2. **Hero** (`Hero.tsx`) — full-viewport (`h-screen`) dark section over the **Aurora `<canvas>`** with a radial vignette for legibility. Eyebrow chip *Secure AI Teammates* → H1 *"Secure AI teammates for **infrastructure operations.**"* (Aurora-clipped second line) → lede (*"DORA turns recurring alerts, diagnostics, runbooks, and escalations into AI-executed workflows across your existing stack…"*) → secondary line (*"Operate at higher throughput without scaling headcount linearly."*) → CTAs *Map your first workflow* (white pill) + *How it works* (dark-ghost) → "Trusted by" marquee of infra roles (DBAs · SREs · NOC · DevOps · …).
+3. **Problem** (`Problem.tsx`, `bg-soft`) — left: eyebrow *The problem* → H2 *"Operations still scale through **human execution.**"* → five staggered lines (*Every alert needs triage.* …) → closing paragraph. Right: **`ScaleVisual`** white card — ops headcount at 10 / 100 / 1,000 customers (person glyphs + workload chips) with a deep-signal **Bottleneck** callout at the overloaded stage.
+4. **Platform** (`Platform.tsx`, `#product`) — centered H2 *"Full-stack operations."* + lede → **tabs** (Platform / Teammates / Get started) → two-column: **left accordion** (Observe · Diagnose · Execute · Verify · Document) + **right desktop-only dark "live signal feed" panel** (`hidden lg:block`) that crossfades per active step (telemetry rows, status icons, progress bars, mono chrome, corner brackets). Note: also carries the duplicate `#teammates`/`#deployment` ids (cleanup pending — see unused components below).
+5. **Trust** (`Trust.tsx`, `#control`) — dark rounded **stage panel** with corner brackets: eyebrow *Trust & control* → H2 *"Built for **production environments.**"* → 2×2 safeguards (**Scoped access · Human approval paths · Audit-ready history · Gradual trust model**).
+6. **Capabilities** (`Capabilities.tsx`, `#outcomes`, `bg-graphite`) — H2 *"Measure the work removed **from the queue.**"* + scroll arrows → an **infinite horizontal metric-card carousel** (6 metrics tripled for looping; cards 300×340, Aurora top-edge hairline, before→after pair, progress rail, footnote). Mobile: scroll-snap centers one card with balanced edge-peeks.
+7. **ClosingCTA** (`ClosingCTA.tsx`) — light centered band: H2 *"Take recurring work out of the **human queue.**"* + short copy + single pill CTA *Map your first workflow*.
+8. **Footer** (`Footer.tsx`) — link columns (**Product:** How it works · Teammates · Control — **Company:** Contact · Deployment) + the **giant Aurora "DORA" wordmark** (`background-clip:text`) + mono meta (*© 2026 DORA RESEARCH* · *SECURE AI TEAMMATES FOR INFRASTRUCTURE OPERATIONS*).
+
+**Not in the build:** the iGaming commercial strip, "What DORA replaces", core-functions hub grid, withdrawal-review example, the standalone interactive "How it works" stage, the 7-step deployment engagement, the stack diagram, the architecture spine, and the harness-frame visual — all described in the retired/reference sections below. The components `HowItWorks.tsx`, `Deployment.tsx`, and `Roles.tsx` exist in `src/components/home/` but are **not imported** by `Home.tsx` (dead code; cleanup pending).
 
 ## Required Components
+
+> **2026-06-21 status:** In the current build, only the **Giant Wordmark Footer** and the dark **stage-panel + corner-bracket** idiom ship (plus the **Hero Aurora `<canvas>`** and the **Brand Mark**, specced elsewhere). The built dark visuals are the **Platform "live signal feed" panel** and the **Trust safeguards stage**. The **Stack Diagram**, **Architecture Spine**, **Operations Stage / How-DORA-works visual panel**, **Harness Visual**, and the **iGaming Use Case hub grid** below are **retired / not built** — kept for historical reference only.
 
 ### Stack Diagram
 
@@ -247,96 +241,43 @@ Avoid: parallax, motion outside this list, motion that isn't reduced-motion-gate
 
 ## Copy Rules
 
-Use prominently (2026-06-11):
+Use prominently:
 
-- "**the agent-native operations layer for iGaming**" (the category line)
-- "**operational agents**" — NOT generic "AI agents"
-- "**launch lean**" / "from day one" / "scale without a traditional operations org" / "scale without adding headcount linearly"
+- "**Secure AI teammates for infrastructure operations.**" (hero headline)
+- "**AI-executed workflows**" — recurring alerts, diagnostics, runbooks, and escalations turned into executed work
+- "reduce **human touches** per task" / "**throughput** without scaling headcount linearly" / "take recurring work out of the **human queue**"
 - "**Autonomous where safe. Human-controlled where it matters.**" (recurring trust theme)
-- "human escalation" / "human approval paths" / "operator controls" / "audit-ready workflows" / "operator-configured playbooks"
-- core functions: "**support, KYC, payments, risk, VIP, compliance, reporting**" (must appear immediately below the hero)
-- "DORA is not your gaming platform — it runs the business around it" (platform separator)
-- "Gather. Reason. Act. Escalate. Learn." (the five-step product model — how it works, not the tagline)
-- "gaming operators" / "iGaming operators" · "regulated operational environments"
-- "above the model layer" (kept — secondary architectural framing)
+- "human approval paths" / "scoped access" / "audit-ready history" / "gradual trust model" / "engineers in control"
+- product model: "**Observe · Diagnose · Execute · Verify · Document**" (Platform accordion, under *Full-stack operations.*)
+- domain vocabulary: alerts · runbooks · triage · escalation · incidents · SLOs · "your existing stack" (Datadog · PagerDuty · CloudWatch · Prometheus · Slack · Jira · cloud · databases)
+- audience: "infrastructure operations" · DBAs · SREs · NOC · DevOps · platform/cloud/security ops · QA
 
-Required statement (kept, reframed):
+Required statement (reframed):
 
-> DORA does not build foundation models, data infrastructure, compute platforms, casino operations, or generic AI infrastructure. We deploy the operational layer that runs AI-native gaming operations.
+> DORA does not build foundation models, compute, or monitoring tools. It executes recurring operational workflows on top of the stack the team already runs — with engineers in control.
 
-Avoid: "Enterprise AI" as the primary framing (vertical iGaming first), generic horizontal enterprise use cases as primary, chatbot, copilot for X, AI employee, automation agency, BPO, unlock, supercharge, revolutionize, magical, autonomous everything, future of, next-generation, transform your business overnight. Also avoid (2026-06-11, compensating for the "Research" name): "researching the future of operations", "agentic intelligence", "AI transformation", "unlocking operational potential", and "AI agents" as the primary product term — the site must read as operational infrastructure, not a lab or consultancy. Also avoid (2026-06-11 commercial pass): "agentic systems", "durable operating infrastructure", "governed pattern", "bounded by construction", and overusing "operating model". Prefer buyer-facing phrasing: "what we deploy", "what your team gets", "what gets measured", "where humans approve", "audit-ready workflows", "launch lean".
+Avoid: chatbot, copilot for X, AI employee, BPO, automation agency, unlock, supercharge, revolutionize, magical, "autonomous everything", future of, next-generation, transform your business overnight, whitepaper/research-y density, and "AI agents" as the primary product term (prefer "AI teammates" / "AI-executed workflows"). **Also avoid all iGaming vocabulary** (operators, KYC, VIP, payments, withdrawals, casino, wagering, affiliates) — that positioning is retired.
 
-## Homepage Copy (Phase A)
+## Homepage Copy
 
-### Hero
+The **copy of record lives in the components** under `src/components/home/` (plus `Header.tsx` / `Footer.tsx`). Don't maintain a second copy here — edit the components. Current anchors:
 
-Headline: **AI-native operations infrastructure for iGaming.**
+### Hero (`Hero.tsx`)
 
-Subheadline: DORA deploys human-governed agentic systems across gaming operations — helping operators reduce manual workload, accelerate execution, and expand operating margins.
+- Eyebrow chip: **Secure AI Teammates**
+- Headline: **Secure AI teammates for infrastructure operations.** (second line Aurora-clipped)
+- Lede: *DORA turns recurring alerts, diagnostics, runbooks, and escalations into AI-executed workflows across your existing stack. Reduce human touches per task while keeping engineers in control.*
+- Secondary: *Operate at higher throughput without scaling headcount linearly.*
+- CTAs: **Map your first workflow** · *How it works*
+- Marquee: "Trusted by" + infra roles (DBAs · SREs · NOC · DevOps · platform/cloud/security ops · QA)
 
-Hero eyebrow: DORA · AI DEPLOYMENT FOR iGAMING
+### Section headlines
 
-Primary CTA: **Assess your operator AI deployment opportunity**
-
-Secondary CTA: See how it works
-
-### Problem
-
-Headline: **Gaming operators are digitally native. Their operations are not.**
-
-Copy: Most iGaming operators still depend on fragmented tools, outsourced services, manual workflows, and large operational teams across CRM, support, compliance, fraud, payments, affiliates, reporting, QA, and trading.
-
-DORA rebuilds these workflows around AI-native operational systems that can carry context, coordinate tasks, interact with enterprise systems, and execute under human-governed oversight.
-
-### Category (new)
-
-Eyebrow: NOT A CHATBOT. NOT A BPO. NOT ANOTHER CASINO OPERATOR.
-
-Headline: **An AI deployment company for iGaming.**
-
-Copy: DORA is not a chatbot, BPO provider, casino operator, or generic automation agency. We deploy AI-native operational systems directly into gaming environments, starting with bounded workflows where ROI can be measured quickly and expanding as trust, accuracy, and operational value are proven.
-
-### Stack (kept)
-
-Headline: Built above the model layer.
-
-Copy: DORA is model-agnostic. We do not compete at the foundation model, compute, infrastructure, or generic data layers. We build where AI becomes operational: the application, orchestration, and harness layers — deployed directly into gaming operations.
-
-### Where DORA runs (new — Use Cases)
-
-Eyebrow: OPERATING FUNCTIONS
-
-Headline: **Where DORA runs inside gaming operators.**
-
-(8 cards — see Use Case Cards above.)
-
-### Measured outcomes (new)
-
-Eyebrow: WHAT OPERATORS MEASURE
-
-Headline: **Built for measurable operator impact.**
-
-DORA deployments are designed to improve:
-
-- operational cost structure
-- support and CRM execution speed
-- compliance review cadence
-- fraud and risk triage
-- payment operations
-- affiliate reconciliation
-- reporting frequency
-- operational throughput
-- margin expansion
-
-### Final CTA (updated)
-
-Headline: **Assess your operator AI deployment opportunity.**
-
-Sub: Map a labor-heavy gaming operations workflow with DORA. We start with bounded deployments where impact can be measured in weeks.
-
-Primary CTA: **Assess your operator AI deployment opportunity**
-
-Secondary CTA: See where DORA runs
+- Problem (`Problem.tsx`): **Operations still scale through human execution.**
+- Platform (`Platform.tsx`, `#product`): **Full-stack operations.**
+- Trust (`Trust.tsx`, `#control`): **Built for production environments.** (safeguards: Scoped access · Human approval paths · Audit-ready history · Gradual trust model)
+- Capabilities (`Capabilities.tsx`, `#outcomes`): **Measure the work removed from the queue.**
+- ClosingCTA (`ClosingCTA.tsx`): **Take recurring work out of the human queue.** → **Map your first workflow**
 
 ## Implementation Requirements
 
@@ -348,7 +289,7 @@ Secondary CTA: See where DORA runs
 - Ensure responsive design (the command-center stage stacks to one column on mobile).
 - Do not introduce unnecessary dependencies.
 - Replace placeholder copy with final copy from this document.
-- Make the homepage immediately communicate that DORA is **the AI deployment company for iGaming**, with measurable operator impact.
+- Make the homepage immediately communicate that DORA is **secure AI teammates for infrastructure operations**, with measurable toil reduction (fewer human touches per task, higher throughput per engineer).
 
 ## Decisions Log
 
@@ -382,3 +323,4 @@ Secondary CTA: See where DORA runs
 | 2026-06-11 | **Operating-model section removed** (user: redundant) | The `#operating-model` strip ("DORA deploys agents that operate inside the business" + five Gather→Learn cards, the descendant of the 5-pillar architecture spine) duplicated the How-DORA-Works stage's five-step columns. `PrimitiveSpine.tsx` deleted; page now flows proof → expansion story. |
 | 2026-06-11 | **Commercial-grade pass** (user direction: less whitepaper, more AI-services firm; same strategy) | Hero → "The AI operations team for iGaming." with the agent-native layer line demoted to category support; new 4-cell commercial strip under the hero; problem lede → "…before they have the scale to justify a full operations org. DORA changes that model."; replaces-panel cards reframed as buyer pains (Slack/ticket handoffs, fragmented tools, inconsistent escalation, repetitive reviews); functions renamed "What your AI operations team handles." and absorbed the agent-modules copy (incl. Compliance card, Affiliates dropped); withdrawal example compressed to copy + five metric cards and moved above how-it-works; how-it-works definitions cut to one line each; deployment reworked as a 7-step services engagement with a "What you get" deliverables card; trust lede de-jargoned; final CTA → "Map your first operational agent."; CorePromise, AgentModules, and IconStrip removed (~30% copy cut); nav → Functions/Example, desktop nav breakpoint md→lg. |
 | 2026-06-12 | **How-it-works → interactive two-column accordion** (user direction; reference: withpanacea.com) | The static verb-headline stage became a product-explainer: left accordion (5 steps, Gather open by default, hover/click/focus set active, accessible buttons with aria-expanded, smooth grid-rows height transition) + right dark visual panel with five crossfading operational vignettes (sources→core, case evaluation, action routing, human escalation, operational memory) over `AuroraRibbons` at 35% opacity. `CommandStage.tsx` deleted; section heading now "How DORA works." with eyebrow "Operating model". Checked the duplicate-CTA/footer report: production renders exactly one FinalCTA and one footer — no duplication existed. |
+| 2026-06-21 | **Docs reconciled to the built infrastructure-operations site** | A `/design-review` (plus two independent source audits) found the entire built site is *"Secure AI teammates for infrastructure operations"* (DBAs/SREs/NOC; CTA *Map your first workflow*), while this file + `CLAUDE.md` still described the **iGaming** positioning. User confirmed the docs were stale. Rewrote Product Context, Strategic Direction, Design Thesis, Brand Personality, Header nav/CTAs, Homepage Structure (now the built 6 sections: Hero · Problem · Platform · Trust · Capabilities · ClosingCTA · Footer), Copy Rules, and Homepage Copy to match the build; marked Stack Diagram / Architecture Spine / Operations Stage / Harness Visual / iGaming Use-Case grid as retired-not-built; flagged unused `HowItWorks`/`Deployment`/`Roles` components (duplicate ids). **Visual system unchanged** (Aurora cool palette, Plus Jakarta Sans + JetBrains Mono, rounded scale, pills, motion suite). The iGaming entries above (2026-05-24 → 2026-06-12) are kept as history. |
