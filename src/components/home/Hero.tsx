@@ -23,7 +23,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_center,transparent_30%,#050608_90%)]" />
 
       <Container className="relative z-10 flex h-full flex-col items-center justify-center text-center">
-        <div>
+        <div className="w-full">
             <span className="inline-block animate-fade-up">
               <span className="inline-flex items-center gap-2 rounded-pill border border-white/[0.08] bg-white/[0.04] px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white/50">
                 <span className="h-1.5 w-1.5 rounded-full bg-mint" />
@@ -32,17 +32,17 @@ export default function Hero() {
             </span>
 
             <div className="mt-8 animate-fade-up" style={{ animationDelay: '120ms' }}>
-              <h1 className="mx-auto max-w-[22ch] text-balance text-[44px] font-bold leading-[0.94] tracking-[-0.04em] text-white sm:text-7xl lg:text-8xl xl:text-[96px]">
+              <h1 className="mx-auto text-balance text-[28px] font-bold leading-[1.05] tracking-[-0.04em] text-white sm:max-w-[22ch] sm:text-[44px] sm:leading-[0.94] lg:text-[72px] xl:text-[96px]">
                 Secure AI teammates for{' '}
                 <span className="text-spectral">infrastructure operations.</span>
               </h1>
             </div>
 
             <div className="animate-fade-up" style={{ animationDelay: '240ms' }}>
-              <p className="mx-auto mt-8 max-w-[56ch] text-[18px] font-medium leading-[1.55] text-white/60 sm:text-xl">
+              <p className="mx-auto mt-8 text-[16px] font-medium leading-[1.55] text-white/60 sm:max-w-[56ch] sm:text-[18px] lg:text-xl">
                 DORA turns recurring alerts, diagnostics, runbooks, and escalations into AI-executed workflows across your existing stack. Reduce human touches per task while keeping engineers in control.
               </p>
-              <p className="mx-auto mt-4 max-w-[48ch] text-[16px] font-medium leading-[1.5] text-white/50">
+              <p className="mx-auto mt-4 text-[15px] font-medium leading-[1.5] text-white/50 sm:max-w-[48ch] sm:text-[16px]">
                 Operate at higher throughput without scaling headcount linearly.
               </p>
 
@@ -57,7 +57,7 @@ export default function Hero() {
             </div>
 
             {/* Trusted-by marquee */}
-            <div className="mt-16 flex w-full max-w-[700px] items-center gap-5 animate-fade-up" style={{ animationDelay: '400ms' }}>
+            <div className="mt-16 flex w-full items-center gap-5 animate-fade-up sm:max-w-[700px]" style={{ animationDelay: '400ms' }}>
               <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.2em] text-white/50">
                 Trusted by
               </span>

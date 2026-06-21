@@ -166,7 +166,7 @@ export default function Capabilities() {
     <section id="outcomes" className="relative bg-graphite py-24 sm:py-32">
       <Container>
         <Reveal>
-          <div className="mb-14 flex items-end justify-between gap-6">
+          <div className="mb-14 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
             <div>
               <h2 className="max-w-[24ch] text-[32px] font-bold leading-[1.06] tracking-[-0.03em] text-white sm:text-[42px]">
                 Measure the work removed{' '}
