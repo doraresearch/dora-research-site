@@ -42,7 +42,7 @@ export default function Hero() {
               <p className="mx-auto mt-8 max-w-[56ch] text-[18px] font-medium leading-[1.55] text-white/60 sm:text-xl">
                 DORA turns recurring alerts, diagnostics, runbooks, and escalations into AI-executed workflows across your existing stack. Reduce human touches per task while keeping engineers in control.
               </p>
-              <p className="mx-auto mt-4 max-w-[48ch] text-[16px] font-medium leading-[1.5] text-white/40">
+              <p className="mx-auto mt-4 max-w-[48ch] text-[16px] font-medium leading-[1.5] text-white/50">
                 Operate at higher throughput without scaling headcount linearly.
               </p>
 

@@ -137,7 +137,7 @@ export default function HowItWorks() {
 
           {/* Visual panel */}
           <Reveal>
-            <div className="relative overflow-hidden rounded-stage border border-white/[0.06] bg-graphite p-8 lg:p-10">
+            <div className="relative overflow-hidden rounded-stage border border-white/[0.10] bg-graphite p-8 lg:p-10">
               {/* Corner brackets */}
               {['top-3 left-3', 'top-3 right-3 rotate-90', 'bottom-3 right-3 rotate-180', 'bottom-3 left-3 -rotate-90'].map((pos) => (
                 <span key={pos} className={`absolute ${pos} h-4 w-4 border-l-[1.5px] border-t-[1.5px] border-white/[0.15]`} />
@@ -204,7 +204,7 @@ export default function HowItWorks() {
                       )}
                     </div>
 
-                    <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.14em] text-white/30">
+                    <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.14em] text-white/40">
                       {step.num} · {step.visual.label}
                     </p>
                   </div>
@@ -212,11 +212,11 @@ export default function HowItWorks() {
               </div>
 
               {/* Bottom chrome */}
-              <div className="mt-4 flex items-center justify-between border-t border-white/[0.06] pt-4">
-                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/20">
+              <div className="mt-4 flex items-center justify-between border-t border-white/[0.10] pt-4">
+                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/30">
                   {steps[active].num} · {steps[active].title}
                 </p>
-                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/20">
+                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/30">
                   workflow execution
                 </p>
               </div>

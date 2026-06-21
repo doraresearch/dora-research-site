@@ -15,7 +15,7 @@ export default function Trust() {
 
       <Container>
         <Reveal>
-          <div className="rounded-stage border border-white/[0.06] bg-graphite p-8 sm:p-12 lg:p-16">
+          <div className="rounded-stage border border-white/[0.10] bg-graphite p-8 sm:p-12 lg:p-16">
             <div className="relative">
               {['top-0 left-0', 'top-0 right-0 rotate-90', 'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'].map((pos) => (
                 <span key={pos} className={`absolute ${pos} h-5 w-5 border-l-[1.5px] border-t-[1.5px] border-white/[0.1]`} />
@@ -34,7 +34,7 @@ export default function Trust() {
                   <Reveal key={s.title} delay={i * 60}>
                     <div className="py-3">
                       <h3 className="text-[15px] font-semibold text-white/80">{s.title}</h3>
-                      <p className="mt-1.5 text-[14px] leading-[1.55] text-white/40">{s.description}</p>
+                      <p className="mt-1.5 text-[14px] leading-[1.55] text-white/50">{s.description}</p>
                     </div>
                   </Reveal>
                 ))}
