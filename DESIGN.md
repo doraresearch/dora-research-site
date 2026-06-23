@@ -41,7 +41,7 @@ The homepage should make this clear above the fold: infrastructure operations, A
 
 **Antigravity-leaning enterprise systems** — visual system unchanged from the 2026-05-23 redesign.
 
-A light-first white base with generous space and big geometric sans, punctuated by cinematic **dark, rounded "stage" panels** (the command center, product surfaces) embedded in the white page. The **Aurora** spectral gradient is the signature accent, used sparingly as hairlines, heading underlines, the stack rail, the logo, and the giant wordmark — never flooding surfaces. Buttons are **pills**; cards and stages are **rounded**. The hero is centered with an Aurora accent rule.
+A light-first white base with generous space and big geometric sans, punctuated by cinematic **dark, rounded "stage" panels** (the Platform "live signal feed" panel, the Trust safeguards stage) embedded in the white page. The **Aurora** spectral gradient is the signature accent, used sparingly as hairlines, heading underlines, the hero accent bar, the logo, and the giant wordmark — never flooding surfaces. Buttons are **pills**; cards and stages are **rounded**. The hero is centered with an Aurora accent rule.
 
 Still avoid: purple / violet / magenta or warm gradient hues (keep Aurora cool: mint → blue), fake analytics dashboards, glowing-orb-as-meaning, robot or brain imagery, hype metrics, literal illustration, neon, glassmorphism, decorative blobs, and self-serve SaaS language that makes DORA feel generic.
 
@@ -80,13 +80,13 @@ A crisp light architecture palette with the cool **Aurora** spectral signature.
 | `base` | `#FFFFFF` | Main page background |
 | `soft` | `#F7F8FA` | Secondary surfaces, light buttons, subtle fields |
 | `ink` | `#050608` | Primary text, headlines, nav, primary button bg |
-| `graphite` | `#0C0F14` | Dark stage panels, command center, CTA band |
+| `graphite` | `#0C0F14` | Dark stage panels, CTA band |
 | `body` | `#3B4148` | Paragraph text |
 | `muted` | `#6F7782` | Labels, metadata, secondary text |
 | `line` | `#E4E8ED` | Standard hairline borders |
 | `line-strong` | `#AEB7C2` | Stronger dividers, tables, architecture lines |
 | `signal` | `#7DD3FC` | Solid UI accents: stage dots, selected states, signal pill |
-| `signal-soft` | `#E0F7FF` | DORA layer backgrounds in the stack diagram |
+| `signal-soft` | `#E0F7FF` | Soft signal-tinted fills / signal-pill background |
 | `deep-signal` | `#0369A1` | Link hovers, small active annotations, mono index labels |
 | `dark-text` | `#F8FAFC` | Text on dark/graphite |
 | `dark-muted` | `#CBD5E1` | Secondary text on dark/graphite |
@@ -100,7 +100,7 @@ The signature gradient. Multi-hue but deliberately **cool / "AI-systems"**, not 
 --spectral-v:  linear-gradient(180deg, #6EE7B7, #2DD4BF, #22D3EE, #38BDF8, #3B82F6);
 ```
 
-Apply Aurora as: the hero accent bar, section-heading underlines (~64px), hairline section dividers, the stack-diagram DORA rail, the CTA topline, primitive / use-case hover accents, the swarm logo mark, and the giant footer wordmark (`background-clip:text`). Thin signature, not surface fills. **No purple, violet, magenta, or warm hues.**
+Apply Aurora as: the hero accent bar, section-heading underlines (~64px), hairline section dividers, the CTA topline, card hover accents, the swarm logo mark, and the giant footer wordmark (`background-clip:text`). Thin signature, not surface fills. **No purple, violet, magenta, or warm hues.**
 
 ## Layout
 
@@ -113,18 +113,17 @@ Apply Aurora as: the hero accent bar, section-heading underlines (~64px), hairli
 
 | Element | Radius |
 |---|---|
-| Large dark stages, command center, CTA band | `24-26px` |
+| Large dark stages, CTA band | `24-26px` |
 | Cards, product-stage cards, use-case cards | `16-20px` |
 | Small panels / chips inside stages | `9-14px` |
 | Buttons, eyebrow chips | pill (`999px`) |
-| **Stack / architecture diagram layer rows** | **`0` (stay sharp)** — keeps the diagram reading as a precise architectural artifact |
 
 ## Brand Mark (Logo)
 
 The DORA mark is a **swarm** — a coordinated ring of particles (the "orbit ring"), abstract and geometric, mapping to "parallel agent swarms."
 
 - **Construction:** ~13 `<circle>` elements on a `0 0 24 24` grid forming a ring with an opening (denser, larger dots on the lower-left arc) plus two small inner dots, filled with the Aurora gradient via `gradientUnits="userSpaceOnUse"`.
-- **Usage:** header (~22-24px, Aurora, spinning), command-center mark (~20px, solid white on dark, static), footer meta (~17px, Aurora, spinning). Minimum legible size ~16px.
+- **Usage:** header (~22-24px, Aurora, spinning), dark-stage mark (~20px, solid white on dark, static), footer meta (~17px, Aurora, spinning). Minimum legible size ~16px.
 - **Motion:** rotates slowly (~22s linear) in live contexts (header/footer); static otherwise; reduced-motion → static.
 - **Don't:** literal fish/animals, recolor outside Aurora/white, outline, shrink below ~16px.
 - **Reuse:** ship as the `<Logo />` SVG component.
@@ -167,77 +166,46 @@ Rendered order is defined in `src/pages/Home.tsx`: Hero → (gradient divider) �
 
 > **2026-06-21 status:** In the current build, only the **Giant Wordmark Footer** and the dark **stage-panel + corner-bracket** idiom ship (plus the **Hero Aurora `<canvas>`** and the **Brand Mark**, specced elsewhere). The built dark visuals are the **Platform "live signal feed" panel** and the **Trust safeguards stage**. The **Stack Diagram**, **Architecture Spine**, **Operations Stage / How-DORA-works visual panel**, **Harness Visual**, and the **iGaming Use Case hub grid** below are **retired / not built** — kept for historical reference only.
 
-### Stack Diagram
+### Stack Diagram — RETIRED / not built
 
-Show where DORA sits relative to models, while framing the operator context:
-
-1. Gaming operations
-2. DORA Application Layer
-3. DORA Orchestration Layer
-4. DORA Harness Layer
-5. Existing Model Layer
-6. Data / Infrastructure / Compute
-
-The three DORA layers are grouped and emphasized with `signal-soft` fill, an **Aurora vertical rail**, and a "↳ DORA operates here" mono bracket. Layer rows stay sharp (radius 0).
+A 6-layer "where DORA sits" diagram (gaming operations / DORA application·orchestration·harness / models / data·infra·compute) with an Aurora rail. iGaming-era; **not in the build** — no stack diagram ships.
 
 ### Architecture Spine — REMOVED 2026-06-11
 
 The 5-pillar editorial spine (later simplified into an "operating model" strip of Gather→Learn cards) was removed from the homepage: it duplicated the How-DORA-Works stage's five-step model. `PrimitiveSpine.tsx` is deleted. The pillar visuals (WorkflowRail · PersonaCards · AgentGrid · MemoryLayers · HarnessFrame) are retired with it; the harness-frame aesthetic lives on in the trust layer and proof module.
 
-### Operations Stage → How-DORA-works visual panel (2026-06-12)
+### Operations Stage / How-DORA-works panel — RETIRED / not built
 
-The full-width Aurora-ribbon statement stage was replaced by the interactive How-DORA-works section (see Homepage Structure item 9). `AuroraRibbons` now renders inside that section's right-hand visual panel at reduced opacity (~35%) behind the per-step vignettes — same canvas, same reduced-motion/visibility behavior. Original stage spec (kept for reference):
+The `AuroraRibbons` canvas + "Gather. Reason. Act. Escalate. Learn." statement stage (and the later interactive How-DORA-works accordion panel). iGaming / pre-reconciliation era; **not in the DORA build**. The built dark visuals are the Platform "live signal feed" panel and the Trust safeguards stage.
 
-#### Original spec (2026-06-10, retired)
+### Harness frame — RETIRED / not built
 
-A cinematic dark rounded graphite stage in the Turing-hero treatment, recolored to the Aurora signature:
-
-- **`AuroraRibbons` canvas** — two to three flowing ribbon bundles (silky filament lines + soft glow strokes, additive `lighter` compositing) sweeping diagonally across the stage, drawn with Aurora-stop linear gradients that fade at both edges (mint→cyan→sky and blue→sky→teal — cool only, never Turing's warm gold), plus sparse twinkling star specks. SSR-safe; reduced-motion → one static frame; pauses when the tab is hidden; DPR capped at 2.
-- **Content** — one centered statement only: mono eyebrow (*HOW DORA WORKS*), H2 *"Gather. Reason. Act. Escalate. Learn."* with the serif italic accent on *Learn*, one dark-muted sub-line about the human-governed loop. No buttons (hero CTAs sit directly above), no console chrome, no fake panels.
-- **Frame** — corner containment brackets (harness vocabulary), radial-tinted graphite background, soft under-stage shadow, and a subtle center vignette overlay between canvas and text for legibility.
-
-### Harness Visual — the harness frame
-
-Row 4's visual is a dark stage card showing the agent core wrapped in an instrument rig: corner **containment brackets**, a dashed **measurement ring** with an Aurora **eval arc** (~75%), N/E/S/W tick marks, the labels **CONTEXT · EVAL · CONSTRAINTS**, and a **"REVIEW ✓ → DEPLOY"** readout. Built as an inline SVG ring with a `userSpaceOnUse` Aurora gradient.
-
-In motion contexts the eval arc rotates slowly (~16s) and the core gently pulses; reduced-motion → static.
+The harness-frame instrument rig (measurement ring, Aurora eval arc, CONTEXT·EVAL·CONSTRAINTS, "REVIEW → DEPLOY"). **Not built.** The corner-containment-bracket motif survives on the Platform live-feed and Trust stages.
 
 ### Giant Wordmark Footer
 
 A huge "DORA" set in Plus Jakarta Sans 800 with the Aurora gradient via `background-clip:text` — the Antigravity-style brand close.
 
-### Use Case Cards (2026-06-10 — hub grid)
+### iGaming Use-Case hub grid — RETIRED / not built
 
-A centered **hub grid**: the 8 operating functions arranged around a central DORA hub cell (layout reference: Frontdesk's "all your customer communications, one agentic platform" section, translated into the DORA system).
-
-- **Desktop (lg):** 3×3 grid — 4 function cards, the DORA hub in the center cell, 4 function cards.
-- **Tablet (sm):** 2 columns; the hub spans the full row (`col-span-2`) mid-grid.
-- **Mobile:** single column; the hub stacks mid-list.
-- **Section header is centered** (chip eyebrow · H2 with serif accent · Aurora underline `mx-auto` · short lede) — an intentional exception to the default left-aligned section headers.
-- **Function cards:** white, hairline `line` border, `rounded-card`, centered content — icon chip → bold title → small body description. Aurora top-border accent on hover (kept).
-- **Icon chips:** 40px rounded-[12px] squares whose hues sweep the Aurora stops across the grid (cool only, no purple/warm): background = an Aurora stop at 13-18% alpha; icon stroke = a deepened same-hue tone for contrast — mint→`#059669`, teal→`#0D9488`, cyan→`#0891B2`, sky→`#0369A1` (= deep-signal), blue→`#2563EB`. Icons are 1.6-stroke line glyphs in the IconStrip style.
-- **Hub cell:** graphite, `rounded-card`, static 2px Aurora topline, white swarm mark + "DORA" wordmark, mono label "ONE AGENTIC OPERATIONS LAYER", small `white/[0.06]` bordered pill linking to `#deployment-pattern`. (Frontdesk's violet-gradient hub is banned here — the graphite stage cell + Aurora hairline is the DORA translation.)
-
-Current card copy lives in `src/components/home/UseCases.tsx` (titles: Payments & withdrawals · KYC & compliance · Fraud & risk · Support · CRM & VIP · Affiliates · BI & reporting · Trading; descriptions are "Agents …" action sentences). Concise, serious, regulated-tone — no full-automation promises.
+An 8-function hub grid (Payments & withdrawals · KYC · Fraud · Support · CRM/VIP · Affiliates · BI · Trading) around a central DORA hub cell. Pure **iGaming**; **not built** — `UseCases.tsx` and the other iGaming-themed components were removed in `89bf11f`. The built site surfaces outcomes via the **Capabilities** metric-card carousel instead.
 
 ## Motion
 
-Motion is functional and restrained but uses a defined signature set. **Every motion is mandatorily `prefers-reduced-motion`-gated**. Continuous loops pause when the tab is hidden.
+Motion is functional and restrained, with a defined signature set. **Every motion is mandatorily `prefers-reduced-motion`-gated**; continuous loops pause when the tab/section is hidden.
 
-Approved motion:
+Built motion:
 
-1. **Hero entrance** — sequential fade-up of eyebrow → headline → lede → CTAs → stage (~750ms total).
-2. **Aurora ribbon flow** — continuous `<canvas>` flowing light-ribbon animation (plus twinkling specks), confined to the dark visual panel of the How-DORA-works section at ~35% opacity (2026-06-12; previously the full-width operations stage). The swarm survives as the brand mark.
-10. **How-DORA-works accordion** — hover/click-driven expand-collapse (`grid-template-rows` transition, ~500ms ease-out) and visual-panel crossfade (~500ms opacity/translate); both `motion-reduce:transition-none`-gated.
+1. **Hero entrance** — sequential fade-up of eyebrow → headline → lede → CTAs → marquee (~750ms total).
+2. **Hero Aurora `<canvas>`** (`AuroraCanvas`) — drifting nebula blobs + horizontal aurora bands + parallax particle layers + sparse mesh lines, mouse-reactive, under a radial vignette; pauses when the hero scrolls out of view.
 3. **Swarm logo mark** — slow rotation (~22s linear) in header + footer; static elsewhere.
-4. **Scroll reveals** — subtle fade-up + ~20px translate as major sections enter the viewport (IntersectionObserver, once each, ~600ms).
-5. **Live command center** — agent chips pulse on staggered CSS `cell-pulse` (1.8s); spine agent grid cells pulse on the same animation with different stagger delays.
-6. **Harness eval arc** — slow rotation (`eval-spin` 16s).
-7. **Harness core** — gentle `core-pulse` (3.2s).
-8. **Hover** — Aurora accent draws/grows on hover (primitive rows, use-case cards); transitions under 200ms.
-9. **Mobile nav** — hamburger ↔ X toggle, dropdown slide/fade.
+4. **Scroll reveals** — subtle fade-up + ~20px translate as major sections enter the viewport (IntersectionObserver, once each).
+5. **Platform live-feed** — `cell-pulse` on the telemetry chips/rows in the dark "live signal feed" panel; crossfade between steps as the accordion changes.
+6. **Capabilities carousel** — the metric-card row auto-loops (infinite scroll); scroll-snap on mobile.
+7. **Hover** — Aurora accent / border transitions on cards and buttons, under 200ms.
+8. **Mobile nav** — hamburger ↔ X toggle, dropdown slide/fade.
 
-Avoid: parallax, motion outside this list, motion that isn't reduced-motion-gated, continuous animation outside the dark command stage (logo + arc + core + cell-pulse excepted), and anything cute, bouncy, or attention-grabbing.
+Avoid: parallax, motion that isn't reduced-motion-gated, continuous animation beyond the gated hero canvas + live-feed pulse + carousel + logo spin, and anything cute, bouncy, or attention-grabbing.
 
 ## Copy Rules
 
@@ -284,9 +252,9 @@ The **copy of record lives in the components** under `src/components/home/` (plu
 - Use the existing React 18 + TypeScript + Vite + Tailwind project. Build runs `tsc --noEmit && vite-react-ssg build` (prerendered static output in `dist/`).
 - Load fonts: `Plus Jakarta Sans` (400-800), `Instrument Serif` (italic accent), `JetBrains Mono` (labels). Async-loaded via `preload` + `onload` swap with a `<noscript>` fallback.
 - Preserve maintainability and component clarity. Ship the logo as a reusable `<Logo />` SVG component.
-- Implement motion with CSS + minimal JS (custom hooks for IntersectionObserver / reduced motion). The command-center swarm is a `<canvas>` component. **All motion must be `prefers-reduced-motion`-gated** and continuous loops must pause when hidden/offscreen.
+- Implement motion with CSS + minimal JS (custom hooks for IntersectionObserver / reduced motion). The hero Aurora background is a `<canvas>` component (`AuroraCanvas`). **All motion must be `prefers-reduced-motion`-gated** and continuous loops must pause when hidden/offscreen.
 - Use semantic sections and accessible markup. Hamburger nav needs `aria-expanded`.
-- Ensure responsive design (the command-center stage stacks to one column on mobile).
+- Ensure responsive design (the Platform "live signal feed" panel is desktop-only — `hidden lg:block`; sections stack to one column on mobile).
 - Do not introduce unnecessary dependencies.
 - Replace placeholder copy with final copy from this document.
 - Make the homepage immediately communicate that DORA is **secure AI teammates for infrastructure operations**, with measurable toil reduction (fewer human touches per task, higher throughput per engineer).

@@ -1,6 +1,6 @@
 # DORA Research site
 
-Static marketing site for DORA Research — the AI deployment company for iGaming. Single-page React/Vite homepage. DORA gives operators operational agents for core functions (support, KYC, payments, risk, VIP, compliance, reporting).
+Static marketing site for DORA Research — **secure AI teammates for infrastructure operations**. Single-page React/Vite homepage. DORA turns recurring alerts, diagnostics, runbooks, and escalations into AI-executed workflows across the tools the team already runs (Datadog, PagerDuty, CloudWatch, Prometheus, Slack, Jira, cloud, databases), keeping engineers in control.
 
 ## Run locally
 
