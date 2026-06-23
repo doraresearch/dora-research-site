@@ -1,6 +1,6 @@
 # DORA Research site
 
-Static marketing site for DORA — **secure AI teammates for infrastructure operations**. DORA turns recurring alerts, diagnostics, runbooks, and escalations into AI-executed workflows across an operator's existing stack (Datadog, PagerDuty, CloudWatch, Prometheus, Slack, Jira, cloud, databases), reducing human touches per task while keeping engineers in control — higher throughput without scaling headcount linearly. Audience: infrastructure & operations engineers (DBAs, SREs, NOC, DevOps, platform/cloud/security ops, QA). Stack: React 18 + TypeScript + Vite + Tailwind + react-router-dom, prerendered via vite-react-ssg (no framer-motion). Current public surface: single-page homepage. Deployed on Vercel (manual `vercel --prod`).
+Static marketing site for DORA — **secure AI teammates for infrastructure operations**. DORA turns recurring alerts, diagnostics, runbooks, and escalations into AI-executed workflows across an operator's existing stack (Datadog, PagerDuty, CloudWatch, Prometheus, Slack, Jira, cloud, databases), reducing human touches per task while keeping engineers in control — higher throughput without scaling headcount linearly. Audience: infrastructure & operations engineers (DBAs, SREs, NOC, DevOps, platform/cloud/security ops, QA). Stack: React 18 + TypeScript + Vite + Tailwind + react-router-dom, prerendered via vite-react-ssg (no framer-motion). Current public surface: single-page homepage. Deployed on **Cloudflare Pages** (manual `wrangler pages deploy`).
 
 > **Positioning note (2026-06-21):** the built/shipped site is the **infrastructure-operations** product described above. Earlier revisions of this file and `DESIGN.md` described an **iGaming** positioning ("AI operations for iGaming", KYC/payments/VIP). That positioning is **superseded/stale** — the iGaming language does not appear anywhere in the build. Judge work against the infrastructure-operations product and the design system's visual invariants.
 
@@ -34,18 +34,20 @@ npm run preview  # preview prod build
 
 ## Deploy
 
-Production (`www.dorareason.com`) ships **manually** via the Vercel CLI — `git push` to `main` does **not** auto-deploy:
+Production (`dorareason.com` + `www`) is hosted on **Cloudflare Pages** (project `dora-research-site`) and ships **manually** via Wrangler — `git push` does **not** auto-deploy:
 
 ```bash
-vercel --prod    # remote build + aliases the production domain
+npm run build
+wrangler pages deploy dist --project-name dora-research-site
 ```
 
-Auto-deploy is not currently wired: the Vercel project (`jbrackens-projects/dora-research-site`) is not connected to the GitHub repo (no Vercel GitHub App, webhook, or commit checks), and `vercel git connect` fails from the CLI ("Failed to connect doraresearch/dora-research-site") because the Vercel GitHub App is not installed on the `doraresearch` GitHub org. To enable push-to-deploy, a GitHub org admin must connect the repo in Vercel → project → Settings → Git (this installs the app).
+Run wrangler under **Node 20 LTS**, not the machine-default Node 26 — Node 26 makes the deploy hang at "Building…" with no error output. Auth is OAuth via `wrangler login` (the user's Cloudflare account).
+
+DNS for `dorareason.com` lives on **Cloudflare** (nameservers `courtney`/`ishaan.ns.cloudflare.com`); apex `@` and `www` are `CNAME → dora-research-site.pages.dev` (Proxied), SSL auto-provisioned. DNS records and Pages custom domains are managed in the **Cloudflare dashboard** — the `wrangler login` token is deploy-scoped (`pages:write` + `zone:read`) and **cannot edit DNS**, and the Pages domain-add API does **not** auto-create the CNAME (the dashboard flow does).
 
 Notes:
-- `.vercel/project.json`'s `orgId` `team_Tfxzg…` is the id of the `jbrackens-projects` Vercel account (Vercel labels accounts as "teams") — the link is correct, not stale.
-- The connected **Vercel MCP** is authed to a different identity and 403s on this account; use the **Vercel CLI** (logged in as `jbrackens`) for deploys/inspection.
-- Build runs `tsc --noEmit && vite-react-ssg build` (prerendered static output in `dist/`). SPA fallback routing is in `vercel.json`.
+- Build runs `tsc --noEmit && vite-react-ssg build` (prerendered static output in `dist/`). SPA fallback for unknown paths is `public/_redirects` (`/* /index.html 200`).
+- History: was on Vercel (manual `vercel --prod`); Vercel's Hobby plan then blocked the commercial deploy (`Not authorized`), so it was migrated to **Cloudflare Pages** on 2026-06-23. A stale `.vercel/` link may exist locally (gitignored) — ignore it; do not run `vercel`.
 
 ## Skill routing
 

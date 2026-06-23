@@ -1,6 +1,6 @@
 # DORA Research site
 
-Static marketing site for DORA Research — the AI deployment company for iGaming. Stack: React 18 + TypeScript + Vite + Tailwind + react-router-dom, prerendered via vite-react-ssg (no framer-motion). Current public surface: single-page homepage. Deployed on Vercel (manual `vercel --prod`).
+Static marketing site for DORA Research — the AI deployment company for iGaming. Stack: React 18 + TypeScript + Vite + Tailwind + react-router-dom, prerendered via vite-react-ssg (no framer-motion). Current public surface: single-page homepage. Deployed on **Cloudflare Pages** (manual `wrangler pages deploy`).
 
 ## Design System
 
@@ -25,4 +25,5 @@ npm run preview  # preview prod build
 
 ## Deploy
 
-Ships manually via `vercel --prod`. SPA routing is handled in `vercel.json`.
+Hosted on **Cloudflare Pages** (project `dora-research-site`). Ships manually:
+`npm run build && wrangler pages deploy dist --project-name dora-research-site` (run wrangler under Node 20, not 26). DNS + custom domains (`dorareason.com`, `www`) are on Cloudflare; SPA fallback is `public/_redirects`. The `wrangler login` token can't edit DNS — use the Cloudflare dashboard. See `CLAUDE.md`.
