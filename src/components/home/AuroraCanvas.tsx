@@ -27,12 +27,14 @@ type Blob = {
 
 function createBlobs(): Blob[] {
   return [
-    { cx: 0.3, cy: 0.35, freqX: 0.08, freqY: 0.06, phaseX: 0, phaseY: 1.2, ampX: 0.12, ampY: 0.10, baseRadius: 0.45, colorA: AURORA[0], colorB: AURORA[1], opacity: 0.35 },
-    { cx: 0.7, cy: 0.3, freqX: 0.06, freqY: 0.09, phaseX: 2.1, phaseY: 0.5, ampX: 0.14, ampY: 0.08, baseRadius: 0.42, colorA: AURORA[2], colorB: AURORA[3], opacity: 0.30 },
-    { cx: 0.5, cy: 0.65, freqX: 0.07, freqY: 0.05, phaseX: 4.0, phaseY: 3.1, ampX: 0.10, ampY: 0.12, baseRadius: 0.48, colorA: AURORA[1], colorB: AURORA[2], opacity: 0.28 },
-    { cx: 0.2, cy: 0.7, freqX: 0.05, freqY: 0.07, phaseX: 1.5, phaseY: 4.5, ampX: 0.08, ampY: 0.10, baseRadius: 0.36, colorA: AURORA[3], colorB: AURORA[4], opacity: 0.25 },
-    { cx: 0.8, cy: 0.6, freqX: 0.09, freqY: 0.06, phaseX: 3.3, phaseY: 2.0, ampX: 0.10, ampY: 0.09, baseRadius: 0.38, colorA: AURORA[4], colorB: AURORA[0], opacity: 0.26 },
-    { cx: 0.5, cy: 0.3, freqX: 0.04, freqY: 0.08, phaseX: 5.0, phaseY: 1.0, ampX: 0.15, ampY: 0.06, baseRadius: 0.34, colorA: AURORA[0], colorB: AURORA[3], opacity: 0.22 },
+    { cx: 0.3, cy: 0.35, freqX: 0.08, freqY: 0.06, phaseX: 0, phaseY: 1.2, ampX: 0.12, ampY: 0.10, baseRadius: 0.45, colorA: AURORA[0], colorB: AURORA[1], opacity: 0.40 },
+    { cx: 0.7, cy: 0.3, freqX: 0.06, freqY: 0.09, phaseX: 2.1, phaseY: 0.5, ampX: 0.14, ampY: 0.08, baseRadius: 0.42, colorA: AURORA[2], colorB: AURORA[3], opacity: 0.34 },
+    { cx: 0.5, cy: 0.72, freqX: 0.07, freqY: 0.05, phaseX: 4.0, phaseY: 3.1, ampX: 0.10, ampY: 0.12, baseRadius: 0.46, colorA: AURORA[1], colorB: AURORA[2], opacity: 0.24 },
+    { cx: 0.2, cy: 0.7, freqX: 0.05, freqY: 0.07, phaseX: 1.5, phaseY: 4.5, ampX: 0.08, ampY: 0.10, baseRadius: 0.36, colorA: AURORA[3], colorB: AURORA[4], opacity: 0.28 },
+    { cx: 0.8, cy: 0.6, freqX: 0.09, freqY: 0.06, phaseX: 3.3, phaseY: 2.0, ampX: 0.10, ampY: 0.09, baseRadius: 0.38, colorA: AURORA[4], colorB: AURORA[0], opacity: 0.29 },
+    { cx: 0.5, cy: 0.22, freqX: 0.04, freqY: 0.08, phaseX: 5.0, phaseY: 1.0, ampX: 0.15, ampY: 0.06, baseRadius: 0.34, colorA: AURORA[0], colorB: AURORA[3], opacity: 0.18 },
+    { cx: 0.78, cy: 0.42, freqX: 0.07, freqY: 0.05, phaseX: 2.6, phaseY: 3.7, ampX: 0.11, ampY: 0.09, baseRadius: 0.36, colorA: AURORA[2], colorB: AURORA[0], opacity: 0.20 },
+    { cx: 0.22, cy: 0.44, freqX: 0.05, freqY: 0.07, phaseX: 0.8, phaseY: 2.2, ampX: 0.12, ampY: 0.10, baseRadius: 0.38, colorA: AURORA[1], colorB: AURORA[3], opacity: 0.20 },
   ]
 }
 
@@ -55,7 +57,7 @@ type Particle = {
 
 function createParticles(w: number, h: number): Particle[] {
   const particles: Particle[] = []
-  const counts = [100, 80, 50] // far, mid, near
+  const counts = [120, 96, 60] // far, mid, near
   const configs = [
     { radiusRange: [0.5, 1.2], glowRange: [3, 6], orbitRange: [10, 30], speedRange: [0.1, 0.25], brightnessRange: [0.15, 0.35] },
     { radiusRange: [1.0, 2.0], glowRange: [5, 10], orbitRange: [15, 45], speedRange: [0.2, 0.4], brightnessRange: [0.3, 0.55] },
@@ -131,6 +133,87 @@ function drawAuroraBand(
   }
 }
 
+// --- Aurora ribbons: flowing silky light filaments (the "flow") ---
+
+type Ribbon = {
+  yBase: number // 0..1 vertical anchor
+  tilt: number // diagonal slope
+  amp: number // undulation amplitude (px)
+  freq: number // base spatial frequency
+  speed: number // temporal flow speed
+  phase: number
+  drift: number // horizontal sweep speed
+  width: number // core thickness (px)
+  opacity: number
+  stops: [number, number, number][] // Aurora colours along the ribbon
+}
+
+function createRibbons(): Ribbon[] {
+  return [
+    { yBase: 0.24, tilt: -0.10, amp: 58, freq: 0.0016, speed: 0.18, phase: 0.0, drift: 14, width: 24, opacity: 0.38, stops: [AURORA[0], AURORA[1], AURORA[2]] },
+    { yBase: 0.70, tilt: 0.07, amp: 76, freq: 0.0012, speed: 0.13, phase: 1.7, drift: -10, width: 32, opacity: 0.34, stops: [AURORA[2], AURORA[3], AURORA[4]] },
+    { yBase: 0.16, tilt: -0.05, amp: 64, freq: 0.0020, speed: 0.23, phase: 3.2, drift: 18, width: 18, opacity: 0.30, stops: [AURORA[1], AURORA[2], AURORA[3]] },
+    { yBase: 0.82, tilt: 0.11, amp: 92, freq: 0.0009, speed: 0.10, phase: 4.6, drift: -7, width: 38, opacity: 0.26, stops: [AURORA[0], AURORA[2], AURORA[4]] },
+    { yBase: 0.50, tilt: 0.03, amp: 50, freq: 0.0024, speed: 0.27, phase: 5.5, drift: 12, width: 14, opacity: 0.18, stops: [AURORA[3], AURORA[2], AURORA[0]] },
+  ]
+}
+
+function drawRibbons(
+  ctx: CanvasRenderingContext2D,
+  w: number, h: number,
+  time: number,
+  mouseY: number,
+  ribbons: Ribbon[],
+) {
+  ctx.globalCompositeOperation = 'lighter'
+  ctx.lineCap = 'round'
+  ctx.lineJoin = 'round'
+
+  // subtle vertical lift toward the cursor (-0.5..0.5 of viewport)
+  const my = mouseY > 0 ? mouseY / h - 0.5 : 0
+
+  // bright at the top/bottom thirds, strongly dimmed through the headline band
+  const legibility = (yNorm: number) => 0.14 + 0.86 * Math.min(1, Math.abs(yNorm - 0.46) / 0.36)
+
+  const passes = [
+    { wMul: 3.4, aMul: 0.08 },
+    { wMul: 1.6, aMul: 0.16 },
+    { wMul: 0.6, aMul: 0.34 },
+  ]
+
+  for (const rb of ribbons) {
+    const cy = (rb.yBase + my * 0.04) * h + Math.sin(time * rb.speed * 0.6 + rb.phase) * rb.amp * 0.25
+    const xShift = time * rb.drift * rb.freq
+    const fade = legibility(rb.yBase)
+
+    const [c0, c1, c2] = rb.stops
+    const grad = ctx.createLinearGradient(0, 0, w, 0)
+    grad.addColorStop(0.0, `rgba(${c0[0]},${c0[1]},${c0[2]},0)`)
+    grad.addColorStop(0.2, `rgba(${c0[0]},${c0[1]},${c0[2]},${rb.opacity})`)
+    grad.addColorStop(0.5, `rgba(${c1[0]},${c1[1]},${c1[2]},${rb.opacity})`)
+    grad.addColorStop(0.8, `rgba(${c2[0]},${c2[1]},${c2[2]},${rb.opacity})`)
+    grad.addColorStop(1.0, `rgba(${c2[0]},${c2[1]},${c2[2]},0)`)
+
+    for (const pass of passes) {
+      ctx.beginPath()
+      for (let x = -40; x <= w + 40; x += 7) {
+        const flow =
+          Math.sin(x * rb.freq + time * rb.speed + rb.phase + xShift) * rb.amp +
+          Math.sin(x * rb.freq * 2.4 + time * rb.speed * 0.7 + rb.phase * 1.5) * rb.amp * 0.35 +
+          Math.sin(x * rb.freq * 0.5 - time * rb.speed * 0.5) * rb.amp * 0.2
+        const y = cy + rb.tilt * (x - w / 2) + flow
+        if (x < 0) ctx.moveTo(x, y)
+        else ctx.lineTo(x, y)
+      }
+      ctx.strokeStyle = grad
+      ctx.globalAlpha = pass.aMul * fade
+      ctx.lineWidth = rb.width * pass.wMul
+      ctx.stroke()
+    }
+  }
+  ctx.globalAlpha = 1
+}
+
 // --- Main draw ---
 
 function draw(
@@ -142,6 +225,7 @@ function draw(
   mouseY: number,
   blobs: Blob[],
   particles: Particle[],
+  ribbons: Ribbon[],
 ) {
   ctx.clearRect(0, 0, w, h)
 
@@ -188,6 +272,9 @@ function draw(
     ctx.arc(fx, fy, radius, 0, Math.PI * 2)
     ctx.fill()
   }
+
+  // 1.5) Aurora ribbons — flowing silky filaments
+  drawRibbons(ctx, w, h, time, mouseY, ribbons)
 
   // 2) Aurora bands
   ctx.globalCompositeOperation = 'lighter'
@@ -241,8 +328,8 @@ function draw(
 
     // Glow (soft radial gradient instead of flat circle)
     const glowGrad = ctx.createRadialGradient(px, py, 0, px, py, p.glowRadius)
-    glowGrad.addColorStop(0, `rgba(${r},${g},${b},${alpha * 0.6})`)
-    glowGrad.addColorStop(0.5, `rgba(${r},${g},${b},${alpha * 0.15})`)
+    glowGrad.addColorStop(0, `rgba(${r},${g},${b},${alpha * 0.72})`)
+    glowGrad.addColorStop(0.5, `rgba(${r},${g},${b},${alpha * 0.2})`)
     glowGrad.addColorStop(1, `rgba(${r},${g},${b},0)`)
     ctx.fillStyle = glowGrad
     ctx.beginPath()
@@ -282,7 +369,18 @@ function draw(
     }
   }
 
+  // 5) Central legibility wash — keep strong text contrast over the richer flow.
+  // Vivid Aurora reads in the top & bottom thirds; the headline band is darkened.
   ctx.globalCompositeOperation = 'source-over'
+  const wash = ctx.createLinearGradient(0, 0, 0, h)
+  wash.addColorStop(0.0, 'rgba(5,6,8,0)')
+  wash.addColorStop(0.2, 'rgba(5,6,8,0.46)')
+  wash.addColorStop(0.42, 'rgba(5,6,8,0.72)')
+  wash.addColorStop(0.62, 'rgba(5,6,8,0.64)')
+  wash.addColorStop(0.8, 'rgba(5,6,8,0.28)')
+  wash.addColorStop(1.0, 'rgba(5,6,8,0)')
+  ctx.fillStyle = wash
+  ctx.fillRect(0, 0, w, h)
 }
 
 export default function AuroraCanvas({ className = '' }: { className?: string }) {
@@ -290,6 +388,7 @@ export default function AuroraCanvas({ className = '' }: { className?: string })
   const mouseRef = useRef({ x: -1000, y: -1000 })
   const particlesRef = useRef<Particle[]>([])
   const blobsRef = useRef<Blob[]>(createBlobs())
+  const ribbonsRef = useRef<Ribbon[]>(createRibbons())
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -347,6 +446,7 @@ export default function AuroraCanvas({ className = '' }: { className?: string })
         mouseRef.current.x, mouseRef.current.y,
         blobsRef.current,
         particlesRef.current,
+        ribbonsRef.current,
       )
 
       animId = requestAnimationFrame(loop)
