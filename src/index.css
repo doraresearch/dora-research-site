@@ -62,6 +62,24 @@
     color: transparent;
   }
 
+  /* Aurora wordmark with a flowing spectral shimmer (footer brand mark).
+     Palindrome gradient + 200% size → the cool spectrum sweeps seamlessly
+     through the letters. Animation only runs while .is-flowing is set
+     (toggled when the footer is on screen); reduced-motion freezes it. */
+  .text-spectral-shimmer {
+    background-image: linear-gradient(
+      90deg,
+      #6ee7b7, #2dd4bf, #22d3ee, #38bdf8, #3b82f6, #38bdf8, #22d3ee, #2dd4bf, #6ee7b7
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-spectral-shimmer.is-flowing {
+    animation: wordmark-shimmer 8s linear infinite;
+  }
+
   /* Frosted glass surface — dark variant (hero overlay, mobile menu on hero) */
   .glass-dark {
     background: rgba(12, 15, 20, 0.7);
@@ -117,6 +135,12 @@ html.lenis, html.lenis body {
 }
 .animate-marquee {
   animation: marquee 36s linear infinite;
+}
+
+/* Footer wordmark spectral shimmer */
+@keyframes wordmark-shimmer {
+  from { background-position: 0% 50%; }
+  to { background-position: 200% 50%; }
 }
 
 /* Scroll-reveal (progressive enhancement; content stays visible without JS) */
