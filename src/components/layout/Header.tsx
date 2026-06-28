@@ -32,18 +32,23 @@ export default function Header() {
   }, [])
 
   const textColor = pastHero ? 'text-ink/90' : 'text-white/90'
-  const navColor = pastHero ? 'text-ink/50 hover:text-ink/90' : 'text-white/50 hover:text-white/90'
+  const navColor = pastHero ? 'text-ink/70 hover:text-ink' : 'text-white/85 hover:text-white'
   const pillClass = pastHero ? 'nav-pill' : 'nav-pill-dark'
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 transition-all duration-500">
-      <div className={`mx-auto flex h-16 max-w-[1200px] items-center justify-between px-6 transition-all duration-500 sm:px-8 ${scrolled ? `mx-4 mt-3 ${pillClass} sm:mx-8` : ''}`}>
+    <header className="fixed inset-x-0 top-0 z-50">
+      {/* Dark top panel behind the nav (over the hero) so it reads as a top bar */}
+      <div
+        aria-hidden="true"
+        className={`pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#050608] via-[#050608]/85 to-transparent transition-opacity duration-500 ${pastHero ? 'opacity-0' : 'opacity-100'}`}
+      />
+      <div className={`relative mx-auto flex h-16 max-w-[1200px] items-center justify-between px-6 transition-all duration-500 sm:px-8 ${scrolled ? `mt-3 ${pillClass}` : ''}`}>
         <Link
           to="/"
-          className={`flex min-h-[44px] shrink-0 items-center gap-2.5 text-[18px] font-bold tracking-[-0.01em] transition-colors duration-300 ${textColor}`}
+          className={`flex min-h-[44px] shrink-0 items-center gap-3 text-[22px] font-bold tracking-[-0.01em] transition-colors duration-300 ${textColor}`}
           aria-label="DORA, home"
         >
-          <Logo size={24} spin />
+          <Logo size={30} spin />
           DORA
         </Link>
 
@@ -52,7 +57,7 @@ export default function Header() {
             <a
               key={label}
               href={href}
-              className={`flex min-h-[44px] items-center text-sm font-medium transition-colors duration-300 ${navColor}`}
+              className={`flex min-h-[44px] items-center text-[15px] font-medium transition-colors duration-300 ${navColor}`}
             >
               {label}
             </a>
