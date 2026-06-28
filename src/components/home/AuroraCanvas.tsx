@@ -38,52 +38,81 @@ function createBlobs(): Blob[] {
   ]
 }
 
-// --- Particle layers ---
+// --- Code rain: falling monospace glyph columns (replaces the old floating particles) ---
 
-type Particle = {
-  baseX: number
-  baseY: number
-  x: number
-  y: number
-  radius: number
-  glowRadius: number
-  colorIdx: number
-  phase: number
-  speed: number
-  orbitRadius: number
-  layer: number // 0=far, 1=mid, 2=near
-  brightness: number
+const CELL_W = 16
+const CELL_H = 20
+const FONT_PX = 15
+const GLYPHS = '01{}[]<>()=+*/\\:;|#%·-'.split('')
+const HOT: [number, number, number] = [255, 255, 255]   // #FFFFFF  hot lead
+const LEAD: [number, number, number] = [224, 247, 255]  // #E0F7FF  signal-soft lead
+
+type Column = {
+  x: number      // pixel x (column centre)
+  speed: number  // rows per second
+  len: number    // trail length (cells)
+  hot: boolean   // near-white lead glyph
+  color: [number, number, number]
+  phase: number  // time offset for the falling cycle
+  seed: number
 }
 
-function createParticles(w: number, h: number): Particle[] {
-  const particles: Particle[] = []
-  const counts = [120, 96, 60] // far, mid, near
-  const configs = [
-    { radiusRange: [0.5, 1.2], glowRange: [3, 6], orbitRange: [10, 30], speedRange: [0.1, 0.25], brightnessRange: [0.15, 0.35] },
-    { radiusRange: [1.0, 2.0], glowRange: [5, 10], orbitRange: [15, 45], speedRange: [0.2, 0.4], brightnessRange: [0.3, 0.55] },
-    { radiusRange: [1.5, 3.5], glowRange: [8, 18], orbitRange: [20, 60], speedRange: [0.3, 0.6], brightnessRange: [0.5, 0.85] },
-  ]
+function createColumns(w: number): Column[] {
+  const cols: Column[] = []
+  const n = Math.ceil(w / CELL_W)
+  for (let i = 0; i < n; i++) {
+    if (Math.random() < 0.16) continue // sparse gaps → airier field
+    cols.push({
+      x: i * CELL_W + CELL_W / 2,
+      speed: 1.5 + Math.random() * 4.5,
+      len: 8 + Math.floor(Math.random() * 16),
+      hot: Math.random() < 0.22,
+      color: AURORA[Math.floor(Math.random() * AURORA.length)],
+      phase: Math.random() * 1000,
+      seed: Math.random() * 1000,
+    })
+  }
+  return cols
+}
 
-  for (let layer = 0; layer < 3; layer++) {
-    const cfg = configs[layer]
-    for (let i = 0; i < counts[layer]; i++) {
-      const baseX = Math.random() * w
-      const baseY = Math.random() * h
-      const r = cfg.radiusRange[0] + Math.random() * (cfg.radiusRange[1] - cfg.radiusRange[0])
-      particles.push({
-        baseX, baseY, x: baseX, y: baseY,
-        radius: r,
-        glowRadius: cfg.glowRange[0] + Math.random() * (cfg.glowRange[1] - cfg.glowRange[0]),
-        colorIdx: Math.floor(Math.random() * AURORA.length),
-        phase: Math.random() * Math.PI * 2,
-        speed: cfg.speedRange[0] + Math.random() * (cfg.speedRange[1] - cfg.speedRange[0]),
-        orbitRadius: cfg.orbitRange[0] + Math.random() * (cfg.orbitRange[1] - cfg.orbitRange[0]),
-        layer,
-        brightness: cfg.brightnessRange[0] + Math.random() * (cfg.brightnessRange[1] - cfg.brightnessRange[0]),
-      })
+// Stable per-cell glyph that mutates slowly over time.
+function glyphAt(seed: number, row: number, time: number) {
+  const k = Math.sin((seed + row * 17.3 + Math.floor(time * 2.4)) * 12.9898) * 43758.5453
+  return GLYPHS[Math.floor((k - Math.floor(k)) * GLYPHS.length) % GLYPHS.length]
+}
+
+function drawRain(ctx: CanvasRenderingContext2D, h: number, time: number, columns: Column[]) {
+  ctx.globalCompositeOperation = 'lighter'
+  ctx.font = `600 ${FONT_PX}px "JetBrains Mono", ui-monospace, monospace`
+  ctx.textAlign = 'center'
+  ctx.textBaseline = 'middle'
+  const rows = Math.ceil(h / CELL_H) + 2
+  for (const c of columns) {
+    const total = rows + c.len + 6
+    const pos = (((time * c.speed + c.phase) % total) + total) % total
+    const headRow = Math.floor(pos) - 2
+    for (let k = 0; k < c.len; k++) {
+      const row = headRow - k
+      if (row < -1 || row > rows) continue
+      const py = row * CELL_H + CELL_H / 2
+      // dim the headline band (matches the wash); brightest toward the edges
+      const leg = 0.14 + 0.86 * Math.min(1, Math.abs(py / h - 0.42) / 0.34)
+      const tail = 1 - k / c.len
+      let a: number
+      let col: [number, number, number]
+      if (k === 0) {
+        a = 0.95 * leg
+        col = c.hot ? HOT : LEAD
+      } else {
+        a = 0.5 * tail * leg
+        col = c.color
+      }
+      if (a < 0.02) continue
+      ctx.fillStyle = `rgba(${col[0]},${col[1]},${col[2]},${a})`
+      ctx.fillText(glyphAt(c.seed, row, time), c.x, py)
     }
   }
-  return particles
+  ctx.globalCompositeOperation = 'source-over'
 }
 
 // --- Aurora band (flowing ribbon without expensive filter) ---
@@ -101,11 +130,11 @@ function drawAuroraBand(
   phaseOffset: number,
 ) {
   const widths = [90, 55, 30, 12]
-  const opacities = [0.025, 0.04, 0.05, 0.07]
+  const opacities = [0.05, 0.075, 0.10, 0.14]
 
   for (let pass = 0; pass < widths.length; pass++) {
     const bandW = (widths[pass] + scrollProgress * 20) * (1 + pass * 0.1)
-    const alpha = opacities[pass] * (0.25 + scrollProgress * 0.9)
+    const alpha = opacities[pass] * (1.25 + scrollProgress * 0.9)
 
     ctx.beginPath()
     ctx.moveTo(-20, yBase)
@@ -224,7 +253,7 @@ function draw(
   mouseX: number,
   mouseY: number,
   blobs: Blob[],
-  particles: Particle[],
+  columns: Column[],
   ribbons: Ribbon[],
 ) {
   ctx.clearRect(0, 0, w, h)
@@ -262,7 +291,7 @@ function draw(
     const b = Math.round(bA + (bB - bA) * blend)
 
     const grad = ctx.createRadialGradient(fx, fy, 0, fx, fy, radius)
-    const op = blob.opacity * (1 + scrollProgress * 0.3)
+    const op = blob.opacity * 1.45 * (1 + scrollProgress * 0.3)
     grad.addColorStop(0, `rgba(${r},${g},${b},${op})`)
     grad.addColorStop(0.4, `rgba(${r},${g},${b},${op * 0.5})`)
     grad.addColorStop(1, `rgba(${r},${g},${b},0)`)
@@ -282,103 +311,21 @@ function draw(
   drawAuroraBand(ctx, w, h, time, h * 0.55, AURORA[2], AURORA[4], scrollProgress, 28, 0.008, 2.5)
   drawAuroraBand(ctx, w, h, time, h * 0.70, AURORA[1], AURORA[3], scrollProgress, 22, 0.005, 5.0)
 
-  // 3) Particles with parallax and glow
-  ctx.globalCompositeOperation = 'lighter'
-
-  const parallaxFactors = [0.3, 0.6, 1.0]
-  const mouseFactors = [0.02, 0.04, 0.08]
-
-  for (const p of particles) {
-    const pf = parallaxFactors[p.layer]
-    const mf = mouseFactors[p.layer]
-    const drift = time * p.speed
-    const scrollPush = scrollProgress * p.orbitRadius * 1.5
-
-    // Orbital motion
-    const angle = p.phase + drift * 0.5
-    let px = p.baseX + Math.cos(angle) * p.orbitRadius * pf
-    let py = p.baseY + Math.sin(angle * 0.7) * p.orbitRadius * pf
-
-    // Scroll expansion from center
-    const cdx = p.baseX - w / 2
-    const cdy = p.baseY - h / 2
-    const cDist = Math.sqrt(cdx * cdx + cdy * cdy) || 1
-    px += (cdx / cDist) * scrollPush * pf
-    py += (cdy / cDist) * scrollPush * pf
-
-    // Mouse repulsion
-    const pmx = px - mouseX
-    const pmy = py - mouseY
-    const pmDist = Math.sqrt(pmx * pmx + pmy * pmy)
-    const repulseRadius = 120 + p.layer * 40
-    if (pmDist < repulseRadius && pmDist > 0) {
-      const repulse = (1 - pmDist / repulseRadius) * (30 + p.layer * 15) * mf * 10
-      px += (pmx / pmDist) * repulse
-      py += (pmy / pmDist) * repulse
-    }
-
-    p.x = px
-    p.y = py
-
-    // Twinkle
-    const twinkle = 0.4 + 0.6 * Math.sin(time * p.speed * 2.5 + p.phase * 3)
-    const alpha = p.brightness * twinkle
-
-    const [r, g, b] = AURORA[p.colorIdx]
-
-    // Glow (soft radial gradient instead of flat circle)
-    const glowGrad = ctx.createRadialGradient(px, py, 0, px, py, p.glowRadius)
-    glowGrad.addColorStop(0, `rgba(${r},${g},${b},${alpha * 0.72})`)
-    glowGrad.addColorStop(0.5, `rgba(${r},${g},${b},${alpha * 0.2})`)
-    glowGrad.addColorStop(1, `rgba(${r},${g},${b},0)`)
-    ctx.fillStyle = glowGrad
-    ctx.beginPath()
-    ctx.arc(px, py, p.glowRadius, 0, Math.PI * 2)
-    ctx.fill()
-
-    // Core dot
-    ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`
-    ctx.beginPath()
-    ctx.arc(px, py, p.radius, 0, Math.PI * 2)
-    ctx.fill()
-  }
-
-  // 4) Subtle mesh connections (near-layer only, sparse)
-  ctx.globalCompositeOperation = 'source-over'
-  const nearParticles = particles.filter(p => p.layer === 2)
-  const connDist = 100 + scrollProgress * 50
-
-  for (let i = 0; i < nearParticles.length; i++) {
-    for (let j = i + 1; j < nearParticles.length; j++) {
-      const a = nearParticles[i]
-      const b = nearParticles[j]
-      const dx = a.x - b.x
-      const dy = a.y - b.y
-      const dist = Math.sqrt(dx * dx + dy * dy)
-
-      if (dist < connDist) {
-        const lineAlpha = (1 - dist / connDist) * 0.06
-        const [r, g, bb] = AURORA[a.colorIdx]
-        ctx.beginPath()
-        ctx.moveTo(a.x, a.y)
-        ctx.lineTo(b.x, b.y)
-        ctx.strokeStyle = `rgba(${r},${g},${bb},${lineAlpha})`
-        ctx.lineWidth = 0.5
-        ctx.stroke()
-      }
-    }
-  }
+  // 3) Code rain — falling glyph columns (replaces the old floating particles)
+  drawRain(ctx, h, time, columns)
 
   // 5) Central legibility wash — keep strong text contrast over the richer flow.
   // Vivid Aurora reads in the top & bottom thirds; the headline band is darkened.
   ctx.globalCompositeOperation = 'source-over'
   const wash = ctx.createLinearGradient(0, 0, 0, h)
-  wash.addColorStop(0.0, 'rgba(5,6,8,0)')
-  wash.addColorStop(0.2, 'rgba(5,6,8,0.46)')
-  wash.addColorStop(0.42, 'rgba(5,6,8,0.72)')
-  wash.addColorStop(0.62, 'rgba(5,6,8,0.64)')
-  wash.addColorStop(0.8, 'rgba(5,6,8,0.28)')
-  wash.addColorStop(1.0, 'rgba(5,6,8,0)')
+  wash.addColorStop(0.0, 'rgba(5,6,8,0.9)') // dark top border
+  wash.addColorStop(0.08, 'rgba(5,6,8,0.34)')
+  wash.addColorStop(0.2, 'rgba(5,6,8,0.46)') // upper rain band
+  wash.addColorStop(0.42, 'rgba(5,6,8,0.74)') // headline band (dark for legibility)
+  wash.addColorStop(0.62, 'rgba(5,6,8,0.66)')
+  wash.addColorStop(0.8, 'rgba(5,6,8,0.34)') // lower rain band
+  wash.addColorStop(0.92, 'rgba(5,6,8,0.34)')
+  wash.addColorStop(1.0, 'rgba(5,6,8,0.9)') // dark bottom border
   ctx.fillStyle = wash
   ctx.fillRect(0, 0, w, h)
 }
@@ -386,7 +333,7 @@ function draw(
 export default function AuroraCanvas({ className = '' }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const mouseRef = useRef({ x: -1000, y: -1000 })
-  const particlesRef = useRef<Particle[]>([])
+  const columnsRef = useRef<Column[]>([])
   const blobsRef = useRef<Blob[]>(createBlobs())
   const ribbonsRef = useRef<Ribbon[]>(createRibbons())
 
@@ -409,7 +356,7 @@ export default function AuroraCanvas({ className = '' }: { className?: string })
       canvas!.width = rect.width * dpr
       canvas!.height = rect.height * dpr
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
-      particlesRef.current = createParticles(rect.width, rect.height)
+      columnsRef.current = createColumns(rect.width)
     }
 
     resize()
@@ -445,7 +392,7 @@ export default function AuroraCanvas({ className = '' }: { className?: string })
         0,
         mouseRef.current.x, mouseRef.current.y,
         blobsRef.current,
-        particlesRef.current,
+        columnsRef.current,
         ribbonsRef.current,
       )
 

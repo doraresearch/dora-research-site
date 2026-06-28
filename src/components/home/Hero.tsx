@@ -16,22 +16,13 @@ const roles = [
 
 export default function Hero() {
   return (
-    <section className="relative h-screen bg-dark">
+    <section className="relative h-screen overflow-hidden bg-dark">
+      {/* Northern-lights Aurora + code-rain (one canvas) */}
       <AuroraCanvas />
-
-      {/* Radial vignette overlay */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_center,transparent_30%,#050608_90%)]" />
 
       <Container className="relative z-10 flex h-full flex-col items-center justify-center text-center">
         <div className="w-full">
-            <span className="inline-block animate-fade-up">
-              <span className="inline-flex items-center gap-2 rounded-pill border border-white/[0.08] bg-white/[0.04] px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white/50">
-                <span className="h-1.5 w-1.5 rounded-full bg-mint" />
-                Secure AI Teammates
-              </span>
-            </span>
-
-            <div className="mt-8 animate-fade-up" style={{ animationDelay: '120ms' }}>
+            <div className="animate-fade-up">
               <h1 className="mx-auto text-balance text-[28px] font-bold leading-[1.05] tracking-[-0.04em] text-white sm:max-w-[22ch] sm:text-[44px] sm:leading-[0.94] lg:text-[72px] xl:text-[96px]">
                 Secure AI teammates for{' '}
                 <span className="text-spectral">infrastructure operations.</span>
