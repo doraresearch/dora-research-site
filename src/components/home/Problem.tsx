@@ -1,8 +1,5 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
 import Container from '@/components/ui/Container'
 import Reveal from '@/components/ui/Reveal'
-
-const ScaleVisual3D = lazy(() => import('./ScaleVisual3D'))
 
 const lines = [
   'Every alert needs triage.',
@@ -112,19 +109,6 @@ function ScaleVisual() {
 }
 
 export default function Problem() {
-  const [enhanced, setEnhanced] = useState(false)
-  useEffect(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    let webgl = false
-    try {
-      const c = document.createElement('canvas')
-      webgl = !!(c.getContext('webgl2') || c.getContext('webgl'))
-    } catch {
-      webgl = false
-    }
-    if (webgl && !reduce) setEnhanced(true)
-  }, [])
-
   return (
     <section className="relative bg-soft py-24 sm:py-32">
       <Container>
@@ -158,13 +142,7 @@ export default function Problem() {
           </Reveal>
 
           <Reveal delay={200}>
-            {enhanced ? (
-              <Suspense fallback={<ScaleVisual />}>
-                <ScaleVisual3D />
-              </Suspense>
-            ) : (
-              <ScaleVisual />
-            )}
+            <ScaleVisual />
           </Reveal>
         </div>
       </Container>
