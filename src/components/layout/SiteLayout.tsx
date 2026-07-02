@@ -4,9 +4,6 @@ import Lenis from 'lenis'
 import Header from './Header'
 import Footer from './Footer'
 
-// Fixed-header clearance for anchor scrolls (matches scroll-margin-top in index.css).
-const HEADER_OFFSET = -84
-
 export default function SiteLayout() {
   useEffect(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -17,19 +14,19 @@ export default function SiteLayout() {
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     })
-
+    let rafId = 0
     function raf(time: number) {
       lenis.raf(time)
-      requestAnimationFrame(raf)
+      rafId = requestAnimationFrame(raf)
     }
-    requestAnimationFrame(raf)
+    rafId = requestAnimationFrame(raf)
 
-    // Lenis owns the scroll position, so native anchor navigation dies against
-    // its raf loop. Route all same-page hash links (nav, hero CTA, footer)
-    // through lenis.scrollTo instead, and honor hashes on load / history nav.
+    // Drive same-page hash links (nav, hero CTA, footer) through lenis.scrollTo
+    // for consistent easing, and honor hashes on load / history navigation.
+    // No extra offset: Lenis respects the sections' scroll-margin-top (84px).
     const scrollToHash = (hash: string, immediate = false) => {
       const el = hash ? document.getElementById(hash.slice(1)) : null
-      if (el) lenis.scrollTo(el, { offset: HEADER_OFFSET, immediate })
+      if (el) lenis.scrollTo(el, { immediate })
     }
     const onClick = (e: MouseEvent) => {
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
@@ -51,6 +48,7 @@ export default function SiteLayout() {
     return () => {
       document.removeEventListener('click', onClick)
       window.removeEventListener('popstate', onHashChange)
+      cancelAnimationFrame(rafId)
       lenis.destroy()
     }
   }, [])
