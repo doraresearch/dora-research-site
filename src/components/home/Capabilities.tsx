@@ -1,4 +1,3 @@
-import { useRef, useEffect } from 'react'
 import Container from '@/components/ui/Container'
 import Reveal from '@/components/ui/Reveal'
 
@@ -73,7 +72,7 @@ const metrics = [
 
 function MetricCard({ m }: { m: (typeof metrics)[number] }) {
   return (
-    <article className="relative flex h-[340px] w-[300px] shrink-0 flex-col rounded-card border border-white/[0.12] bg-white/[0.035] p-5 transition-colors hover:border-white/[0.18] hover:bg-white/[0.055]">
+    <article className="relative flex h-[340px] w-full min-w-0 flex-col rounded-card border border-white/[0.12] bg-white/[0.035] p-5 transition-colors hover:border-white/[0.18] hover:bg-white/[0.055]">
       <div className="absolute inset-x-5 top-0 h-px bg-spectral opacity-60" />
 
       <div className="flex items-center justify-between gap-3">
@@ -119,96 +118,37 @@ function MetricCard({ m }: { m: (typeof metrics)[number] }) {
   )
 }
 
-const CARD_W = 300
-const GAP = 16
-const CARD_STEP = CARD_W + GAP
-const SET_OFFSET = metrics.length * CARD_STEP
-
-const extendedMetrics = [...metrics, ...metrics, ...metrics]
-
+// Six metrics, shown all at once: a static 3×2 grid on desktop (everything
+// comparable at a glance — no carousel to operate), and a snap-scroll row on
+// smaller screens where horizontal panning is the native pattern.
 export default function Capabilities() {
-  const scrollRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const el = scrollRef.current
-    if (!el) return
-    el.scrollLeft = SET_OFFSET
-
-    let timer: ReturnType<typeof setTimeout>
-    const handleScroll = () => {
-      clearTimeout(timer)
-      timer = setTimeout(() => {
-        if (el.scrollLeft >= SET_OFFSET * 2) {
-          el.style.scrollBehavior = 'auto'
-          el.scrollLeft -= SET_OFFSET
-          el.style.scrollBehavior = ''
-        } else if (el.scrollLeft < CARD_STEP) {
-          el.style.scrollBehavior = 'auto'
-          el.scrollLeft += SET_OFFSET
-          el.style.scrollBehavior = ''
-        }
-      }, 80)
-    }
-    el.addEventListener('scroll', handleScroll)
-    return () => {
-      el.removeEventListener('scroll', handleScroll)
-      clearTimeout(timer)
-    }
-  }, [])
-
-  const scroll = (dir: 'left' | 'right') => {
-    const el = scrollRef.current
-    if (!el) return
-    el.scrollBy({ left: dir === 'right' ? CARD_STEP : -CARD_STEP, behavior: 'smooth' })
-  }
-
   return (
     <section id="outcomes" className="relative bg-graphite py-24 sm:py-32">
       <Container>
         <Reveal>
-          <div className="mb-14 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
-            <div>
-              <h2 className="max-w-[24ch] text-[32px] font-bold leading-[1.04] tracking-[-0.03em] text-white sm:text-[42px]">
-                Measure the work removed{' '}
-                <span className="text-spectral">from the queue.</span>
-              </h2>
-              <p className="mt-3 text-[16px] leading-[1.6] text-white/60">
-                Track what matters after deployment.
-              </p>
-            </div>
-            <div className="flex shrink-0 gap-2">
-              <button
-                type="button"
-                aria-label="Scroll left"
-                onClick={() => scroll('left')}
-                className="flex h-11 w-11 items-center justify-center rounded-[10px] border border-white/[0.08] bg-white/[0.04] text-white/60 transition-colors hover:bg-white/[0.08]"
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4"><path d="M15 18l-6-6 6-6" /></svg>
-              </button>
-              <button
-                type="button"
-                aria-label="Scroll right"
-                onClick={() => scroll('right')}
-                className="flex h-11 w-11 items-center justify-center rounded-[10px] border border-white/[0.08] bg-white/[0.04] text-white/60 transition-colors hover:bg-white/[0.08]"
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4"><path d="M9 18l6-6-6-6" /></svg>
-              </button>
-            </div>
+          <div className="mb-14">
+            <h2 className="max-w-[24ch] text-[32px] font-bold leading-[1.04] tracking-[-0.03em] text-white sm:text-[42px]">
+              Measure the work removed{' '}
+              <span className="text-spectral">from the queue.</span>
+            </h2>
+            <p className="mt-3 text-[16px] leading-[1.6] text-white/60">
+              Track what matters after deployment.
+            </p>
           </div>
         </Reveal>
 
         <div className="relative">
-          <div ref={scrollRef} className="-mx-2 snap-x snap-mandatory overflow-x-auto pb-2 sm:snap-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex gap-4 px-[calc((100vw-300px)/2)] sm:px-2" style={{ minWidth: 'max-content' }}>
-              {extendedMetrics.map((m, i) => (
-                <Reveal key={`${m.tag}-${i}`} delay={(i % metrics.length) * 60} className="snap-center">
+          <div className="-mx-6 snap-x snap-mandatory overflow-x-auto px-6 pb-2 [scrollbar-width:none] lg:mx-0 lg:snap-none lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
+            <div className="flex gap-4 lg:grid lg:grid-cols-3">
+              {metrics.map((m, i) => (
+                <Reveal key={m.tag} delay={i * 60} className="w-[300px] shrink-0 snap-center lg:w-auto">
                   <MetricCard m={m} />
                 </Reveal>
               ))}
             </div>
           </div>
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-graphite to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-graphite to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-graphite to-transparent lg:hidden" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-graphite to-transparent lg:hidden" />
         </div>
       </Container>
     </section>
