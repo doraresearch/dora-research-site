@@ -410,9 +410,9 @@ export default function Platform() {
         <Reveal>
           <div className="mx-auto max-w-[640px] text-center">
             <h2 className="text-[32px] font-bold leading-[1.04] tracking-[-0.03em] text-ink sm:text-[42px]">
-              Full-stack operations
+              Full-stack operations.
             </h2>
-            <p className="mt-4 text-[17px] leading-[1.6] text-body">
+            <p className="mt-4 text-balance text-[17px] leading-[1.6] text-body">
               Powering every step of your operations workflow — from first alert to verified
               resolution.
             </p>
@@ -420,7 +420,19 @@ export default function Platform() {
         </Reveal>
 
         <Reveal>
-          <div role="tablist" aria-label="Product sections" className="mx-auto mt-12 grid max-w-[720px] grid-cols-3 rounded-2xl border border-line">
+          <div
+            role="tablist"
+            aria-label="Product sections"
+            className="mx-auto mt-12 grid max-w-[720px] grid-cols-3 rounded-xl border border-line"
+            onKeyDown={(e) => {
+              if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return
+              e.preventDefault()
+              const next = (activeTab + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length
+              setActiveTab(next)
+              setActiveItem(0)
+              document.getElementById(`tab-${tabs[next].hash}`)?.focus()
+            }}
+          >
             {tabs.map((tab, i) => (
               <button
                 key={tab.label}
@@ -429,10 +441,11 @@ export default function Platform() {
                 aria-selected={activeTab === i}
                 aria-controls={`tabpanel-${tab.hash}`}
                 id={`tab-${tab.hash}`}
+                tabIndex={activeTab === i ? 0 : -1}
                 className={`py-4 text-center text-[17px] font-bold transition-all duration-300 ${
                   activeTab === i
-                    ? 'rounded-2xl bg-soft text-ink'
-                    : 'text-ink/40 hover:text-ink/60'
+                    ? 'rounded-xl bg-soft text-ink'
+                    : 'text-ink/60 hover:text-ink/80'
                 }`}
                 onClick={() => { setActiveTab(i); setActiveItem(0) }}
               >
@@ -452,6 +465,7 @@ export default function Platform() {
                 aria-expanded={activeItem === i}
                 onClick={() => setActiveItem(i)}
                 onMouseEnter={() => setActiveItem(i)}
+                onFocus={() => setActiveItem(i)}
               >
                 <div
                   className={`flex items-start gap-4 px-2 py-5 ${
@@ -483,14 +497,14 @@ export default function Platform() {
             ))}
           </div>
 
-          <div className="relative hidden overflow-hidden rounded-stage border border-white/[0.10] bg-graphite p-8 lg:block lg:p-10">
+          <div className="relative hidden overflow-hidden rounded-stage border border-white/[0.10] bg-graphite p-8 lg:flex lg:flex-col lg:p-10">
             {['top-3 left-3', 'top-3 right-3 rotate-90', 'bottom-3 right-3 rotate-180', 'bottom-3 left-3 -rotate-90'].map(
               (pos) => (
                 <span key={pos} className={`absolute ${pos} h-4 w-4 border-l-[1.5px] border-t-[1.5px] border-white/[0.15]`} />
               ),
             )}
 
-            <div className="relative min-h-[300px]">
+            <div className="relative min-h-[300px] flex-1">
               {currentPanels.map((panel, i) => (
                 <div
                   key={`${activeTab}-${i}`}
@@ -503,7 +517,7 @@ export default function Platform() {
               ))}
             </div>
 
-            <div className="mt-4 flex items-center justify-between border-t border-white/[0.10] pt-4">
+            <div className="mt-auto flex items-center justify-between border-t border-white/[0.10] pt-4">
               <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/50">
                 {currentTab.label} &middot; {currentItems[activeItem]?.title}
               </p>
