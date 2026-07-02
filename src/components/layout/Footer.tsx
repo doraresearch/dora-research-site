@@ -3,7 +3,7 @@ import Container from '@/components/ui/Container'
 import Logo from '@/components/Logo'
 
 const cols: [string, [string, string][]][] = [
-  ['Product', [['How it works', '#product'], ['Teammates', '#teammates'], ['Control', '#control']]],
+  ['Product', [['How it works', '#product'], ['Teammates', '#teammates'], ['Control', '#control'], ['Outcomes', '#outcomes']]],
   ['Company', [['Contact', 'mailto:hello@dorareason.com'], ['Deployment', '#deployment']]],
 ]
 
@@ -31,7 +31,7 @@ export default function Footer() {
           <p className="max-w-[48ch] text-[15px] leading-[1.6] text-white/60">
             DORA builds secure AI teammates that reduce human touches across recurring infrastructure operations — from alert triage to incident resolution.
           </p>
-          <div className="flex gap-12">
+          <div className="flex gap-16 sm:gap-20">
             {cols.map(([title, links]) => (
               <div key={title}>
                 <p className="mb-3 text-[14px] font-semibold text-white/80">{title}</p>
