@@ -96,7 +96,9 @@ function drawRain(ctx: CanvasRenderingContext2D, h: number, time: number, column
       if (row < -1 || row > rows) continue
       const py = row * CELL_H + CELL_H / 2
       // dim the headline band (matches the wash); brightest toward the edges
-      const leg = 0.14 + 0.86 * Math.min(1, Math.abs(py / h - 0.42) / 0.34)
+      let leg = 0.14 + 0.86 * Math.min(1, Math.abs(py / h - 0.42) / 0.34)
+      // clear zone under the "Trusted by" marquee so glyphs never collide with it
+      leg *= 0.3 + 0.7 * Math.min(1, Math.abs(py / h - 0.78) / 0.12)
       const tail = 1 - k / c.len
       let a: number
       let col: [number, number, number]
