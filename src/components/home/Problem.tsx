@@ -31,7 +31,7 @@ const stages: {
 
 function ScaleVisual() {
   return (
-    <div className="rounded-2xl border border-line bg-white">
+    <div className="rounded-card border border-line bg-white">
       {/* Header */}
       <div className="border-b border-line px-5 py-3">
         <div className="flex items-center justify-between">
@@ -87,7 +87,7 @@ function ScaleVisual() {
 
           {/* Bottleneck callout */}
           {stage.overloaded && (
-            <div className="mt-3 flex items-center gap-2 rounded-lg border border-deep-signal/15 bg-deep-signal/[0.05] px-3 py-2">
+            <div className="mt-3 flex items-center gap-2 rounded border border-deep-signal/15 bg-deep-signal/[0.05] px-3 py-2">
               <div className="h-px flex-1 bg-spectral-v opacity-40" />
               <p className="shrink-0 text-center font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-deep-signal">
                 Bottleneck

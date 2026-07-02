@@ -88,7 +88,7 @@ export default function Header() {
 
       <div
         id="mobile-menu"
-        className={`absolute inset-x-4 top-20 rounded-2xl border transition-all duration-200 lg:hidden ${
+        className={`absolute inset-x-4 top-20 rounded-xl border transition-all duration-200 lg:hidden ${
           pastHero
             ? 'glass border-ink/[0.06]'
             : 'glass-dark border-white/[0.08]'
