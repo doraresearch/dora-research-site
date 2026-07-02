@@ -16,7 +16,7 @@ const roles = [
 
 export default function Hero() {
   return (
-    <section className="relative h-screen overflow-hidden bg-dark">
+    <section className="relative h-[100svh] min-h-[640px] overflow-hidden bg-dark">
       {/* Northern-lights Aurora + code-rain (one canvas) */}
       <AuroraCanvas />
 
@@ -49,13 +49,13 @@ export default function Hero() {
 
             {/* Trusted-by marquee */}
             <div className="mt-16 flex w-full items-center gap-5 animate-fade-up sm:max-w-[700px]" style={{ animationDelay: '400ms' }}>
-              <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.2em] text-white/50">
+              <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.2em] text-white/60">
                 Trusted by
               </span>
               <div className="relative min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(90deg,transparent,white_8%,white_92%,transparent)]">
                 <div className="flex w-max animate-marquee gap-8 motion-reduce:animate-none">
                   {[...roles, ...roles].map((role, i) => (
-                    <span key={i} className="shrink-0 whitespace-nowrap font-mono text-[12px] uppercase tracking-[0.14em] text-white/50">
+                    <span key={i} className="shrink-0 whitespace-nowrap font-mono text-[12px] uppercase tracking-[0.14em] text-white/65">
                       {role}
                     </span>
                   ))}
