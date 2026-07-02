@@ -20,8 +20,13 @@
   }
 
   html {
-    scroll-behavior: smooth;
     background: #FFFFFF;
+  }
+
+  /* Native smooth anchors only when Lenis isn't driving the scroll —
+     CSS smooth-scrolling fights Lenis's raf loop and kills anchor jumps. */
+  html:not(.lenis) {
+    scroll-behavior: smooth;
   }
 
   body {
