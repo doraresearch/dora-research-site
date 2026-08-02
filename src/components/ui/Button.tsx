@@ -1,49 +1,31 @@
 import type { ReactNode } from 'react'
 
 const VARIANTS = {
-  primary: 'bg-ink text-white border border-transparent hover:bg-ink/85',
-  secondary: 'bg-transparent text-ink/70 border border-ink/[0.12] hover:bg-ink/[0.04] hover:text-ink',
-  ghost: 'bg-transparent text-muted border border-line hover:bg-soft',
-  signal: 'bg-signal text-deep-signal border border-signal hover:brightness-105',
-  white: 'bg-white text-dark border border-transparent hover:bg-white/90',
-  'dark-ghost': 'bg-white/[0.06] text-white/80 border border-white/[0.1] hover:bg-white/[0.1]',
+  primary: 'bg-green text-base border border-transparent hover:bg-green-deep',
+  dark: 'bg-ink text-base border border-transparent hover:bg-ink/85',
+  ghost: 'bg-transparent text-muted border border-line hover:bg-sage/50 hover:text-ink',
 }
 
 type ButtonProps = {
   href?: string
   children: ReactNode
   variant?: keyof typeof VARIANTS
-  arrow?: boolean
   className?: string
   onClick?: () => void
 }
 
-function Arrow() {
-  return (
-    <svg viewBox="0 0 18 18" aria-hidden="true" className="h-4 w-4">
-      <path d="M3 9h11M9.5 4.5 14 9l-4.5 4.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
-}
-
-export default function Button({ href, children, variant = 'primary', arrow = false, className = '', onClick }: ButtonProps) {
-  const cls = `inline-flex min-h-11 items-center justify-center gap-2 rounded-pill px-5 text-[15px] font-semibold leading-none transition-colors duration-150 ${VARIANTS[variant]} ${className}`
-  const inner = (
-    <>
-      {children}
-      {arrow && <Arrow />}
-    </>
-  )
+export default function Button({ href, children, variant = 'primary', className = '', onClick }: ButtonProps) {
+  const cls = `inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-pill px-5 text-[15px] font-semibold leading-none transition-colors duration-150 ${VARIANTS[variant]} ${className}`
   if (href) {
     return (
       <a href={href} className={cls} onClick={onClick}>
-        {inner}
+        {children}
       </a>
     )
   }
   return (
     <button type="button" className={cls} onClick={onClick}>
-      {inner}
+      {children}
     </button>
   )
 }

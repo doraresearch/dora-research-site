@@ -1,73 +1,46 @@
 import Container from '@/components/ui/Container'
-import Button from '@/components/ui/Button'
-import AuroraCanvas from './AuroraCanvas'
+import WaitlistForm from '@/components/ui/WaitlistForm'
 
-const roles = [
-  'Database Administrators',
-  'Systems Administrators',
-  'NOC Agents',
-  'Site Reliability Engineers',
-  'DevOps Engineers',
-  'Platform Operations Engineers',
-  'Cloud Operations Engineers',
-  'Security Operations Engineers',
-  'QA Engineers',
-]
+function AppWindow() {
+  return (
+    <div className="overflow-hidden rounded-window border border-line bg-sage shadow-[0_24px_60px_rgba(23,37,31,.12)]">
+      <img
+        src="/images/zora-memory-workspace.png"
+        alt="Zora memory workspace linking a voice memo, lease agreement, building notice, and landlord email to source-backed evidence."
+        className="block h-auto w-full"
+        decoding="async"
+      />
+    </div>
+  )
+}
 
 export default function Hero() {
   return (
-    <section className="relative h-[100svh] min-h-[640px] overflow-hidden bg-dark">
-      {/* Northern-lights Aurora + code-rain (one canvas) */}
-      <AuroraCanvas />
-
-      <Container className="relative z-10 flex h-full flex-col items-center text-center">
-        <div className="flex w-full flex-1 flex-col items-center justify-center">
-            <div className="animate-fade-up">
-              <h1 className="mx-auto text-balance text-[28px] font-bold leading-[1.05] tracking-[-0.04em] text-white sm:max-w-[22ch] sm:text-[44px] sm:leading-[0.94] lg:text-[72px] xl:text-[96px]">
-                Secure AI teammates for{' '}
-                <span className="text-spectral">infrastructure operations.</span>
-              </h1>
-            </div>
-
-            <div className="animate-fade-up" style={{ animationDelay: '240ms' }}>
-              <p className="mx-auto mt-8 text-[16px] font-medium leading-[1.55] text-white/60 sm:max-w-[56ch] sm:text-[18px] lg:text-xl">
-                DORA turns recurring alerts, diagnostics, runbooks, and escalations into AI-executed workflows across your existing stack. Reduce human touches per task while keeping engineers in control.
-              </p>
-              <p className="mx-auto mt-4 text-[15px] font-medium leading-[1.5] text-white/50 sm:max-w-[48ch] sm:text-[16px]">
-                Operate at higher throughput without scaling headcount linearly.
-              </p>
-
-              <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Button href="mailto:hello@dorareason.com" variant="white" arrow>
-                  Map your first workflow
-                </Button>
-                <Button href="#product" variant="dark-ghost">
-                  How it works
-                </Button>
-              </div>
-            </div>
-
+    <section id="zora" className="relative overflow-hidden bg-base">
+      <Container className="grid items-center gap-12 py-24 lg:grid-cols-[1fr_1.05fr] lg:pb-28">
+        <div className="animate-fade-up">
+          <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-green">
+            Zora · by DORA Research
+          </p>
+          <h1 className="mt-6 text-balance font-display text-[44px] font-bold leading-[1.02] tracking-[-0.03em] text-ink lg:text-[64px]">
+            Ask your memory anything.
+          </h1>
+          <p className="mt-6 max-w-[44ch] text-[18px] leading-[1.6] text-muted">
+            Zora remembers everything you capture and understands how it fits together. One question
+            retrieves the note, the source, and the context — even from years ago.
+          </p>
+          <div className="mt-9">
+            <WaitlistForm />
           </div>
+          <p className="mt-3.5 font-mono text-[11px] tracking-[0.08em] text-muted">
+            Private beta · Fall 2026 · macOS + iOS first
+          </p>
+        </div>
 
-          {/* Trusted-by marquee — pinned to the bottom edge of the hero */}
-          <div className="flex w-full items-center gap-5 pb-10 animate-fade-up sm:max-w-[700px] sm:pb-12" style={{ animationDelay: '400ms' }}>
-            <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.2em] text-white/60">
-              Trusted by
-            </span>
-            <div className="relative min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(90deg,transparent,white_8%,white_92%,transparent)]">
-              <div className="flex w-max animate-marquee gap-8 motion-reduce:animate-none">
-                {[...roles, ...roles].map((role, i) => (
-                  <span key={i} className="shrink-0 whitespace-nowrap font-mono text-[12px] uppercase tracking-[0.14em] text-white/65">
-                    {role}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Container>
-
-        {/* Bottom gradient fade */}
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-dark to-transparent" />
+        <div className="relative animate-fade-up" style={{ animationDelay: '160ms' }}>
+          <AppWindow />
+        </div>
+      </Container>
     </section>
   )
 }
