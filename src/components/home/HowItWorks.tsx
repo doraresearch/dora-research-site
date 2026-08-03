@@ -1,203 +1,333 @@
 import type { ReactNode } from 'react'
-import Container from '@/components/ui/Container'
 import Reveal from '@/components/ui/Reveal'
 import { DocIcon, MailIcon, MicIcon, PenIcon, SearchIcon } from '@/components/ui/icons'
 
-const WAVE = [5, 9, 7, 12, 16, 10, 13, 8, 11, 6, 10, 5]
-
-function ProductFrame({ label, children }: { label: string; children: ReactNode }) {
+function WindowDots({ compact = false }: { compact?: boolean }) {
   return (
-    <div className="overflow-hidden rounded-window border border-line bg-white shadow-[0_12px_32px_rgba(23,37,31,.08)]" aria-hidden="true">
-      <div className="flex h-9 items-center border-b border-line-soft px-3.5">
-        <div className="flex gap-1.5">
-          <span className="h-2 w-2 rounded-full bg-orange/75" />
-          <span className="h-2 w-2 rounded-full bg-yellow/85" />
-          <span className="h-2 w-2 rounded-full bg-green/75" />
-        </div>
-        <span className="mx-auto font-mono text-[8px] uppercase tracking-[0.16em] text-muted">{label}</span>
-        <span className="w-9" />
-      </div>
+    <div className={compact ? 'absolute left-[2.48%] top-[3.42%] flex gap-1.5' : 'absolute left-[2.94%] top-[4.34%] flex gap-1.5'}>
+      <span className={compact ? 'h-[7px] w-[7px] rounded-full bg-orange/75' : 'h-2 w-2 rounded-full bg-orange/75'} />
+      <span className={compact ? 'h-[7px] w-[7px] rounded-full bg-yellow/85' : 'h-2 w-2 rounded-full bg-yellow/85'} />
+      <span className={compact ? 'h-[7px] w-[7px] rounded-full bg-green/75' : 'h-2 w-2 rounded-full bg-green/75'} />
+    </div>
+  )
+}
+
+function ProductWindow({
+  children,
+  label,
+  compact = false,
+}: {
+  children: ReactNode
+  label: string
+  compact?: boolean
+}) {
+  return (
+    <div
+      className={compact
+        ? 'relative aspect-[646/438] w-full max-w-[646px] overflow-hidden rounded-window border border-line bg-white shadow-[0_18px_42px_rgba(23,37,31,.11)]'
+        : 'relative aspect-[646/438] w-full max-w-[646px] overflow-hidden rounded-[18px] border border-line bg-white shadow-[0_18px_42px_rgba(23,37,31,.11)]'}
+      aria-hidden="true"
+    >
+      <div className={compact ? 'absolute inset-x-0 top-0 h-[9.14%] border-b border-line-soft bg-base' : 'absolute inset-x-0 top-0 h-[10.96%] bg-base'} />
+      <WindowDots compact={compact} />
+      <span
+        className={compact
+          ? 'absolute left-[37.8%] top-[2.52%] font-mono text-[7px] uppercase tracking-[0.1em] text-muted sm:text-[8px] lg:text-[9px]'
+          : 'absolute left-[10.06%] top-[3.2%] font-mono text-[7px] uppercase tracking-[0.1em] text-muted sm:text-[8px] lg:text-[10px]'}
+      >
+        {label}
+      </span>
       {children}
+    </div>
+  )
+}
+
+function FeatureCopy({
+  index,
+  title,
+  description,
+  note,
+  withRule = false,
+}: {
+  index: string
+  title: string
+  description: string
+  note: string
+  withRule?: boolean
+}) {
+  return (
+    <div className="max-w-[348px] pt-1 lg:min-h-[420px] lg:pt-[11px]">
+      <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-green">{index}</p>
+      <h2 className="mt-[18px] text-balance font-display text-[38px] font-bold leading-[1.04] tracking-[-0.03em] text-ink sm:text-[43px] lg:leading-[46px]">
+        {title}
+      </h2>
+      <p className="mt-[18px] max-w-[340px] text-[16px] leading-[1.6] text-muted lg:text-[17px] lg:leading-[26px]">
+        {description}
+      </p>
+      {withRule && <div className="mt-[18px] h-px w-full bg-line-soft" />}
+      <p className={withRule ? 'mt-[18px] font-mono text-[10px] tracking-[0.025em] text-muted' : 'mt-[18px] font-mono text-[10px] uppercase tracking-[0.105em] text-green'}>
+        {note}
+      </p>
     </div>
   )
 }
 
 function CaptureSurface() {
   return (
-    <ProductFrame label="Zora · inbox">
-      <div className="grid min-h-[278px] sm:grid-cols-[104px_minmax(0,1fr)]">
-        <aside className="hidden border-r border-line-soft bg-base p-3 sm:block">
-          <div className="font-display text-[15px] font-bold text-ink">Zora</div>
-          <div className="mt-5 space-y-1 font-mono text-[8px] uppercase tracking-[0.08em] text-muted">
-            <div className="rounded-md bg-green/[.09] px-2 py-1.5 text-green">Inbox <span className="float-right">12</span></div>
-            <div className="px-2 py-1.5">All memories</div>
-            <div className="px-2 py-1.5">People</div>
-            <div className="px-2 py-1.5">Projects</div>
+    <ProductWindow label="Zora / inbox" compact>
+      <aside className="absolute bottom-0 left-0 top-[9.14%] hidden w-[20.44%] border-r border-line-soft bg-base p-[2.2%] sm:block">
+        <div className="font-display text-[12px] font-bold text-ink sm:text-[14px] lg:text-[17px]">Zora</div>
+        <div className="mt-[22%] space-y-[9%] font-mono text-[6px] tracking-[0.04em] text-muted sm:text-[7px] lg:text-[9px]">
+          <div className="rounded-md bg-green/[.09] px-[10%] py-[7%] text-green">
+            Inbox <span className="float-right">12</span>
           </div>
-        </aside>
-        <div className="min-w-0 p-3 sm:p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="font-display text-[17px] font-bold tracking-[-0.02em] text-ink">Inbox</p>
-              <p className="mt-0.5 font-mono text-[8px] uppercase tracking-[0.08em] text-muted">Today · newest first</p>
-            </div>
-            <SearchIcon className="h-4 w-4 text-green" />
+          <div className="px-[10%]">All memories</div>
+          <div className="px-[10%]">People</div>
+          <div className="px-[10%]">Projects</div>
+        </div>
+        <div className="absolute bottom-[7.5%] left-[14%] flex items-center gap-1.5 font-mono text-[6px] tracking-[0.04em] text-muted sm:text-[7px] lg:text-[8px]">
+          <span className="h-1.5 w-1.5 rounded-full bg-green" />
+          Capturing
+        </div>
+      </aside>
+
+      <div className="absolute bottom-0 left-0 top-[9.14%] w-full bg-white sm:left-[20.44%] sm:w-[79.56%]">
+        <div className="absolute left-[5.45%] top-[5.78%]">
+          <p className="font-display text-[15px] font-bold tracking-[-0.02em] text-ink sm:text-[18px] lg:text-[24px]">Inbox</p>
+          <p className="mt-0.5 font-mono text-[6px] uppercase tracking-[0.07em] text-muted sm:text-[7px] lg:text-[8px]">Today / newest first</p>
+        </div>
+        <span className="absolute right-[12.5%] top-[6.28%] rounded-full bg-green/[.09] px-[2%] py-[1.1%] font-mono text-[6px] text-green sm:text-[7px] lg:text-[8px]">
+          12 new
+        </span>
+        <SearchIcon className="absolute right-[5.1%] top-[6.8%] h-3 w-3 text-green sm:h-3.5 sm:w-3.5 lg:h-[18px] lg:w-[18px]" />
+        <div className="absolute left-[5.45%] top-[22.11%] h-px w-[89.1%] bg-line-soft" />
+
+        <div className="absolute left-[5.45%] top-[27.14%] flex h-[19.1%] w-[89.1%] items-center gap-[3.2%] rounded-[10px] border border-line-soft bg-base px-[3.5%]">
+          <div className="grid h-[34px] w-[34px] shrink-0 place-items-center rounded-md bg-green/[.09] text-green max-sm:h-6 max-sm:w-6">
+            <MicIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
           </div>
-          <div className="mt-3 space-y-2">
-            <div className="grid grid-cols-[34px_minmax(0,1fr)_auto] items-center gap-2.5 rounded-md border border-line-soft bg-white px-2.5 py-2">
-              <div className="grid h-[34px] w-[34px] place-items-center rounded-md bg-green/[.09] text-green"><MicIcon className="h-4 w-4" /></div>
-              <div className="min-w-0">
-                <p className="truncate text-[11px] font-semibold text-ink">Voice memo</p>
-                <p className="truncate text-[9px] text-muted">Maya · 9:41 AM</p>
-              </div>
-              <span className="font-mono text-[8px] text-muted">0:47</span>
-            </div>
-            <div className="grid grid-cols-[34px_minmax(0,1fr)_auto] items-center gap-2.5 rounded-md border border-line-soft bg-white px-2.5 py-2">
-              <div className="grid h-[34px] w-[34px] place-items-center rounded-md bg-yellow/35 text-ink"><DocIcon className="h-4 w-4" /></div>
-              <div className="min-w-0">
-                <p className="truncate text-[11px] font-semibold text-ink">Reading highlight</p>
-                <p className="truncate text-[9px] text-muted">The art of noticing</p>
-              </div>
-              <span className="font-mono text-[8px] text-muted">Saved</span>
-            </div>
-            <div className="grid grid-cols-[34px_minmax(0,1fr)_auto] items-center gap-2.5 rounded-md border border-line-soft bg-white px-2.5 py-2">
-              <div className="grid h-[34px] w-[34px] place-items-center rounded-md bg-sage text-green"><PenIcon className="h-4 w-4" /></div>
-              <div className="min-w-0">
-                <p className="truncate text-[11px] font-semibold text-ink">A thought from the train</p>
-                <p className="truncate text-[9px] text-muted">Note · 7:18 AM</p>
-              </div>
-              <span className="h-1.5 w-1.5 rounded-full bg-green" />
-            </div>
+          <div className="min-w-0">
+            <p className="truncate text-[8px] font-semibold text-ink sm:text-[10px] lg:text-[12px]">Voice memo</p>
+            <p className="mt-0.5 truncate text-[7px] text-muted sm:text-[8px] lg:text-[10px]">Maya · train platform</p>
           </div>
-          <div className="mt-3 flex items-center gap-1.5 border-t border-line-soft pt-2.5 font-mono text-[8px] uppercase tracking-[0.08em] text-muted">
-            <span className="h-1.5 w-1.5 rounded-full bg-green" /> Captured automatically
+          <span className="ml-auto font-mono text-[6px] text-green sm:text-[7px] lg:text-[9px]">0:47</span>
+        </div>
+
+        <div className="absolute left-[5.45%] top-[49.25%] flex h-[18.09%] w-[89.1%] items-center gap-[3.2%] rounded-[10px] border border-line-soft bg-white px-[3.5%]">
+          <div className="grid h-[34px] w-[34px] shrink-0 place-items-center rounded-md bg-yellow/35 text-ink max-sm:h-6 max-sm:w-6">
+            <MailIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+          </div>
+          <div className="min-w-0">
+            <p className="truncate text-[8px] font-semibold text-ink sm:text-[10px] lg:text-[12px]">Lease renewal terms</p>
+            <p className="mt-0.5 truncate text-[7px] text-muted sm:text-[8px] lg:text-[10px]">Landlord · 8:14 AM</p>
+          </div>
+          <span className="ml-auto h-1.5 w-1.5 rounded-full bg-yellow" />
+        </div>
+
+        <div className="absolute left-[5.45%] top-[70.85%] grid h-[23.12%] w-[89.1%] grid-cols-2 gap-[3.5%]">
+          <div className="rounded-[10px] border border-line-soft bg-white p-[6.4%]">
+            <div className="flex items-center gap-1.5 text-green">
+              <DocIcon className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+              <span className="truncate text-[7px] font-semibold text-ink sm:text-[9px] lg:text-[11px]">Reading highlight</span>
+            </div>
+            <p className="mt-[9%] text-[6px] leading-[1.4] text-muted sm:text-[8px] lg:text-[10px]">“The art of noticing is the art of remembering.”</p>
+          </div>
+          <div className="rounded-[10px] border border-line-soft bg-base p-[6.4%]">
+            <div className="flex items-center gap-1.5 text-green">
+              <PenIcon className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+              <span className="truncate text-[7px] font-semibold text-ink sm:text-[9px] lg:text-[11px]">A thought from the train</span>
+            </div>
+            <p className="mt-[9%] text-[6px] leading-[1.4] text-muted sm:text-[8px] lg:text-[10px]">Don’t lose the small details. They become the story later.</p>
           </div>
         </div>
+        <p className="absolute bottom-[1.4%] left-[5.45%] font-mono text-[5px] uppercase tracking-[0.05em] text-green sm:text-[6px] lg:text-[8px]">
+          Captured automatically · no folders required
+        </p>
       </div>
-    </ProductFrame>
+    </ProductWindow>
   )
 }
 
-function MemoryCard({ className, icon, title, meta }: { className: string; icon: ReactNode; title: string; meta: string }) {
+function MemoryCard({
+  className,
+  label,
+  title,
+  detail,
+  orange = false,
+  featured = false,
+}: {
+  className: string
+  label: string
+  title: string
+  detail: string
+  orange?: boolean
+  featured?: boolean
+}) {
+  const surfaceClass = featured
+    ? 'border-[1.5px] border-orange rounded-[10px] bg-white shadow-[0_2px_5px_rgba(23,37,31,.08)]'
+    : 'border border-line rounded-[8px] bg-white shadow-[0_2px_5px_rgba(23,37,31,.08)]'
+  const labelClass = orange ? 'text-orange' : 'text-green'
+
   return (
-    <div className={`absolute w-[104px] rounded-md border border-line bg-white px-2.5 py-2 shadow-[0_3px_10px_rgba(23,37,31,.05)] max-sm:w-[78px] max-sm:px-1.5 ${className}`}>
-      <div className="flex items-center gap-1.5 text-green">{icon}<span className="font-mono text-[8px] uppercase tracking-[0.08em]">{title}</span></div>
-      <p className="mt-1 truncate text-[9px] text-muted">{meta}</p>
+    <div className={['absolute flex flex-col overflow-hidden p-[1.85%]', surfaceClass, className].join(' ')}>
+      <p className={['truncate font-mono text-[5px] tracking-[0.02em] sm:text-[6px] lg:text-[8px]', labelClass].join(' ')}>{label}</p>
+      <p className={featured ? 'mt-[2%] truncate text-[9px] font-semibold text-ink sm:text-[11px] lg:text-[15px]' : 'mt-[2%] truncate text-[7px] font-semibold text-ink sm:text-[9px] lg:text-[11px]'}>
+        {title}
+      </p>
+      <p className={featured ? 'mt-[1%] truncate text-[6px] text-muted sm:text-[8px] lg:text-[10px]' : 'mt-[1%] truncate text-[5px] text-muted sm:text-[7px] lg:text-[9px]'}>
+        {detail}
+      </p>
     </div>
   )
 }
 
 function ConnectSurface() {
   return (
-    <ProductFrame label="Zora · memory map">
-      <div className="min-h-[278px] p-3 sm:p-4">
-        <div className="flex items-center justify-between border-b border-line-soft pb-2.5">
-          <div>
-            <p className="font-display text-[17px] font-bold tracking-[-0.02em] text-ink">Lease renewal</p>
-            <p className="mt-0.5 font-mono text-[8px] uppercase tracking-[0.08em] text-muted">Memory workspace</p>
-          </div>
-          <span className="rounded-full border border-green/[.22] bg-green/[.07] px-2 py-1 font-mono text-[8px] uppercase tracking-[0.08em] text-green">4 links</span>
-        </div>
-        <div className="relative mt-3 h-[196px]">
-          <svg viewBox="0 0 320 196" fill="none" className="absolute inset-0 h-full w-full">
-            <path d="M160 98C118 70 80 48 42 35" stroke="#C9D2C2" strokeWidth="1.2" />
-            <path d="M160 98C204 72 244 51 278 34" stroke="#C9D2C2" strokeWidth="1.2" />
-            <path d="M160 98C118 130 82 152 45 164" stroke="#C9D2C2" strokeWidth="1.2" />
-            <path d="M160 98C207 128 246 153 280 164" stroke="#FF785A" strokeWidth="1.4" />
-          </svg>
-          <MemoryCard className="left-0 top-0" icon={<MicIcon className="h-3 w-3" />} title="Voice" meta="Maya · Mar 14" />
-          <MemoryCard className="right-0 top-0" icon={<MailIcon className="h-3 w-3" />} title="Email" meta="Lease terms" />
-          <MemoryCard className="bottom-0 left-0" icon={<DocIcon className="h-3 w-3" />} title="Note" meta="April 4 decision" />
-          <MemoryCard className="bottom-0 right-0" icon={<PenIcon className="h-3 w-3" />} title="Project" meta="New apartment" />
-          <div className="absolute left-1/2 top-1/2 grid h-[70px] w-[124px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-md border border-ink/10 bg-ink px-3 text-center shadow-[0_8px_18px_rgba(23,37,31,.12)] max-sm:h-[66px] max-sm:w-[102px] max-sm:px-2">
-            <div>
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange motion-safe:animate-node-pulse" />
-              <p className="mt-1 text-[10px] font-semibold text-base max-sm:text-[9px]">Lease renewal</p>
-              <p className="mt-0.5 font-mono text-[7px] uppercase tracking-[0.08em] text-base/65">4 related memories</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </ProductFrame>
+    <ProductWindow label="Memory map">
+      <div className="absolute bottom-0 left-0 top-[10.96%] w-full bg-[#fbfcf9]" />
+      <img
+        src="/images/zora-connect-evidence-links.svg"
+        alt=""
+        className="absolute bottom-0 left-0 top-[10.96%] h-[89.04%] w-full"
+      />
+      <p className="absolute left-[3.72%] top-[14.84%] text-[9px] font-semibold text-ink sm:text-[11px] lg:text-[14px]">Connected context</p>
+      <p className="absolute right-[4.18%] top-[15.07%] font-mono text-[6px] tracking-[0.03em] text-muted sm:text-[8px] lg:text-[10px]">12 LINKED PIECES</p>
+
+      <MemoryCard
+        className="left-[35.45%] top-[48.86%] h-[17.81%] w-[28.48%]"
+        label="PENDING DECISION"
+        title="Lease renewal"
+        detail="Oct 1 · 3 sources"
+        orange
+        featured
+      />
+      <MemoryCard
+        className="left-[8.36%] top-[28.54%] h-[13.93%] w-[25.39%]"
+        label="VOICE MEMO"
+        title="Call landlord Tuesday"
+        detail="0:42 · yesterday"
+      />
+      <MemoryCard
+        className="left-[66.41%] top-[28.54%] h-[13.93%] w-[25.39%]"
+        label="BUILDING NOTICE"
+        title="Rent increase"
+        detail="PDF · 2 pages"
+      />
+      <MemoryCard
+        className="left-[8.51%] top-[72.83%] h-[14.16%] w-[26.63%]"
+        label="LEASE AGREEMENT"
+        title="Clause 4.2"
+        detail="3-year term"
+      />
+      <MemoryCard
+        className="left-[65.63%] top-[72.83%] h-[14.16%] w-[27.24%]"
+        label="EMAIL FROM LANDLORD"
+        title="Would you like to renew?"
+        detail="received today"
+        orange
+      />
+    </ProductWindow>
+  )
+}
+
+function RecallSource({
+  className,
+  label,
+  title,
+  orange = false,
+}: {
+  className: string
+  label: string
+  title: string
+  orange?: boolean
+}) {
+  return (
+    <div className={['absolute overflow-hidden rounded-[8px] border border-line bg-white p-[1.75%]', className].join(' ')}>
+      <p className={orange ? 'truncate font-mono text-[5px] tracking-[0.02em] text-orange sm:text-[6px] lg:text-[8px]' : 'truncate font-mono text-[5px] tracking-[0.02em] text-green sm:text-[6px] lg:text-[8px]'}>
+        {label}
+      </p>
+      <p className="mt-[3%] truncate text-[6px] font-semibold text-ink sm:text-[8px] lg:text-[10px]">{title}</p>
+    </div>
   )
 }
 
 function RecallSurface() {
   return (
-    <ProductFrame label="Zora · recall">
-      <div className="min-h-[278px] p-3 sm:p-4">
-        <div className="flex items-center gap-2 rounded-md border border-line bg-base px-3 py-2.5">
-          <SearchIcon className="h-3.5 w-3.5 text-green" />
-          <span className="min-w-0 flex-1 truncate text-[11px] text-ink">What did Maya say about the lease renewal?</span>
-          <span className="font-mono text-[8px] text-muted">⌘K</span>
-        </div>
-        <div className="mt-3 flex items-center gap-3 border-b border-line-soft pb-2 font-mono text-[8px] uppercase tracking-[0.08em] text-muted">
-          <span className="border-b-2 border-green pb-2 -mb-[9px] text-green">Answer</span>
-          <span>Memories 2</span>
-          <span>Sources</span>
-        </div>
-        <p className="mt-3 text-[11px] leading-[1.65] text-ink">
-          Maya suggested renewing for <span className="border-b-2 border-green/55">18 months instead of 12</span>. The landlord offered a <span className="border-b-2 border-green/55">6% discount</span> for the longer term, with a decision before <strong className="rounded bg-yellow px-1 font-semibold">April 4</strong>.
+    <ProductWindow label="Recall">
+      <div className="absolute left-[4.18%] top-[16.67%] h-[11.64%] w-[91.33%] rounded-[9px] border border-line bg-base" />
+      <p className="absolute left-[6.97%] top-[20.32%] text-[8px] text-ink sm:text-[10px] lg:text-[14px]">
+        What did I decide about renewing the apartment?
+      </p>
+
+      <div className="absolute left-[4.18%] top-[34.02%] h-[32.19%] w-[91.33%] rounded-[12px] border border-[#cad6c7] bg-sage p-[3%]">
+        <p className="font-mono text-[6px] tracking-[0.03em] text-green sm:text-[8px] lg:text-[10px]">HERE’S WHAT I FOUND</p>
+        <p className="mt-[3.2%] max-w-[540px] text-[11px] font-semibold leading-[1.38] text-ink sm:text-[14px] lg:text-[18px] lg:leading-[25px]">
+          You were weighing a one-year renewal against the rent increase — and wanted clarity before deciding.
         </p>
-        <div className="mt-3 grid grid-cols-2 gap-2">
-          <div className="rounded-md border border-line-soft bg-base p-2.5">
-            <div className="flex items-center gap-1.5 font-mono text-[8px] uppercase tracking-[0.08em] text-green"><MicIcon className="h-3 w-3" /> Voice · Mar 14</div>
-            <div className="mt-2 flex h-4 items-end gap-0.5">
-              {WAVE.map((height, index) => <span key={index} className={`w-[2px] rounded-sm ${[5, 6, 7].includes(index) ? 'bg-orange' : 'bg-green/45'}`} style={{ height }} />)}
-            </div>
-          </div>
-          <div className="rounded-md border border-line-soft bg-base p-2.5">
-            <div className="flex items-center gap-1.5 font-mono text-[8px] uppercase tracking-[0.08em] text-green"><MailIcon className="h-3 w-3" /> Email · Mar 12</div>
-            <p className="mt-2 truncate text-[9px] text-muted"><span className="bg-yellow/80">Matched passage</span> · lease terms</p>
-          </div>
-        </div>
       </div>
-    </ProductFrame>
+
+      <p className="absolute left-[4.18%] top-[71.92%] font-mono text-[6px] tracking-[0.03em] text-muted sm:text-[8px] lg:text-[10px]">
+        SOURCES — 3 ORIGINAL MOMENTS
+      </p>
+      <RecallSource className="left-[4.18%] top-[79.22%] h-[12.56%] w-[28.95%]" label="VOICE MEMO · YESTERDAY" title="Call landlord Tuesday" />
+      <RecallSource className="left-[35.45%] top-[79.22%] h-[12.56%] w-[28.95%]" label="LEASE AGREEMENT" title="Clause 4.2 · 3-year term" />
+      <RecallSource className="left-[66.72%] top-[79.22%] h-[12.56%] w-[28.95%]" label="EMAIL · TODAY" title="Rent increase, renewal" orange />
+    </ProductWindow>
   )
 }
 
-const stages = [
-  {
-    title: 'Capture',
-    copy: 'Every fragment, in seconds. No filing, no tagging, no folders — capture is frictionless by design.',
-    visual: <CaptureSurface />,
-  },
-  {
-    title: 'Connect',
-    copy: 'A living memory graph links fragments to people, projects, and ideas — new connections light up as structure emerges on its own.',
-    visual: <ConnectSurface />,
-  },
-  {
-    title: 'Recall',
-    copy: 'Plain-language questions, grounded answers. Every recall cites the original moment.',
-    visual: <RecallSurface />,
-  },
-]
-
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="border-t border-line bg-sage py-24">
-      <Container>
-        <Reveal>
-          <h2 className="font-display text-[32px] font-bold tracking-[-0.02em] text-ink sm:text-[40px]">
-            Capture. Connect. Recall.
-          </h2>
-          <p className="mt-3 max-w-[52ch] text-[16px] text-muted">
-            Three stages, one system. Zora does the organizing so you never have to.
-          </p>
-        </Reveal>
-        <div className="mt-12 grid gap-9 lg:grid-cols-3 lg:gap-7">
-          {stages.map((stage, index) => (
-            <Reveal key={stage.title} delay={index * 80}>
-              <article>
-                {stage.visual}
-                <h3 className="mt-5 font-display text-[21px] font-bold text-ink">{stage.title}</h3>
-                <p className="mt-2 max-w-[34ch] text-[14px] leading-[1.6] text-muted">{stage.copy}</p>
-              </article>
-            </Reveal>
-          ))}
+    <>
+      <section id="how-it-works" className="overflow-hidden bg-sage">
+        <div className="mx-auto grid w-full max-w-[1080px] gap-12 px-6 py-20 sm:px-8 lg:min-h-[660px] lg:grid-cols-[348px_minmax(0,646px)] lg:items-center lg:gap-[86px] lg:px-0 lg:py-[110px]">
+          <Reveal>
+            <FeatureCopy
+              index="01 / CAPTURE"
+              title="Everything worth keeping, without filing."
+              description="Drop in a thought, a voice memo, a link, or an email. Zora keeps the original context intact, without asking you to organize it."
+              note="VOICE · EMAIL · WEB · NOTES"
+            />
+          </Reveal>
+          <Reveal delay={100} className="flex justify-center lg:justify-end">
+            <CaptureSurface />
+          </Reveal>
         </div>
-      </Container>
-    </section>
+      </section>
+
+      <section className="overflow-hidden bg-base">
+        <div className="mx-auto grid w-full max-w-[1080px] gap-12 px-6 py-20 sm:px-8 lg:min-h-[660px] lg:grid-cols-[minmax(0,646px)_348px] lg:items-center lg:gap-[86px] lg:px-0 lg:py-[110px]">
+          <Reveal className="lg:order-2">
+            <FeatureCopy
+              index="02 / CONNECT"
+              title="Your notes become a living map."
+              description="A living memory graph links fragments to people, projects, and ideas — new connections light up as structure emerges on its own."
+              note="THE THREAD APPEARS BEFORE YOU GO LOOKING FOR IT"
+              withRule
+            />
+          </Reveal>
+          <Reveal delay={100} className="flex justify-center lg:order-1 lg:justify-start">
+            <ConnectSurface />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="overflow-hidden bg-sage">
+        <div className="mx-auto grid w-full max-w-[1080px] gap-12 px-6 py-20 sm:px-8 lg:min-h-[660px] lg:grid-cols-[348px_minmax(0,646px)] lg:items-center lg:gap-[86px] lg:px-0 lg:py-[110px]">
+          <Reveal>
+            <FeatureCopy
+              index="03 / RECALL"
+              title="Remember the detail. Keep the source."
+              description="Plain-language questions, grounded answers. Every recall cites the original moment."
+              note="ASK LIKE YOU THINK. VERIFY WHAT YOU FIND."
+              withRule
+            />
+          </Reveal>
+          <Reveal delay={100} className="flex justify-center lg:justify-end">
+            <RecallSurface />
+          </Reveal>
+        </div>
+      </section>
+    </>
   )
 }
