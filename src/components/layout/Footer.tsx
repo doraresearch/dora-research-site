@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react'
 import Container from '@/components/ui/Container'
 import Logo from '@/components/Logo'
 
@@ -8,22 +7,6 @@ const cols: [string, [string, string][]][] = [
 ]
 
 export default function Footer() {
-  const markRef = useRef<HTMLDivElement>(null)
-
-  // Run the wordmark shimmer only while the footer is on screen
-  // (continuous loops pause when hidden, per the motion rules).
-  useEffect(() => {
-    const el = markRef.current
-    if (!el) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const io = new IntersectionObserver(
-      ([entry]) => el.classList.toggle('is-flowing', entry.isIntersecting),
-      { threshold: 0.1 },
-    )
-    io.observe(el)
-    return () => io.disconnect()
-  }, [])
-
   return (
     <footer className="border-t border-ink/15 bg-ink pt-14">
       <Container>
@@ -50,8 +33,7 @@ export default function Footer() {
         </div>
 
         <div
-          ref={markRef}
-          className="text-brand-shimmer select-none font-display text-[clamp(90px,21vw,260px)] font-extrabold leading-[0.82] tracking-[-0.04em]"
+          className="select-none font-sans text-[clamp(84px,20vw,248px)] font-bold leading-[0.82] tracking-[-0.055em] text-base/90"
           aria-hidden="true"
         >
           DORA

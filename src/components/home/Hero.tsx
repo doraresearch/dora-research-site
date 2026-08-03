@@ -1,18 +1,6 @@
 import Container from '@/components/ui/Container'
 import WaitlistForm from '@/components/ui/WaitlistForm'
-
-function AppWindow() {
-  return (
-    <div className="overflow-hidden rounded-window border border-line bg-sage shadow-[0_24px_60px_rgba(23,37,31,.12)]">
-      <img
-        src="/images/zora-memory-workspace.png"
-        alt="Zora memory workspace linking a voice memo, lease agreement, building notice, and landlord email to source-backed evidence."
-        className="block h-auto w-full"
-        decoding="async"
-      />
-    </div>
-  )
-}
+import InteractiveWorkspace from './demo/InteractiveWorkspace'
 
 export default function Hero() {
   return (
@@ -38,7 +26,7 @@ export default function Hero() {
         </div>
 
         <div className="relative animate-fade-up" style={{ animationDelay: '160ms' }}>
-          <AppWindow />
+          <InteractiveWorkspace />
         </div>
       </Container>
     </section>

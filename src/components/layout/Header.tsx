@@ -17,12 +17,16 @@ export default function Header() {
       <div className="mx-auto flex h-[72px] max-w-[1200px] items-center justify-between px-6 sm:px-8">
         <Link
           to="/"
-          className="flex min-h-[44px] shrink-0 items-center gap-[11px] font-display text-[21px] font-bold tracking-[-0.01em] text-ink"
+          className="flex min-h-[44px] shrink-0 items-center gap-3 text-ink"
           aria-label="DORA Research, home"
         >
-          <Logo size={26} spin />
-          DORA
-          <span className="mt-1 font-mono text-[10px] font-normal tracking-[0.18em] text-muted">RESEARCH</span>
+          <Logo size={30} spin />
+          <span className="flex flex-col justify-center" aria-hidden="true">
+            <span className="font-sans text-[20px] font-bold leading-[0.9] tracking-[0.015em]">DORA</span>
+            <span className="mt-[5px] font-mono text-[9px] font-medium leading-none tracking-[0.2em] text-muted">
+              RESEARCH
+            </span>
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-8 whitespace-nowrap lg:flex" aria-label="Primary">
