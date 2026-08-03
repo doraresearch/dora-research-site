@@ -12,7 +12,7 @@ export default function Footer() {
       <Container>
         <div className="flex flex-wrap justify-between gap-8 pb-10">
           <p className="max-w-[40ch] text-[15px] leading-[1.6] text-base/65">
-            DORA Research is a consumer memory lab. Zora is its first product.
+            DORA Research builds private, context-aware intelligence for work. Zora starts with product and technology teams.
           </p>
           <div className="flex gap-16">
             {cols.map(([title, links]) => (
@@ -43,7 +43,7 @@ export default function Footer() {
           <span className="inline-flex items-center gap-2.5">
             <Logo size={16} spin />© 2026 DORA Research
           </span>
-          <span>A consumer memory lab</span>
+          <span>A second brain for work</span>
         </div>
       </Container>
     </footer>

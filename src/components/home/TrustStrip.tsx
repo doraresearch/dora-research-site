@@ -1,6 +1,6 @@
 const items = [
-  'On-device memory store',
-  'End-to-end encrypted',
+  'Private work memory',
+  'Source-grounded intelligence',
   'Your data trains nothing',
   'Export or erase anytime',
 ]

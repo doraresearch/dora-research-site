@@ -8,10 +8,10 @@ export default function WaitlistCTA() {
       <Container className="flex min-h-[510px] items-center justify-center py-20 text-center lg:py-0">
         <Reveal className="w-full">
           <h2 className="mx-auto max-w-[720px] text-balance font-display text-[42px] font-bold leading-[1.07] tracking-[-0.03em] text-ink sm:text-[52px] lg:text-[58px] lg:leading-[62px]">
-            Your mind, with a perfect memory.
+            A second brain for the teams building what’s next.
           </h2>
           <p className="mx-auto mt-[22px] max-w-[520px] text-[16px] leading-[1.6] text-muted lg:text-[17px] lg:leading-[26px]">
-            A private place for every note, thought, and thread you want to keep.
+            Zora gives product and technology teams persistent context across every decision, dependency, risk, and release — from the first conversation through production.
           </p>
           <div className="mt-[22px] flex justify-center">
             <WaitlistForm inputWidth="sm:w-[280px]" />

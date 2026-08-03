@@ -5,23 +5,24 @@ import InteractiveWorkspace from './demo/InteractiveWorkspace'
 export default function Hero() {
   return (
     <section id="zora" className="relative overflow-hidden bg-base">
-      <Container className="grid items-center gap-12 py-24 lg:grid-cols-[1fr_1.05fr] lg:pb-28">
+      <Container className="grid items-center gap-12 py-20 sm:py-24 lg:grid-cols-[0.88fr_1.12fr] lg:gap-14 lg:pb-28">
         <div className="animate-fade-up">
-          <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-green">
-            Zora · by DORA Research
+          <p className="mb-5 font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-green">
+            Zora for product + technology
           </p>
-          <h1 className="mt-6 text-balance font-display text-[44px] font-bold leading-[1.02] tracking-[-0.03em] text-ink lg:text-[64px]">
-            Ask your memory anything.
+          <h1 className="text-balance font-display text-[46px] font-bold leading-[0.98] tracking-[-0.04em] text-ink sm:text-[56px] lg:text-[68px]">
+            A second brain for how products get built.
           </h1>
-          <p className="mt-6 max-w-[44ch] text-[18px] leading-[1.6] text-muted">
-            Zora remembers everything you capture and understands how it fits together. One question
-            retrieves the note, the source, and the context — even from years ago.
+          <p className="mt-7 max-w-[43ch] text-[18px] leading-[1.6] text-muted lg:text-[19px]">
+            Zora continuously connects meetings, conversations, decisions, documentation, tickets,
+            roadmaps, and technical systems — so your team knows what changed, why it matters,
+            what could block delivery, and what needs attention next.
           </p>
           <div className="mt-9">
             <WaitlistForm />
           </div>
-          <p className="mt-3.5 font-mono text-[11px] tracking-[0.08em] text-muted">
-            Private beta · Fall 2026 · macOS + iOS first
+          <p className="mt-3.5 font-mono text-[11px] tracking-[0.06em] text-muted">
+            Product + technology first · Built toward a second brain for work
           </p>
         </div>
 

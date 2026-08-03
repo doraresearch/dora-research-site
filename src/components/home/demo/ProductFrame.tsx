@@ -3,10 +3,12 @@ import type { ReactNode } from 'react'
 export default function ProductFrame({
   children,
   label,
+  status = 'Release context active',
   className = '',
 }: {
   children: ReactNode
   label: string
+  status?: string
   className?: string
 }) {
   return (
@@ -26,7 +28,7 @@ export default function ProductFrame({
         </span>
         <span className="ml-auto flex items-center gap-1.5 font-mono text-[8px] uppercase tracking-[0.08em] text-green sm:text-[9px]">
           <span className="h-1.5 w-1.5 rounded-full bg-green" aria-hidden="true" />
-          Source ready
+          {status}
         </span>
       </div>
       {children}

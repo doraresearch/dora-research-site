@@ -4,23 +4,48 @@ import CaptureDemo from './CaptureDemo'
 import ConnectDemo from './ConnectDemo'
 import ProductFrame from './ProductFrame'
 import RecallDemo from './RecallDemo'
+import type { ConnectionNode, WorkFunction } from './data'
 
-type Stage = 'capture' | 'connect' | 'recall'
+type Stage = 'brief' | 'context' | 'decide'
 
 const stages: { id: Stage; index: string; label: string }[] = [
-  { id: 'capture', index: '01', label: 'Capture' },
-  { id: 'connect', index: '02', label: 'Connect' },
-  { id: 'recall', index: '03', label: 'Recall' },
+  { id: 'brief', index: '08:40', label: 'Brief' },
+  { id: 'context', index: '11:20', label: 'Context' },
+  { id: 'decide', index: '15:10', label: 'Decision brief' },
 ]
 
-function StageContent({ stage }: { stage: Stage }) {
-  if (stage === 'capture') return <CaptureDemo compact />
-  if (stage === 'connect') return <ConnectDemo compact />
-  return <RecallDemo compact />
+function StageContent({
+  stage,
+  focusNodeId,
+  onFocusNodeChange,
+}: {
+  stage: Stage
+  focusNodeId: ConnectionNode['id']
+  onFocusNodeChange: (nodeId: ConnectionNode['id']) => void
+}) {
+  if (stage === 'brief') {
+    return (
+      <CaptureDemo
+        compact
+        onFocusNodeChange={(nodeId: WorkFunction) => onFocusNodeChange(nodeId)}
+      />
+    )
+  }
+  if (stage === 'context') {
+    return (
+      <ConnectDemo
+        compact
+        selectedId={focusNodeId}
+        onSelectedIdChange={onFocusNodeChange}
+      />
+    )
+  }
+  return <RecallDemo compact focusNodeId={focusNodeId} />
 }
 
 export default function InteractiveWorkspace() {
-  const [stage, setStage] = useState<Stage>('capture')
+  const [stage, setStage] = useState<Stage>('brief')
+  const [focusNodeId, setFocusNodeId] = useState<ConnectionNode['id']>('reliability')
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([])
   const workspaceId = useId().replace(/:/g, '')
   const activeIndex = stages.findIndex((item) => item.id === stage)
@@ -39,8 +64,8 @@ export default function InteractiveWorkspace() {
   }
 
   return (
-    <ProductFrame label="Zora / memory workspace">
-      <div className="grid grid-cols-3 border-b border-line-soft bg-white" role="tablist" aria-label="Explore how Zora works">
+    <ProductFrame label="Zora / Atlas release">
+      <div className="grid grid-cols-3 border-b border-line-soft bg-white" role="tablist" aria-label="Explore a workday with Zora">
         {stages.map((item, index) => {
           const active = item.id === stage
           const tabId = `${workspaceId}-${item.id}-tab`
@@ -58,11 +83,11 @@ export default function InteractiveWorkspace() {
               onClick={() => setStage(item.id)}
               onKeyDown={(event) => onTabKeyDown(event, index)}
               className={active
-                ? 'relative flex items-center justify-center gap-2 bg-sage/60 px-2 py-3 text-green transition-colors motion-reduce:transition-none'
-                : 'relative flex items-center justify-center gap-2 bg-white px-2 py-3 text-muted transition-colors hover:bg-base hover:text-ink motion-reduce:transition-none'}
+                ? 'relative flex min-h-11 items-center justify-center gap-1.5 bg-sage/60 px-1.5 py-2 text-green transition-colors motion-reduce:transition-none sm:gap-2 sm:px-2'
+                : 'relative flex min-h-11 items-center justify-center gap-1.5 bg-white px-1.5 py-2 text-muted transition-colors hover:bg-base hover:text-ink motion-reduce:transition-none sm:gap-2 sm:px-2'}
             >
-              <span className="font-mono text-[8px] tracking-[0.06em] sm:text-[9px]">{item.index}</span>
-              <span className="text-[11px] font-semibold sm:text-[12px]">{item.label}</span>
+              <span className="font-mono text-[7px] tracking-[0.04em] sm:text-[9px] sm:tracking-[0.06em]">{item.index}</span>
+              <span className="text-[10px] font-semibold sm:text-[12px]">{item.label}</span>
               {active ? <span className="absolute inset-x-0 bottom-0 h-0.5 bg-green" aria-hidden="true" /> : null}
             </button>
           )
@@ -81,17 +106,21 @@ export default function InteractiveWorkspace() {
             hidden={!active}
             className={active ? 'motion-safe:animate-fade-up' : undefined}
           >
-            <StageContent stage={item.id} />
+            <StageContent
+              stage={item.id}
+              focusNodeId={focusNodeId}
+              onFocusNodeChange={setFocusNodeId}
+            />
           </div>
         )
       })}
 
       <div className="flex items-center justify-between border-t border-line-soft bg-base px-4 py-2.5">
         <p className="font-mono text-[8px] uppercase tracking-[0.08em] text-muted">
-          Interactive example · no account needed
+          One release · product + technology
         </p>
         <p className="font-mono text-[8px] uppercase tracking-[0.08em] text-green">
-          {activeIndex + 1} / {stages.length}
+          {stages[activeIndex].index} · {stages[activeIndex].label}
         </p>
       </div>
     </ProductFrame>
