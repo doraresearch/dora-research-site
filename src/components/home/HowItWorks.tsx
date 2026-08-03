@@ -56,7 +56,7 @@ function FeatureCopy({
   withRule?: boolean
 }) {
   return (
-    <div className="max-w-[348px] pt-1 lg:min-h-[420px] lg:pt-[11px]">
+    <div className="max-w-[348px] pt-1 xl:min-h-[420px] lg:pt-[11px]">
       <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-green">{index}</p>
       <h2 className="mt-[18px] text-balance font-display text-[38px] font-bold leading-[1.04] tracking-[-0.03em] text-ink sm:text-[43px] lg:leading-[46px]">
         {title}
@@ -280,7 +280,7 @@ export default function HowItWorks() {
   return (
     <>
       <section id="how-it-works" className="overflow-hidden bg-sage">
-        <div className="mx-auto grid w-full max-w-[1080px] gap-12 px-6 py-20 sm:px-8 lg:min-h-[660px] lg:grid-cols-[348px_minmax(0,646px)] lg:items-center lg:gap-[86px] lg:px-0 lg:py-[110px]">
+        <div className="mx-auto grid w-full max-w-[1080px] gap-12 px-6 py-20 sm:px-8 xl:min-h-[660px] xl:grid-cols-[348px_minmax(0,646px)] xl:items-center xl:gap-[86px] xl:px-0 xl:py-[110px]">
           <Reveal>
             <FeatureCopy
               index="01 / CAPTURE"
@@ -289,15 +289,15 @@ export default function HowItWorks() {
               note="VOICE · EMAIL · WEB · NOTES"
             />
           </Reveal>
-          <Reveal delay={100} className="flex justify-center lg:justify-end">
+          <Reveal delay={100} className="flex justify-center xl:justify-end">
             <CaptureSurface />
           </Reveal>
         </div>
       </section>
 
       <section className="overflow-hidden bg-base">
-        <div className="mx-auto grid w-full max-w-[1080px] gap-12 px-6 py-20 sm:px-8 lg:min-h-[660px] lg:grid-cols-[minmax(0,646px)_348px] lg:items-center lg:gap-[86px] lg:px-0 lg:py-[110px]">
-          <Reveal className="lg:order-2">
+        <div className="mx-auto grid w-full max-w-[1080px] gap-12 px-6 py-20 sm:px-8 xl:min-h-[660px] xl:grid-cols-[minmax(0,646px)_348px] xl:items-center xl:gap-[86px] xl:px-0 xl:py-[110px]">
+          <Reveal className="xl:order-2">
             <FeatureCopy
               index="02 / CONNECT"
               title="Your notes become a living map."
@@ -306,14 +306,14 @@ export default function HowItWorks() {
               withRule
             />
           </Reveal>
-          <Reveal delay={100} className="flex justify-center lg:order-1 lg:justify-start">
+          <Reveal delay={100} className="flex justify-center xl:order-1 xl:justify-start">
             <ConnectSurface />
           </Reveal>
         </div>
       </section>
 
       <section className="overflow-hidden bg-sage">
-        <div className="mx-auto grid w-full max-w-[1080px] gap-12 px-6 py-20 sm:px-8 lg:min-h-[660px] lg:grid-cols-[348px_minmax(0,646px)] lg:items-center lg:gap-[86px] lg:px-0 lg:py-[110px]">
+        <div className="mx-auto grid w-full max-w-[1080px] gap-12 px-6 py-20 sm:px-8 xl:min-h-[660px] xl:grid-cols-[348px_minmax(0,646px)] xl:items-center xl:gap-[86px] xl:px-0 xl:py-[110px]">
           <Reveal>
             <FeatureCopy
               index="03 / RECALL"
@@ -323,7 +323,7 @@ export default function HowItWorks() {
               withRule
             />
           </Reveal>
-          <Reveal delay={100} className="flex justify-center lg:justify-end">
+          <Reveal delay={100} className="flex justify-center xl:justify-end">
             <RecallSurface />
           </Reveal>
         </div>
