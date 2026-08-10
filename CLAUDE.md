@@ -34,16 +34,20 @@ npm run preview  # preview prod build
 
 ## Deploy
 
-Production (`dorareason.com` + `www`) is hosted on **Cloudflare Pages** (project `dora-research-site`) and ships **manually** via Wrangler — `git push` does **not** auto-deploy:
+Production (`dorareason.com` + `www`) is hosted on **Cloudflare Pages** (project
+`dora-research-site`) and ships through GitHub Actions. The normal release flow
+is local branch → GitHub PR → merge to `main`; the merge triggers
+`.github/workflows/deploy-cloudflare-pages.yml`.
 
-```bash
-npm run build
-wrangler pages deploy dist --project-name dora-research-site
-```
+The workflow runs under Node 20 LTS, installs with `npm ci`, typechecks, builds
+the prerendered site, and deploys `dist` with `cloudflare/wrangler-action@v4`.
+Authentication is provided only through the GitHub `Production` environment
+secrets `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN`. Do not run Wrangler
+locally for normal releases and do not commit either value. Store both under
+GitHub **Settings → Environments → Production**; restrict the API token to the
+target Cloudflare account with **Account → Cloudflare Pages → Edit** permission.
 
-Run wrangler under **Node 20 LTS**, not the machine-default Node 26 — Node 26 makes the deploy hang at "Building…" with no error output. Auth is OAuth via `wrangler login` (the user's Cloudflare account).
-
-DNS for `dorareason.com` lives on **Cloudflare** (nameservers `courtney`/`ishaan.ns.cloudflare.com`); apex `@` and `www` are `CNAME → dora-research-site.pages.dev` (Proxied), SSL auto-provisioned. DNS records and Pages custom domains are managed in the **Cloudflare dashboard** — the `wrangler login` token is deploy-scoped (`pages:write` + `zone:read`) and **cannot edit DNS**, and the Pages domain-add API does **not** auto-create the CNAME (the dashboard flow does).
+DNS for `dorareason.com` lives on **Cloudflare** (nameservers `courtney`/`ishaan.ns.cloudflare.com`); apex `@` and `www` are `CNAME → dora-research-site.pages.dev` (Proxied), SSL auto-provisioned. DNS records and Pages custom domains remain managed in the **Cloudflare dashboard** and are not changed by the deployment workflow.
 
 Notes:
 - Build runs `tsc --noEmit && vite-react-ssg build` (prerendered static output in `dist/`). SPA fallback for unknown paths is `public/_redirects` (`/* /index.html 200`).

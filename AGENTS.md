@@ -1,6 +1,6 @@
 # DORA Research site
 
-Static marketing site for DORA Research — secure AI teammates for infrastructure operations. DORA turns recurring alerts, diagnostics, runbooks, and escalations into AI-executed workflows across the tools the team already runs (Datadog, PagerDuty, CloudWatch, Prometheus, Slack, Jira, cloud, databases). Stack: React 18 + TypeScript + Vite + Tailwind + react-router-dom, prerendered via vite-react-ssg (no framer-motion). Current public surface: single-page homepage. Deployed on **Cloudflare Pages** (manual `wrangler pages deploy`).
+Static marketing site for DORA Research — secure AI teammates for infrastructure operations. DORA turns recurring alerts, diagnostics, runbooks, and escalations into AI-executed workflows across the tools the team already runs (Datadog, PagerDuty, CloudWatch, Prometheus, Slack, Jira, cloud, databases). Stack: React 18 + TypeScript + Vite + Tailwind + react-router-dom, prerendered via vite-react-ssg (no framer-motion). Current public surface: single-page homepage. Deployed on **Cloudflare Pages** through GitHub Actions after merges to `main`.
 
 ## Design System
 
@@ -25,5 +25,9 @@ npm run preview  # preview prod build
 
 ## Deploy
 
-Hosted on **Cloudflare Pages** (project `dora-research-site`). Ships manually:
-`npm run build && wrangler pages deploy dist --project-name dora-research-site` (run wrangler under Node 20, not 26). DNS + custom domains (`dorareason.com`, `www`) are on Cloudflare; SPA fallback is `public/_redirects`. The `wrangler login` token can't edit DNS — use the Cloudflare dashboard. See `CLAUDE.md`.
+Hosted on **Cloudflare Pages** (project `dora-research-site`). Production ships
+through `.github/workflows/deploy-cloudflare-pages.yml` when a PR merges to
+`main`. The workflow uses Node 20 and the `Production` environment secrets
+`CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN`. Do not deploy with Wrangler
+locally. DNS + custom domains (`dorareason.com`, `www`) are on Cloudflare; SPA
+fallback is `public/_redirects`. See `CLAUDE.md`.
