@@ -279,9 +279,8 @@ export const recallResults: RecallResult[] = [
   {
     id: 'ship',
     question: 'Can Atlas still ship Friday?',
-    recommendation: 'Yes—as a guarded private beta. Keep audit history read-only, merge the event-index API by 13:00, clear or roll back auth build 842 at 14:00, and pass actor-IP redaction before the 15:30 go / no-go.',
+    recommendation: 'Yes—with three gates. Keep audit history read-only, merge the event-index API by 13:00, clear or roll back auth build 842 at 14:00, and pass actor-IP redaction by 15:00.',
     conditions: [
-      { function: 'product', functionLabel: 'Product', text: 'Hold scope to read-only audit history; export stays post-beta.' },
       { function: 'engineering', functionLabel: 'Engineering', text: 'PR #1842 and its staging migration must enter release QA by 13:00.' },
       { function: 'reliability', functionLabel: 'Reliability', text: 'Build 842 must clear the 14:00 auth gate or roll back.' },
       { function: 'security', functionLabel: 'Security', text: 'Actor-IP redaction must pass before the beta opens.' },

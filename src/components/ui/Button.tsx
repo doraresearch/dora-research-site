@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react'
 
 const VARIANTS = {
-  primary: 'bg-green text-base border border-transparent hover:bg-green-deep',
-  dark: 'bg-ink text-base border border-transparent hover:bg-ink/85',
-  ghost: 'bg-transparent text-muted border border-line hover:bg-sage/50 hover:text-ink',
+  primary: 'border border-transparent bg-action text-surface hover:bg-deep',
+  dark: 'border border-transparent bg-dark text-surface hover:bg-dark/85',
+  ghost: 'border border-control bg-transparent text-secondary hover:bg-context/60 hover:text-ink',
 }
 
 type ButtonProps = {

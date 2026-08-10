@@ -1,157 +1,147 @@
 import { useState } from 'react'
 import { workMoments } from './data'
-import type { SignalKind, WorkFunction } from './data'
+import type { WorkFunction } from './data'
 
-type SignalFilter = 'all' | SignalKind
+const releaseGates = workMoments.filter((item) => (
+  item.nodeId === 'engineering'
+  || item.nodeId === 'reliability'
+  || item.nodeId === 'security'
+))
 
-const filters: { id: SignalFilter; label: string }[] = [
-  { id: 'all', label: 'All' },
-  { id: 'priority', label: 'Priorities' },
-  { id: 'risk', label: 'Risks' },
-  { id: 'deadline', label: 'Deadlines' },
-]
+const releaseRole: Record<WorkFunction, string> = {
+  product: 'Scope',
+  engineering: 'Dependency',
+  reliability: 'Risk',
+  security: 'Privacy gate',
+  research: 'Evidence',
+}
 
 export default function CaptureDemo({
   compact = false,
+  selectedId: selectedIdProp,
   onFocusNodeChange,
 }: {
   compact?: boolean
+  selectedId?: WorkFunction
   onFocusNodeChange?: (nodeId: WorkFunction) => void
 }) {
-  const [filter, setFilter] = useState<SignalFilter>('all')
-  const [selectedId, setSelectedId] = useState(
-    workMoments.find((item) => item.nodeId === 'reliability')?.id ?? workMoments[0].id,
-  )
-  const filteredItems = filter === 'all'
-    ? workMoments
-    : workMoments.filter((item) => item.signalKinds.includes(filter))
-  const visibleItems = compact ? filteredItems.slice(0, 3) : filteredItems
-  const selected = visibleItems.find((item) => item.id === selectedId) ?? visibleItems[0]
+  const [internalSelectedId, setInternalSelectedId] = useState<WorkFunction>('reliability')
+  const selectedId = selectedIdProp ?? internalSelectedId
+  const selected = releaseGates.find((item) => item.nodeId === selectedId) ?? releaseGates[0]
 
   function selectItem(item: (typeof workMoments)[number]) {
-    setSelectedId(item.id)
+    if (selectedIdProp === undefined) setInternalSelectedId(item.nodeId)
     onFocusNodeChange?.(item.nodeId)
-  }
-
-  function selectFilter(nextFilter: SignalFilter) {
-    const nextItems = nextFilter === 'all'
-      ? workMoments
-      : workMoments.filter((item) => item.signalKinds.includes(nextFilter))
-    const nextVisibleItems = compact ? nextItems.slice(0, 3) : nextItems
-
-    setFilter(nextFilter)
-    if (!nextVisibleItems.some((item) => item.id === selectedId)) selectItem(nextVisibleItems[0])
   }
 
   return (
     <div className={compact ? 'bg-white p-3 sm:p-4' : 'bg-white p-4 sm:p-5'}>
-      <div className="flex flex-wrap items-end justify-between gap-3 border-b border-line-soft pb-3">
+      <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="font-display text-[20px] font-bold leading-none tracking-[-0.02em] text-ink sm:text-[22px]">
-            08:40 release brief
+          <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-green">
+            08:40 · Brief
           </p>
-          <p className="mt-1 font-mono text-[8px] uppercase tracking-[0.1em] text-muted sm:text-[9px]">
-            After the Atlas product + engineering stand-up
+          <p className="mt-1 font-display text-[18px] font-bold leading-none tracking-[-0.02em] text-ink sm:text-[20px]">
+            Friday release intelligence
           </p>
         </div>
-        <p className="font-mono text-[8px] uppercase tracking-[0.08em] text-green sm:text-[9px]">
-          5 signals · product + tech
+        <p className="shrink-0 text-right font-mono text-[10px] uppercase leading-[1.45] tracking-[0.05em] text-muted">
+          5 original sources<br />updated 08:34
         </p>
       </div>
 
-      <div className="mt-3 flex max-w-full gap-1 overflow-x-auto pb-1" aria-label="Filter the workday brief">
-        {filters.map((item) => {
-          const isActive = item.id === filter
-          return (
-            <button
-              key={item.id}
-              type="button"
-              aria-pressed={isActive}
-              onClick={() => selectFilter(item.id)}
-              className={isActive
-                ? 'min-h-11 shrink-0 rounded-full bg-green px-3 font-mono text-[8px] uppercase tracking-[0.06em] text-white transition-colors motion-reduce:transition-none sm:text-[9px]'
-                : 'min-h-11 shrink-0 rounded-full border border-line bg-base px-3 font-mono text-[8px] uppercase tracking-[0.06em] text-muted transition-colors hover:border-green/50 hover:text-ink motion-reduce:transition-none sm:text-[9px]'}
-            >
-              {item.label}
-            </button>
-          )
-        })}
-      </div>
+      <section className="mt-3 border border-line-soft bg-base px-3.5 py-3" aria-labelledby="atlas-release-question">
+        <p className="font-mono text-[10px] uppercase tracking-[0.07em] text-green">
+          Asked across 5 systems
+        </p>
+        <h3 id="atlas-release-question" className="mt-1 text-[13px] font-semibold leading-tight text-ink sm:text-[15px]">
+          Can Atlas still ship Friday?
+        </h3>
+      </section>
 
-      <div className="mt-2 grid gap-3 sm:grid-cols-[minmax(0,.92fr)_minmax(0,1.08fr)]">
-        <div className="space-y-1" aria-label="Product and technology priorities in the release brief">
-          {visibleItems.map((item) => {
-            const isSelected = item.id === selected.id
-            return (
-              <button
-                key={item.id}
-                type="button"
-                aria-pressed={isSelected}
-                onClick={() => selectItem(item)}
-                className={isSelected
-                  ? 'flex min-h-14 w-full items-center gap-3 border-l-2 border-green bg-sage/70 px-3 py-2.5 text-left transition-colors motion-reduce:transition-none'
-                  : 'flex min-h-14 w-full items-center gap-3 border-l-2 border-transparent px-3 py-2.5 text-left transition-colors hover:border-line-graph hover:bg-base motion-reduce:transition-none'}
-              >
-                <span className={isSelected
-                  ? 'grid h-9 w-9 shrink-0 place-items-center rounded-[9px] bg-white font-mono text-[8px] font-medium text-green'
-                  : 'grid h-9 w-9 shrink-0 place-items-center rounded-[9px] bg-base font-mono text-[8px] font-medium text-muted'}
-                  aria-hidden="true"
+      <div className="mt-2.5 grid gap-2.5 sm:grid-cols-[minmax(0,1.08fr)_minmax(0,.92fr)]">
+        <div>
+          <div className="border-l-2 border-green bg-sage/65 px-3.5 py-3">
+            <p className="font-mono text-[10px] uppercase tracking-[0.06em] text-green">
+              Zora brief · grounded in original evidence
+            </p>
+            <p className="mt-1.5 text-[14px] font-semibold leading-tight text-ink sm:text-[16px]">
+              Yes—with three gates.
+            </p>
+            <p className="mt-1.5 text-[11px] leading-[1.5] text-muted">
+              Ship Friday if PR #1842 merges by 13:00, auth p95 returns to baseline at 14:00,
+              and actor-IP redaction passes by 15:00.
+            </p>
+          </div>
+
+          <div className="mt-2 divide-y divide-line-soft border-y border-line-soft" aria-label="Release gates">
+            {releaseGates.map((item) => {
+              const active = item.id === selected.id
+              const isRisk = item.nodeId === 'reliability' || item.nodeId === 'security'
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  aria-pressed={active}
+                  onClick={() => selectItem(item)}
+                  className={active
+                    ? 'grid min-h-12 w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-l-2 border-green bg-sage/50 px-3 py-2 text-left transition-colors motion-reduce:transition-none'
+                    : 'grid min-h-12 w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-l-2 border-transparent px-3 py-2 text-left transition-colors hover:bg-base motion-reduce:transition-none'}
                 >
-                  {item.sourceMark}
-                </span>
-                <span className="min-w-0">
-                  <span className="block truncate text-[10px] font-semibold leading-tight text-ink sm:text-[11px]">
-                    {item.title}
+                  <span className="min-w-0">
+                    <span className={isRisk
+                      ? 'block font-mono text-[10px] uppercase tracking-[0.06em] text-orange'
+                      : 'block font-mono text-[10px] uppercase tracking-[0.06em] text-green'}
+                    >
+                      {releaseRole[item.nodeId]} · {item.sourceApp}
+                    </span>
+                    <span className="mt-0.5 block truncate text-[11px] font-semibold text-ink">
+                      {item.title}
+                    </span>
                   </span>
-                  <span className="mt-1 block truncate font-mono text-[7px] tracking-[0.02em] text-muted sm:text-[8px]">
-                    {item.functionLabel} · {item.meta}
-                  </span>
-                </span>
-              </button>
-            )
-          })}
+                  <span className="font-mono text-[10px] text-orange">{item.due}</span>
+                </button>
+              )
+            })}
+          </div>
         </div>
 
-        <div
-          className="flex min-h-[230px] flex-col rounded-[14px] border border-line bg-base p-4 sm:min-h-0"
+        <aside
+          className="flex min-h-[210px] flex-col border border-line bg-base p-3.5"
           aria-live="polite"
-          aria-label="Why this workday signal matters"
+          aria-label="Selected original source"
         >
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
-              <p className="font-mono text-[8px] uppercase tracking-[0.09em] text-green sm:text-[9px]">
-                {selected.functionLabel} · {selected.sourceApp}
+              <p className="font-mono text-[10px] uppercase tracking-[0.06em] text-green">
+                Original source · {selected.sourceApp}
               </p>
-              <p className="mt-1 text-[13px] font-semibold leading-tight text-ink sm:text-[14px]">{selected.title}</p>
+              <p className="mt-1 text-[11px] font-semibold leading-tight text-ink sm:text-[12px]">
+                {selected.title}
+              </p>
             </div>
-            <span className="shrink-0 font-mono text-[8px] uppercase tracking-[0.06em] text-orange">
-              {selected.signalKinds[0]}
+            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-[8px] border border-line bg-white font-mono text-[10px] text-muted">
+              {selected.sourceMark}
             </span>
           </div>
 
-          <p className="mt-3 text-[11px] leading-[1.5] text-ink sm:text-[12px]">{selected.summary}</p>
+          <p className="mt-3 text-[11px] leading-[1.5] text-muted">{selected.summary}</p>
 
-          <blockquote className="mt-3 border-l-2 border-yellow pl-3 text-[10px] italic leading-[1.5] text-muted sm:text-[11px]">
+          <blockquote className="mt-3 border-l-2 border-yellow pl-3 text-[11px] italic leading-[1.5] text-ink">
             {selected.evidence}
           </blockquote>
 
           <div className="mt-auto grid grid-cols-2 gap-3 border-t border-line-soft pt-3">
             <div>
-              <p className="font-mono text-[7px] uppercase tracking-[0.08em] text-muted">Owner</p>
-              <p className="mt-1 text-[9px] font-semibold text-ink sm:text-[10px]">{selected.owner}</p>
+              <p className="font-mono text-[10px] uppercase tracking-[0.06em] text-muted">Owner</p>
+              <p className="mt-1 text-[11px] font-semibold text-ink">{selected.owner}</p>
             </div>
             <div>
-              <p className="font-mono text-[7px] uppercase tracking-[0.08em] text-muted">Timing</p>
-              <p className="mt-1 text-[9px] font-semibold text-ink sm:text-[10px]">{selected.due}</p>
+              <p className="font-mono text-[10px] uppercase tracking-[0.06em] text-muted">Captured</p>
+              <p className="mt-1 text-[11px] font-semibold text-ink">{selected.captured}</p>
             </div>
           </div>
-
-          {compact ? null : (
-            <p className="mt-3 font-mono text-[8px] tracking-[0.02em] text-muted">
-              Captured from {selected.sourceApp} · {selected.captured}
-            </p>
-          )}
-        </div>
+        </aside>
       </div>
     </div>
   )

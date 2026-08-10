@@ -10,13 +10,32 @@
   }
 
   :root {
-    --font-display: 'Bricolage Grotesque', 'Figtree', -apple-system, sans-serif;
-    --font-sans: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-display: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --color-canvas: #f7f6f1;
+    --color-surface: #fffefb;
+    --color-subtle: #f0efe9;
+    --color-selected: #e7ece8;
+    --color-ink: #111814;
+    --color-secondary: #48564f;
+    --color-inverse: #f9faf7;
+    --color-action: #145c43;
+    --color-action-deep: #0c4935;
+    --color-action-pressed: #063425;
+    --color-context: #dcece4;
+    --color-control: #838f89;
+    --color-line: #dce1dc;
+    --color-focus: #1d63d8;
+    --color-risk: #b0442e;
+    --color-risk-tint: #f6e3db;
+    --color-evidence: #805d05;
+    --color-highlight: #f3e3a4;
+    --color-dark: #101915;
   }
 
   html {
-    background: #f7f5ef;
+    background: var(--color-canvas);
   }
 
   /* Native smooth anchors only when Lenis isn't driving the scroll */
@@ -29,8 +48,8 @@
     font-family: var(--font-sans);
     font-size: 16px;
     line-height: 1.6;
-    color: #66716a;
-    background: #f7f5ef;
+    color: var(--color-secondary);
+    background: var(--color-canvas);
   }
 
   section[id] {
@@ -43,22 +62,27 @@
   }
 
   ::selection {
-    background: #3d8b68;
-    color: #f7f5ef;
+    background: var(--color-action);
+    color: var(--color-surface);
   }
 
   :focus-visible {
-    outline: 2px solid #3d8b68;
+    outline: 2px solid var(--color-focus);
     outline-offset: 2px;
   }
 }
 
 @layer components {
-  /* Giant footer wordmark — palindrome Living Knowledge gradient so the loop is
-     seamless; animates only while .is-flowing (footer on screen), frozen under
-     reduced motion. Same mechanics as the previous Aurora shimmer. */
+  /* The footer uses the semantic Porcelain accents; the logo mark remains unchanged. */
   .text-brand-shimmer {
-    background-image: linear-gradient(90deg, #3d8b68, #f3d56b, #ff785a, #f3d56b, #3d8b68);
+    background-image: linear-gradient(
+      90deg,
+      var(--color-action),
+      var(--color-highlight),
+      var(--color-risk),
+      var(--color-highlight),
+      var(--color-action)
+    );
     background-size: 150% 100%;
     -webkit-background-clip: text;
     background-clip: text;
