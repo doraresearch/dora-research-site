@@ -17,11 +17,16 @@ npm run build
 
 ## Deploy
 
-Hosted on **Cloudflare Pages** (project `dora-research-site`), deployed manually:
+Hosted on **Cloudflare Pages** (project `dora-research-site`) and deployed by
+`.github/workflows/deploy-cloudflare-pages.yml` after changes merge into `main`.
+The workflow runs under Node 20, validates and builds the site, then uploads
+`dist` using the `Production` environment secrets `CLOUDFLARE_ACCOUNT_ID` and
+`CLOUDFLARE_API_TOKEN`.
 
-```bash
-npm run build
-wrangler pages deploy dist --project-name dora-research-site
-```
+Configure those values under **Settings → Environments → Production** in GitHub.
+The API token should be restricted to the target Cloudflare account with
+**Account → Cloudflare Pages → Edit** permission.
 
-Run wrangler under **Node 20** (not the machine-default Node 26). DNS and custom domains (`dorareason.com`, `www`) are managed in the Cloudflare dashboard. See `CLAUDE.md` for the full deploy notes.
+Normal releases use the local branch → GitHub PR → `main` merge flow. Do not run
+Wrangler locally. DNS and custom domains (`dorareason.com`, `www`) remain managed
+in the Cloudflare dashboard. See `CLAUDE.md` for the full deploy notes.
