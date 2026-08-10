@@ -31,11 +31,14 @@ function Brand() {
     <Link
       to="/"
       className="flex min-h-11 shrink-0 items-center gap-3 text-ink"
-      aria-label="Zora, home"
+      aria-label="DORA Research, home"
     >
-      <Logo size={30} />
-      <span className="font-sans text-[20px] font-semibold leading-5 tracking-[-0.03em]" aria-hidden="true">
-        Zora
+      <Logo size={30} spin />
+      <span className="flex flex-col justify-center" aria-hidden="true">
+        <span className="font-sans text-[20px] font-bold leading-[0.9] tracking-[0.015em]">DORA</span>
+        <span className="mt-[5px] font-mono text-[9px] font-medium leading-none tracking-[0.2em] text-secondary">
+          RESEARCH
+        </span>
       </span>
     </Link>
   )

@@ -11,7 +11,7 @@ export default function WaitlistCTA() {
             Give your team a memory that keeps up.
           </h2>
           <p className="mx-auto mt-[22px] max-w-[520px] text-[16px] leading-[1.6] text-muted lg:text-[17px] lg:leading-[26px]">
-            Zora is building a second brain for work. The private beta begins with product and technology teams, where one decision already spans people, tools, and technical systems.
+            DORA Research is building Zora, a second brain for work. The private beta begins with product and technology teams, where one decision already spans people, tools, and technical systems.
           </p>
           <div className="mt-[22px] flex justify-center">
             <WaitlistForm inputWidth="sm:w-[280px]" />
