@@ -1,73 +1,41 @@
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
-import AuroraCanvas from './AuroraCanvas'
-
-const roles = [
-  'Database Administrators',
-  'Systems Administrators',
-  'NOC Agents',
-  'Site Reliability Engineers',
-  'DevOps Engineers',
-  'Platform Operations Engineers',
-  'Cloud Operations Engineers',
-  'Security Operations Engineers',
-  'QA Engineers',
-]
+import InteractiveWorkspace from './demo/InteractiveWorkspace'
 
 export default function Hero() {
   return (
-    <section className="relative h-[100svh] min-h-[640px] overflow-hidden bg-dark">
-      {/* Northern-lights Aurora + code-rain (one canvas) */}
-      <AuroraCanvas />
-
-      <Container className="relative z-10 flex h-full flex-col items-center text-center">
-        <div className="flex w-full flex-1 flex-col items-center justify-center">
-            <div className="animate-fade-up">
-              <h1 className="mx-auto text-balance text-[28px] font-bold leading-[1.05] tracking-[-0.04em] text-white sm:max-w-[22ch] sm:text-[44px] sm:leading-[0.94] lg:text-[72px] xl:text-[96px]">
-                Secure AI teammates for{' '}
-                <span className="text-spectral">infrastructure operations.</span>
-              </h1>
-            </div>
-
-            <div className="animate-fade-up" style={{ animationDelay: '240ms' }}>
-              <p className="mx-auto mt-8 text-[16px] font-medium leading-[1.55] text-white/60 sm:max-w-[56ch] sm:text-[18px] lg:text-xl">
-                DORA turns recurring alerts, diagnostics, runbooks, and escalations into AI-executed workflows across your existing stack. Reduce human touches per task while keeping engineers in control.
-              </p>
-              <p className="mx-auto mt-4 text-[15px] font-medium leading-[1.5] text-white/50 sm:max-w-[48ch] sm:text-[16px]">
-                Operate at higher throughput without scaling headcount linearly.
-              </p>
-
-              <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Button href="mailto:hello@dorareason.com" variant="white" arrow>
-                  Map your first workflow
-                </Button>
-                <Button href="#product" variant="dark-ghost">
-                  How it works
-                </Button>
-              </div>
-            </div>
-
+    <section id="zora" className="relative overflow-hidden bg-canvas">
+      <Container className="grid min-h-[calc(100svh-60px)] items-center gap-8 pb-12 pt-4 sm:min-h-[calc(100svh-72px)] sm:gap-14 sm:py-20 lg:grid-cols-[480px_minmax(0,1fr)] lg:gap-20 lg:px-0 lg:py-16">
+        <div className="animate-fade-up lg:py-8">
+          <p className="mb-4 font-mono text-[10px] font-medium uppercase tracking-[0.1em] text-action sm:mb-5">
+            Zora by DORA Research · A second brain for work
+          </p>
+          <h1 className="max-w-[500px] font-display text-[44px] font-bold leading-[0.96] tracking-[-0.045em] text-ink sm:text-[60px] lg:text-[64px]">
+            <span className="block">Work moves.</span>
+            <span className="block">Zora remembers.</span>
+          </h1>
+          <p className="mt-4 max-w-[45ch] text-[15px] leading-[1.5] text-secondary sm:mt-7 sm:text-[18px] sm:leading-[1.6] lg:text-[19px]">
+            Zora remembers what your team has seen, discussed, decided, and built—then brings
+            forward what matters now.
+          </p>
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 sm:mt-8">
+            <Button href="#waitlist">Request private beta</Button>
+            <a
+              href="#workday"
+              className="inline-flex min-h-11 items-center text-[14px] font-semibold text-action transition-colors hover:text-deep"
+            >
+              See one workday <span className="ml-2" aria-hidden="true">→</span>
+            </a>
           </div>
+          <p className="mt-4 font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-secondary">
+            Private beta · Starting with product + technology
+          </p>
+        </div>
 
-          {/* Trusted-by marquee — pinned to the bottom edge of the hero */}
-          <div className="flex w-full items-center gap-5 pb-10 animate-fade-up sm:max-w-[700px] sm:pb-12" style={{ animationDelay: '400ms' }}>
-            <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.2em] text-white/60">
-              Trusted by
-            </span>
-            <div className="relative min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(90deg,transparent,white_8%,white_92%,transparent)]">
-              <div className="flex w-max animate-marquee gap-8 motion-reduce:animate-none">
-                {[...roles, ...roles].map((role, i) => (
-                  <span key={i} className="shrink-0 whitespace-nowrap font-mono text-[12px] uppercase tracking-[0.14em] text-white/65">
-                    {role}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Container>
-
-        {/* Bottom gradient fade */}
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-dark to-transparent" />
+        <div className="relative min-w-0 animate-fade-up" style={{ animationDelay: '160ms' }}>
+          <InteractiveWorkspace />
+        </div>
+      </Container>
     </section>
   )
 }

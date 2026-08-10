@@ -1,42 +1,29 @@
-import { useEffect, useRef } from 'react'
 import Container from '@/components/ui/Container'
 import Logo from '@/components/Logo'
 
 const cols: [string, [string, string][]][] = [
-  ['Product', [['How it works', '#product'], ['Teammates', '#teammates'], ['Control', '#control'], ['Outcomes', '#outcomes']]],
-  ['Company', [['Contact', 'mailto:hello@dorareason.com'], ['Deployment', '#deployment']]],
+  ['Zora', [['How it works', '#how-it-works'], ['Traceability', '#traceability'], ['Waitlist', '#waitlist']]],
+  ['Lab', [['Contact', 'mailto:hello@dorareason.com']]],
 ]
 
 export default function Footer() {
-  const markRef = useRef<HTMLDivElement>(null)
-
-  // Run the wordmark shimmer only while the footer is on screen
-  // (continuous loops pause when hidden, per the motion suite).
-  useEffect(() => {
-    const el = markRef.current
-    if (!el) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const io = new IntersectionObserver(
-      ([entry]) => el.classList.toggle('is-flowing', entry.isIntersecting),
-      { threshold: 0.1 },
-    )
-    io.observe(el)
-    return () => io.disconnect()
-  }, [])
-
   return (
-    <footer className="border-t border-white/[0.06] bg-dark pt-10">
+    <footer className="border-t border-ink/15 bg-ink pt-14">
       <Container>
-        <div className="flex flex-wrap justify-between gap-8 pb-7">
-          <p className="max-w-[48ch] text-[15px] leading-[1.6] text-white/60">
-            DORA builds secure AI teammates that reduce human touches across recurring infrastructure operations — from alert triage to incident resolution.
+        <div className="flex flex-wrap justify-between gap-8 pb-10">
+          <p className="max-w-[40ch] text-[15px] leading-[1.6] text-canvas/65">
+            Zora is a second brain for work, built by DORA Research.
           </p>
-          <div className="flex gap-16 sm:gap-20">
+          <div className="flex gap-16">
             {cols.map(([title, links]) => (
-              <div key={title}>
-                <p className="mb-3 text-[14px] font-semibold text-white/80">{title}</p>
+              <div key={title} className="flex flex-col gap-3">
+                <span className="text-[14px] font-semibold text-canvas">{title}</span>
                 {links.map(([label, href]) => (
-                  <a key={label} href={href} className="block min-h-[44px] py-2.5 text-[14px] text-white/60 transition-colors hover:text-white/90">
+                  <a
+                    key={label}
+                    href={href}
+                    className="inline-flex min-h-11 items-center text-[14px] text-canvas/65 transition-colors hover:text-green"
+                  >
                     {label}
                   </a>
                 ))}
@@ -45,15 +32,18 @@ export default function Footer() {
           </div>
         </div>
 
-        <div ref={markRef} className="text-spectral-shimmer select-none pb-3 text-[clamp(90px,21vw,260px)] font-extrabold leading-[0.86] tracking-[-0.05em]" aria-hidden="true">
+        <div
+          className="select-none font-sans text-[clamp(84px,16vw,190px)] font-bold leading-[0.84] tracking-[-0.055em] text-canvas/90"
+          aria-hidden="true"
+        >
           DORA
         </div>
 
-        <div className="flex flex-col gap-2 border-t border-white/[0.06] py-4 font-mono text-[11px] uppercase tracking-[0.12em] text-white/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-2 border-t border-canvas/20 py-[18px] font-mono text-[11px] uppercase tracking-[0.12em] text-canvas/60 sm:flex-row sm:items-center sm:justify-between">
           <span className="inline-flex items-center gap-2.5">
-            <Logo size={17} spin />© 2026 DORA Research
+            <Logo size={16} spin />© 2026 DORA Research
           </span>
-          <span>Secure AI teammates for infrastructure operations</span>
+          <span>A second brain for work</span>
         </div>
       </Container>
     </footer>

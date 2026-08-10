@@ -1,20 +1,17 @@
 import Hero from '@/components/home/Hero'
-import Problem from '@/components/home/Problem'
-import Platform from '@/components/home/Platform'
-import Trust from '@/components/home/Trust'
-import Capabilities from '@/components/home/Capabilities'
-import ClosingCTA from '@/components/home/ClosingCTA'
+import HowItWorks from '@/components/home/HowItWorks'
+import TrustStrip from '@/components/home/TrustStrip'
+import WaitlistCTA from '@/components/home/WaitlistCTA'
+import WorkdayTimeline from '@/components/home/WorkdayTimeline'
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <div className="h-24 bg-gradient-to-b from-dark to-white" />
-      <Problem />
-      <Platform />
-      <Trust />
-      <Capabilities />
-      <ClosingCTA />
+      <WorkdayTimeline />
+      <HowItWorks />
+      <TrustStrip />
+      <WaitlistCTA />
     </>
   )
 }

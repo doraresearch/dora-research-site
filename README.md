@@ -1,6 +1,6 @@
 # DORA Research site
 
-Static marketing site for DORA Research — **secure AI teammates for infrastructure operations**. Single-page React/Vite homepage. DORA turns recurring alerts, diagnostics, runbooks, and escalations into AI-executed workflows across the tools the team already runs (Datadog, PagerDuty, CloudWatch, Prometheus, Slack, Jira, cloud, databases), keeping engineers in control.
+Static marketing site for DORA Research's first product, **Zora** — a private AI second brain that captures, connects, and recalls personal knowledge. Single-page React/Vite homepage. See `DESIGN.md` for the Living Knowledge system and current product copy.
 
 ## Run locally
 

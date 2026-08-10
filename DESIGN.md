@@ -1,301 +1,107 @@
-# Design System — DORA Research
+# Design System — DORA Research / Zora
 
-Always read this file before making any visual or UI decision on this site. All font choices, colors, spacing, component behavior, and aesthetic direction are defined here. Do not deviate without explicit approval.
+Always read this file before making visual or UI decisions on this site. It is the source of truth for the live Zora homepage.
 
-> **2026-06-21 reconciliation — CURRENT POSITIONING:** This document was reconciled to the **built/shipped site**, which is the **infrastructure-operations** product: *"Secure AI teammates for infrastructure operations."* The **visual system below remains authoritative and unchanged** (white airy base, dark rounded "stage" panels, Aurora cool gradient, swarm mark, Plus Jakarta Sans, pill buttons, motion suite). The **identity, homepage structure, and copy sections were rewritten** to match the build. The earlier **iGaming** positioning (entries previously here, and the Decisions Log below dated 2026-05-24 → 2026-06-12) is **historical/superseded** — none of that copy appears in the build. Treat the Decisions Log as history; treat the sections below as current.
+> **2026-08-01 repositioning:** DORA Research is now a consumer memory lab. **Zora** is its first product: a private AI second brain for capturing, connecting, and recalling personal knowledge. The previous infrastructure-operations site and its Aurora design system are superseded.
 
 ## Product Context
 
-- **What this is:** Marketing site for **DORA** — **secure AI teammates for infrastructure operations**. DORA turns recurring alerts, diagnostics, runbooks, and escalations into AI-executed workflows across an operator's existing stack.
-- **Who it is for:** Infrastructure & operations engineers and their leaders — DBAs, SREs, NOC, DevOps, platform/cloud/security operations, QA. Buyers care about toil reduction, throughput per engineer, time-to-triage, escalation quality, and operating without scaling headcount linearly.
-- **Positioning:** DORA runs recurring operational work as AI-executed workflows across the existing stack (Datadog, PagerDuty, CloudWatch, Prometheus, Slack, Jira, cloud, databases), reducing human touches per task while keeping engineers in control.
-- **Not DORA:** DORA is **not** a foundation-model company, a chatbot/copilot, an observability or monitoring vendor, or a BPO/services agency. It executes operational workflows on top of the tools the team already runs.
-- **Product model:** **Observe → Diagnose → Execute → Verify → Document (→ Escalate)** — surfaced in the Platform section's accordion under *"Full-stack operations."*
-- **Trust model:** *Autonomous where safe. Human-controlled where it matters.* Scoped access, human approval paths, audit-ready history, gradual trust model.
-- **Project type:** Static (SSG) single-page marketing site using React 18 + TypeScript + Vite + Tailwind, prerendered via `vite-react-ssg`.
-
-## Strategic Design Direction
-
-DORA should feel like **an AI operations product built for infrastructure engineers** — technical, production-credible, control-emphatic, calm.
-
-- Engineer-credible, not generic enterprise: the vocabulary is alerts, runbooks, triage, escalation, SLOs.
-- Control visible in the design language: scoped access, human approval paths, audit trails.
-- Light, precise, architectural, high-trust.
-- Calm, sparse, and legible — selling measurable toil reduction, not technology.
-
-Do not make the site look like a chatbot/copilot company, a BPO/services agency, a generic horizontal AI platform, an observability/monitoring dashboard, a consumer productivity assistant, or a foundation-model lab.
-
-## Design Thesis
-
-DORA's clearest one-line idea:
-
-> **Secure AI teammates that execute recurring infrastructure-operations work, with engineers in control.**
-
-Supporting frame:
-
-> Recurring alerts, diagnostics, runbooks, and escalations become AI-executed workflows across the team's existing stack — higher throughput without scaling headcount linearly.
-
-The homepage should make this clear above the fold: infrastructure operations, AI-executed workflows, human-controlled, measurable toil reduction.
-
-## Aesthetic Direction
-
-**Antigravity-leaning enterprise systems** — visual system unchanged from the 2026-05-23 redesign.
-
-A light-first white base with generous space and big geometric sans, punctuated by cinematic **dark, rounded "stage" panels** (the Platform "live signal feed" panel, the Trust safeguards stage) embedded in the white page. The **Aurora** spectral gradient is the signature accent, used sparingly as Aurora-clipped heading spans, hairlines, the hero canvas, the logo, and the giant wordmark — never flooding surfaces. Buttons are **pills**; cards and stages are **rounded**. The hero is a full-viewport dark stage over the Aurora canvas, centered, with the headline's second line Aurora-clipped.
-
-Still avoid: purple / violet / magenta or warm gradient hues (keep Aurora cool: mint → blue), fake analytics dashboards, glowing-orb-as-meaning, robot or brain imagery, hype metrics, literal illustration, neon, glassmorphism on content surfaces (the frosted header **nav pill** + mobile menu — `.nav-pill` / `.nav-pill-dark` / `.glass` / `.glass-dark` in `src/index.css` — are the sanctioned exceptions), decorative blobs, and self-serve SaaS language that makes DORA feel generic.
+- **What this is:** A static, single-page product site for Zora by DORA Research, built with React 18, TypeScript, Vite, Tailwind, and `vite-react-ssg`.
+- **Audience:** People who want a reliable, private personal memory system rather than another folder, notes app, or generic chatbot.
+- **Promise:** Zora captures everything you read, write, hear, and think; connects fragments into a living model of your knowledge; and retrieves the original source and context when you ask.
+- **Core product model:** **Capture → Connect → Recall**.
+- **Trust model:** On-device memory store, end-to-end encryption, no training on personal data, and the ability to export or erase anytime.
+- **Primary CTA:** `Join the waitlist`.
+- **Current beta wording:** `Private beta · Fall 2026 · macOS + iOS first` in the hero and `Private beta · Fall 2026` at the closing CTA.
 
 ## Brand Personality
 
-DORA should sound and look **engineer-aware, production-credible, control-emphatic, outcomes-driven, calm, precise** — talking to infrastructure & operations engineers about measurable toil reduction and throughput, not pitching hype.
+Zora should feel warm, calm, thoughtful, and quietly capable: consumer-friendly without becoming cute, precise without feeling technical, and private by design rather than privacy-theatre.
 
-DORA should not sound promotional, hype-y, "AI-revolution" framing, chatbot/copilot framing, BPO/services-agency framing, or like a generic horizontal enterprise AI vendor.
+Avoid infrastructure/enterprise operations vocabulary, fake metrics, generic SaaS dashboards, chatbot/copilot framing, dark command-center visuals, robotic imagery, decorative gradients, and hype.
 
-## Typography
+## Visual Direction
 
-- **Body + UI:** `Plus Jakarta Sans` (400–800).
-- **Research accent:** `Instrument Serif` (italic), sparing — one or two editorial accents. *(One sanctioned accent in the build: the italic "the human queue." span in the ClosingCTA H2 — `ClosingCTA.tsx`.)*
-- **Labels / diagrams / captions:** `JetBrains Mono`, 10–12px, uppercase, wide tracking.
+The visual language is **Living Knowledge**: editorial typography over an airy warm-white canvas, pale-sage structural bands, compact inline memory artifacts, and a few deliberately reserved moments of orange discovery.
 
-| Role | Size | Line height | Family |
-|---|---:|---:|---|
-| Hero display | `28px` mobile → `44px` sm → `72px` lg → `96px` xl | 1.05 mobile, 0.94 sm+ | Plus Jakarta Sans 700 |
-| H2 | `32px` mobile → `42px` desktop | 1.04 (site-wide) | Plus Jakarta Sans 700 |
-| H3 | 20-28px | 1.08-1.2 | Plus Jakarta Sans 700 |
-| Serif accent | matches its heading | — | Instrument Serif 400 italic |
-| Lede | 19-20px | 1.5-1.55 | Plus Jakarta Sans 500 |
-| Body | 15-18px | 1.6-1.7 | Plus Jakarta Sans 400 |
-| Small | 13-15px | 1.5-1.6 | Plus Jakarta Sans 400 |
-| Diagram / label | 10-12px | 1.2 | JetBrains Mono 500 |
-| Giant wordmark | `clamp(90px, 21vw, 260px)` | 0.86 | Plus Jakarta Sans 800 |
-
-Tight tracking on display sizes (`-0.03em` to `-0.04em`). Direct, plainspoken headlines.
+- Use open layouts and generous whitespace rather than bento grids or nested cards.
+- Keep real interface labels and controls code-native.
+- The hero uses an app-window mockup built in code, not a stock image.
+- Use only the two prescribed soft radial glows behind the hero mockup; do not tint or wash the mockup itself.
+- Use simple thin-stroke SVG icons. Never use emoji.
+- Interactions should be subtle: button/link colors, logo spin, recall pulse, and the footer wordmark shimmer. Every animation must respect `prefers-reduced-motion` and continuous footer animation must pause offscreen.
 
 ## Color System
 
-A crisp light architecture palette with the cool **Aurora** spectral signature.
+| Token | Value | Use |
+| --- | --- | --- |
+| `base` | `#F7F5EF` | Warm-white primary background |
+| `sage` | `#E4EADF` | Pale-sage band and skeleton fills |
+| `ink` | `#17251F` | Forest ink text and footer |
+| `muted` | `#66716A` | Moss-grey secondary copy |
+| `green` | `#3D8B68` | Living-green CTAs, links, source marks, eyebrows |
+| `green-deep` | `#2F7355` | CTA hover |
+| `orange` | `#FF785A` | Signal orange, restricted to intelligence/discovery moments |
+| `yellow` | `#F3D56B` | Soft-yellow recall highlight |
+| `line` | `#D8DFD2` | Primary hairlines and borders |
+| `line-soft` | `#EDEFE6` | Inner rules |
+| `line-graph` | `#C9D2C2` | Memory graph links |
+| `white` | `#FFFFFF` | App window and input surfaces |
 
-| Token | Hex | Usage |
-|---|---|---|
-| `base` | `#FFFFFF` | Main page background |
-| `soft` | `#F7F8FA` | Secondary surfaces, light buttons, subtle fields |
-| `ink` | `#050608` | Primary text, headlines, nav, primary button bg |
-| `graphite` | `#0C0F14` | Dark stage panels, CTA band |
-| `body` | `#3B4148` | Paragraph text |
-| `muted` | `#6F7782` | Labels, metadata, secondary text |
-| `line` | `#E4E8ED` | Standard hairline borders |
-| `line-strong` | `#AEB7C2` | Stronger dividers, tables, architecture lines |
-| `signal` | `#7DD3FC` | Solid UI accents: stage dots, selected states, signal pill |
-| `signal-soft` | `#E0F7FF` | Soft signal-tinted fills / signal-pill background |
-| `deep-signal` | `#0369A1` | Link hovers, small active annotations, mono index labels |
-| `dark-text` | `#F8FAFC` | Text on dark/graphite |
-| `dark-muted` | `#CBD5E1` | Secondary text on dark/graphite |
+### Accent discipline
 
-**Dark-surface text floors (2026-07-02):** secondary text on dark surfaces sits at **≥ `white/50`** (the footer mono meta is the floor); most secondary copy — ledes, safeguard descriptions, eyebrows — at `white/60`. Footer links `white/60` → hover `white/90`.
+Living Green is the only interactive accent. Signal Orange is only for recalled waveform bars, an active memory-graph connection/node, and pulse dots. Soft Yellow only marks a recalled phrase or date. Do not introduce blue, purple, neon, broad surface gradients, or extra color families.
 
-### Aurora spectral signature
+## Typography
 
-The signature gradient. Multi-hue but deliberately **cool / "AI-systems"**, not warm or pride-style rainbow.
+- **Display:** `Bricolage Grotesque`, 700–800. Use for headings and the giant DORA wordmark.
+- **Body/UI:** `Figtree`, 400–700.
+- **Labels:** `IBM Plex Mono`, 400–500, uppercase with generous tracking.
 
-```
---spectral:    linear-gradient(90deg,  #6EE7B7, #2DD4BF, #22D3EE, #38BDF8, #3B82F6);
---spectral-v:  linear-gradient(180deg, #6EE7B7, #2DD4BF, #22D3EE, #38BDF8, #3B82F6);
-```
+| Role | Size / treatment |
+| --- | --- |
+| Hero H1 | `44px` mobile → `64px` desktop, 1.02 leading, `-0.03em` tracking |
+| H2 | `32–44px`, `-0.02em` tracking |
+| H3 | `21px` |
+| Lede | `18px`, 1.6 leading |
+| Body | `16px` |
+| Card copy | `14px`, 1.6 leading |
+| Mono labels | `9–12px`, uppercase, `.08–.22em` tracking |
+| Footer wordmark | `clamp(90px, 21vw, 260px)`, 800, `.82` line-height |
 
-Apply Aurora as: Aurora-clipped heading spans (the hero H1's second line, section-H2 accents), the hero Aurora `<canvas>`, metric-card top hairlines + progress rails, the swarm logo mark, and the giant footer wordmark (`background-clip:text`, shimmer sweep). Thin signature, not surface fills. **No purple, violet, magenta, or warm hues.**
+## Layout and Components
 
-## Layout
+- **Content width:** `1200px` maximum, `24px` mobile / `32px` desktop gutters.
+- **Header:** sticky 72px warm-white translucent row with a 16px backdrop blur and hairline. Desktop nav: `Zora`, `How it works`, `Privacy`; mobile uses the minimal hamburger menu.
+- **Header CTA:** a 42px living-green pill that links to `#waitlist`.
+- **Controls:** inputs and buttons are 50px high and always pill-shaped. Never allow a CTA label to wrap.
+- **Radii:** cards `18px`, app window `20px`, inner panels `10–12px`, buttons and inputs `9999px`.
+- **Hairlines:** use `line`, `line-soft`, or `line-graph`; shadows are limited to the app window and overlapping capture fragments.
+- **Anchors:** `#zora`, `#how-it-works`, `#privacy`, and `#waitlist` use an 84px scroll margin.
 
-- **Max content width:** `max-w-[1200px]`.
-- **Gutters:** `px-6` mobile, `px-8` desktop.
-- **Section padding:** `py-24` mobile → `py-32` (`sm:`) — uniform across all five sections.
-- **Hero:** full-viewport `h-[100svh] min-h-[640px]`, content centered; the "Trusted by" marquee is pinned to the hero's bottom edge (`pb-10 sm:pb-12`).
+## Homepage Structure
 
-### Corner radius scale
+The page order is fixed:
 
-| Element | Radius |
-|---|---|
-| Large dark stages, CTA band | `24-26px` |
-| Cards, product-stage cards, use-case cards | `16-20px` |
-| Small panels / chips inside stages | `9-14px` |
-| Buttons, eyebrow chips | pill (`999px`) |
+1. **Header** — swarm mark, DORA RESEARCH wordmark, anchor navigation, waitlist CTA.
+2. **Hero (`#zora`)** — eyebrow `Zora · by DORA Research`; H1 `Ask your memory anything.`; product lede; waitlist form; private-beta note; a polished Zora memory-workspace product frame.
+3. **How it works (`#how-it-works`)** — pale-sage section headed `Capture. Connect. Recall.` with three code-native product surfaces: inbox capture, linked-memory workspace, and source-backed recall.
+4. **Trust strip (`#privacy`)** — four uppercase assurances separated by interpuncts.
+5. **Waitlist CTA (`#waitlist`)** — centered headline `Your mind, with a perfect memory.` and a second waitlist form.
+6. **Footer** — forest-ink surface, concise lab copy, Zora/Lab links, animated Living Knowledge DORA wordmark, and mono metadata.
 
-Tailwind mapping (`tailwind.config.js`): `rounded-stage` 26px · `rounded-card` 18px · `rounded-panel` / `rounded` 12px · `rounded-xl` 20px. **`rounded-2xl` is remapped to 26px — treat it as stage radius.** In the build: Problem `ScaleVisual` card = `rounded-card` (18px), its Bottleneck callout = `rounded` (12px), mobile nav menu = `rounded-xl` (20px).
+## Brand Mark
 
-## Brand Mark (Logo)
+The DORA mark is the original 13-dot swarm orbit ring. Keep its geometry intact and use a two-stop, bottom-left-to-top-right gradient from Living Green (`#3D8B68`) to Signal Orange (`#FF785A`). Header and footer instances spin slowly over 22 seconds; static copies may remain still. The matching favicon uses the same swarm on Warm White.
 
-The DORA mark is a **swarm** — a coordinated ring of particles (the "orbit ring"), abstract and geometric, mapping to "parallel agent swarms."
+## Interaction and Accessibility
 
-- **Construction:** ~13 `<circle>` elements on a `0 0 24 24` grid forming a ring with an opening (denser, larger dots on the lower-left arc) plus two small inner dots, filled with the Aurora gradient via `gradientUnits="userSpaceOnUse"`.
-- **Usage:** header (~22-24px, Aurora, spinning), dark-stage mark (~20px, solid white on dark, static), footer meta (~17px, Aurora, spinning). Minimum legible size ~16px.
-- **Motion:** rotates slowly (~22s linear) in live contexts (header/footer); static otherwise; reduced-motion → static.
-- **Don't:** literal fish/animals, recolor outside Aurora/white, outline, shrink below ~16px.
-- **Reuse:** ship as the `<Logo />` SVG component.
+- Use semantic heading order, labelled fields, keyboard-accessible mobile navigation, visible focus rings, and the existing skip link.
+- The waitlist form validates the browser email field, disables itself during its local submit state, and replaces itself with a confirmation message. A real waitlist endpoint remains a product integration TODO.
+- Maintain full-width, stacked form controls below `sm` and horizontal controls above it.
+- Preserve the existing Lenis same-page anchor behavior. Native smooth scrolling is the fallback when Lenis is not active.
+- Apply `prefers-reduced-motion` globally: no animated motion may be required to understand the page.
 
-## Header
+## Superseded Context
 
-Fixed full-width, 64px row height, one pill CTA. Over the hero it sits on a dark gradient top panel with white text; past the hero (~60% viewport) text flips to ink. After ~40px of scroll the row condenses into a **frosted nav pill** — `.nav-pill` (light) / `.nav-pill-dark` (over the hero) — the sanctioned glassmorphism exception. The header logo (30px) **spins** (Aurora swarm).
-
-Navigation: **Product · Teammates · Control · Deployment** (anchors `#product` · `#teammates` · `#control` · `#deployment`). Desktop nav at `lg+`; hamburger below.
-
-CTA: **Map your first workflow**. Below `lg` the links collapse to a hamburger that toggles a frosted dropdown menu (`.glass` / `.glass-dark`, `rounded-xl` 20px; links + CTA).
-
-## Buttons
-
-All buttons are **pills** (`999px`).
-
-- **Primary:** `ink` background, white text. Hover → slightly lighter ink.
-- **Secondary:** `soft` background, `ink` text, hairline `line` border. Hover → subtle darken.
-- **Ghost:** transparent, `ink` text, `line-strong` border.
-- **Signal pill:** `signal` background, dark text — allowed only on the dark/graphite CTA band.
-
-Preferred CTAs: **Map your first workflow** (the primary — used in header, hero, and final CTA) and *How it works* (secondary / dark-ghost in the hero). Avoid generic CTAs: Learn more, Get started, Talk to AI, Unlock AI, Supercharge your team.
-
-## Homepage Structure (2026-07-02 — built site)
-
-Rendered order is defined in `src/pages/Home.tsx`: Hero → (gradient divider) → Problem → Platform → Trust → Capabilities → ClosingCTA → Footer.
-
-1. **Header** (`src/components/layout/Header.tsx`) — sticky, swarm `<Logo/>` + nav (**Product · Teammates · Control · Deployment**) + pill CTA *Map your first workflow*. Translucent; flips light/dark as it passes the hero. Desktop nav at `lg+`; hamburger dropdown below.
-2. **Hero** (`Hero.tsx`) — full-viewport (`h-[100svh] min-h-[640px]`) dark section over the **Aurora `<canvas>`** (see Motion) with a central legibility wash over the headline band. H1 *"Secure AI teammates for **infrastructure operations.**"* (Aurora-clipped second line; **no eyebrow chip**) → lede (*"DORA turns recurring alerts, diagnostics, runbooks, and escalations into AI-executed workflows across your existing stack…"*) → secondary line (*"Operate at higher throughput without scaling headcount linearly."*) → CTAs *Map your first workflow* (white pill) + *How it works* (dark-ghost). The "Trusted by" marquee of infra roles (DBAs · SREs · NOC · DevOps · …, `white/65`) is pinned to the hero's bottom edge; the code-rain keeps a clear-zone band around it.
-3. **Problem** (`Problem.tsx`, `bg-soft`) — left: eyebrow *The problem* → H2 *"Operations still scale through **human execution.**"* → five staggered lines (*Every alert needs triage.* …) → closing paragraph. Right: **`ScaleVisual`** white card — ops headcount at 10 / 100 / 1,000 customers (person glyphs + workload chips) with a deep-signal **Bottleneck** callout at the overloaded stage.
-4. **Platform** (`Platform.tsx`, `#product`) — centered H2 *"Full-stack operations."* + lede → **tabs** (Platform / Teammates / Get started — roving `tabindex` + arrow-key navigation; inactive tabs `text-ink/60`) → two-column: **left accordion** (Observe · Diagnose · Execute · Verify · Document · Escalate) + **right desktop-only dark "live signal feed" panel** (`hidden lg:flex`) that crossfades per active step (telemetry rows, status icons, progress bars, corner brackets, and a mono chrome row pinned to the panel's bottom edge). Note: also hosts the `#teammates` and `#deployment` scroll-anchor `<span>`s, so those two nav links also land on this section.
-5. **Trust** (`Trust.tsx`, `#control`) — dark rounded **stage panel** with corner brackets sitting at the stage corners (`top-4 left-4` etc., `white/[0.15]`): eyebrow *Trust & control* (`white/60`) → H2 *"Built for **production environments.**"* → 2×2 safeguards (**Scoped access · Human approval paths · Audit-ready history · Gradual trust model**; descriptions `white/60`).
-6. **Capabilities** (`Capabilities.tsx`, `#outcomes`, `bg-graphite`) — H2 *"Measure the work removed **from the queue.**"* → a **static 3-column grid** of the 6 metric cards on desktop (`lg:grid-cols-3` — everything comparable at a glance; no carousel, no arrows, no auto-loop); below `lg` the cards form a horizontal **snap-scroll** row (300px cards, graphite edge fades). Cards: Aurora top-edge hairline, before→after pair, progress rail, footnote.
-7. **ClosingCTA** (`ClosingCTA.tsx`) — light centered band: H2 *"Take recurring work out of the **human queue.**"* + short copy + single pill CTA *Map your first workflow*.
-8. **Footer** (`Footer.tsx`) — link columns (**Product:** How it works · Teammates · Control · Outcomes — **Company:** Contact · Deployment; links `white/60` → hover `white/90`) + the **giant Aurora "DORA" wordmark** (`background-clip:text` with the shimmer sweep — see Motion) + mono meta at `white/50` (*© 2026 DORA RESEARCH* · *SECURE AI TEAMMATES FOR INFRASTRUCTURE OPERATIONS*).
-
-**Not in the build:** the iGaming commercial strip, "What DORA replaces", core-functions hub grid, withdrawal-review example, the standalone interactive "How it works" stage, the 7-step deployment engagement, the stack diagram, the architecture spine, and the harness-frame visual — all described in the retired/reference sections below. The previously-unused components `HowItWorks.tsx`, `Deployment.tsx`, and `Roles.tsx` (infra-ops themed but never mounted) were **removed** in commit `89bf11f`.
-
-## Required Components
-
-> **2026-06-21 status:** In the current build, only the **Giant Wordmark Footer** and the dark **stage-panel + corner-bracket** idiom ship (plus the **Hero Aurora `<canvas>`** and the **Brand Mark**, specced elsewhere). The built dark visuals are the **Platform "live signal feed" panel** and the **Trust safeguards stage**. The **Stack Diagram**, **Architecture Spine**, **Operations Stage / How-DORA-works visual panel**, **Harness Visual**, and the **iGaming Use Case hub grid** below are **retired / not built** — kept for historical reference only.
-
-### Stack Diagram — RETIRED / not built
-
-A 6-layer "where DORA sits" diagram (gaming operations / DORA application·orchestration·harness / models / data·infra·compute) with an Aurora rail. iGaming-era; **not in the build** — no stack diagram ships.
-
-### Architecture Spine — REMOVED 2026-06-11
-
-The 5-pillar editorial spine (later simplified into an "operating model" strip of Gather→Learn cards) was removed from the homepage: it duplicated the How-DORA-Works stage's five-step model. `PrimitiveSpine.tsx` is deleted. The pillar visuals (WorkflowRail · PersonaCards · AgentGrid · MemoryLayers · HarnessFrame) are retired with it; the harness-frame aesthetic lives on in the trust layer and proof module.
-
-### Operations Stage / How-DORA-works panel — RETIRED / not built
-
-The `AuroraRibbons` canvas + "Gather. Reason. Act. Escalate. Learn." statement stage (and the later interactive How-DORA-works accordion panel). iGaming / pre-reconciliation era; **not in the DORA build**. The built dark visuals are the Platform "live signal feed" panel and the Trust safeguards stage.
-
-### Harness frame — RETIRED / not built
-
-The harness-frame instrument rig (measurement ring, Aurora eval arc, CONTEXT·EVAL·CONSTRAINTS, "REVIEW → DEPLOY"). **Not built.** The corner-containment-bracket motif survives on the Platform live-feed and Trust stages.
-
-### Giant Wordmark Footer
-
-A huge "DORA" set in Plus Jakarta Sans 800 with the Aurora gradient via `background-clip:text` — the Antigravity-style brand close.
-
-### iGaming Use-Case hub grid — RETIRED / not built
-
-An 8-function hub grid (Payments & withdrawals · KYC · Fraud · Support · CRM/VIP · Affiliates · BI · Trading) around a central DORA hub cell. Pure **iGaming**; **not built** — `UseCases.tsx` and the other iGaming-themed components were removed in `89bf11f`. The built site surfaces outcomes via the **Capabilities** metric-card grid instead.
-
-## Motion
-
-Motion is functional and restrained, with a defined signature set. **Every motion is mandatorily `prefers-reduced-motion`-gated**; continuous loops pause when the tab/section is hidden.
-
-Built motion:
-
-1. **Hero entrance** — sequential fade-up of headline → lede + CTAs → marquee (~750ms per group, 240/400ms stagger).
-2. **Hero Aurora `<canvas>`** (`AuroraCanvas`) — drifting nebula blobs + silky Aurora ribbons + horizontal aurora bands + falling JetBrains Mono **code-rain** columns (dimmed through the headline band and the marquee clear-zone), mouse-reactive, under a central legibility wash; pauses when the hero scrolls out of view or the tab is hidden.
-3. **Hero marquee** — the "Trusted by" role strip loops continuously (~36s linear, `animate-marquee`); `motion-reduce:animate-none`.
-4. **Swarm logo mark** — slow rotation (~22s linear) in header + footer; static elsewhere.
-5. **Scroll reveals** — subtle fade-up + ~20px translate as major sections enter the viewport (IntersectionObserver, once each); hardened so jump navigation never lands on a blank section.
-6. **Platform live-feed** — `cell-pulse` on the telemetry chips/rows in the dark "live signal feed" panel; crossfade between steps as the accordion changes.
-7. **Lenis smooth scrolling** (`SiteLayout.tsx`) — Lenis drives the page scroll (duration 1.2, custom easing), skipped entirely under reduced motion; same-page anchor links (nav, hero CTA, footer) route through `lenis.scrollTo`, honoring the sections' 84px `scroll-margin-top` and hashes on load / back-forward.
-8. **Footer wordmark shimmer** (`.text-spectral-shimmer`) — a 150% palindrome Aurora gradient sweeps across the giant "DORA" wordmark (12s linear loop); runs only while the footer is on screen (`.is-flowing` via IntersectionObserver) and freezes under reduced motion.
-9. **Hover** — Aurora accent / border transitions on cards and buttons, under 200ms.
-10. **Mobile nav** — hamburger ↔ X toggle, dropdown slide/fade.
-
-Avoid: parallax, motion that isn't reduced-motion-gated, continuous animation beyond the gated hero canvas + hero marquee + live-feed pulse + logo spin + wordmark shimmer, and anything cute, bouncy, or attention-grabbing.
-
-## Copy Rules
-
-Use prominently:
-
-- "**Secure AI teammates for infrastructure operations.**" (hero headline)
-- "**AI-executed workflows**" — recurring alerts, diagnostics, runbooks, and escalations turned into executed work
-- "reduce **human touches** per task" / "**throughput** without scaling headcount linearly" / "take recurring work out of the **human queue**"
-- "**Autonomous where safe. Human-controlled where it matters.**" (recurring trust theme)
-- "human approval paths" / "scoped access" / "audit-ready history" / "gradual trust model" / "engineers in control"
-- product model: "**Observe · Diagnose · Execute · Verify · Document**" (Platform accordion, under *Full-stack operations.*)
-- domain vocabulary: alerts · runbooks · triage · escalation · incidents · SLOs · "your existing stack" (Datadog · PagerDuty · CloudWatch · Prometheus · Slack · Jira · cloud · databases)
-- audience: "infrastructure operations" · DBAs · SREs · NOC · DevOps · platform/cloud/security ops · QA
-
-Required statement (reframed):
-
-> DORA does not build foundation models, compute, or monitoring tools. It executes recurring operational workflows on top of the stack the team already runs — with engineers in control.
-
-Avoid: chatbot, copilot for X, AI employee, BPO, automation agency, unlock, supercharge, revolutionize, magical, "autonomous everything", future of, next-generation, transform your business overnight, whitepaper/research-y density, and "AI agents" as the primary product term (prefer "AI teammates" / "AI-executed workflows"). **Also avoid all iGaming vocabulary** (operators, KYC, VIP, payments, withdrawals, casino, wagering, affiliates) — that positioning is retired.
-
-## Homepage Copy
-
-The **copy of record lives in the components** under `src/components/home/` (plus `Header.tsx` / `Footer.tsx`). Don't maintain a second copy here — edit the components. Current anchors:
-
-### Hero (`Hero.tsx`)
-
-- Headline: **Secure AI teammates for infrastructure operations.** (second line Aurora-clipped; no eyebrow chip)
-- Lede: *DORA turns recurring alerts, diagnostics, runbooks, and escalations into AI-executed workflows across your existing stack. Reduce human touches per task while keeping engineers in control.*
-- Secondary: *Operate at higher throughput without scaling headcount linearly.*
-- CTAs: **Map your first workflow** · *How it works*
-- Marquee: "Trusted by" + infra roles (DBAs · SREs · NOC · DevOps · platform/cloud/security ops · QA)
-
-### Section headlines
-
-- Problem (`Problem.tsx`): **Operations still scale through human execution.**
-- Platform (`Platform.tsx`, `#product`): **Full-stack operations.**
-- Trust (`Trust.tsx`, `#control`): **Built for production environments.** (safeguards: Scoped access · Human approval paths · Audit-ready history · Gradual trust model)
-- Capabilities (`Capabilities.tsx`, `#outcomes`): **Measure the work removed from the queue.**
-- ClosingCTA (`ClosingCTA.tsx`): **Take recurring work out of the human queue.** → **Map your first workflow**
-
-## Implementation Requirements
-
-- Use the existing React 18 + TypeScript + Vite + Tailwind project. Build runs `tsc --noEmit && vite-react-ssg build` (prerendered static output in `dist/`).
-- Load fonts: `Plus Jakarta Sans` (400-800), `Instrument Serif` (italic accent), `JetBrains Mono` (labels). Async-loaded via `preload` + `onload` swap with a `<noscript>` fallback.
-- Preserve maintainability and component clarity. Ship the logo as a reusable `<Logo />` SVG component.
-- Implement motion with CSS + minimal JS (custom hooks for IntersectionObserver / reduced motion). The hero Aurora background is a `<canvas>` component (`AuroraCanvas`). Page scrolling is **Lenis** — the one sanctioned motion dependency (see Motion). **All motion must be `prefers-reduced-motion`-gated** and continuous loops must pause when hidden/offscreen.
-- Use semantic sections and accessible markup. Hamburger nav needs `aria-expanded`.
-- Ensure responsive design (the Platform "live signal feed" panel is desktop-only — `hidden lg:block`; sections stack to one column on mobile).
-- Do not introduce unnecessary dependencies.
-- Replace placeholder copy with final copy from this document.
-- Meta/social: the `<title>`, Open Graph, Twitter Card, and JSON-LD all carry **"DORA — Secure AI teammates for infrastructure operations"**; `public/og-image.png` is the graphite/Aurora 1200×630 card (regenerated 2026-07-02).
-- Make the homepage immediately communicate that DORA is **secure AI teammates for infrastructure operations**, with measurable toil reduction (fewer human touches per task, higher throughput per engineer).
-
-## Decisions Log
-
-| Date | Decision | Rationale |
-|---|---|---|
-| 2026-05-15 | Remodel homepage around above-the-model-layer positioning | DORA's clearest market distinction is not model capability or infrastructure — it is turning existing models into dependable, role-aware systems inside enterprise workflows. |
-| 2026-05-15 | Shift visual direction from academic research page to enterprise AI systems company | Communicate application, orchestration, and harness layers quickly enough for enterprise buyers. |
-| 2026-05-15 | Use light-first design instead of dark-first | More modern, enterprise-accessible, productized while still serious through sharp rectangles, restrained color, stack diagrams, and precise copy. |
-| 2026-05-15 | Remove company-specific visual references | The site should not imitate another AI startup's brand or homepage structure. |
-| 2026-05-15 | Add AI-native services section | DORA is not only a software surface. It combines research, system design, orchestration, harnesses, and deployment support. |
-| 2026-05-21 | Replace fluid hero type with breakpoint-based type scale | Crisp + stable across viewport sizes. |
-| 2026-05-21 | Adopt Antigravity-style launch layout with a digital bee swarm hero | User explicitly requested mirroring Antigravity's layout. |
-| 2026-05-22 | Extend Antigravity rhythm with a dark DORA command-center artifact | Echo the cinematic product-stage rhythm with workflow / parallel-agent / harness-review surfaces. |
-| 2026-05-23 | Move the whole site closer to antigravity.google (approved "greatest-hits" blend) | User asked to reimagine the site nearer the reference. |
-| 2026-05-23 | Rounded surfaces + pill buttons (reverses sharp / `radius 0`) | Required to match the Antigravity direction. Stages 24-26px, cards 16-20px, buttons pill; stack-diagram layer rows stay sharp. |
-| 2026-05-23 | Adopt the Aurora spectral gradient as the signature (reverses cool-blue-only / no-gradient rule) | Multi-hue, recolored to read as "modern AI / ML / agents," not pride rainbow. |
-| 2026-05-23 | Replace the peak/lambda mark with an original swarm orbit-ring mark | The lambda was effectively Antigravity's logo; the swarm maps to parallel agent swarms. |
-| 2026-05-23 | Switch primary font Instrument Sans → Plus Jakarta Sans | More geometric / Google-Sans-like, closer to Antigravity. |
-| 2026-05-23 | Expand the motion suite | Continuous command-center canvas swarm (dark stage only), hero entrance, scroll-reveal fade-ups, rotating logo mark, eval-arc + core pulse. All `prefers-reduced-motion`-gated. |
-| 2026-05-23 | Harness visual resolved: harness frame (orb retired) | A glowing orb symbolized energy, not a harness. |
-| 2026-05-24 | **Vertical repositioning to iGaming AI deployment company (Phase A)** | Investor thesis is sharper than the current horizontal "enterprise AI" framing. DORA is *the AI deployment company for iGaming*, not a horizontal enterprise platform. Phase A ships: hero, problem, **Category section**, kept stack + spine, **8 iGaming use cases**, **Outcomes section**, new CTA. |
-| 2026-05-24 | **Phase B shipped — Paradigm shift, Operating philosophy, Architecture rework, Deployment model, Trust layer** | Completes the vertical pivot. Added `ParadigmShift` (chats → acts contrast), `OperatingPhilosophy` (dark stage: agents handle / humans retain), reworked the primitive spine to **5 pillars** including the new **Persistent operational memory** row with a `MemoryLayers` dark-card visual, added `DeploymentModel` (5-phase numbered flow with Aurora signal line), and `TrustLayer` (bracketed harness-frame dark stage with 8 safeguards). Renamed nav `Primitives → Architecture` (section id `#primitives` → `#architecture`). All sections use the existing visual vocabulary (Aurora, dark rounded stages, pills, mono labels, motion suite) — no design language change. |
-| 2026-05-24 | **Deployment-pattern proof module** — high-value withdrawal risk review | Added a flagship proof section (`WithdrawalReview` → `#deployment-pattern`) between the Architecture spine and Use Cases. Single concrete deployment example that makes the 5-pillar framework feel real: intro + trust callout + agentic-vs-rules explainer + Before/With/Result cards + 5-stage flow + six-agent panel (Payment Fraud · AML · Account Behavior · Identity · Account Linking → Case Synthesis Orchestrator) + mock decision panel (composite risk score 72/100 with Aurora bar, recommended path, drivers, escalation reason, analyst options, audit trail) + 7-row ROI table (90-day pilot targets). Uses the existing harness-frame brackets aesthetic on the mock panel. |
-| 2026-05-24 | **Restore live cell-pulse animations** (CSS, not JS intervals) | The proto's chip/grid pulsing and header-logo spin were missing from the React port. Restored via a shared `cell-pulse` keyframe with staggered per-cell delays; reduced-motion-safe. |
-| 2026-06-10 | **Use-cases section → hub grid** (user-requested match to Frontdesk's "one agentic platform" section) | The 8 function cards now orbit a central graphite DORA hub cell (3×3 desktop, hub spans the row on tablet); section header centered; cards gain Aurora-hue icon chips (deepened same-hue strokes on light tints). Frontdesk's violet gradient hub translated to a graphite stage cell with an Aurora topline per the no-purple rule. Mono per-card index labels retired in favor of icon chips. |
-| 2026-06-10 | **Why-now section → journey stage panels** (user-requested match to Frontdesk's "every stage of the customer journey" section) | Replaced the old-way/new-way contrast table with three soft rounded stage panels — 01 Gather · 02 Reason · 03 Act & learn — mapping the verbs already in the lede. Each panel: Aurora-clipped giant number (wordmark treatment), mono deep-signal tagline, description carrying the old/new contrast, 2×2 mini-card grid of abstract monochrome glyphs. Dashed mono connectors narrate the handoff between stages; closing "Outcomes feed operational memory" pill ties back to the memory pillar. Header centered like the use-cases hub grid. |
-| 2026-06-10 | **Why-iGaming section → dark numbered-columns stage** (user-requested match to Frontdesk's "from zero to fully operational in minutes" band) | The soft section + 3 white trait cards became a dark rounded graphite stage: Aurora topline, centered white header + lede, three columns with giant Instrument Serif italic numerals (their `font-light italic` slate numerals → our serif accent), white titles, dark-muted one-liners, and a centered signal-pill CTA. Trait copy lightly expanded to fill the reference's description weight. Adds a mid-page conversion point. |
-| 2026-06-10 | **Why-now corrected to two contrast panels + commercial-grade mini-illustrations** (user feedback) | The 3-stage journey version (Gather/Reason/Act) had changed the section's meaning. Rebuilt as two panels in the same anatomy: 01 Human-heavy operations (old way, fully muted) → dashed "operating shift" connector → 02 Agentic-native operations (new way, Aurora number + spectral topline + deep-signal accents). The lone-icon glyphs (called out as weak) were replaced with composed multi-element UI vignettes (overlapping windows, disconnected vs linked nodes, misaligned vs aligned checks, person↔docs loop, escalation-to-human) — color appears only on the new-way panel, so the old/new contrast is carried by the artwork too. |
-| 2026-06-10 | **Command-center console → Aurora-ribbon operations stage** (user feedback: console section "doesn't make sense"; requested turing.com hero treatment) | The fake-console surfaces (workflow brief rails, agent chips, harness checklist, session chrome) were replaced with a cinematic minimal stage: new `AuroraRibbons` canvas — flowing gradient light streams in Aurora hues (Turing's warm gold ribbons recolored cool per the palette rule) + star specks — behind a single centered statement ("Gather. Reason. Act. Escalate. Learn."). Corner brackets kept. `SwarmCanvas` deleted; the swarm lives on as the brand mark. Motion suite item 2 updated accordingly. |
-| 2026-06-11 | **Outcome-led repositioning: agent-native operations layer + operational agents** (10-point user direction) | Hero now leads with outcome (launch lean · operate safely · scale without a traditional ops org) + functions strip; "Gather. Reason. Act. Escalate. Learn." moved into the how-it-works stage as the five-step product model (definitions verbatim; Learn restored same day per user); new sections: **Core promise**, **What DORA replaces** (retitled contrast panels with the commercial-hook lede), **Platform line** (not your gaming platform), **Agent modules** (5 example modules: Support · KYC · Payments · Risk · Reporting); trust layer reframed *Built for operators, not demos* with the recurring line *Autonomous where safe. Human-controlled where it matters.* + playbooks/integration safeguards; deployment model retitled as the expansion story; every CTA → **Map your AI operations team**; terminology standardized ("agentic"→"agent-native" layer, "AI agents"→"operational agents"); page reflowed hero → promise → problem → replaces → platform line → solution → how-it-works → modules → proof → architecture → expansion → trust → CTA; nav gains **Agents** (`#agent-modules`). |
-| 2026-06-11 | **Operating-model section removed** (user: redundant) | The `#operating-model` strip ("DORA deploys agents that operate inside the business" + five Gather→Learn cards, the descendant of the 5-pillar architecture spine) duplicated the How-DORA-Works stage's five-step columns. `PrimitiveSpine.tsx` deleted; page now flows proof → expansion story. |
-| 2026-06-11 | **Commercial-grade pass** (user direction: less whitepaper, more AI-services firm; same strategy) | Hero → "The AI operations team for iGaming." with the agent-native layer line demoted to category support; new 4-cell commercial strip under the hero; problem lede → "…before they have the scale to justify a full operations org. DORA changes that model."; replaces-panel cards reframed as buyer pains (Slack/ticket handoffs, fragmented tools, inconsistent escalation, repetitive reviews); functions renamed "What your AI operations team handles." and absorbed the agent-modules copy (incl. Compliance card, Affiliates dropped); withdrawal example compressed to copy + five metric cards and moved above how-it-works; how-it-works definitions cut to one line each; deployment reworked as a 7-step services engagement with a "What you get" deliverables card; trust lede de-jargoned; final CTA → "Map your first operational agent."; CorePromise, AgentModules, and IconStrip removed (~30% copy cut); nav → Functions/Example, desktop nav breakpoint md→lg. |
-| 2026-06-12 | **How-it-works → interactive two-column accordion** (user direction; reference: withpanacea.com) | The static verb-headline stage became a product-explainer: left accordion (5 steps, Gather open by default, hover/click/focus set active, accessible buttons with aria-expanded, smooth grid-rows height transition) + right dark visual panel with five crossfading operational vignettes (sources→core, case evaluation, action routing, human escalation, operational memory) over `AuroraRibbons` at 35% opacity. `CommandStage.tsx` deleted; section heading now "How DORA works." with eyebrow "Operating model". Checked the duplicate-CTA/footer report: production renders exactly one FinalCTA and one footer — no duplication existed. |
-| 2026-06-21 | **Docs reconciled to the built infrastructure-operations site** | A `/design-review` (plus two independent source audits) found the entire built site is *"Secure AI teammates for infrastructure operations"* (DBAs/SREs/NOC; CTA *Map your first workflow*), while this file + `CLAUDE.md` still described the **iGaming** positioning. User confirmed the docs were stale. Rewrote Product Context, Strategic Direction, Design Thesis, Brand Personality, Header nav/CTAs, Homepage Structure (now the built 6 sections: Hero · Problem · Platform · Trust · Capabilities · ClosingCTA · Footer), Copy Rules, and Homepage Copy to match the build; marked Stack Diagram / Architecture Spine / Operations Stage / Harness Visual / iGaming Use-Case grid as retired-not-built. (The unused `HowItWorks`/`Deployment`/`Roles` components were removed separately in commit `89bf11f`.) **Visual system unchanged** (Aurora cool palette, Plus Jakarta Sans + JetBrains Mono, rounded scale, pills, motion suite). The iGaming entries above (2026-05-24 → 2026-06-12) are kept as history. |
-| 2026-07-02 | **Premium polish pass + this file reconciled to the build** | Build-first quality pass: dark-surface contrast floors (secondary text ≥ `white/50`, most at `white/60`; footer links `white/60`→`white/90`); Trust corner brackets freed to the stage corners + eyebrow lifted to `white/60`; Platform panel chrome row pinned to the panel bottom, tabs given roving tabindex/arrow keys; radii routed through the DESIGN.md scale (`rounded-2xl` remapped to 26px = stage); hero → `h-[100svh] min-h-[640px]` with the marquee pinned to the bottom edge and a code-rain clear zone; anchor navigation driven through Lenis `scrollTo` (reduced-motion-gated); scroll reveals hardened against blank sections on jump navigation; meta/OG/JSON-LD rebranded to *"Secure AI teammates for infrastructure operations"* with a new graphite/Aurora og-image; dead components/deps removed; **Capabilities carousel → static 3-col grid** (mobile snap-scroll retained); footer gains an **Outcomes** link. This file updated to match: glassmorphism carve-out for the frosted nav pill/mobile menu, real hero type scale, `py-24`/`sm:py-32` section padding, Lenis + hero marquee + wordmark shimmer added to the motion suite, ClosingCTA serif accent named, eyebrow chip removed from hero copy. |
+Prior versions of this repository marketed secure AI teammates for infrastructure operations with a dark Aurora system, `Plus Jakarta Sans`, `Instrument Serif`, `JetBrains Mono`, and an operations-control page structure. That positioning and visual language were replaced on 2026-08-01 by the DORA Research / Zora consumer-memory redesign.
