@@ -21,13 +21,13 @@ export default function Logo({ size = 22, variant = 'brand', spin = false, title
   const gradId = `zora-brand-${rawId}`
   const fill = variant === 'white' ? '#ffffff' : `url(#${gradId})`
 
-  return (
+  const mark = (
     <svg
       width={size}
       height={size}
       viewBox="0 0 24 24"
       fill="none"
-      className={className}
+      className={spin ? undefined : className}
       role={title ? 'img' : undefined}
       aria-label={title || undefined}
       aria-hidden={title ? undefined : 'true'}
@@ -40,15 +40,22 @@ export default function Logo({ size = 22, variant = 'brand', spin = false, title
           </linearGradient>
         </defs>
       )}
-      <g
-        fill={fill}
-        className={spin ? 'origin-center animate-logo-spin' : undefined}
-        style={spin ? { transformBox: 'fill-box' } : undefined}
-      >
+      <g fill={fill}>
         {DOTS.map(([cx, cy, r], i) => (
           <circle key={i} cx={cx} cy={cy} r={r} />
         ))}
       </g>
     </svg>
+  )
+
+  if (!spin) return mark
+
+  return (
+    <span
+      className={`inline-flex shrink-0 origin-center animate-logo-spin ${className}`}
+      style={{ width: size, height: size }}
+    >
+      {mark}
+    </span>
   )
 }
