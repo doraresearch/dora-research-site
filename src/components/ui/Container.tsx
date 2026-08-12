@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
 
 export default function Container({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return <div className={`mx-auto w-full max-w-[1200px] px-6 sm:px-8 ${className}`}>{children}</div>
+  return <div className={`mx-auto w-full max-w-[1344px] px-6 lg:px-8 ${className}`}>{children}</div>
 }

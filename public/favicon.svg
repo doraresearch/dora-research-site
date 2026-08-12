@@ -3,7 +3,7 @@
   <defs>
     <linearGradient id="swarm" x1="10" y1="54" x2="54" y2="10" gradientUnits="userSpaceOnUse">
       <stop stop-color="#3D8B68"/>
-      <stop offset="1" stop-color="#FF785A"/>
+      <stop offset="1" stop-color="#03F5F2"/>
     </linearGradient>
   </defs>
   <rect width="64" height="64" rx="14" fill="#F7F5EF"/>

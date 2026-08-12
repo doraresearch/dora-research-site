@@ -2,97 +2,100 @@
 
 Always read this file before making visual or UI decisions on this site. It is the source of truth for the live Zora homepage.
 
-> **2026-08-01 repositioning:** DORA Research is now a consumer memory lab. **Zora** is its first product: a private AI second brain for capturing, connecting, and recalling personal knowledge. The previous infrastructure-operations site and its Aurora design system are superseded.
+> **2026-08-12 repositioning:** DORA Research is the company behind **Zora**, a second brain for work. The broader category is organizational memory; product and technology teams are the first concrete use case. The previous consumer-memory and infrastructure-operations directions are superseded.
 
 ## Product Context
 
 - **What this is:** A static, single-page product site for Zora by DORA Research, built with React 18, TypeScript, Vite, Tailwind, and `vite-react-ssg`.
-- **Audience:** People who want a reliable, private personal memory system rather than another folder, notes app, or generic chatbot.
-- **Promise:** Zora captures everything you read, write, hear, and think; connects fragments into a living model of your knowledge; and retrieves the original source and context when you ask.
-- **Core product model:** **Capture → Connect → Recall**.
-- **Trust model:** On-device memory store, end-to-end encryption, no training on personal data, and the ability to export or erase anytime.
-- **Primary CTA:** `Join the waitlist`.
-- **Current beta wording:** `Private beta · Fall 2026 · macOS + iOS first` in the hero and `Private beta · Fall 2026` at the closing CTA.
+- **Audience:** Teams whose context is fragmented across meetings, conversations, documents, tickets, roadmaps, code, and system signals. Product and technology are the initial wedge.
+- **Promise:** Zora continuously connects what a team sees, says, decides, and ships, then surfaces context, risks, evidence, and what needs attention next.
+- **Core product model:** **Remember → Connect → Anticipate → Prove**.
+- **Trust model:** Every conclusion can show its original source, timestamp, owner, and decision trail.
+- **Primary CTA:** `Request private beta`.
+- **Current beta wording:** `Starting with product + technology`.
 
 ## Brand Personality
 
-Zora should feel warm, calm, thoughtful, and quietly capable: consumer-friendly without becoming cute, precise without feeling technical, and private by design rather than privacy-theatre.
+Zora should feel calm, precise, credible, and quietly proactive: enterprise-ready without becoming generic SaaS, technical without becoming a project-management dashboard, and intelligent without presenting as a chatbot.
 
-Avoid infrastructure/enterprise operations vocabulary, fake metrics, generic SaaS dashboards, chatbot/copilot framing, dark command-center visuals, robotic imagery, decorative gradients, and hype.
+Avoid consumer-life organization, fake metrics, generic SaaS dashboards, chatbot/copilot framing, document-repository metaphors, robotic imagery, decorative AI gradients, and hype.
 
 ## Visual Direction
 
-The visual language is **Living Knowledge**: editorial typography over an airy warm-white canvas, pale-sage structural bands, compact inline memory artifacts, and a few deliberately reserved moments of orange discovery.
+The visual language is **Porcelain Intelligence**: cinematic workplace media, editorial pacing, cool porcelain surfaces, restrained signal color, and believable product software built around time, causality, evidence, and attention.
 
 - Use open layouts and generous whitespace rather than bento grids or nested cards.
 - Keep real interface labels and controls code-native.
-- The hero uses an app-window mockup built in code, not a stock image.
-- Use only the two prescribed soft radial glows behind the hero mockup; do not tint or wash the mockup itself.
+- The hero uses a documentary workplace loop with a dedicated mobile crop, matching poster fallback, and a restrained copy scrim; product proof remains code-native below it.
+- Only clean, licensed media masters may ship. Watermarked or artifact-processed clips are temporary composition previews and must remain independently swappable.
+- Use media scrims only where necessary for legibility. Product frames stay flat and ruled rather than glowing or glassy.
 - Use simple thin-stroke SVG icons. Never use emoji.
-- Interactions should be subtle: button/link colors, logo spin, recall pulse, and the footer wordmark shimmer. Every animation must respect `prefers-reduced-motion` and continuous footer animation must pause offscreen.
+- Interactions should reveal causality and evidence: workspace tabs, selectable records, active relationship paths, contextual inspectors, grounded follow-up questions, video pause controls, and the restrained logo spin. Every animation must respect `prefers-reduced-motion`; looping media pauses offscreen and when the tab is hidden.
 
 ## Color System
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `base` | `#F7F5EF` | Warm-white primary background |
-| `sage` | `#E4EADF` | Pale-sage band and skeleton fills |
-| `ink` | `#17251F` | Forest ink text and footer |
-| `muted` | `#66716A` | Moss-grey secondary copy |
-| `green` | `#3D8B68` | Living-green CTAs, links, source marks, eyebrows |
-| `green-deep` | `#2F7355` | CTA hover |
-| `orange` | `#FF785A` | Signal orange, restricted to intelligence/discovery moments |
-| `yellow` | `#F3D56B` | Soft-yellow recall highlight |
-| `line` | `#D8DFD2` | Primary hairlines and borders |
-| `line-soft` | `#EDEFE6` | Inner rules |
-| `line-graph` | `#C9D2C2` | Memory graph links |
-| `white` | `#FFFFFF` | App window and input surfaces |
+| `base` | `#F4F6F8` | Cool-grey primary canvas |
+| `section-band` | `#E2E8EE` | Darker cool-grey Atlas narrative band |
+| `surface` | `#FFFEFB` | Raised product and control surfaces |
+| `subtle` | `#F0EFE9` | Quiet neutral controls and nested surfaces |
+| `ink` | `#111814` | Primary text and footer ink |
+| `secondary` | `#48564F` | Secondary copy and operational metadata |
+| `action` | `#145C43` | Primary actions, active records, and trace links |
+| `action-hover` | `#0C4935` | Primary hover state |
+| `signal-cyan` | `#03F5F2` | DORA mark endpoint and live intelligence indicator only |
+| `risk` | `#A73745` | Delivery risk and blocking state |
+| `line` | `#DCE1DC` | Primary hairlines and borders |
+| `line-strong` | `#838F89` | Structural controls and high-emphasis boundaries |
+| `focus` | `#1D63D8` | Keyboard focus ring |
 
 ### Accent discipline
 
-Living Green is the only interactive accent. Signal Orange is only for recalled waveform bars, an active memory-graph connection/node, and pulse dots. Soft Yellow only marks a recalled phrase or date. Do not introduce blue, purple, neon, broad surface gradients, or extra color families.
+Action Green is the only interaction color. Signal Cyan is reserved for the original DORA mark and small live-status cues. Cobalt appears only as the accessible focus ring and the restricted green-to-cobalt signal rule. Risk red always carries operational meaning. Do not introduce purple, broad surface gradients, or decorative color families.
 
 ## Typography
 
-- **Display:** `Bricolage Grotesque`, 700–800. Use for headings and the giant DORA wordmark.
-- **Body/UI:** `Figtree`, 400–700.
+- **Display, body, and UI:** `Geist`, 400–700.
 - **Labels:** `IBM Plex Mono`, 400–500, uppercase with generous tracking.
 
 | Role | Size / treatment |
 | --- | --- |
-| Hero H1 | `44px` mobile → `64px` desktop, 1.02 leading, `-0.03em` tracking |
-| H2 | `32–44px`, `-0.02em` tracking |
-| H3 | `21px` |
-| Lede | `18px`, 1.6 leading |
+| Hero H1 | `44/46px` mobile → `72/72px` desktop, `-0.035em` → `-0.045em` tracking |
+| H2 | `38/42px` mobile → `52/56px` desktop |
+| H3 | `32/38px` |
+| Lede | `16/26px` mobile → `20/30px` desktop |
 | Body | `16px` |
-| Card copy | `14px`, 1.6 leading |
-| Mono labels | `9–12px`, uppercase, `.08–.22em` tracking |
-| Footer wordmark | `clamp(90px, 21vw, 260px)`, 800, `.82` line-height |
+| Product UI | `11–14px`; never miniaturize functional software below a legible operational scale |
+| Mono labels | `9–11px`, uppercase, `.04–.08em` tracking |
 
 ## Layout and Components
 
-- **Content width:** `1200px` maximum, `24px` mobile / `32px` desktop gutters.
-- **Header:** sticky 72px warm-white translucent row with a 16px backdrop blur and hairline. Desktop nav: `Zora`, `How it works`, `Privacy`; mobile uses the minimal hamburger menu.
-- **Header CTA:** a 42px living-green pill that links to `#waitlist`.
-- **Controls:** inputs and buttons are 50px high and always pill-shaped. Never allow a CTA label to wrap.
-- **Radii:** cards `18px`, app window `20px`, inner panels `10–12px`, buttons and inputs `9999px`.
-- **Hairlines:** use `line`, `line-soft`, or `line-graph`; shadows are limited to the app window and overlapping capture fragments.
-- **Anchors:** `#zora`, `#how-it-works`, `#privacy`, and `#waitlist` use an 84px scroll margin.
+- **Page rail:** `1344px` maximum including `24px` mobile / `32px` compact desktop gutters, resolving to a `1280px` content rail at 1440.
+- **Header:** 64px mobile / 72px desktop. The masthead names DORA Research; the product identity appears in the hero. Desktop nav: `Product`, `How it works`, `Traceability`.
+- **Header CTA:** a 40px action-green, 6px-radius button linking to `#waitlist`.
+- **Controls:** 40–48px high with 6–10px radii and visible focus states. Never allow a CTA label to wrap.
+- **Radii:** media `14px` mobile / `20px` desktop; product shell `18px`; nested panels `8–12px`; only icon controls are fully round.
+- **Hairlines:** use semantic subtle or strong borders. The enterprise workspace has one restrained outer elevation; nested product surfaces are flat.
+- **Anchors:** `#zora`, `#workday`, `#how-it-works`, `#traceability`, and `#waitlist` use an 84px scroll margin.
 
 ## Homepage Structure
 
 The page order is fixed:
 
-1. **Header** — swarm mark, DORA RESEARCH wordmark, anchor navigation, waitlist CTA.
-2. **Hero (`#zora`)** — eyebrow `Zora · by DORA Research`; H1 `Ask your memory anything.`; product lede; waitlist form; private-beta note; a polished Zora memory-workspace product frame.
-3. **How it works (`#how-it-works`)** — pale-sage section headed `Capture. Connect. Recall.` with three code-native product surfaces: inbox capture, linked-memory workspace, and source-backed recall.
-4. **Trust strip (`#privacy`)** — four uppercase assurances separated by interpuncts.
-5. **Waitlist CTA (`#waitlist`)** — centered headline `Your mind, with a perfect memory.` and a second waitlist form.
-6. **Footer** — forest-ink surface, concise lab copy, Zora/Lab links, animated Living Knowledge DORA wordmark, and mono metadata.
+1. **Header** — original swarm mark, DORA Research company masthead, product navigation, private-beta CTA.
+2. **Hero (`#zora`)** — cinematic workday loop; eyebrow `Zora by DORA Research`; H1 `Work moves. Zora remembers.`; category lede and product/technology qualifier.
+3. **Editorial thesis** — `The work is everywhere. The memory should be shared.`
+4. **Atlas scenario metrics** — five source systems, four critical moments, one decision brief.
+5. **Product film (`#workday`)** — interactive, chaptered Atlas-release brief answering `Can Atlas still ship Friday?`.
+6. **How it works (`#how-it-works`)** — one persistent Zora enterprise workspace with Remember, Connect, Anticipate, and Prove modes.
+7. **Cinematic handoff** — workplace reset: `By the time you ask, Zora already knows.`
+8. **Traceability (`#traceability`)** — broader second-brain-for-work vision with an interactive source-backed evidence ledger.
+9. **Beta CTA and footer** — `Give your team a memory that keeps up.` with explicit DORA Research attribution.
 
 ## Brand Mark
 
-The DORA mark is the original 13-dot swarm orbit ring. Keep its geometry intact and use a two-stop, bottom-left-to-top-right gradient from Living Green (`#3D8B68`) to Signal Orange (`#FF785A`). Header and footer instances spin slowly over 22 seconds; static copies may remain still. The matching favicon uses the same swarm on Warm White.
+The DORA mark is the original 13-dot swarm orbit ring. Keep its geometry intact and use a two-stop, bottom-left-to-top-right gradient from Living Green (`#3D8B68`) to Signal Cyan (`#03F5F2`). Header and footer instances spin slowly over 22 seconds; static copies may remain still. The matching favicon uses the same swarm on Warm White.
 
 ## Interaction and Accessibility
 
@@ -104,4 +107,4 @@ The DORA mark is the original 13-dot swarm orbit ring. Keep its geometry intact 
 
 ## Superseded Context
 
-Prior versions of this repository marketed secure AI teammates for infrastructure operations with a dark Aurora system, `Plus Jakarta Sans`, `Instrument Serif`, `JetBrains Mono`, and an operations-control page structure. That positioning and visual language were replaced on 2026-08-01 by the DORA Research / Zora consumer-memory redesign.
+Prior versions marketed infrastructure automation and later a consumer personal-memory organizer. Both are superseded. The current category is a second brain for work, with product and technology teams as the initial wedge and Atlas as the canonical release narrative.
