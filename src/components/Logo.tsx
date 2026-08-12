@@ -9,7 +9,7 @@ type LogoProps = {
 }
 
 // Swarm "orbit ring" mark — geometry unchanged from the original brand mark.
-// Gradient regraded to Living Knowledge: Living Green → Signal Orange.
+// Gradient regraded to Living Knowledge: Living Green → Signal Cyan.
 const DOTS: [number, number, number][] = [
   [20.5, 12, 1.4], [19.36, 7.75, 1.2], [12, 3.5, 1.1], [7.75, 4.64, 1.3],
   [4.64, 7.75, 1.5], [3.5, 12, 1.6], [4.64, 16.25, 1.7], [7.75, 19.36, 1.8],
@@ -36,11 +36,11 @@ export default function Logo({ size = 22, variant = 'brand', spin = false, title
         <defs>
           <linearGradient id={gradId} gradientUnits="userSpaceOnUse" x1="3" y1="21" x2="21" y2="3">
             <stop offset="0" stopColor="#3D8B68" />
-            <stop offset="1" stopColor="#FF785A" />
+            <stop offset="1" stopColor="#03F5F2" />
           </linearGradient>
         </defs>
       )}
-      <g fill={fill}>
+      <g fill={fill} className={spin ? 'origin-center animate-logo-spin' : undefined}>
         {DOTS.map(([cx, cy, r], i) => (
           <circle key={i} cx={cx} cy={cy} r={r} />
         ))}
@@ -52,7 +52,7 @@ export default function Logo({ size = 22, variant = 'brand', spin = false, title
 
   return (
     <span
-      className={`inline-flex shrink-0 origin-center animate-logo-spin ${className}`}
+      className={`inline-flex shrink-0 ${className}`}
       style={{ width: size, height: size }}
     >
       {mark}
