@@ -170,6 +170,63 @@
       var(--zora-color-focus-ring) 100%
     );
   }
+
+  .workday-range {
+    height: 44px;
+    margin-inline: 0;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .workday-range::-webkit-slider-runnable-track {
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      var(--zora-color-action-primary) 0%,
+      var(--zora-color-action-primary) var(--workday-progress),
+      var(--zora-color-border-subtle) var(--workday-progress),
+      var(--zora-color-border-subtle) 100%
+    );
+  }
+
+  .workday-range::-webkit-slider-thumb {
+    width: 14px;
+    height: 14px;
+    margin-top: -5.5px;
+    appearance: none;
+    border: 3px solid var(--zora-color-surface-raised);
+    border-radius: 999px;
+    background: var(--zora-color-action-primary);
+    box-shadow: 0 0 0 1px var(--zora-color-action-primary);
+  }
+
+  .workday-range::-moz-range-track {
+    height: 3px;
+    border-radius: 999px;
+    background: var(--zora-color-border-subtle);
+  }
+
+  .workday-range::-moz-range-progress {
+    height: 3px;
+    border-radius: 999px;
+    background: var(--zora-color-action-primary);
+  }
+
+  .workday-range::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    border: 3px solid var(--zora-color-surface-raised);
+    border-radius: 999px;
+    background: var(--zora-color-action-primary);
+    box-shadow: 0 0 0 1px var(--zora-color-action-primary);
+  }
+
+  .workday-context-dialog::backdrop {
+    background: rgba(12, 21, 16, 0.52);
+    backdrop-filter: blur(3px);
+  }
 }
 
 html.lenis,
