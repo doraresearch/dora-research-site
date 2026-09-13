@@ -1,8 +1,8 @@
 # DORA Research site
 
-Static marketing site for DORA Research's first product, **Zora** — a second brain for work. The site introduces the broader organizational-memory vision through a concrete product-and-technology workday centered on one Atlas release.
+Static marketing site for **DORA Research**, an applied AI lab, and its first product, **Zora**, a technical director who reports to the CTO and delivers a finished brief every morning at 06:00.
 
-See `DESIGN.md` for the Porcelain Intelligence design system, brand architecture, page structure, and current copy.
+See `DESIGN.md` for the Paper and Night design system (v2.0), brand architecture, marks, copy rules, and the target site structure. The live site still implements the retired Porcelain system until the rebuild lands.
 
 ## Run locally
 

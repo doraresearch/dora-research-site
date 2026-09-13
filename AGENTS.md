@@ -1,21 +1,21 @@
 # DORA Research site
 
-Static marketing site for DORA Research's first product, **Zora** — a second brain for work. Zora continuously connects context across meetings, conversations, documentation, tickets, roadmaps, code, and system signals, then surfaces what changed, why it matters, and what needs attention. Product and technology teams are the initial wedge. Stack: React 18 + TypeScript + Vite + Tailwind + react-router-dom, prerendered via `vite-react-ssg`.
+Static marketing site for **DORA Research**, an applied AI lab, and its first product, **Zora**, a technical director and chief of staff who reports to the CTO. Zora reads what the organization produced overnight and delivers a finished four-part brief by 06:00: impact and outcome, conditions, what we change, where else. The promise is delivery, ship faster and break less; memory is the mechanism. Stack: React 18 + TypeScript + Vite + Tailwind + react-router-dom, prerendered via `vite-react-ssg`.
 
 ## Design system
 
-Read `DESIGN.md` before making visual or UI decisions. It is authoritative for the current Porcelain Intelligence system, product positioning, copy, palette, type, media rules, and page architecture.
+Read `DESIGN.md` before making visual, UI, or copy decisions. It is version 2.0, Paper and Night, and it is the target system for the site; the live site still implements the retired Porcelain system until the rebuild lands. Do not add new work in the retired system.
 
 Key invariants:
 
-- DORA Research is the company; Zora is the product.
-- The category is a second brain for work. Product and technology are the initial concrete use case, not the category definition.
-- Keep the original 13-dot swarm geometry intact. The mark gradient is Living Green `#3D8B68` to Signal Cyan `#03F5F2`.
-- Geist is the product and marketing sans; IBM Plex Mono is limited to labels, timestamps, IDs, and provenance.
-- Canvas `#F4F6F8`, section band `#E2E8EE`, raised surface `#FFFEFB`, ink `#111814`, action `#145C43`, signal cyan `#03F5F2`, risk `#A73745`, focus `#1D63D8`.
-- Product visuals must feel like believable software: persistent chrome, operational metadata, real selectable states, contextual inspectors, traceable evidence, and controls that change the UI.
-- Never ship consumer-life examples, generic chat-composer heroes, abstract AI imagery, fake metrics, dead controls, stale placeholders, or watermarked media.
-- Motion must explain activity, causality, or attention; honor reduced motion/save-data and pause looping media offscreen or in hidden tabs.
+- DORA Research is the lab; Zora is the first product. Every product gets its own mark; the swarm never identifies a product.
+- Keep the original 13-dot swarm geometry intact and static. Gradient Living Green `#3D8B68` to Signal Cyan `#03F5F2`, inside the mark only.
+- Two registers. Paper (lab): `#F9F7F2` ground, ink `#141D18`, one accent `#2A6449`, risk `#AD3547`, Newsreader display, Geist body, IBM Plex Mono provenance. Night (Zora): `#0A0F0C` canvas, text `#F5F7F2`, secondary `#A4B1AA`, one Mint action `#67BF99` and one Rose risk `#F08A9A` per viewport, a 6 px cyan dot beside Zora's name, Geist and Plex Mono only.
+- Rules, not cards. Radius 0 on containers, 2 px (paper) or 4 px (Night) on controls. No shadows, glass, glow, gradient surfaces, purple, emoji, or icon library.
+- Say AI and agents plainly. Zora is she, the subject of her sentences, with a name, a voice, and a dot; never a face. Never copilot, assistant, chatbot, second brain, knowledge base, insights, or "it".
+- The brief arrives finished: no streaming, typing, or thinking states. Motion is 120/160/240 ms on one curve; the mark is static; reduced motion is the baseline.
+- Film is engineering documentary: the CTO at 06:00, the product on a real screen, the systems it watched, the incident room. Licensed masters only; the current plates are stand-ins from the retired system.
+- Every number has a source and a 24-hour time; every artifact has an ID; no fake metrics, dead controls, or placeholders.
 
 ## Dev
 
