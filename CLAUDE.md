@@ -4,7 +4,7 @@ Static marketing site for **DORA Research**, an applied AI lab, and its first pr
 
 ## Design system
 
-`DESIGN.md` is authoritative. It is version 2.0, **Paper and Night**, derived from the DORA Research Brand Book v2.0 and the founder interview of 13 September 2026: a warm Paper register for the lab, a dark Night register for Zora, shared Geist and IBM Plex Mono, Newsreader for the lab's display, a static thirteen-dot swarm as the lab's mark, and a product mark family that starts with Zora's open-seat mark.
+`DESIGN.md` is authoritative. It is version 2.0, **Paper and Night**, derived from the DORA Research Brand Book v2.0 (the presentation deck and its source are in `brand/`) and the founder interview of 13 September 2026: a warm Paper register for the lab, a dark Night register for Zora, shared Geist and IBM Plex Mono, Newsreader for the lab's display, a static thirteen-dot swarm as the lab's mark, and a product mark family that starts with Zora's open-seat mark.
 
 **The live site still implements the retired Porcelain Intelligence system and the retired second-brain positioning.** Do not add new work in the retired system, do not mix the two on one page, and do not describe Zora as a second brain, a copilot, an assistant, or "it". Every rule in `DESIGN.md` carries a status (Decided, Proposed, Open); build to Proposed rules and expect amendments.
 

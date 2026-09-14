@@ -1,0 +1,919 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DORA Research Brand Book · v2.0</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Geist:wght@400..600&family=IBM+Plex+Mono:wght@400;500&display=block">
+<style>
+  @page { size: 1920px 1080px; margin: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin: 0; padding: 0; background: #F9F7F2; }
+  body { font-family: 'Geist', -apple-system, sans-serif; color: #141D18; font-feature-settings: 'tnum'; -webkit-font-smoothing: antialiased; }
+  :root {
+    --paper:#F9F7F2; --evidence:#EDEAE2; --ink:#141D18; --pencil:#566460; --rule:#D5D1C7; --green:#2A6449; --risk:#AD3547;
+    --night:#0A0F0C; --raised:#131E18; --nline:#2B3932; --nstrong:#5D6C64; --npaper:#F5F7F2; --ash:#A4B1AA; --mint:#67BF99; --rose:#F08A9A; --cyan:#03F5F2;
+    --serif:'Newsreader', Georgia, serif; --sans:'Geist', sans-serif; --mono:'IBM Plex Mono', monospace;
+  }
+  .slide { position: relative; width: 1920px; height: 1080px; overflow: hidden; padding: 96px 112px 88px; page-break-after: always; break-after: page; background: var(--paper); color: var(--ink); }
+  .slide:last-child { page-break-after: auto; }
+  .slide.night { background: var(--night); color: var(--npaper); }
+
+  .eyebrow { font-family: var(--mono); font-size: 20px; line-height: 28px; letter-spacing: .06em; text-transform: uppercase; font-weight: 500; color: var(--pencil); }
+  .night .eyebrow { color: var(--ash); }
+  h1 { font-family: var(--serif); font-weight: 500; font-size: 112px; line-height: 116px; letter-spacing: -.015em; margin: 24px 0 0; font-variation-settings: 'opsz' 72; text-wrap: balance; }
+  h2 { font-family: var(--serif); font-weight: 500; font-size: 72px; line-height: 78px; letter-spacing: -.012em; margin: 20px 0 0; font-variation-settings: 'opsz' 40; text-wrap: balance; max-width: 22em; }
+  .night h1, .night h2 { font-family: var(--sans); letter-spacing: -.02em; }
+  .night h2 { font-size: 66px; line-height: 72px; }
+  h3 { font-family: var(--serif); font-weight: 500; font-size: 36px; line-height: 42px; margin: 0; letter-spacing: -.01em; }
+  .night h3 { font-family: var(--sans); font-size: 32px; line-height: 38px; letter-spacing: -.015em; }
+  .lede { font-family: var(--serif); font-size: 34px; line-height: 46px; margin: 28px 0 0; max-width: 30em; font-variation-settings: 'opsz' 24; }
+  .night .lede { font-family: var(--sans); font-size: 30px; line-height: 42px; letter-spacing: -.005em; }
+  p { margin: 0; }
+  .body { font-size: 24px; line-height: 36px; }
+  .night .body { font-size: 23px; line-height: 34px; }
+  .small { font-size: 20px; line-height: 30px; color: var(--pencil); }
+  .night .small { color: var(--ash); }
+  .mono { font-family: var(--mono); font-size: 18px; line-height: 26px; letter-spacing: .02em; }
+  .caps { font-family: var(--mono); font-size: 16px; line-height: 22px; letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
+
+  .foot { position: absolute; left: 112px; right: 112px; bottom: 40px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 15px; letter-spacing: .06em; text-transform: uppercase; color: var(--pencil); }
+  .night .foot { color: var(--ash); }
+  .foot .brand { display: flex; align-items: center; gap: 12px; }
+
+  .tag { display: inline-block; font-family: var(--mono); font-size: 14px; letter-spacing: .08em; text-transform: uppercase; font-weight: 500; border: 1.5px solid currentColor; padding: 3px 10px; margin-left: 16px; vertical-align: middle; }
+  .tag.dashed { border-style: dashed; color: var(--pencil); }
+  .night .tag.dashed { color: var(--ash); }
+  .tag.open { color: var(--risk); }
+  .night .tag.open { color: var(--rose); }
+
+  .grid { display: grid; gap: 40px; margin-top: 48px; }
+  .g2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .g3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .g4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+  .cell { border-top: 2px solid var(--ink); padding-top: 16px; }
+  .night .cell { border-top-color: var(--npaper); }
+  .cell .k { font-family: var(--mono); font-size: 16px; letter-spacing: .08em; text-transform: uppercase; color: var(--pencil); font-weight: 500; }
+  .night .cell .k { color: var(--ash); }
+  .cell .v { font-family: var(--serif); font-size: 32px; line-height: 38px; font-weight: 500; margin-top: 10px; letter-spacing: -.005em; }
+  .night .cell .v { font-family: var(--sans); font-size: 28px; line-height: 34px; letter-spacing: -.015em; }
+  .cell .d { font-size: 20px; line-height: 30px; color: var(--pencil); margin-top: 10px; }
+  .night .cell .d { color: var(--ash); }
+
+  ul.rules { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+  .night ul.rules { border-top-color: var(--npaper); }
+  ul.rules li { border-bottom: 1px solid var(--rule); padding: 14px 0; font-size: 23px; line-height: 33px; }
+  .night ul.rules li { border-bottom-color: var(--nline); }
+  ul.rules li b { font-weight: 600; }
+  ol.num { list-style: none; margin: 0; padding: 0; counter-reset: c; border-top: 2px solid var(--ink); }
+  .night ol.num { border-top-color: var(--npaper); }
+  ol.num li { counter-increment: c; display: grid; grid-template-columns: 56px minmax(0,1fr); gap: 16px; border-bottom: 1px solid var(--rule); padding: 14px 0; font-size: 23px; line-height: 33px; }
+  .night ol.num li { border-bottom-color: var(--nline); }
+  ol.num li::before { content: counter(c, decimal-leading-zero); font-family: var(--mono); font-size: 16px; letter-spacing: .06em; color: var(--pencil); padding-top: 6px; }
+  .night ol.num li::before { color: var(--ash); }
+  ol.num li b { font-weight: 600; }
+
+  table { border-collapse: collapse; width: 100%; margin-top: 40px; }
+  th { text-align: left; font-family: var(--mono); font-size: 15px; letter-spacing: .08em; text-transform: uppercase; font-weight: 500; color: var(--pencil); padding: 10px 20px 10px 0; border-bottom: 2px solid var(--ink); }
+  .night th { color: var(--ash); border-bottom-color: var(--npaper); }
+  td { padding: 12px 20px 12px 0; border-bottom: 1px solid var(--rule); font-size: 21px; line-height: 30px; vertical-align: top; }
+  .night td { border-bottom-color: var(--nline); }
+  td.k { font-weight: 600; white-space: nowrap; }
+  td.m, th.m { font-family: var(--mono); font-size: 18px; letter-spacing: .01em; white-space: nowrap; }
+  td.was { color: var(--pencil); }
+  .night td.was { color: var(--ash); }
+
+  .sw { display: grid; grid-template-columns: 96px 300px 170px minmax(0,1fr) 120px; gap: 24px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+  .night .sw { border-bottom-color: var(--nline); }
+  .sw .chip { width: 96px; height: 56px; border: 1px solid rgba(20,29,24,.12); }
+  .night .sw .chip { border-color: rgba(245,247,242,.14); }
+  .sw .nm { font-weight: 600; font-size: 22px; }
+  .sw .nm small { display: block; font-family: var(--mono); font-size: 15px; color: var(--pencil); font-weight: 400; letter-spacing: .02em; margin-top: 2px; }
+  .night .sw .nm small { color: var(--ash); }
+  .sw .hex { font-family: var(--mono); font-size: 19px; letter-spacing: .04em; }
+  .sw .use { font-size: 19px; line-height: 27px; }
+  .sw .cr { font-family: var(--mono); font-size: 16px; text-align: right; color: var(--pencil); }
+  .night .sw .cr { color: var(--ash); }
+  .sw .cr b { display: block; color: var(--ink); font-weight: 500; font-size: 20px; }
+  .night .sw .cr b { color: var(--npaper); }
+
+  .plate { border: 1px solid var(--rule); background: var(--paper); padding: 32px; }
+  .plate.dark { background: var(--night); border-color: var(--nline); color: var(--npaper); }
+  .plate.ev { background: var(--evidence); }
+  .night .plate { background: var(--raised); border-color: var(--nline); }
+
+  .spec { display: grid; grid-template-columns: 300px minmax(0,1fr); gap: 32px; padding: 14px 0; border-top: 1px solid var(--rule); align-items: start; }
+  .night .spec { border-top-color: var(--nline); }
+  .spec .meta { font-family: var(--mono); font-size: 16px; line-height: 24px; letter-spacing: .03em; color: var(--pencil); }
+  .night .spec .meta { color: var(--ash); }
+  .spec .meta b { display: block; color: var(--ink); font-weight: 500; }
+  .night .spec .meta b { color: var(--npaper); }
+
+  .mark { display: block; }
+  .misuse { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 32px; margin-top: 48px; }
+  .misuse > div { height: 232px; display: grid; place-items: center; border: 1px solid var(--rule); background: var(--paper); position: relative; }
+  .night .misuse > div { background: var(--raised); border-color: var(--nline); }
+  .misuse .cap { position: absolute; left: 20px; bottom: 16px; font-family: var(--mono); font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--risk); }
+  .night .misuse .cap { color: var(--rose); }
+
+  /* product frame */
+  .app { border: 1px solid var(--nline); background: var(--night); color: var(--npaper); }
+  .strip { display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 28px; border-bottom: 1px solid var(--nline); }
+  .strip .id { display: flex; align-items: center; gap: 14px; font-size: 22px; font-weight: 500; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--cyan); display: inline-block; }
+  .strip .tabs { display: flex; gap: 8px; }
+  .strip .tabs span { font-size: 20px; font-weight: 500; color: var(--ash); padding: 0 14px; height: 64px; display: inline-flex; align-items: center; border-bottom: 2px solid transparent; }
+  .strip .tabs span.on { color: var(--npaper); border-bottom-color: var(--npaper); }
+  .strip .tc { font-family: var(--mono); font-size: 16px; letter-spacing: .06em; text-transform: uppercase; color: var(--ash); }
+  .brief { display: grid; grid-template-columns: minmax(0,1fr) 520px; }
+  .brief .main { padding: 30px 44px 24px; border-right: 1px solid var(--nline); }
+  .brief .hd { font-family: var(--mono); font-size: 16px; letter-spacing: .06em; text-transform: uppercase; color: var(--ash); }
+  .brief .title { font-size: 36px; line-height: 44px; font-weight: 500; letter-spacing: -.02em; margin-top: 12px; max-width: 24em; }
+  .sec { display: grid; grid-template-columns: 48px minmax(0,1fr); gap: 16px; margin-top: 24px; }
+  .sec .ix { font-family: var(--mono); font-size: 16px; color: var(--ash); padding-top: 6px; }
+  .sec h4 { margin: 0; font-size: 26px; line-height: 32px; font-weight: 500; letter-spacing: -.01em; }
+  .sec p { font-size: 19px; line-height: 28px; margin-top: 8px; max-width: 64ch; }
+  .sec .hold { color: var(--rose); }
+  .rail { padding: 32px 32px; }
+  .rail .hd { font-family: var(--mono); font-size: 16px; letter-spacing: .06em; text-transform: uppercase; color: var(--ash); }
+  .rail ol { list-style: none; margin: 12px 0 0; padding: 0; }
+  .rail li { border-top: 1px solid var(--nline); padding: 12px 0; }
+  .rail .s { font-family: var(--mono); font-size: 15px; letter-spacing: .03em; color: var(--ash); }
+  .rail .s b { color: var(--npaper); font-weight: 500; }
+  .rail .r { font-size: 17px; line-height: 25px; margin-top: 4px; }
+  .qs { border-top: 1px solid var(--nline); padding: 20px 44px 20px; }
+  .qs .q { display: grid; grid-template-columns: 80px minmax(0,1fr); gap: 20px; padding: 12px 0; border-bottom: 1px solid var(--nline); font-size: 21px; line-height: 31px; }
+  .qs .who { font-family: var(--mono); font-size: 15px; letter-spacing: .06em; text-transform: uppercase; color: var(--ash); padding-top: 6px; }
+
+  .board { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 32px; margin-top: 44px; }
+  .shot { height: 330px; border: 1px solid var(--nline); background: var(--raised); padding: 24px 28px; display: flex; flex-direction: column; justify-content: space-between; }
+  .shot .slate { font-family: var(--mono); font-size: 16px; letter-spacing: .08em; text-transform: uppercase; color: var(--ash); display: flex; justify-content: space-between; }
+  .shot .desc { font-size: 26px; line-height: 34px; font-weight: 500; letter-spacing: -.01em; max-width: 26em; }
+  .shot .lens { font-family: var(--mono); font-size: 15px; letter-spacing: .04em; color: var(--ash); line-height: 22px; }
+
+  .cover-mark { position: absolute; right: 112px; top: 96px; }
+  .toc { display: grid; grid-template-columns: 1.2fr 1.2fr .8fr; gap: 64px; margin-top: 40px; align-items: start; }
+  .toc div { display: grid; grid-template-columns: 56px minmax(0,1fr); gap: 12px; padding: 5px 0; border-bottom: 1px solid var(--rule); font-size: 22px; line-height: 30px; }
+  .toc div span:first-child { font-family: var(--mono); font-size: 15px; letter-spacing: .06em; color: var(--pencil); padding-top: 5px; }
+  .toc .part { font-family: var(--mono); font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--pencil); border-bottom: 2px solid var(--ink); padding: 0 0 8px; display: block; margin-bottom: 4px; }
+
+  .lockup { display: inline-flex; align-items: center; gap: 16px; font-size: 32px; font-weight: 500; letter-spacing: -.01em; }
+  .clear { display: inline-grid; place-items: center; padding: 80px; border: 2px dashed var(--pencil); }
+  img { display: block; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="swarm-grad" gradientUnits="userSpaceOnUse" x1="3" y1="21" x2="21" y2="3"><stop offset="0" stop-color="#3D8B68"/><stop offset="1" stop-color="#03F5F2"/></linearGradient>
+    <symbol id="swarm" viewBox="0 0 24 24"><circle cx="20.5" cy="12" r="1.4"/><circle cx="19.36" cy="7.75" r="1.2"/><circle cx="12" cy="3.5" r="1.1"/><circle cx="7.75" cy="4.64" r="1.3"/><circle cx="4.64" cy="7.75" r="1.5"/><circle cx="3.5" cy="12" r="1.6"/><circle cx="4.64" cy="16.25" r="1.7"/><circle cx="7.75" cy="19.36" r="1.8"/><circle cx="12" cy="20.5" r="1.7"/><circle cx="16.25" cy="19.36" r="1.6"/><circle cx="19.36" cy="16.25" r="1.5"/><circle cx="15" cy="13" r="1"/><circle cx="13" cy="15.5" r="0.9"/></symbol>
+    <symbol id="zora" viewBox="0 0 24 24"><circle cx="16.25" cy="6.64" r="3"/><rect x="3.74" y="17.35" width="16.52" height="1.8" rx="0.9"/></symbol>
+    <symbol id="zora-disc" viewBox="0 0 24 24"><circle cx="16.25" cy="6.64" r="3"/></symbol>
+    <symbol id="zora-chord" viewBox="0 0 24 24"><rect x="3.74" y="17.35" width="16.52" height="1.8" rx="0.9"/></symbol>
+  </defs>
+</svg>
+
+<!-- 01 Cover -->
+<section class="slide">
+  <p class="eyebrow">DORA Research · Brand standards · v2.0 · September 2026</p>
+  <h1 style="margin-top:220px;max-width:12em">DORA Research<br>Brand Book</h1>
+  <p class="lede">An applied AI lab and its first product. Two grounds, one company: Paper for the lab, Night for Zora.</p>
+  <svg class="cover-mark" viewBox="0 0 24 24" width="420" height="420"><use href="#swarm" fill="url(#swarm-grad)"/></svg>
+  <div class="foot"><span class="brand">Paper and Night · supersedes v1.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 02 Contents -->
+<section class="slide">
+  <p class="eyebrow">Contents</p>
+  <div class="toc">
+    <div style="display:block;padding:0;border:0"><span class="part">Part A · The lab</span>
+    <div><span>03</span><span>The thesis</span></div>
+    <div><span>04</span><span>What changed in version 2</span></div>
+    <div><span>05</span><span>Architecture: a lab and its specialists</span></div>
+    <div><span>06</span><span>The name</span></div>
+    <div><span>07</span><span>What the lab is measured on</span></div>
+    <div><span>08</span><span>The division of labor</span></div>
+    <div><span>09</span><span>The lab's mark: geometry</span></div>
+    <div><span>10</span><span>The mark: variants and rules</span></div>
+    <div><span>11</span><span>The mark: misuse</span></div>
+    <div><span>12</span><span>Paper register: palette</span></div>
+    <div><span>13</span><span>Paper register: type</span></div>
+    <div><span>14</span><span>Paper register: five principles</span></div>
+    <div><span>15</span><span>Research: benchmarks first</span></div>
+    <div><span>16</span><span>DR-FW-001: The Accountability Line</span></div>
+    <div><span>17</span><span>Five principles and three statuses</span></div>
+    <div><span>18</span><span>Voice of the lab</span></div></div>
+    <div style="display:block;padding:0;border:0"><span class="part">Part B · Zora</span>
+    <div><span>19</span><span>Who Zora is</span></div>
+    <div><span>20</span><span>Three questions, two enemies, one feeling</span></div>
+    <div><span>21</span><span>Zora's voice: the four-part brief</span></div>
+    <div><span>22</span><span>The night brief, specimen</span></div>
+    <div><span>23</span><span>The night brief, continued</span></div>
+    <div><span>24</span><span>Voice rules and vocabulary</span></div>
+    <div><span>25</span><span>Before and after</span></div>
+    <div><span>26</span><span>Zora's mark: the open seat</span></div>
+    <div><span>27</span><span>Zora's mark: rules and family</span></div>
+    <div><span>28</span><span>Night register: palette</span></div>
+    <div><span>29</span><span>Night register: type and motion</span></div>
+    <div><span>30</span><span>Night register: five principles</span></div>
+    <div><span>31</span><span>Film</span></div></div>
+    <div style="display:block;padding:0;border:0"><span class="part">Back</span>
+    <div><span>32</span><span>Applications</span></div>
+    <div><span>33</span><span>Governance</span></div>
+    <div><span>34</span><span>Back cover</span></div></div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 03 Thesis -->
+<section class="slide">
+  <p class="eyebrow">Part A · The lab · 01 The thesis <span class="tag">Decided</span></p>
+  <h2>Agents take the work. People keep the judgment.</h2>
+  <p class="lede">DORA Research is an applied AI lab. We build agents that take over specific operational work in engineering organizations, and we say plainly which work that is. People keep judgment and accountability; the agents keep the record, the watch, and the follow-through. Our research, benchmarks, and frameworks are published before they become products.</p>
+  <div class="grid g3" style="margin-top:72px">
+    <div class="cell"><p class="k">The lab</p><p class="v">DORA Research</p><p class="d">Publishes research. Holds the family mark. Signs every product page. Speaks as "we".</p></div>
+    <div class="cell"><p class="k">The first product</p><p class="v">Zora</p><p class="d">A technical director and chief of staff who reports to the CTO. Speaks as "I". She, never it.</p></div>
+    <div class="cell"><p class="k">The promise</p><p class="v">Ship faster. Break less.</p><p class="d">Delivery is the promise. Memory is the mechanism, never what she is for.</p></div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 04 Changelog -->
+<section class="slide">
+  <p class="eyebrow">Part A · 02 What changed in version 2</p>
+  <h2>Version 1 documented the site. Version 2 documents the brand.</h2>
+  <table>
+    <thead><tr><th>Subject</th><th>Version 1</th><th>Version 2</th><th class="m">Source</th></tr></thead>
+    <tbody>
+      <tr><td class="k">The company</td><td class="was">The company behind Zora</td><td>An applied AI lab with a family of products. Zora is the first.</td><td class="m">Q10, Q16</td></tr>
+      <tr><td class="k">What Zora is</td><td class="was">A second brain for work</td><td>A technical director and chief of staff reporting to the CTO</td><td class="m">Q9</td></tr>
+      <tr><td class="k">The promise</td><td class="was">Organizational memory</td><td>Ship faster, break less. Memory is the mechanism.</td><td class="m">Q2</td></tr>
+      <tr><td class="k">The person</td><td class="was">Product and technology teams</td><td>The CTO or VP Engineering, buyer and daily user</td><td class="m">Q5</td></tr>
+      <tr><td class="k">The central scene</td><td class="was">Can Atlas still ship Friday?</td><td>06:00. A CTO reads the night brief.</td><td class="m">Q6, Q14</td></tr>
+      <tr><td class="k">Voice</td><td class="was">Calm, precise, credible</td><td>A four-part brief in a technical director's manner. Zora is she.</td><td class="m">Q7, Q8, Q15</td></tr>
+      <tr><td class="k">Visual system</td><td class="was">One register: Porcelain</td><td>Two registers: Paper for the lab, Night for Zora</td><td class="m">Q13</td></tr>
+      <tr><td class="k">The mark</td><td class="was">The company mark, decorative</td><td>The lab's mark: thirteen specialists, one seat open. Products get their own.</td><td class="m">Q11</td></tr>
+      <tr><td class="k">Research</td><td class="was">Not addressed</td><td>Published before it ships. First framework: The Accountability Line v0.1.</td><td class="m">Q4, Q16</td></tr>
+    </tbody>
+  </table>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 05 Architecture -->
+<section class="slide">
+  <p class="eyebrow">Part A · 03 Architecture <span class="tag">Decided</span></p>
+  <h2>A lab, and the specialists it ships.</h2>
+  <p class="lede">DORA Research is the parent. Every product is a named specialist with its own mark, its own register, and one job. Neither mark ever stands in for the other.</p>
+  <div class="grid g3" style="margin-top:44px">
+    <div class="cell"><p class="k">The lab</p><div style="margin-top:20px;display:flex;align-items:center;gap:18px"><svg class="mark" viewBox="0 0 24 24" width="72" height="72"><use href="#swarm" fill="url(#swarm-grad)"/></svg><span style="font-size:32px;font-weight:500">DORA Research</span></div><p class="d">Publishes research. Holds the family mark. Signs every product page.</p></div>
+    <div class="cell"><p class="k">First product</p><div style="margin-top:20px;display:flex;align-items:center;gap:18px"><svg class="mark" viewBox="0 0 24 24" width="72" height="72"><use href="#zora" fill="#141D18"/></svg><span style="font-size:32px;font-weight:500">Zora</span></div><p class="d">Technical director and chief of staff to the CTO. Night register. Mark proposed on page 26.</p></div>
+    <div class="cell"><p class="k">Next specialists</p><div style="margin-top:20px;display:flex;align-items:center;gap:18px"><span style="width:72px;height:72px;border:2px dashed #566460;display:block"></span><span style="font-size:32px;font-weight:500;color:#566460">Unnamed</span></div><p class="d">Each takes the swarm's open seat with a different chord. Each gets a name, a register, and a published framework before launch.</p></div>
+  </div>
+  <table style="margin-top:40px">
+    <thead><tr><th style="width:26%">Write</th><th style="width:30%">Never</th><th>Where</th></tr></thead>
+    <tbody>
+      <tr><td class="k">DORA Research</td><td>Dora Research · DORA research · D.O.R.A.</td><td>Masthead, footer, legal, bylines. First mention: an applied AI lab.</td></tr>
+      <tr><td class="k">Zora</td><td>ZORA · zora · the Zora · Zora AI · it</td><td>The subject of her sentences: Zora reads, Zora found, Zora recommends.</td></tr>
+      <tr><td class="k">Zora by DORA Research</td><td>DORA's Zora · Zora from DORA</td><td>The attribution line on every product surface.</td></tr>
+      <tr><td class="k">a technical director who reports to the CTO</td><td>copilot · assistant · second brain · teammate</td><td>What Zora is, in one clause. The reporting line is the positioning.</td></tr>
+    </tbody>
+  </table>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 06 The name -->
+<section class="slide">
+  <p class="eyebrow">Part A · 04 The name <span class="tag">Decided</span></p>
+  <h2>Two words from engineering. One from a ship's mind.</h2>
+  <div class="grid g3" style="margin-top:72px">
+    <div class="cell"><p class="k">DORA</p><p class="v">Throughput and stability</p><p class="d">From the DORA metrics popularized by Google's DevOps Research and Assessment team: two dimensions of software delivery. The lab adds a third measure of its own, quality, and judges its products by all three.</p></div>
+    <div class="cell"><p class="k">Research</p><p class="v">Published before it ships</p><p class="d">Applied research in the ElevenLabs sense: benchmarks and frameworks first, then the product that proves them. Research is upstream of everything the lab ships.</p></div>
+    <div class="cell"><p class="k">Zora</p><p class="v">The ship's mind</p><p class="d">After the sentient system in Star Trek Discovery that keeps a critical vessel and its crew alive. The idea travels. The imagery does not. Nothing in the brand is science fiction.</p></div>
+  </div>
+  <div class="plate ev" style="margin-top:72px;max-width:1200px"><p class="caps" style="color:#566460">Say the words</p><p class="body" style="margin-top:12px">AI and agents, plainly. Never copilot, assistant, or chatbot. Never "our AI" or "the system" when the subject is Zora.</p></div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 07 Measures -->
+<section class="slide">
+  <p class="eyebrow">Part A · 05 What the lab is measured on <span class="tag">Decided</span></p>
+  <h2>Three measures, in the customer's own numbers.</h2>
+  <div class="grid g3" style="margin-top:80px">
+    <div class="cell"><p class="k">Throughput</p><p class="v">How fast the organization ships</p><p class="d">Lead time and deployment frequency, in the customer's own numbers, never the lab's.</p></div>
+    <div class="cell"><p class="k">Stability</p><p class="v">How safely it ships</p><p class="d">Change failure rate and time to restore. The night brief exists to move these.</p></div>
+    <div class="cell"><p class="k">Quality</p><p class="v">Whether it was right</p><p class="d">Decisions that hold, incidents that do not recur, briefs a CTO would forward.</p></div>
+  </div>
+  <div class="grid g2" style="margin-top:80px">
+    <div class="cell"><p class="k">Two enemies</p><p class="v">The status meeting that reconstructs last week.</p><p class="d">The past you should already have.</p><p class="v" style="margin-top:24px">Being caught off guard.</p><p class="d">The future you should have seen.</p></div>
+    <div class="cell"><p class="k">One feeling</p><p class="v">Calm and in control.</p><p class="d">It is 06:04. The CTO has finished the brief and knows exactly which question to ask first. That sentence is the test for every screen, every line, and every second of film.</p></div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 08 Division of labor -->
+<section class="slide">
+  <p class="eyebrow">Part A · 06 The division of labor <span class="tag">Decided</span></p>
+  <h2>What the agents take. What people keep.</h2>
+  <div class="grid g2" style="margin-top:56px;gap:80px">
+    <div>
+      <p class="caps" style="border-bottom:2px solid #141D18;padding-bottom:10px">Agents take</p>
+      <ul class="rules" style="border-top:0">
+        <li>The overnight reading: the deploys, the alerts, the tickets, the threads, in the systems a person has opened to the agent</li>
+        <li>The record: what happened, in what order, linked to what was decided</li>
+        <li>The watch: conditions that match a pattern the organization has seen before</li>
+        <li>The follow-through: the ticket, the page, the hold, once a person has written the rule</li>
+      </ul>
+    </div>
+    <div>
+      <p class="caps" style="border-bottom:2px solid #141D18;padding-bottom:10px">People keep</p>
+      <ul class="rules" style="border-top:0">
+        <li>Judgment: the decision, made by a named person with the authority to make it</li>
+        <li>Accountability: the name in the incident review is never "the agent"</li>
+        <li>The rule: agents apply what people wrote and stop where the writing stops</li>
+        <li>The line itself: which work is delegated is decided in the open and recorded</li>
+      </ul>
+    </div>
+  </div>
+  <p class="body" style="margin-top:56px;max-width:44em;border-left:3px solid #141D18;padding-left:28px">The lab publishes where the line sits and moves it only on evidence. That is the research program, the brand position, and Zora's operating contract in one sentence.</p>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 09 Mark geometry -->
+<section class="slide">
+  <p class="eyebrow">Part A · 07 The lab's mark <span class="tag">Decided · geometry unchanged</span></p>
+  <h2>Thirteen specialists in orbit. One seat open.</h2>
+  <div style="display:grid;grid-template-columns:720px minmax(0,1fr);gap:80px;margin-top:40px;align-items:start">
+    <div class="plate" style="padding:28px">
+      <svg viewBox="-0.5 -0.5 25 25" width="660" height="660" style="display:block">
+        <g stroke="#D5D1C7" stroke-width="0.06"><line x1="0" y1="12" x2="24" y2="12"/><line x1="12" y1="0" x2="12" y2="24"/><rect x="0" y="0" width="24" height="24" fill="none"/></g>
+        <circle cx="12" cy="12" r="8.5" fill="none" stroke="#566460" stroke-width="0.08" stroke-dasharray="0.35 0.25"/>
+        <circle cx="16.25" cy="4.64" r="1.15" fill="none" stroke="#AD3547" stroke-width="0.09" stroke-dasharray="0.25 0.18"/>
+        <line x1="3" y1="21" x2="21" y2="3" stroke="#2A6449" stroke-width="0.07" stroke-dasharray="0.2 0.2"/>
+        <g fill="url(#swarm-grad)"><use href="#swarm" width="24" height="24"/></g>
+        <g font-family="IBM Plex Mono, monospace" font-size="0.95" fill="#566460" text-anchor="middle" dominant-baseline="middle">
+          <text x="22.9" y="12">1</text><text x="21.4" y="6.5">2</text><text x="12" y="1.2">3</text><text x="6.5" y="2.6">4</text><text x="2.5" y="6.5">5</text><text x="1.1" y="12">6</text><text x="2.5" y="17.5">7</text><text x="6.5" y="21.4">8</text><text x="12" y="22.9">9</text><text x="17.5" y="21.4">10</text><text x="21.4" y="17.5">11</text><text x="16.9" y="13.2">12</text><text x="14.7" y="16.5">13</text>
+          <text x="18.6" y="3.4" fill="#AD3547">open seat</text>
+        </g>
+      </svg>
+    </div>
+    <div>
+      <p class="body">A swarm of thirteen agents, each with one job, in orbit around a center that is not drawn. Dot size grows along the orbit so the swarm reads as motion even when still. The gradient runs from the heaviest dots to the lightest, so the brightest color lands beside the opening. The open seat at the upper right is where the next specialist stands.</p>
+      <table style="margin-top:32px">
+        <thead><tr><th>Dot</th><th class="m">cx</th><th class="m">cy</th><th class="m">r</th><th>Dot</th><th class="m">cx</th><th class="m">cy</th><th class="m">r</th></tr></thead>
+        <tbody>
+          <tr><td class="k">1</td><td class="m">20.50</td><td class="m">12.00</td><td class="m">1.40</td><td class="k">8</td><td class="m">7.75</td><td class="m">19.36</td><td class="m">1.80</td></tr>
+          <tr><td class="k">2</td><td class="m">19.36</td><td class="m">7.75</td><td class="m">1.20</td><td class="k">9</td><td class="m">12.00</td><td class="m">20.50</td><td class="m">1.70</td></tr>
+          <tr><td class="k">3</td><td class="m">12.00</td><td class="m">3.50</td><td class="m">1.10</td><td class="k">10</td><td class="m">16.25</td><td class="m">19.36</td><td class="m">1.60</td></tr>
+          <tr><td class="k">4</td><td class="m">7.75</td><td class="m">4.64</td><td class="m">1.30</td><td class="k">11</td><td class="m">19.36</td><td class="m">16.25</td><td class="m">1.50</td></tr>
+          <tr><td class="k">5</td><td class="m">4.64</td><td class="m">7.75</td><td class="m">1.50</td><td class="k">12</td><td class="m">15.00</td><td class="m">13.00</td><td class="m">1.00</td></tr>
+          <tr><td class="k">6</td><td class="m">3.50</td><td class="m">12.00</td><td class="m">1.60</td><td class="k">13</td><td class="m">13.00</td><td class="m">15.50</td><td class="m">0.90</td></tr>
+          <tr><td class="k">7</td><td class="m">4.64</td><td class="m">16.25</td><td class="m">1.70</td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <p class="mono" style="margin-top:24px;color:#566460">24-unit frame · ring 12,12 r 8.5 · seats every 30° counterclockwise from dot 1 · open seat 16.25, 4.64 (60°) · gradient 3,21 → 21,3 · #3D8B68 → #03F5F2</p>
+    </div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 10 Mark variants and rules -->
+<section class="slide">
+  <p class="eyebrow">Part A · 08 The mark: variants and rules <span class="tag dashed">Proposed</span></p>
+  <h2>Gradient in the masthead. Ink on paper. Paper on Night. Always still.</h2>
+  <div class="grid g4" style="margin-top:56px">
+    <div class="cell"><p class="k">Gradient · masthead, favicon, covers</p><div style="margin-top:20px;background:#F9F7F2;border:1px solid #D5D1C7;height:220px;display:grid;place-items:center"><svg class="mark" viewBox="0 0 24 24" width="120" height="120"><use href="#swarm" fill="url(#swarm-grad)"/></svg></div></div>
+    <div class="cell"><p class="k">Ink · running lockups on paper</p><div style="margin-top:20px;background:#F9F7F2;border:1px solid #D5D1C7;height:220px;display:grid;place-items:center"><svg class="mark" viewBox="0 0 24 24" width="120" height="120"><use href="#swarm" fill="#141D18"/></svg></div></div>
+    <div class="cell"><p class="k">Paper · on Night</p><div style="margin-top:20px;background:#0A0F0C;height:220px;display:grid;place-items:center"><svg class="mark" viewBox="0 0 24 24" width="120" height="120"><use href="#swarm" fill="#F5F7F2"/></svg></div></div>
+    <div class="cell"><p class="k">Favicon tile · Warm White</p><div style="margin-top:20px;background:#F9F7F2;border:1px solid #D5D1C7;height:220px;display:grid;place-items:center"><svg viewBox="0 0 64 64" width="120" height="120"><rect width="64" height="64" rx="14" fill="#F7F5EF"/><g fill="url(#swarm-grad)" transform="translate(2 2) scale(2.5)"><use href="#swarm" width="24" height="24"/></g></svg></div></div>
+  </div>
+  <div class="grid g2" style="margin-top:56px;gap:80px">
+    <ul class="rules">
+      <li><b>Static.</b> The mark does not move. The 22-second spin retires with the Porcelain register. The open seat is the meaning; a rotating mark has no open seat.</li>
+      <li><b>Lockup.</b> Mark at 24 px, 10 px gap, "DORA Research" in Geist 500 at 15 px on one line.</li>
+      <li><b>Ownership.</b> The lab's mark. It signs research and the company page. It never identifies Zora inside the product.</li>
+    </ul>
+    <ul class="rules">
+      <li><b>Clear space.</b> Half the mark's height on all four sides, measured from the outer edge of the largest dots.</li>
+      <li><b>Minimum.</b> 20 px alone on screen, 22 px inside a lockup, 6 mm in print. The favicon tile handles 16 px with heavier dot radii.</li>
+      <li><b>Reserved color.</b> Living Green #3D8B68 and Signal Cyan #03F5F2 exist only inside the gradient. On Night, cyan survives only as the 6 px dot beside Zora's name.</li>
+    </ul>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 11 Mark misuse -->
+<section class="slide">
+  <p class="eyebrow">Part A · 09 The mark: misuse <span class="tag">Decided</span></p>
+  <h2>The geometry, the gradient, and the resting angle are fixed.</h2>
+  <p class="lede">The only permitted changes are the three variants and uniform scaling.</p>
+  <div class="misuse" style="margin-top:36px">
+    <div><svg class="mark" viewBox="0 0 24 24" width="200" height="140" preserveAspectRatio="none"><use href="#swarm" fill="#141D18"/></svg><span class="cap">× Stretched</span></div>
+    <div><svg class="mark" viewBox="0 0 24 24" width="140" height="140"><use href="#swarm" fill="#141D18"/><circle cx="16.25" cy="4.64" r="1.15" fill="#141D18"/></svg><span class="cap">× Seat filled</span></div>
+    <div><svg class="mark" viewBox="0 0 24 24" width="140" height="140" style="transform:rotate(-60deg)"><use href="#swarm" fill="#141D18"/></svg><span class="cap">× Re-angled</span></div>
+    <div><svg class="mark" viewBox="0 0 24 24" width="140" height="140" style="filter:drop-shadow(0 0 14px #03F5F2)"><use href="#swarm" fill="url(#swarm-grad)"/></svg><span class="cap">× Glow, pulse, spin</span></div>
+    <div><svg class="mark" viewBox="0 0 24 24" width="140" height="140"><use href="#swarm" fill="#7C3AED"/></svg><span class="cap">× Recolored</span></div>
+    <div style="background:linear-gradient(135deg,#6D28D9,#2563EB)"><svg class="mark" viewBox="0 0 24 24" width="140" height="140"><use href="#swarm" fill="#FFFFFF"/></svg><span class="cap" style="color:#FFD1D8">× Gradient ground</span></div>
+    <div><svg class="mark" viewBox="0 0 24 24" width="140" height="140" fill="none" stroke="#141D18" stroke-width="0.4"><use href="#swarm"/></svg><span class="cap">× Outlined</span></div>
+    <div><div style="display:flex;align-items:center;gap:8px"><svg class="mark" viewBox="0 0 24 24" width="60" height="60"><use href="#swarm" fill="#141D18"/></svg><span style="font-size:34px;font-weight:600;letter-spacing:-.02em">ZORA</span></div><span class="cap">× As a product mark</span></div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 12 Paper palette -->
+<section class="slide">
+  <p class="eyebrow">Part A · 10 Paper register: palette <span class="tag dashed">Proposed</span></p>
+  <h2>Warm paper, one ink, one green.</h2>
+  <div style="margin-top:36px;border-top:2px solid #141D18">
+    <div class="sw"><span class="chip" style="background:#F9F7F2"></span><span class="nm">Paper<small>ground</small></span><span class="hex">#F9F7F2</span><span class="use">The page. Warm, not cream.</span><span class="cr"><b>ground</b></span></div>
+    <div class="sw"><span class="chip" style="background:#EDEAE2"></span><span class="nm">Evidence<small>recessed</small></span><span class="hex">#EDEAE2</span><span class="use">Quoted sources, code, logs, benchmark tables. Always bounded by a Rule hairline.</span><span class="cr"><b>1.1</b>vs Paper</span></div>
+    <div class="sw"><span class="chip" style="background:#141D18"></span><span class="nm">Ink<small>text</small></span><span class="hex">#141D18</span><span class="use">Display, body, diagrams, the ink-only mark.</span><span class="cr"><b>16.1</b>AAA</span></div>
+    <div class="sw"><span class="chip" style="background:#566460"></span><span class="nm">Pencil<small>secondary</small></span><span class="hex">#566460</span><span class="use">Secondary text, captions, interactive borders.</span><span class="cr"><b>5.8</b>AA</span></div>
+    <div class="sw"><span class="chip" style="background:#D5D1C7"></span><span class="nm">Rule<small>hairline</small></span><span class="hex">#D5D1C7</span><span class="use">Hairlines only. Never text, never the sole boundary of a control.</span><span class="cr"><b>1.4</b>non-text</span></div>
+    <div class="sw"><span class="chip" style="background:#2A6449"></span><span class="nm">Living Green Deep<small>the one accent</small></span><span class="hex">#2A6449</span><span class="use">Links, the primary action, the focus ring, the one line in a figure, provenance markers.</span><span class="cr"><b>6.5</b>AA</span></div>
+    <div class="sw"><span class="chip" style="background:#AD3547"></span><span class="nm">Risk<small>status</small></span><span class="hex">#AD3547</span><span class="use">Risk text and a 2 px keyline on a risk callout. Never a fill.</span><span class="cr"><b>5.8</b>AA</span></div>
+    <div class="sw"><span class="chip" style="background:linear-gradient(45deg,#3D8B68,#03F5F2)"></span><span class="nm">Mark gradient<small>reserved</small></span><span class="hex">#3D8B68 · #03F5F2</span><span class="use">Inside the thirteen-dot mark only. Undarkened Living Green fails AA as text and is never a link.</span><span class="cr"><b>mark</b>only</span></div>
+  </div>
+  <p class="small" style="margin-top:28px">Ratios are WCAG 2 contrast against Paper. The one dark section on a lab page is painted Night Floor #0A0F0C and uses the Night tokens; Living Green Deep on Night Floor measures 2.4 and is not used there.</p>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 13 Paper type -->
+<section class="slide">
+  <p class="eyebrow">Part A · 11 Paper register: type <span class="tag dashed">Proposed</span></p>
+  <div style="margin-top:24px;border-top:2px solid #141D18">
+    <div class="spec" style="border-top:0"><div class="meta"><b>Display</b>Newsreader 500<br>64 / 66 · −0.015em · opsz 72</div><div style="font-family:var(--serif);font-weight:500;font-size:76px;line-height:80px;letter-spacing:-.015em;font-variation-settings:'opsz' 72">Agents take the work.<br>People keep the judgment.</div></div>
+    <div class="spec"><div class="meta"><b>Section</b>Newsreader 500<br>40 / 46 · −0.012em</div><div style="font-family:var(--serif);font-weight:500;font-size:50px;line-height:56px;letter-spacing:-.012em">Benchmarks first. Products second.</div></div>
+    <div class="spec"><div class="meta"><b>Lede</b>Newsreader 400<br>22 / 32 · italics for margin notes only</div><div style="font-family:var(--serif);font-size:30px;line-height:42px;max-width:30em">If you run AI agents, you are already delegating. Write down where the line is. <i>This framework proposes one.</i></div></div>
+    <div class="spec"><div class="meta"><b>Body</b>Geist 400<br>17 / 28 · 64 to 72 ch</div><div style="font-size:24px;line-height:36px;max-width:40em">The lab's research, benchmarks, and frameworks are published before they become products, so anyone can check what it claims against what it ships.</div></div>
+    <div class="spec"><div class="meta"><b>UI</b>Geist 500 · 14 / 20</div><div style="display:flex;gap:40px;align-items:center"><span style="display:inline-flex;align-items:center;height:60px;padding:0 24px;background:#2A6449;color:#F9F7F2;font-size:21px;font-weight:500;border-radius:3px">Read the framework</span><span style="font-size:21px;font-weight:500;color:#2A6449;text-decoration:underline;text-underline-offset:6px">Benchmark DR-BM-001</span></div></div>
+    <div class="spec"><div class="meta"><b>Meta</b>Plex Mono 500 · 12 / 16 · +0.06em · caps</div><div class="caps" style="font-size:18px;color:#566460">DR-FW-001 · v0.1 · 2026-09-13 · draft for review</div></div>
+    <div class="spec"><div class="meta"><b>Data</b>Plex Mono 400 · 13 / 20 · tabular</div><div class="mono" style="font-size:20px">orders-service 2.31.0 · migration 0187 · 61,000,000 rows · lock 14 min</div></div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 14 Paper principles -->
+<section class="slide">
+  <p class="eyebrow">Part A · 12 Paper register: five principles <span class="tag dashed">Proposed</span></p>
+  <h2>Rules, not cards. The page arrives finished.</h2>
+  <ol class="num" style="margin-top:48px;max-width:1500px">
+    <li><span><b>Rules, not cards.</b> Structure is 1 px hairlines on an 8 px rhythm and one recessed Evidence surface for source material. Radius 0 on containers, 2 px at most on controls. No shadows, no glass, no tinted section backgrounds, no white plates on grey.</span></li>
+    <li><span><b>Left-anchored, with a live margin.</b> A 680 px reading column set left of center; the right margin carries figure numbers, footnotes, dates, and citations. Nothing is centered except the mark in the masthead.</span></li>
+    <li><span><b>Every number has a source. Every artifact has an ID.</b> A specimen header on every benchmark, framework, and brief: ID, version, date, evidence. A number without a footnote does not ship.</span></li>
+    <li><span><b>The page arrives finished, like the brief.</b> No fade-ups, staggers, parallax, counters, chart draw-on, typing, or streaming. Three durations, 120, 160, and 240 ms, one easing. The mark is static.</span></li>
+    <li><span><b>One Night section per page is where paper hands to Zora.</b> A single full-bleed block painted Night Floor carries the real product at real density: hard rectangular edge, no device frame, no tilt, captioned in mono with a figure number, a place, and a time.</span></li>
+  </ol>
+  <p class="small" style="margin-top:36px">Never on paper: a chat input or chat bubble, a sparkle, an avatar, copilot framing, italic display as decoration, motion on the mark, purple, orange, a second green, any gradient on a surface, stock photography, an icon set.</p>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 15 Research -->
+<section class="slide">
+  <p class="eyebrow">Part A · 13 Research <span class="tag">Decided</span></p>
+  <h2>Benchmarks first. Products second.</h2>
+  <p class="lede">Every product begins as a question, becomes a benchmark, is shaped by a framework, and only then becomes something a CTO can use. Each step is published with an ID, a version, and its evidence.</p>
+  <div class="grid g4" style="margin-top:64px">
+    <div class="cell"><p class="k">1 · Question</p><p class="v">What work in an engineering organization should an agent take?</p></div>
+    <div class="cell"><p class="k">2 · Benchmark</p><p class="v">How often was the agent's call the one the person made?</p></div>
+    <div class="cell"><p class="k">3 · Framework</p><p class="v">The Accountability Line, v0.1</p></div>
+    <div class="cell"><p class="k">4 · Product</p><p class="v">Zora, advising at Proposed today, acting at Reported within a year</p></div>
+  </div>
+  <table style="margin-top:64px">
+    <thead><tr><th>Type</th><th class="m">ID form</th><th>What it commits to</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Framework</td><td class="m">DR-FW-###</td><td>A published position with tests. Versioned; changes are decisions with names on them.</td></tr>
+      <tr><td class="k">Benchmark</td><td class="m">DR-BM-###</td><td>A measured result with sample size, method, and the data or a reason it is withheld.</td></tr>
+      <tr><td class="k">Note</td><td class="m">DR-NT-###</td><td>A short finding or a correction. Dated, never silently edited.</td></tr>
+      <tr><td class="k">Brief</td><td class="m">customer's own</td><td>Zora's daily output. Never published by the lab; cited only with the customer's consent.</td></tr>
+    </tbody>
+  </table>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 16 DR-FW-001 tiers -->
+<section class="slide">
+  <p class="eyebrow">Part A · 14 DR-FW-001 · The Accountability Line · v0.1 <span class="tag dashed">Proposed · draft for review</span></p>
+  <h2>Agents take the work you can undo. People keep the work you have to answer for.</h2>
+  <p class="body" style="margin-top:24px;max-width:60em">Four tiers by three questions: how much can go wrong if the agent is wrong, how cheaply it can be undone, and who is answerable afterward. A task is promoted toward Silent and demoted toward Reserved; the framework never says up or down.</p>
+  <div class="grid g4" style="margin-top:48px;gap:32px">
+    <div class="cell"><p class="k">Tier 1</p><p class="v">Silent</p><p class="d">Work an agent does on its own and does not need to mention. Checked in aggregate, not item by item.</p><div class="plate ev" style="margin-top:16px;padding:16px 18px"><p class="caps" style="color:#566460;font-size:13px">Test</p><p style="font-size:18px;line-height:27px;margin-top:6px">If the agent gets this wrong, does anyone need to be told, and does the next run overwrite the mistake? No and yes.</p></div></div>
+    <div class="cell"><p class="k">Tier 2</p><p class="v">Reported</p><p class="d">Done on its own, then told to a named person with the evidence and the undo path. A rule a person wrote.</p><div class="plate ev" style="margin-top:16px;padding:16px 18px"><p class="caps" style="color:#566460;font-size:13px">Test</p><p style="font-size:18px;line-height:27px;margin-top:6px">Can a named person with ordinary access undo this in minutes, and is the agent applying a rule that person wrote? Both yes.</p></div></div>
+    <div class="cell"><p class="k">Tier 3</p><p class="v">Proposed</p><p class="d">The agent prepares the decision and a named person makes it: evidence, options, cost to undo, who can say yes.</p><div class="plate ev" style="margin-top:16px;padding:16px 18px"><p class="caps" style="color:#566460;font-size:13px">Test</p><p style="font-size:18px;line-height:27px;margin-top:6px">Does undoing this take a rollback, a customer notice, or another team's time, or does it change what a person is responsible for? Either yes.</p></div></div>
+    <div class="cell"><p class="k">Tier 4</p><p class="v">Reserved</p><p class="d">Stays with people. The cost lands on someone who did not decide, or the answer depends on what no system records.</p><div class="plate ev" style="margin-top:16px;padding:16px 18px"><p class="caps" style="color:#566460;font-size:13px">Test</p><p style="font-size:18px;line-height:27px;margin-top:6px">Would you be comfortable telling a customer, an employee, or an auditor that the agent decided? No.</p></div></div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 17 Principles + statuses -->
+<section class="slide">
+  <p class="eyebrow">Part A · 15 DR-FW-001 · principles and statuses <span class="tag dashed">Proposed</span></p>
+  <h2>Reversibility before capability.</h2>
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) 520px;gap:80px;margin-top:40px;align-items:start">
+    <ol class="num">
+      <li><span><b>Reversibility before capability.</b> The question is never whether the agent can do the work. It is what it costs to undo on the day the agent is wrong.</span></li>
+      <li><span><b>Every action has a named person.</b> Not a team, not a role, a name. Delegate actions, never accountability.</span></li>
+      <li><span><b>People write the rule; the agent applies it.</b> If it is not written down, the agent does not have it. When unsure, report.</span></li>
+      <li><span><b>Promotion is earned in shadow and is slow. Demotion is instant.</b> On the organization's own log, never on a vendor's benchmark or how the demo felt.</span></li>
+      <li><span><b>Conversations with people stay with people.</b> The agent tells a manager that work is drifting; the manager talks to the engineer.</span></li>
+    </ol>
+    <div>
+      <div class="cell"><p class="k">Status · Held</p><p class="d">The tier is right but the safety net is not there yet. The task waits.</p></div>
+      <div class="cell" style="margin-top:28px"><p class="k">Status · Shadow</p><p class="d">The agent logs what it would have done beside what the person did. The disagreement rate is the promotion evidence.</p></div>
+      <div class="cell" style="margin-top:28px"><p class="k">Status · Live</p><p class="d">The action runs at its tier and appears in the next brief with the rule that fired and who wrote it. Demotion is one message.</p></div>
+      <div class="cell" style="margin-top:28px"><p class="k">Zora today</p><p class="d">The record is Silent. Every recommendation is Proposed. She names the decider and does not decide.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 18 Voice of the lab -->
+<section class="slide">
+  <p class="eyebrow">Part A · 16 Voice of the lab <span class="tag dashed">Proposed</span></p>
+  <h2>Plain, published, and willing to say what it does not know.</h2>
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;margin-top:40px;align-items:start">
+    <table style="margin-top:0">
+      <thead><tr><th>Where</th><th>Line</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Lab hero</td><td style="font-family:var(--serif);font-size:28px;line-height:36px">Agents take the work. People keep the judgment.</td></tr>
+        <tr><td class="k">Research</td><td style="font-family:var(--serif);font-size:28px;line-height:36px">Benchmarks first. Products second.</td></tr>
+        <tr><td class="k">The mark's caption</td><td style="font-family:var(--serif);font-size:28px;line-height:36px">Thirteen agents. One job each.</td></tr>
+        <tr><td class="k">Delegation</td><td style="font-family:var(--serif);font-size:28px;line-height:36px">She takes the task. You keep the call.</td></tr>
+        <tr><td class="k">Beta invitation</td><td style="font-family:var(--serif);font-size:28px;line-height:36px">Give Zora one night. Read the brief at 06:00.</td></tr>
+        <tr><td class="k">Footer</td><td style="font-family:var(--serif);font-size:28px;line-height:36px">DORA Research. An applied AI lab.</td></tr>
+      </tbody>
+    </table>
+    <ul class="rules">
+      <li>The lab writes as "we". It names the work agents take and the work people keep in the same sentence.</li>
+      <li>Say AI and agents. Never copilot, assistant, chatbot, teammate, digital employee.</li>
+      <li>Every claim carries an artifact ID or a source and a date. A number without one is cut.</li>
+      <li>Mark what is unknown as unknown. "We have not tested this" is a complete sentence.</li>
+      <li>Write for the company's real constraints. Never assume a budget the reader does not have.</li>
+      <li>Two beats, then stop. Short declarative. Full stop. Second declarative. Or one line alone.</li>
+      <li>The lab never speaks in Zora's first person. She speaks for herself.</li>
+    </ul>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 19 Who Zora is (Night) -->
+<section class="slide night">
+  <p class="eyebrow">Part B · Zora · 17 Who Zora is <span class="tag">Decided</span></p>
+  <h2>She reads the night. You read the brief.</h2>
+  <p class="lede">Zora is an AI agent: a technical director who reports to the CTO. Overnight she reads what Linear, GitHub, Datadog, PagerDuty, and Slack recorded, connects it to what the team decided, and finishes the brief by 06:00. Today she advises with evidence. Within a year she will hold a deploy, open a ticket, or page the on-call, on the CTO's authority.</p>
+  <div class="grid g4" style="margin-top:44px;gap:32px">
+    <div class="cell"><p class="k">Title</p><p class="v">Technical director and chief of staff</p><p class="d">Depth across every discipline in the room, plus the executive's memory of every commitment.</p></div>
+    <div class="cell"><p class="k">Reports to</p><p class="v">The CTO or VP Engineering</p><p class="d">One accountable person, who is also the daily user.</p></div>
+    <div class="cell"><p class="k">Mechanism</p><p class="v">Memory</p><p class="d">She connects the ticket to the decision to the deploy so the brief can say why. How she works, not what she is for.</p></div>
+    <div class="cell"><p class="k">Presence</p><p class="v">A name, a voice, a 6 px dot</p><p class="d">Never a face, an avatar, a robot, or an orb. Zora is she, the subject of her sentences.</p></div>
+  </div>
+  <div class="plate" style="margin-top:40px;max-width:1500px;padding:24px 32px"><p class="caps" style="color:#A4B1AA">Zora, in her own words</p><p class="body" style="margin-top:12px">I am Zora. I report to the CTO. Overnight I read what the organization produced: the deploys, the alerts, the tickets, the threads. At 06:00 you get a finished brief: who was affected, what led to it, what we change, and where else it applies. Then I stay in the room for the questions. I will tell you what I know and what I do not.</p></div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 20 Three questions -->
+<section class="slide night">
+  <p class="eyebrow">Part B · 18 Three questions, two enemies, one feeling <span class="tag">Decided</span></p>
+  <h2>Three questions. Answered before the meeting.</h2>
+  <div class="grid g3" style="margin-top:56px">
+    <div class="cell"><p class="k">Last night</p><p class="v">What happened last night?</p><p class="d">Who was affected, how it was mitigated, and what is still open.</p></div>
+    <div class="cell"><p class="k">Projects</p><p class="v">Where are we with this project, and why?</p><p class="d">The decision, the dependency, and the reason, with the record attached.</p></div>
+    <div class="cell"><p class="k">Risk</p><p class="v">Where are we most at risk?</p><p class="d">Where the same conditions exist, what to do there, and who decides.</p></div>
+  </div>
+  <div class="grid g2" style="margin-top:72px">
+    <div class="cell"><p class="k">Two enemies</p><p class="v">The status meeting that reconstructs last week.</p><p class="d">The past you should already have. The brief exists so the meeting does not have to.</p><p class="v" style="margin-top:24px">Being caught off guard.</p><p class="d">The future you should have seen. The conditions were there on Tuesday; the brief says so on Tuesday.</p></div>
+    <div class="cell"><p class="k">One feeling</p><p class="v">It is 06:04. The CTO has finished the brief. They are calm and in control, and they know exactly which question to ask first.</p><p class="d">If the reader cannot feel it, the work is not finished.</p></div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 21 Four-part brief -->
+<section class="slide night">
+  <p class="eyebrow">Part B · 19 Zora's voice <span class="tag">Decided · structure</span></p>
+  <h2>Impact first. Then conditions. Then what we change. Then where else.</h2>
+  <p class="lede">The voice is modeled on a real technical director the founder worked with. He rose from principal engineer, could talk to DevOps, SRE, architects, and senior developers in their own dialects, and answered "what happened last night?" the same way every time. That structure is now Zora's.</p>
+  <div class="grid g4" style="margin-top:64px;gap:32px">
+    <div class="cell"><p class="k">01</p><p class="v">Impact and outcome</p><p class="d">Who was affected, how it was mitigated, and what is still open. Before anything else.</p></div>
+    <div class="cell"><p class="k">02</p><p class="v">Conditions</p><p class="d">The circumstances that let it happen. No blame, no speculation. Unknowns marked as unknown.</p></div>
+    <div class="cell"><p class="k">03</p><p class="v">What we change</p><p class="d">How the organization operates differently so it does not recur. Sized to this company's constraints.</p></div>
+    <div class="cell"><p class="k">04</p><p class="v">Where else</p><p class="d">Other places the same conditions exist, and what to do there. Then she names the decider.</p></div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 22 Night brief specimen part 1 -->
+<section class="slide night" style="padding:72px 112px 88px">
+  <p class="eyebrow">Part B · 20 The night brief · specimen, demo data <span class="tag dashed">Proposed</span></p>
+  <div class="app" style="margin-top:24px">
+    <div class="strip">
+      <span class="id"><svg viewBox="0 0 24 24" width="32" height="32"><use href="#zora-disc" fill="#F5F7F2"/><use href="#zora-chord" fill="#A4B1AA"/></svg>Zora <span class="dot"></span></span>
+      <span class="tabs"><span class="on">Last night</span><span>Projects</span><span>Risk</span></span>
+      <span class="tc">Compiled 06:00 · 2026-09-10 · demo</span>
+    </div>
+    <div class="brief">
+      <div class="main">
+        <p class="hd">Night brief · 2026-09-10 · 06:00 · 8 records</p>
+        <p class="title">EU order writes failed for 14 minutes overnight. Mitigated at 02:55, and the same pattern is queued for tonight.</p>
+        <div class="sec"><span class="ix">01</span><div><h4>Impact and outcome</h4><p>Between 02:41 and 02:55 every write to the orders table in eu-west-1 was blocked. Reads carried on, so the service-wide error rate peaked at 34% while checkout writes timed out at 30 seconds. Around 180 checkout attempts failed. About 140 were retried by the client and completed by 03:10; the remaining 40 are listed in ORD-1187 for reconciliation this morning. No data was lost. Whether any customer was charged without an order, or charged again on retry, is unverified: the payment provider is not among my sources. PagerDuty paged Priya Nair at 02:44; she found the blocking index build at 02:54 and canceled it, and the service recovered within the minute.</p></div></div>
+        <div class="sec"><span class="ix">02</span><div><h4>Conditions</h4><p>The 02:30 unattended deploy of orders-service 2.31.0 rolled the image out first and started the migration job at 02:41. Migration 0187 adds an index on orders.customer_id. It was written without CONCURRENTLY, so Postgres held a SHARE lock on orders for as long as the build ran: every insert, update, and delete waited, and reads went through. On staging that table has 40,000 rows and the index built in under a second. In production it has 61 million rows, and the build held the lock for 14 minutes before Priya canceled it. The migration checklist does not mention lock behavior on large tables, and CI has no step that flags non-concurrent index creation.</p></div></div>
+      </div>
+      <aside class="rail">
+        <p class="hd">Evidence · 8 records</p>
+        <ol>
+          <li><p class="s"><b>GitHub</b> · 2026-09-09 · 16:18 · Tomas · Billing</p><p class="r">PR #4730 merged to billing-service: CREATE INDEX on invoices.account_id without CONCURRENTLY.</p></li>
+          <li><p class="s"><b>Linear</b> · 2026-09-09 · 16:20 · Tomas · Billing</p><p class="r">BIL-402: migration 0043 queued for the 2026-09-11 02:30 unattended window.</p></li>
+          <li><p class="s"><b>GitHub</b> · 02:30 · Platform</p><p class="r">Nightly workflow began the orders-service 2.31.0 deploy; the migration job for 0187 started at 02:41.</p></li>
+          <li><p class="s"><b>Datadog</b> · 02:41 · Reliability</p><p class="r">p99 for POST /orders rose from 310 ms to over 30 s; 5xx rate reached 34% by 02:43.</p></li>
+          <li><p class="s"><b>PagerDuty</b> · 02:44 · Priya Nair</p><p class="r">Incident 2291 triggered; acknowledged at 02:46.</p></li>
+          <li><p class="s"><b>Slack</b> · 02:54 · Priya Nair</p><p class="r">#inc-2291: pg_locks shows CREATE INDEX on orders holding a SHARE lock since 02:41, canceling it now.</p></li>
+        </ol>
+      </aside>
+    </div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 23 Night brief specimen part 2 -->
+<section class="slide night" style="padding:72px 112px 88px">
+  <p class="eyebrow">Part B · 21 The night brief · continued <span class="tag dashed">Proposed</span></p>
+  <div class="app" style="margin-top:24px">
+    <div class="brief">
+      <div class="main">
+        <div class="sec" style="margin-top:0"><span class="ix">03</span><div><h4>What we change</h4><p>I recommend three changes, all small. First, a CI check that fails any migration adding an index without CONCURRENTLY to a table it did not create, or running a CONCURRENTLY build inside a transaction block, which Postgres refuses. No threshold and no data feed; it is a regex and about ten lines. Second, one line added to the migration checklist: state the production row count and the expected lock. Third, any migration touching orders, customers, or payments runs in the 10:00 attended window with the author present. None of this needs new budget or new tooling. I have not opened tickets or changed anything; who owns each of these is your call.</p></div></div>
+        <div class="sec"><span class="ix">04</span><div><h4>Where else</h4><p>The same conditions exist in two places. <span class="hold">Migration 0043 in billing-service, merged yesterday and queued for tonight's 02:30 window, builds an index on invoices.account_id without CONCURRENTLY.</span> That table has 22 million rows in production, so tonight would look like last night. I would hold it or move it to the attended window; that is your decision, not mine. Second, the analytics repo runs its own migrations through Airflow at 01:00 and never passes through orders CI. Two reviewers approved 0187 and would have approved 0043; the checklist is the exposure, not any one person.</p></div></div>
+      </div>
+      <aside class="rail">
+        <p class="hd">Evidence · continued</p>
+        <ol>
+          <li><p class="s"><b>Datadog</b> · 02:55 · Reliability</p><p class="r">5xx rate under 0.2% by 02:55:40; p99 back to 340 ms by 02:56. No further alerts.</p></li>
+          <li><p class="s"><b>Linear</b> · 03:12 · Priya Nair</p><p class="r">ORD-1187 created: reconcile 40 checkout attempts that failed between 02:41 and 02:55, priority high, unassigned.</p></li>
+        </ol>
+        <p class="hd" style="margin-top:32px">What the frame shows</p>
+        <p class="r" style="margin-top:10px;font-size:17px;line-height:25px;color:#A4B1AA">Persistent chrome. Source, time, and owner on every record. Two signal colors, each paired with a word: Mint for the one action, Rose for the one risk. Everything else is Ash. The brief arrives whole; the dialogue is where life is spent.</p>
+      </aside>
+    </div>
+    <div class="qs">
+      <p class="hd" style="font-family:var(--mono);font-size:16px;letter-spacing:.06em;text-transform:uppercase;color:#A4B1AA">Questions</p>
+      <div class="q"><span class="who">CTO</span><span>If I hold billing 0043 tonight, what slips, and who needs to know?</span></div>
+      <div class="q"><span class="who">Zora</span><span>Nothing customer-facing slips. 0043 backs the invoice search that ships with the billing release on 2026-09-17; the index can be built with CONCURRENTLY in Friday's 10:00 window and still land four days early. Two people need to know: Priya, who is on call tonight, and Tomas, who owns the billing release. I have not told either. Records: Linear BIL-402, GitHub PR #4730.</span></div>
+    </div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 24 Voice rules + vocabulary -->
+<section class="slide night">
+  <p class="eyebrow">Part B · 22 Voice rules and vocabulary <span class="tag dashed">Proposed</span></p>
+  <div style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:80px;margin-top:24px;align-items:start">
+    <ol class="num">
+      <li><span><b>Impact first, then conditions, then the operating change, then where else.</b></span></li>
+      <li><span><b>Zora is the subject of the sentence.</b> She reads, she found, she recommends. Not "the platform", not "our AI", not "it".</span></li>
+      <li><span><b>Say AI and agents plainly.</b> Never copilot, assistant, or chatbot. Never a face or a personality bit.</span></li>
+      <li><span><b>Adjectives are measurements.</b> 14 minutes, 61 million rows, 40 checkouts.</span></li>
+      <li><span><b>Every claim carries a record.</b> Name the source and the 24-hour time, or cut the claim.</span></li>
+      <li><span><b>Conditions, not blame.</b> Never a person's failing, never a guess at intent. Mark what is unknown as unknown.</span></li>
+      <li><span><b>Two beats, then stop.</b></span></li>
+      <li><span><b>The brief arrives finished and grounded in this company's constraints.</b> No streaming, no thinking theater, no advice that assumes a budget the reader does not have.</span></li>
+    </ol>
+    <div>
+      <p class="caps" style="color:#A4B1AA;border-bottom:2px solid #F5F7F2;padding-bottom:10px">Use</p>
+      <p class="body" style="margin-top:14px">Zora, she, her brief · the night brief · AI, agents · an applied AI lab · impact, conditions, what we change, where else · record, evidence, source · owner, decision, deadline · at risk, exposure · hold, mitigated, rollback, on-call · ship faster, break less · throughput, stability, quality · reports to the CTO · judgment, accountability, sign-off · Linear, GitHub, Datadog, PagerDuty, Slack · 24-hour times</p>
+      <p class="caps" style="color:#A4B1AA;border-bottom:2px solid #F5F7F2;padding-bottom:10px;margin-top:40px">Avoid</p>
+      <p class="body" style="margin-top:14px;color:#A4B1AA">copilot, assistant, chatbot, bot, avatar · AI teammate, digital employee · second brain, knowledge base, single pane of glass, command center · insights, actionable, real-time, surface as a verb · AI-powered, intelligent, smart, magic, seamless, never sleeps · unlock, empower, leverage, 10x, revolutionary · root cause · we think, probably, likely · thinking…, generating…, chat with your data · it, for Zora · am/pm times · em dashes · exclamation marks · emoji</p>
+    </div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 25 Before and after -->
+<section class="slide night">
+  <p class="eyebrow">Part B · 23 Before and after <span class="tag dashed">Proposed</span></p>
+  <h2>Typical AI SaaS, and the house voice.</h2>
+  <table style="margin-top:48px">
+    <thead><tr><th style="width:46%">Before</th><th>After</th></tr></thead>
+    <tbody>
+      <tr><td class="was">Supercharge your engineering team with AI-powered insights! Our intelligent copilot analyzes millions of data points across your entire stack to surface what matters, so you can ship 10x faster.</td><td>Zora reads Linear, GitHub, Datadog, and Slack overnight. At 06:00 she tells you who was affected, why, and what changes. Ship faster. Break less.</td></tr>
+      <tr><td class="was">Never miss a thing. Your second brain remembers everything so you don't have to.</td><td>Memory is how she works, not what she is for. Zora connects the ticket to the decision to the deploy so the brief can say why.</td></tr>
+      <tr><td class="was">Autonomous AI agents that take action across your stack: automatically fix issues, close tickets, and keep your team in flow, with no human in the loop required.</td><td>Today she advises with evidence. Within a year she will hold a deploy, open a ticket, or page the on-call, on your authority and with your sign-off. We will say which, and when, before she does it.</td></tr>
+      <tr><td class="was">Start your free trial today and unlock the full potential of your engineering org. No credit card required. Join thousands of teams already transforming how they work!</td><td>The beta starts with one night. Connect Linear, GitHub, Datadog, PagerDuty, and Slack in the afternoon; the brief is on your desk at 06:00. Zora is working with a small number of CTOs, and we will tell you plainly if she is not ready for your setup.</td></tr>
+    </tbody>
+  </table>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 26 Zora mark -->
+<section class="slide night">
+  <p class="eyebrow">Part B · 24 Zora's mark <span class="tag dashed">Proposed</span></p>
+  <h2>One specialist takes the open seat.</h2>
+  <div style="display:grid;grid-template-columns:600px 600px minmax(0,1fr);gap:56px;margin-top:40px;align-items:start">
+    <div class="plate" style="padding:24px">
+      <svg viewBox="-0.5 -0.5 25 25" width="552" height="552" style="display:block">
+        <circle cx="12" cy="12" r="8.5" fill="none" stroke="#5D6C64" stroke-width="0.08" stroke-dasharray="0.35 0.25"/>
+        <g fill="#2B3932"><use href="#swarm" width="24" height="24"/></g>
+        <circle cx="16.25" cy="4.64" r="3" fill="#F5F7F2"/>
+        <rect x="3.74" y="15.35" width="16.52" height="1.8" rx="0.9" fill="#A4B1AA"/>
+      </svg>
+      <p class="mono" style="margin-top:16px;color:#A4B1AA;font-size:15px">Derived on the ring. Disc in the open seat at 60°; chord between seats 210° and 330°, dots 7 and 11. The swarm is shown for reference only.</p>
+    </div>
+    <div class="plate" style="padding:24px;display:grid;place-items:center;height:640px">
+      <svg viewBox="0 0 24 24" width="400" height="400"><use href="#zora" fill="#F5F7F2"/></svg>
+    </div>
+    <div>
+      <p class="body">Derived on the lab's ring and never redrawing it. One flat disc stands in the swarm's open seat. One chord joins two seats on the ring and is the line of evidence she stands on. The figure is then placed in the frame by a fixed offset every product mark shares. Never center the disc; the 60° offset is the mark.</p>
+      <table style="margin-top:32px">
+        <tbody>
+          <tr><td class="k">Disc</td><td class="m">cx 16.25 · cy 6.64 · r 3.0</td></tr>
+          <tr><td class="k">Chord</td><td class="m">x 4.64 → 19.36 · y 18.25<br>1.8 thick · caps r 0.9</td></tr>
+          <tr><td class="k">Ratios</td><td>Chord 2.75× the disc diameter, never under 2.4×. Thickness 0.3×, never more.</td></tr>
+          <tr><td class="k">Placement</td><td>Derive at the ring, translate +2 in y.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 27 Zora mark rules -->
+<section class="slide night">
+  <p class="eyebrow">Part B · 25 Zora's mark: rules and family <span class="tag dashed">Proposed</span></p>
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;margin-top:24px;align-items:start">
+    <div>
+      <div class="plate" style="padding:40px">
+        <div style="display:flex;align-items:flex-end;gap:56px">
+          <div style="text-align:center"><svg viewBox="0 0 24 24" width="16" height="16"><use href="#zora" fill="#F5F7F2"/></svg><p class="mono" style="color:#A4B1AA;margin-top:12px;font-size:14px">16</p></div>
+          <div style="text-align:center"><svg viewBox="0 0 24 24" width="24" height="24"><use href="#zora-disc" fill="#F5F7F2"/><use href="#zora-chord" fill="#A4B1AA"/></svg><p class="mono" style="color:#A4B1AA;margin-top:12px;font-size:14px">24</p></div>
+          <div style="text-align:center"><svg viewBox="0 0 24 24" width="48" height="48"><use href="#zora-disc" fill="#F5F7F2"/><use href="#zora-chord" fill="#A4B1AA"/></svg><p class="mono" style="color:#A4B1AA;margin-top:12px;font-size:14px">48</p></div>
+          <div style="text-align:center"><svg viewBox="0 0 24 24" width="120" height="120"><use href="#zora-disc" fill="#F5F7F2"/><use href="#zora-chord" fill="#A4B1AA"/></svg><p class="mono" style="color:#A4B1AA;margin-top:12px;font-size:14px">120</p></div>
+        </div>
+        <div style="margin-top:48px;display:flex;gap:64px;align-items:center">
+          <span class="lockup"><svg viewBox="0 0 24 24" width="40" height="40"><use href="#zora-disc" fill="#F5F7F2"/><use href="#zora-chord" fill="#A4B1AA"/></svg>Zora <span class="dot"></span></span>
+          <span class="caps" style="color:#A4B1AA">Zora by DORA Research</span>
+        </div>
+      </div>
+      <ul class="rules" style="margin-top:40px">
+        <li><b>One color.</b> currentColor everywhere. On paper the mark is Ink. On Night the disc is Paper and the chord dims to Ash from 24 px upward.</li>
+        <li><b>Never colored.</b> The disc never takes Mint, Signal Cyan, the lab gradient, or a status color. A colored disc on the dark canvas reads as an LED.</li>
+        <li><b>Lockup.</b> Mark at 24 px, the word Zora in Geist 500, and on Night the 6 px cyan dot: steady while watching, one blink on a real ingest, Ash when disconnected.</li>
+      </ul>
+    </div>
+    <div>
+      <p class="caps" style="color:#A4B1AA;border-bottom:2px solid #F5F7F2;padding-bottom:10px">The family rule</p>
+      <p class="body" style="margin-top:16px">A DORA product mark is one flat disc, radius 3.0, in the swarm's open seat, plus straight chords of the swarm's ring, 1.8 thick with round caps, joining ring seats. Products differ only in which chords they draw. No second disc, no arc, no ring, no color on the disc. Every figure is placed in the 24 frame by the same fixed offset. Zora's figure is the level chord. The next specialist might join 90° and 210°, or draw two chords. It will never close the ring.</p>
+      <div class="misuse" style="margin-top:40px;grid-template-columns:repeat(2,minmax(0,1fr))">
+        <div style="height:220px"><svg viewBox="0 0 24 24" width="110" height="110"><use href="#zora-disc" fill="#67BF99"/><use href="#zora-chord" fill="#F5F7F2"/></svg><span class="cap">× Colored disc</span></div>
+        <div style="height:220px"><svg viewBox="0 0 24 24" width="110" height="110"><circle cx="12" cy="6.64" r="3" fill="#F5F7F2"/><use href="#zora-chord" fill="#F5F7F2"/></svg><span class="cap">× Disc centered</span></div>
+        <div style="height:220px"><svg viewBox="0 0 24 24" width="110" height="110"><use href="#zora-disc" fill="#F5F7F2"/><rect x="3.74" y="16.4" width="16.52" height="3.6" rx="1.8" fill="#F5F7F2"/></svg><span class="cap">× Bar too thick</span></div>
+        <div style="height:220px"><svg viewBox="0 0 24 24" width="110" height="110" style="filter:drop-shadow(0 0 12px #F5F7F2)"><use href="#zora" fill="#F5F7F2"/></svg><span class="cap">× Glow, gradient, 3D</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 28 Night palette -->
+<section class="slide night">
+  <p class="eyebrow">Part B · 26 Night register: palette <span class="tag dashed">Proposed</span></p>
+  <h2>Silence is nominal.</h2>
+  <div style="margin-top:32px;border-top:2px solid #F5F7F2">
+    <div class="sw"><span class="chip" style="background:#0A0F0C"></span><span class="nm">Night Floor<small>canvas</small></span><span class="hex">#0A0F0C</span><span class="use">The canvas and the black point every film plate is graded to.</span><span class="cr"><b>ground</b></span></div>
+    <div class="sw"><span class="chip" style="background:#131E18"></span><span class="nm">Raised<small>panel</small></span><span class="hex">#131E18</span><span class="use">Evidence panels and row hover. Separation is a 1 px Line, never a shadow.</span><span class="cr"><b>1.1</b>vs canvas</span></div>
+    <div class="sw"><span class="chip" style="background:#2B3932"></span><span class="nm">Line<small>hairline</small></span><span class="hex">#2B3932</span><span class="use">Hairlines, table rules, panel borders.</span><span class="cr"><b>1.6</b>non-text</span></div>
+    <div class="sw"><span class="chip" style="background:#5D6C64"></span><span class="nm">Line strong<small>perceivable</small></span><span class="hex">#5D6C64</span><span class="use">Focus rings, input borders, any boundary a user must perceive.</span><span class="cr"><b>3.5</b>UI</span></div>
+    <div class="sw"><span class="chip" style="background:#F5F7F2"></span><span class="nm">Paper<small>text</small></span><span class="hex">#F5F7F2</span><span class="use">Text. The same paper the lab prints on, seen in the dark.</span><span class="cr"><b>17.9</b>AAA</span></div>
+    <div class="sw"><span class="chip" style="background:#A4B1AA"></span><span class="nm">Ash<small>secondary</small></span><span class="hex">#A4B1AA</span><span class="use">Secondary, provenance, nominal status. Most of the page.</span><span class="cr"><b>8.7</b>AAA</span></div>
+    <div class="sw"><span class="chip" style="background:#67BF99"></span><span class="nm">Mint<small>the one action</small></span><span class="hex">#67BF99</span><span class="use">The one recommended action, the one evidence link. One per viewport, paired with a word. Never a glow or a surface.</span><span class="cr"><b>8.7</b>AAA</span></div>
+    <div class="sw"><span class="chip" style="background:#F08A9A"></span><span class="nm">Rose<small>the one risk</small></span><span class="hex">#F08A9A</span><span class="use">The one named risk, the hold state. Text or a 2 px rule with a word. Never a fill. One per viewport.</span><span class="cr"><b>8.1</b>AAA</span></div>
+    <div class="sw"><span class="chip" style="background:#03F5F2"></span><span class="nm">Signal Cyan<small>the dot</small></span><span class="hex">#03F5F2</span><span class="use">A 6 px dot beside the name Zora. Never larger than 8 px, never text, never in the film grade.</span><span class="cr"><b>dot</b>only</span></div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 29 Night type + motion -->
+<section class="slide night">
+  <p class="eyebrow">Part B · 27 Night register: type and motion <span class="tag dashed">Proposed</span></p>
+  <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:80px;margin-top:24px;align-items:start">
+    <div style="border-top:2px solid #F5F7F2">
+      <div class="spec" style="border-top:0"><div class="meta"><b>Display</b>Geist 500<br>44 / 48 · −0.02em · never centered</div><div style="font-size:52px;line-height:58px;font-weight:500;letter-spacing:-.02em">EU order writes failed for 14 minutes overnight.</div></div>
+      <div class="spec"><div class="meta"><b>Section</b>Geist 500<br>22 / 28 · mono index in Ash</div><div style="display:flex;gap:18px;align-items:baseline"><span class="mono" style="color:#A4B1AA">02</span><span style="font-size:32px;font-weight:500;letter-spacing:-.01em">Conditions</span></div></div>
+      <div class="spec"><div class="meta"><b>Body</b>Geist 400<br>16 / 26 · 60 to 68 ch · tnum</div><div style="font-size:24px;line-height:38px;max-width:40em">On staging that table has 40,000 rows and the index built in under a second. In production it has 61 million rows.</div></div>
+      <div class="spec"><div class="meta"><b>UI</b>Geist 500 · 14 / 20</div><div style="display:flex;gap:40px;align-items:center"><span style="display:inline-flex;align-items:center;height:54px;padding:0 22px;background:#67BF99;color:#0A0F0C;font-size:21px;font-weight:500;border-radius:6px">Hold migration 0043</span><span style="font-size:21px;font-weight:500;color:#F08A9A">Queued for tonight</span></div></div>
+      <div class="spec"><div class="meta"><b>Provenance</b>Plex Mono 400 · 12 / 16 · Ash</div><div class="mono" style="color:#A4B1AA">Datadog · 02:41 · orders-service · eu-west-1 · Reliability</div></div>
+      <div class="spec"><div class="meta"><b>Timecode</b>Plex Mono 500 · 11 / 16 · caps</div><div class="caps" style="color:#A4B1AA">Compiled 06:00 · 2026-09-10 · 8 records</div></div>
+    </div>
+    <div>
+      <p class="caps" style="color:#A4B1AA;border-bottom:2px solid #F5F7F2;padding-bottom:10px">Motion</p>
+      <ul class="rules" style="border-top:0">
+        <li><b>One curve.</b> cubic-bezier(.2, 0, 0, 1). Three durations: 120 ms state, 160 ms arrive, 240 ms layout.</li>
+        <li><b>The brief arrives whole</b> in a 160 ms fade with an 8 px rise. If it is not ready, yesterday's brief stands with its timestamp. Never a compiling line, never a pulse.</li>
+        <li><b>Views cut.</b> Navigation between the three questions is a hard cut. Hover is a value step, Ash to Paper, never a glow or a lift.</li>
+        <li><b>The mark is static.</b> The cyan dot moves only for a real event.</li>
+        <li><b>Film</b> may push once from 1.00 to 1.04 over 8 to 12 seconds and never loops.</li>
+        <li><b>Reduced motion:</b> everything to 0 ms, dot solid. Nothing a reader needs depends on motion.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 30 Night principles -->
+<section class="slide night">
+  <p class="eyebrow">Part B · 28 Night register: five principles <span class="tag dashed">Proposed</span></p>
+  <h2>Film is the ground. The brief is the protagonist.</h2>
+  <ol class="num" style="margin-top:48px;max-width:1500px">
+    <li><span><b>The brief is the protagonist, and it arrives finished.</b> One column, four numbered parts in fixed order, one cut. No streaming, no typewriter, no thinking state. Life is spent after the brief, in the dialogue: silence, then the whole answer.</span></li>
+    <li><span><b>Film is the ground, not a card.</b> Plates are graded to Night Floor so the machine's shadows become the page. No frames, mockups, bezels, shadows, or glows. Screens are shot in camera at real scale.</span></li>
+    <li><span><b>Silence is nominal.</b> Mint for the one action, Rose for the one risk, one of each per viewport, each paired with a word. Everything else is Ash. A screen with no color on it is the good news.</span></li>
+    <li><span><b>Provenance is the system's voice.</b> Every claim carries a Plex Mono source, time, and owner. It opens in place, never in a modal. Numbers without a source do not appear.</span></li>
+    <li><span><b>One company, two grounds.</b> Same type, same signals, same mark family, same paper. The lab is Paper in daylight; Zora is the same Paper read in the dark. The UI never inherits the film grade.</span></li>
+  </ol>
+  <p class="small" style="margin-top:36px">Layout: the strip is always present at first paint. Brief in columns 3 to 9, evidence rail in 10 to 12, plate behind all 12. Radius 0 on plates and panels, 4 px on controls. Depth is a 1 px Line and one luminance step.</p>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 31 Film -->
+<section class="slide night">
+  <p class="eyebrow">Part B · 29 Film <span class="tag">Decided · direction</span> <span class="tag open">Open · plates</span></p>
+  <h2>06:00. The brief is finished.</h2>
+  <p class="lede">SpaceX points the camera at the rocket. Waymo points it at the car in traffic. DORA points it at a CTO at 06:00, reading a brief that was written while they slept. Person, brief, systems, consequence, in that order. Engineering documentary: real machine, real scale, cut not looped, licensed masters only.</p>
+  <div class="board" style="grid-template-columns:repeat(4,minmax(0,1fr))">
+    <div class="shot" style="height:300px"><div class="slate"><span>Shot 01 · 05:58</span><span>Kitchen</span></div><p class="desc" style="font-size:22px;line-height:30px">The CTO, coffee, a laptop already open. The brief is on screen before they sit down. Nothing is typed.</p><p class="lens">Available light, tungsten. Handheld, close.</p></div>
+    <div class="shot" style="height:300px"><div class="slate"><span>Shot 02 · 06:01</span><span>The product</span></div><p class="desc" style="font-size:22px;line-height:30px">The night brief at real scale on a real screen. Four numbered parts. The reader's eyes move; the interface does not.</p><p class="lens">Macro on the display, no screen replacement.</p></div>
+    <div class="shot" style="height:300px"><div class="slate"><span>Shot 03 · 02:41</span><span>The systems</span></div><p class="desc" style="font-size:22px;line-height:30px">A p99 graph climbing. A page arriving on a phone on a nightstand. A terminal holding a lock. Nobody in the room.</p><p class="lens">Documentary inserts, graded to Night Floor.</p></div>
+    <div class="shot" style="height:300px"><div class="slate"><span>Shot 04 · 09:30</span><span>Incident review</span></div><p class="desc" style="font-size:22px;line-height:30px">Four people and a wall of evidence. The conditions are on the wall. No name is on the wall.</p><p class="lens">Wide, still, observational. Cut before anyone performs.</p></div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 32 Applications -->
+<section class="slide">
+  <p class="eyebrow">Back · 30 Applications <span class="tag">Shipped · 2026-09-14</span></p>
+  <h2>The brand where it ships.</h2>
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) 600px;gap:72px;margin-top:40px;align-items:start">
+    <table style="margin-top:0">
+      <tbody>
+        <tr><td class="k">Site</td><td>dorareason.com. The lab leads: Company and Research on Paper, Zora on Night on her own page. One Night section on the company page hands off to the product.</td></tr>
+        <tr><td class="k">Title tags</td><td class="m" style="white-space:normal">DORA Research · An applied AI lab<br>Research · DORA Research<br>Zora · She reads the night. You read the brief.</td></tr>
+        <tr><td class="k">Navigation</td><td>Research · Zora · Company · Request private beta</td></tr>
+        <tr><td class="k">Footer</td><td class="m">DORA Research. An applied AI lab. · © 2026</td></tr>
+        <tr><td class="k">Favicon</td><td>The swarm on a Warm White tile. Zora's page may carry her own once the mark is adopted.</td></tr>
+        <tr><td class="k">Beta</td><td>hello@dorareason.com, subject "Zora private beta", until a form exists.</td></tr>
+      </tbody>
+    </table>
+    <div>
+      <img src="../../public/og-lab.png" width="600" height="315" style="border:1px solid #D5D1C7" alt="Social card, lab">
+      <img src="../../public/og-zora.png" width="600" height="315" style="border:1px solid #D5D1C7;margin-top:20px" alt="Social card, Zora">
+      <p class="caps" style="margin-top:14px;color:#566460">Social cards · 1200 × 630 · the lab line on Paper, Zora's line on Night</p>
+    </div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 33 Governance -->
+<section class="slide">
+  <p class="eyebrow">Back · 31 Governance <span class="tag">Decided</span></p>
+  <h2>Versioned like software. Rewritten on the record.</h2>
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;margin-top:40px;align-items:start">
+    <div>
+      <table style="margin-top:0">
+        <tbody>
+          <tr><td class="k"><span class="tag" style="margin:0">Decided</span></td><td>Confirmed by the founder in the interview of 13 September 2026. Changing it is a new decision, logged with a reason.</td></tr>
+          <tr><td class="k"><span class="tag dashed" style="margin:0">Proposed</span></td><td>Drafted for this version and not yet adopted. Build to it; expect amendments.</td></tr>
+          <tr><td class="k"><span class="tag open" style="margin:0">Open</span></td><td>A known gap or an unanswered question, listed so it is not forgotten.</td></tr>
+        </tbody>
+      </table>
+      <p class="caps" style="margin-top:40px;color:#566460;border-bottom:2px solid #141D18;padding-bottom:10px">Precedence</p>
+      <ol class="num" style="border-top:0">
+        <li><span>The founder's decisions, in the changelog, with their dates.</span></li>
+        <li><span>The brand book at its current version.</span></li>
+        <li><span>DESIGN.md in the repository, rewritten from the book.</span></li>
+        <li><span>The live site, ground truth for what exists today and nothing else.</span></li>
+      </ol>
+    </div>
+    <div>
+      <p class="caps" style="color:#566460;border-bottom:2px solid #141D18;padding-bottom:10px">Open items</p>
+      <ul class="rules" style="border-top:0">
+        <li><b>Zora, the name.</b> Commission a trademark search in software and services.</li>
+        <li><b>Sign-offs.</b> Every Proposed item, and the framework draft. Adopt, amend, or retire, each with a changelog row.</li>
+        <li><b>Film.</b> Commission the four shots. The site carries no plate until they exist.</li>
+        <li><b>Print color.</b> No CMYK or Pantone recipes yet. Proof against hex; never convert arithmetically.</li>
+        <li><b>The framework's floor.</b> Define what "ready for Reported" means, or publish that the lab does not yet know.</li>
+      </ul>
+      <p class="caps" style="margin-top:40px;color:#566460;border-bottom:2px solid #141D18;padding-bottom:10px">Superseded, do not regress</p>
+      <p class="small" style="margin-top:14px">A prediction-market operator with AI operations underneath. Secure AI teammates for infrastructure operations. A consumer personal-memory organizer. A second brain for work with the lab as a byline. The thirteen-dot mark did not change through any of them and does not change now.</p>
+    </div>
+  </div>
+  <div class="foot"><span class="brand">DORA Research Brand Book · v2.0</span><span class="pg"></span></div>
+</section>
+
+<!-- 34 Back cover -->
+<section class="slide">
+  <svg viewBox="0 0 24 24" width="160" height="160" style="position:absolute;left:112px;top:96px"><use href="#swarm" fill="url(#swarm-grad)"/></svg>
+  <h1 style="margin-top:420px">DORA Research.<br>An applied AI lab.</h1>
+  <p class="lede">Agents take the work. People keep the judgment.</p>
+  <div class="foot"><span class="brand">Brand Book v2.0 · Paper and Night · 13 September 2026 · dorareason.com</span><span class="pg"></span></div>
+</section>
+
+<script>
+  document.querySelectorAll('.slide').forEach((s, i) => { const n = s.querySelector('.pg'); if (n) n.textContent = String(i + 1).padStart(2, '0'); });
+</script>
+</body>
+</html>

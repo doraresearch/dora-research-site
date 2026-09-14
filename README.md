@@ -2,7 +2,7 @@
 
 Static marketing site for **DORA Research**, an applied AI lab, and its first product, **Zora**, a technical director who reports to the CTO and delivers a finished brief every morning at 06:00.
 
-See `DESIGN.md` for the Paper and Night design system (v2.0), brand architecture, marks, copy rules, and the target site structure. The live site still implements the retired Porcelain system until the rebuild lands.
+See `DESIGN.md` for the Paper and Night design system (v2.0), brand architecture, marks, copy rules, and the target site structure. The presentation brand book and its source live in `brand/`. The live site still implements the retired Porcelain system until the rebuild lands.
 
 ## Run locally
 
