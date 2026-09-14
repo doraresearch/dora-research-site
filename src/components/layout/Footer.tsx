@@ -1,29 +1,20 @@
+import { Link } from 'react-router-dom'
 import Logo from '@/components/Logo'
-import Container from '@/components/ui/Container'
+import type { Register } from './SiteLayout'
 
-function CompanyMasthead() {
+export default function Footer({ register }: { register: Register }) {
+  const night = register === 'night'
   return (
-    <a href="/" aria-label="DORA Research, home" className="inline-flex items-center gap-3 text-ink">
-      <Logo size={30} />
-      <span className="flex items-baseline gap-2" aria-hidden="true">
-        <span className="text-[18px] font-semibold leading-[22px] tracking-[-0.025em]">DORA</span>
-        <span className="text-[15px] font-medium leading-[22px] tracking-[-0.015em]">Research</span>
-      </span>
-    </a>
-  )
-}
-export default function Footer() {
-  return (
-    <footer data-tone="inverse" className="bg-canvas">
-      <Container className="relative min-h-[200px] lg:min-h-[140px]">
-        <div className="absolute left-6 top-[90px] lg:left-8 lg:top-10">
-          <CompanyMasthead />
-        </div>
-        <p className="absolute left-6 top-36 font-mono text-[11px] font-medium uppercase leading-4 tracking-[0.08em] text-secondary lg:left-auto lg:right-8 lg:top-12 lg:text-right">
-          <span className="block lg:inline">© 2026 DORA Research</span>
-          <span className="block lg:ml-3 lg:inline">Zora is the product</span>
+    <footer className={`border-t ${night ? 'border-nline' : 'border-rule'}`}>
+      <div className="mx-auto flex w-full max-w-rail flex-col gap-6 px-6 py-10 md:flex-row md:items-center md:justify-between lg:px-10">
+        <Link to="/" className="flex items-center gap-2.5" aria-label="DORA Research, company page">
+          <Logo size={24} variant={night ? 'paper' : 'ink'} />
+          <span className="text-[15px] font-medium leading-5 tracking-[-0.01em]">DORA Research</span>
+        </Link>
+        <p className={night ? 'provenance text-ash' : 'font-mono text-[13px] leading-5 text-pencil'}>
+          DORA Research. An applied AI lab. <span className="mx-2">·</span> © 2026
         </p>
-      </Container>
+      </div>
     </footer>
   )
 }

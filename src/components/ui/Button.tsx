@@ -1,33 +1,39 @@
 import type { ReactNode } from 'react'
-
-const VARIANTS = {
-  primary: 'border border-transparent bg-action text-inverse hover:bg-deep active:bg-action-pressed',
-  media: 'border border-control bg-[#131e18] text-[#f5f7f2] hover:bg-[#19261f]',
-  inverse: 'border border-transparent bg-action text-[#0c1510] hover:bg-action-hover active:bg-action-pressed',
-  dark: 'border border-transparent bg-[#0d1511] text-[#f5f7f2] hover:bg-[#19261f]',
-  ghost: 'border border-control bg-transparent text-secondary hover:bg-context hover:text-ink',
-}
+import { Link } from 'react-router-dom'
 
 type ButtonProps = {
-  href?: string
+  href: string
   children: ReactNode
-  variant?: keyof typeof VARIANTS
+  tone?: 'paper' | 'night'
+  variant?: 'primary' | 'ghost'
   className?: string
-  onClick?: () => void
 }
 
-export default function Button({ href, children, variant = 'primary', className = '', onClick }: ButtonProps) {
-  const cls = `inline-flex h-10 min-h-10 items-center justify-center gap-2 whitespace-nowrap rounded-sm px-4 text-[14px] font-semibold leading-5 tracking-[-0.005em] transition-colors duration-160 ${VARIANTS[variant]} ${className}`
-  if (href) {
+const STYLES = {
+  paper: {
+    primary: 'rounded-sm bg-green text-paper hover:bg-ink',
+    ghost: 'rounded-sm border border-pencil text-ink hover:bg-evidence',
+  },
+  night: {
+    primary: 'rounded bg-mint text-night hover:bg-npaper',
+    ghost: 'rounded border border-nstrong text-npaper hover:bg-raised',
+  },
+}
+
+// 40 px controls, 14 px Geist 500, label never wraps (DESIGN.md §6.3).
+export default function Button({ href, children, tone = 'paper', variant = 'primary', className = '' }: ButtonProps) {
+  const cls = `inline-flex h-10 items-center justify-center whitespace-nowrap px-4 text-[14px] font-medium leading-5 transition-colors duration-120 ease-house ${STYLES[tone][variant]} ${className}`
+  const external = href.startsWith('mailto:') || href.startsWith('http')
+  if (external) {
     return (
-      <a href={href} className={cls} onClick={onClick}>
+      <a href={href} className={cls}>
         {children}
       </a>
     )
   }
   return (
-    <button type="button" className={cls} onClick={onClick}>
+    <Link to={href} className={cls}>
       {children}
-    </button>
+    </Link>
   )
 }

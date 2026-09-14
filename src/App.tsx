@@ -1,10 +1,16 @@
 import SiteLayout from '@/components/layout/SiteLayout'
-import Home from '@/pages/Home'
+import Company from '@/pages/Company'
+import Research from '@/pages/Research'
+import Zora from '@/pages/Zora'
 
 export const routes = [
   {
     path: '/',
     element: <SiteLayout />,
-    children: [{ index: true, element: <Home /> }],
+    children: [
+      { index: true, element: <Company /> },
+      { path: 'research', element: <Research /> },
+      { path: 'zora', element: <Zora /> },
+    ],
   },
 ]

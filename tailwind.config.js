@@ -1,84 +1,68 @@
 /** @type {import('tailwindcss').Config} */
+// Paper and Night, DESIGN.md v2.0. The color set is closed on purpose: nothing outside it may appear on a surface.
 export default {
-  content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
+  content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      // Paper (the lab)
+      paper: '#F9F7F2',
+      evidence: '#EDEAE2',
+      ink: '#141D18',
+      pencil: '#566460',
+      rule: '#D5D1C7',
+      green: '#2A6449',
+      risk: '#AD3547',
+      // reserved, mark only
+      living: '#3D8B68',
+      cyan: '#03F5F2',
+      // Night (Zora)
+      night: '#0A0F0C',
+      raised: '#131E18',
+      subtle: '#19261F',
+      nline: '#2B3932',
+      nstrong: '#5D6C64',
+      npaper: '#F5F7F2',
+      ash: '#A4B1AA',
+      mint: '#67BF99',
+      rose: '#F08A9A',
+    },
+    fontFamily: {
+      serif: ['var(--serif)'],
+      sans: ['var(--sans)'],
+      mono: ['var(--mono)'],
+    },
+    borderRadius: {
+      none: '0',
+      sm: '2px',
+      DEFAULT: '4px',
+      full: '9999px',
+    },
+    boxShadow: {
+      none: 'none',
+    },
     extend: {
-      fontFamily: {
-        display: ['var(--font-display)'],
-        sans: ['var(--font-sans)'],
-        mono: ['var(--font-mono)'],
-      },
-      borderRadius: {
-        none: '0',
-        sm: '6px',
-        DEFAULT: '10px',
-        md: '10px',
-        lg: '14px',
-        xl: '20px',
-        full: '9999px',
-      },
-      colors: {
-        canvas: 'rgb(var(--zora-color-surface-canvas-rgb) / <alpha-value>)',
-        surface: 'rgb(var(--zora-color-surface-raised-rgb) / <alpha-value>)',
-        subtle: 'rgb(var(--zora-color-surface-subtle-rgb) / <alpha-value>)',
-        'section-band': 'rgb(var(--zora-color-surface-section-band-rgb) / <alpha-value>)',
-        selected: 'rgb(var(--zora-color-surface-selected-rgb) / <alpha-value>)',
-        ink: 'rgb(var(--zora-color-text-primary-rgb) / <alpha-value>)',
-        secondary: 'rgb(var(--zora-color-text-secondary-rgb) / <alpha-value>)',
-        inverse: 'rgb(var(--zora-color-text-inverse-rgb) / <alpha-value>)',
-        action: {
-          DEFAULT: 'rgb(var(--zora-color-action-primary-rgb) / <alpha-value>)',
-          hover: 'rgb(var(--zora-color-action-hover-rgb) / <alpha-value>)',
-          deep: 'rgb(var(--zora-color-action-hover-rgb) / <alpha-value>)',
-          pressed: 'rgb(var(--zora-color-action-pressed-rgb) / <alpha-value>)',
-        },
-        deep: 'rgb(var(--zora-color-action-hover-rgb) / <alpha-value>)',
-        context: 'rgb(var(--zora-color-action-soft-rgb) / <alpha-value>)',
-        control: 'rgb(var(--zora-color-border-strong-rgb) / <alpha-value>)',
-        focus: 'rgb(var(--zora-color-focus-ring-rgb) / <alpha-value>)',
-        line: {
-          DEFAULT: 'rgb(var(--zora-color-border-subtle-rgb) / <alpha-value>)',
-          soft: 'rgb(var(--zora-color-border-subtle-rgb) / <alpha-value>)',
-          graph: 'rgb(var(--zora-color-border-subtle-rgb) / <alpha-value>)',
-        },
-        warning: {
-          DEFAULT: 'rgb(var(--zora-color-status-warning-rgb) / <alpha-value>)',
-          tint: 'rgb(var(--zora-color-status-warning-soft-rgb) / <alpha-value>)',
-        },
-        risk: {
-          DEFAULT: 'rgb(var(--zora-color-status-risk-rgb) / <alpha-value>)',
-          tint: 'rgb(var(--zora-color-status-risk-soft-rgb) / <alpha-value>)',
-        },
-        success: {
-          DEFAULT: 'rgb(var(--zora-color-status-success-rgb) / <alpha-value>)',
-          tint: 'rgb(var(--zora-color-status-success-soft-rgb) / <alpha-value>)',
-        },
-        dark: '#0D1511',
-
-        base: 'rgb(var(--zora-color-surface-canvas-rgb) / <alpha-value>)',
-        sage: 'rgb(var(--zora-color-action-soft-rgb) / <alpha-value>)',
-        muted: 'rgb(var(--zora-color-text-secondary-rgb) / <alpha-value>)',
-        green: {
-          DEFAULT: 'rgb(var(--zora-color-action-primary-rgb) / <alpha-value>)',
-          deep: 'rgb(var(--zora-color-action-hover-rgb) / <alpha-value>)',
-        },
-        orange: 'rgb(var(--zora-color-status-risk-rgb) / <alpha-value>)',
-        yellow: 'rgb(var(--zora-color-status-warning-soft-rgb) / <alpha-value>)',
-        white: 'rgb(var(--zora-color-surface-raised-rgb) / <alpha-value>)',
+      maxWidth: {
+        rail: '1280px',
+        reading: '680px',
       },
       transitionDuration: {
+        120: '120ms',
         160: '160ms',
         240: '240ms',
-        600: '600ms',
+      },
+      transitionTimingFunction: {
+        house: 'cubic-bezier(.2, 0, 0, 1)',
       },
       keyframes: {
-        'swarm-spin': { to: { transform: 'rotate(360deg)' } },
+        arrive: {
+          from: { opacity: '0', transform: 'translateY(8px)' },
+          to: { opacity: '1', transform: 'none' },
+        },
       },
       animation: {
-        'logo-spin': 'swarm-spin 22s linear infinite',
-      },
-      boxShadow: {
-        overlay: '0 2px 8px -2px rgba(13,21,17,.06), 0 16px 32px -12px rgba(13,21,17,.14)',
+        arrive: 'arrive 160ms cubic-bezier(.2, 0, 0, 1) both',
       },
     },
   },
