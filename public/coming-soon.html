@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coming soon · DORA Research, Inc.</title>
+<meta name="description" content="Zora is an AI chief of staff for CTOs, by DORA Research, an applied AI lab. Private beta, by invitation.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DORA Research, Inc.">
+<meta property="og:title" content="Zora is an AI chief of staff for CTOs. Coming soon.">
+<meta property="og:description" content="Zora is the first agent from DORA Research, an applied AI lab. Private beta, by invitation.">
+<meta property="og:image" content="https://www.dorareason.com/og-soon.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.dorareason.com/og-soon.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&display=swap">
+<style>
+  :root {
+    --canvas: #F4F6F8; --raised: #FFFEFB; --subtle: #F0EFE9; --band: #E2E8EE; --selected: #E7ECE8;
+    --ink: #111814; --muted: #48564F;
+    --rule: #DCE1DC;
+    --action: #145C43; --action-hover: #0C4935; --action-pressed: #063425; --action-soft: #DCECE4;
+    --focus: #1D63D8;
+    --warning: #7A5600; --warning-soft: #FFF1C2; --success: #21683A; --success-soft: #E4F2E7;
+    --shadow: 0 2px 8px -2px rgba(13,21,17,.06), 0 16px 32px -12px rgba(13,21,17,.14);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; background: var(--canvas); color: var(--ink); font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 18px; line-height: 1.5; font-feature-settings: 'tnum'; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  .page { min-height: 100vh; min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto; padding: 32px 48px; }
+  .top { display: flex; justify-content: space-between; align-items: center; font-size: 15px; }
+  .top .brand { display: flex; align-items: center; gap: 12px; font-weight: 500; }
+  .top a.mail { color: var(--action); border-bottom: 1px solid var(--action); padding-bottom: 1px; }
+  .top a.mail:hover { color: var(--action-hover); border-color: var(--action-hover); }
+  .top .mark { width: 30px; height: 30px; flex: none; }
+  .top .mark g { transform-origin: 12px 12px; animation: swarm-spin 22s linear infinite; }
+  @keyframes swarm-spin { to { transform: rotate(360deg); } }
+  .stage { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); align-items: center; gap: 40px; padding: 40px 0; }
+  .kicker { margin: 0 0 18px; font-size: 18px; font-weight: 500; color: var(--action); }
+  h1 { font-size: 44px; line-height: 1.1; font-weight: 500; letter-spacing: -.025em; margin: 0; max-width: 13em; text-wrap: balance; }
+  .sub { margin: 22px 0 0; max-width: 30em; color: var(--muted); }
+  .sub b { color: var(--ink); font-weight: 500; }
+  .contact { margin: 40px 0 0; font-size: 15px; color: var(--muted); }
+  .contact b { color: var(--action); font-weight: 500; }
+  .bottom { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); }
+
+  /* the report stage: a light plate (the lab, by day) handing off to a dark panel (Zora, by night) */
+  .report { position: relative; width: 100%; display: grid; grid-template-columns: 38% minmax(0, 1fr); background: var(--band); border-radius: 14px; padding: 28px; }
+  .report canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .sources { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; }
+  .src { position: absolute; transform: translate(0, -50%); font-size: 13px; color: var(--muted); white-space: nowrap; opacity: 0; transition: opacity 400ms ease, color 200ms ease; }
+  .src.in { opacity: 1; }
+  .src.hot { color: var(--action); }
+  .panel {
+    position: relative; grid-column: 2; border: 1px solid var(--rule); border-radius: 10px; box-shadow: var(--shadow); font-size: 13.5px; overflow: hidden;
+    /* Zora’s register: the original dark theme, independent of the light tokens around it */
+    --raised: #131E18; --rule: #2B3932; --subtle: #19261F; --selected: #23382F; --muted: #A4B1AA;
+    --action: #67BF99; --action-hover: #80CFAD; --action-soft: #183428;
+    --success: #72CF82; --success-soft: #193A22;
+    --warning: #F1C65A; --warning-soft: #392F17;
+    --focus: #8AB8FF;
+    background: var(--raised); color: #F5F7F2;
+  }
+  .voice { padding: 16px 18px 14px; border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .voice b { font-weight: 500; font-size: 17px; opacity: 0; transition: opacity 300ms ease; }
+  .voice b.in { opacity: 1; }
+  .voice .demo { color: var(--muted); font-size: 13px; }
+  .row { display: grid; grid-template-columns: 66px minmax(0,1fr) 118px; gap: 12px; padding: 9px 16px; border-bottom: 1px solid var(--rule); align-items: baseline; line-height: 1.4; cursor: pointer; opacity: 0; transform: translateY(6px); transition: opacity 320ms ease, transform 320ms ease, background 160ms ease; }
+  .row.in { opacity: 1; transform: none; }
+  .row:hover, .row.open { background: var(--selected); }
+  .row .t { color: var(--muted); }
+  .row .s { justify-self: start; display: inline-flex; align-items: center; gap: 7px; padding: 2px 9px 2px 7px; border-radius: 6px; font-size: 12.5px; line-height: 18px; white-space: nowrap; color: var(--success); background: var(--success-soft); }
+  .row .s i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .row .s.prep { color: var(--action); background: var(--action-soft); }
+  .row .s.prep i { background: transparent; border: 1.5px solid currentColor; }
+  .row .s.hold { color: var(--warning); background: var(--warning-soft); }
+  .row .ev { grid-column: 2 / 4; display: none; color: var(--muted); font-size: 13px; line-height: 1.45; padding-top: 4px; }
+  .row.open .ev { display: block; }
+  .close { padding: 12px 18px; border-top: 1px solid var(--rule); background: var(--subtle); display: flex; justify-content: space-between; gap: 16px; align-items: baseline; opacity: 0; transition: opacity 300ms ease; }
+  .close.in { opacity: 1; }
+  .close .say { font-weight: 500; }
+  .close button { font: inherit; font-size: 13px; color: var(--action); background: none; border: 0; padding: 0; cursor: pointer; border-bottom: 1px solid var(--action); border-radius: 0; }
+  .close button:hover { color: var(--action-hover); border-color: var(--action-hover); }
+  .close button:focus-visible, a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .row:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
+  .close button[hidden] { display: none; }
+
+  .report.flat { display: block; }
+  .report.flat canvas, .report.flat .sources { display: none; }
+  @media (max-width: 1100px) {
+    .stage { grid-template-columns: 1fr; gap: 24px; }
+    .report { display: block; }
+    .report canvas, .sources { display: none; }
+  }
+  @media (max-width: 860px) {
+    .page { padding: 24px; }
+    h1 { font-size: 32px; }
+    .report { padding: 16px; border-radius: 10px; }
+    .row { grid-template-columns: 60px minmax(0,1fr); }
+    .row .s { grid-column: 2; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .src, .row, .voice b, .close { transition: none !important; }
+    .top .mark g { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="top">
+    <span class="brand">
+      <svg class="mark" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><defs><linearGradient id="swarm" gradientUnits="userSpaceOnUse" x1="3" y1="21" x2="21" y2="3"><stop offset="0" stop-color="#3D8B68"/><stop offset="1" stop-color="#03F5F2"/></linearGradient></defs><g fill="url(#swarm)"><circle cx="20.5" cy="12" r="1.4"/><circle cx="19.36" cy="7.75" r="1.2"/><circle cx="12" cy="3.5" r="1.1"/><circle cx="7.75" cy="4.64" r="1.3"/><circle cx="4.64" cy="7.75" r="1.5"/><circle cx="3.5" cy="12" r="1.6"/><circle cx="4.64" cy="16.25" r="1.7"/><circle cx="7.75" cy="19.36" r="1.8"/><circle cx="12" cy="20.5" r="1.7"/><circle cx="16.25" cy="19.36" r="1.6"/><circle cx="19.36" cy="16.25" r="1.5"/><circle cx="15" cy="13" r="1"/><circle cx="13" cy="15.5" r="0.9"/></g></svg>
+      DORA Research, Inc.
+    </span>
+    <a class="mail" href="mailto:hello@dorareason.com">hello@dorareason.com</a>
+  </header>
+
+  <main class="stage">
+    <div class="copy">
+      <p class="kicker">Coming soon.</p>
+      <h1>Zora is an AI chief of staff for CTOs.</h1>
+      <p class="sub">She keeps every commitment, decision, and risk across your engineering organization in view, and prepares each call with the evidence before you have to make it. Zora is the first agent from <b>DORA Research</b>, an applied AI lab. Private beta, by invitation.</p>
+      <p class="contact">The site is on its way. Until then, the private beta is by invitation: write to <a href="mailto:hello@dorareason.com"><b>hello@dorareason.com</b></a>.</p>
+    </div>
+
+    <div class="report" id="report" aria-label="Zora reporting the week, demonstration data">
+      <canvas id="c" aria-hidden="true"></canvas>
+      <div class="sources" id="sources" aria-hidden="true"></div>
+      <div class="panel" id="panel">
+        <div class="voice"><b id="greet"></b><span class="demo">Demonstration data</span></div>
+        <div id="rows"></div>
+        <div class="close" id="close"><span class="say" id="say"></span><button type="button" id="replay">Replay</button></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bottom">
+    <span>DORA Research, Inc. · An applied AI lab.</span>
+    <span>dorareason.com · © 2026</span>
+  </footer>
+</div>
+
+<script type="module">
+  import * as THREE from '/vendor/three.module.min.js';
+
+  const SOURCES = ['Linear', 'GitHub', 'Datadog', 'PagerDuty', 'Slack', 'Calendar'];
+  const ROWS = [
+    { t: 'Mon 06:00', text: 'Briefed you: EU order writes were blocked for 14 minutes overnight, mitigated at 02:55.', s: 'done', src: ['Datadog', 'PagerDuty', 'Slack'], ev: 'Datadog 02:41, p99 to 30 s · PagerDuty 02:44, incident 2291 · Slack 02:54, index build canceled · Linear 03:12, ORD-1187 for the 40 failed checkouts.' },
+    { t: 'Mon 06:02', text: 'Flagged: billing migration 0043 repeats the same pattern tonight on a 22-million-row table.', s: 'hold', src: ['GitHub', 'Linear'], ev: 'GitHub PR #4730, CREATE INDEX without CONCURRENTLY · Linear BIL-402, queued for the 02:30 window. I would hold it. That is your decision, not mine.' },
+    { t: 'Mon 09:30', text: 'Prepared the incident review in four parts, eight records attached, no names on the wall.', s: 'done', src: ['Datadog', 'PagerDuty', 'Slack', 'GitHub'], ev: 'Impact and outcome, conditions, what we change, where else. The checklist is the exposure, not any one person.' },
+    { t: 'Tue 08:14', text: 'Recorded the Atlas scope decision, who made it, and the customer evidence behind it.', s: 'done', src: ['Slack', 'Linear'], ev: 'Slack #atlas-planning 08:12, Elena · Linear ATLAS-218 08:14, scope note with the design partner’s requirement attached.' },
+    { t: 'Tue 15:32', text: 'Tracked the mobile release hold on SDK-418; owners and dates updated in Linear.', s: 'done', src: ['Linear', 'GitHub'], ev: 'Linear SDK-418 blocks mobile · GitHub PR #8421, two checks failing · Go/no-go 15:30, web ships Friday, mobile held.' },
+    { t: 'Wed 06:00', text: 'Warned: the on-call rota lists two people who have left. One responder covers this week.', s: 'hold', src: ['PagerDuty'], ev: 'PagerDuty schedule “Core”: one active responder, two deactivated accounts. Eleven pages since 2026-08-14 went to the wrong person. I can draft the rota; a person approves it.' },
+    { t: 'Thu 11:00', text: 'Drafted your board notes on delivery, stability, and quality, every figure sourced.', s: 'prep', src: ['Linear', 'GitHub', 'Datadog', 'Calendar'], ev: 'Lead time and deploy frequency from GitHub and Linear; change failure and restore time from Datadog and PagerDuty; the board slot from your calendar, Friday 14:00.' },
+    { t: 'Fri 17:00', text: 'Checked 14 commitments against what shipped: two slipped, both with a named owner.', s: 'done', src: ['Calendar', 'Linear', 'GitHub'], ev: 'Commitments come from your meetings; what shipped comes from GitHub and Linear. The two that slipped have owners and new dates; neither is customer-facing.' },
+  ];
+  const STATUS = { done: ['', 'Done'], hold: ['hold', 'Held for your call'], prep: ['prep', 'Prepared for you'] };
+  const GREETING = 'Morning, boss.';
+  const GREETING_FULL = 'Morning, boss. Here’s the week.';
+  const CLOSING = 'Two need your call. Say the word and I’ll take it from there.';
+
+  const report = document.getElementById('report');
+  const canvas = document.getElementById('c');
+  const sourcesEl = document.getElementById('sources');
+  const rowsEl = document.getElementById('rows');
+  const greet = document.getElementById('greet');
+  const closeEl = document.getElementById('close');
+  const say = document.getElementById('say');
+  // ?still skips the delivery and shows the finished report, for captures and previews.
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches || new URLSearchParams(location.search).has('still');
+  const canvasOn = () => getComputedStyle(canvas).display !== 'none';
+
+  const srcEls = SOURCES.map((name) => { const d = document.createElement('div'); d.className = 'src'; d.textContent = name; sourcesEl.appendChild(d); return d; });
+  const rowEls = ROWS.map((r) => {
+    const d = document.createElement('div'); d.className = 'row'; d.setAttribute('role', 'button'); d.tabIndex = 0; d.setAttribute('aria-expanded', 'false');
+    const [cls, label] = STATUS[r.s];
+    d.innerHTML = '<span class="t">' + r.t + '</span><span>' + r.text + '</span><span class="s ' + cls + '"><i></i>' + label + '</span><span class="ev">' + r.ev + '</span>';
+    const toggle = () => { d.setAttribute('aria-expanded', String(d.classList.toggle('open'))); relayout(); };
+    d.addEventListener('click', toggle);
+    d.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+    d.addEventListener('mouseenter', () => highlight(r.src));
+    d.addEventListener('mouseleave', () => highlight(null));
+    rowsEl.appendChild(d); return d;
+  });
+
+  // three.js: an orthographic scene mapped 1:1 to the report box, so DOM and 3D agree.
+  let renderer = null;
+  try { renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true }); renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); } catch (e) { renderer = null; }
+  const scene = new THREE.Scene();
+  let W = 1, H = 1;
+  const camera = new THREE.OrthographicCamera(0, 1, 0, -1, -2000, 2000);
+  const world = new THREE.Group(); scene.add(world);
+  const P = (x, y, z = 0) => new THREE.Vector3(x, -y, z);
+  const inkMat = (o, c = 0x3D8B68) => new THREE.LineBasicMaterial({ color: c, transparent: true, opacity: o });
+  let threads = [], pulses = [], layout = null;
+  const pointer = { x: 0.5, y: 0.5 };
+  const N = 80;
+
+  function build() {
+    const box = report.getBoundingClientRect(); W = box.width; H = box.height;
+    renderer.setSize(W, H, false);
+    camera.left = 0; camera.right = W; camera.top = 0; camera.bottom = -H; camera.updateProjectionMatrix();
+    while (world.children.length) { const o = world.children[0]; world.remove(o); o.geometry && o.geometry.dispose(); o.material && o.material.dispose(); }
+    threads = []; pulses = [];
+    const panel = document.getElementById('panel').getBoundingClientRect();
+    const px = panel.left - box.left;
+    const spineX = px - 30;
+    const sy0 = 70, sy1 = H - 70, srcX = 26;
+    layout = { px, spineX, rows: [], src: [] };
+    const depths = [-70, 40, -30, 60, -55, 25];
+    SOURCES.forEach((name, i) => {
+      const y = sy0 + (sy1 - sy0) * (i / (SOURCES.length - 1));
+      const z = depths[i];
+      layout.src.push({ name, x: srcX, y, z });
+      srcEls[i].style.left = srcX + 'px'; srcEls[i].style.top = y + 'px';
+      const ring = new THREE.Mesh(new THREE.RingGeometry(3.2, 4.2, 32), new THREE.MeshBasicMaterial({ color: 0x3D8B68, transparent: true, opacity: 0.85 }));
+      ring.position.copy(P(srcX - 16, y, z)); world.add(ring);
+      const a = P(srcX - 16, y, z), c = P(spineX, (sy0 + sy1) / 2, 0);
+      const ctrl = P((srcX + spineX) * 0.55, y + ((sy0 + sy1) / 2 - y) * 0.15, z * 0.5);
+      const curve = new THREE.QuadraticBezierCurve3(a, ctrl, c);
+      const geo = new THREE.BufferGeometry().setFromPoints(curve.getPoints(N));
+      const line = new THREE.Line(geo, inkMat(0.5));
+      geo.setDrawRange(0, reduced ? N + 1 : 0);
+      world.add(line); threads.push({ name, line, curve, ring, z });
+    });
+    const sg = new THREE.BufferGeometry().setFromPoints([P(spineX, sy0 - 10), P(spineX, sy1 + 10)]);
+    world.add(new THREE.Line(sg, inkMat(0.85, 0x3D8B68)));
+    rowEls.forEach((el) => {
+      const r = el.getBoundingClientRect(); const y = r.top - box.top + r.height / 2;
+      const g = new THREE.BufferGeometry().setFromPoints([P(spineX, y), P(px, y)]);
+      const line = new THREE.Line(g, inkMat(0.7, 0x67BF99)); line.visible = reduced; world.add(line);
+      layout.rows.push({ y, line });
+    });
+    render();
+  }
+
+  function highlight(names) {
+    if (!layout) return;
+    threads.forEach((t) => { const on = !names || names.includes(t.name); t.line.material.opacity = names ? (on ? 1 : 0.12) : 0.5; t.ring.material.opacity = names ? (on ? 1 : 0.25) : 0.85; });
+    srcEls.forEach((el, i) => el.classList.toggle('hot', !!names && names.includes(SOURCES[i])));
+    render();
+  }
+
+  function pulse(name, rowIndex, done) {
+    const t = threads.find((x) => x.name === name); if (!t) { done && done(); return; }
+    const row = layout.rows[rowIndex];
+    const path = new THREE.CurvePath();
+    path.add(t.curve);
+    const c = t.curve.getPoint(1);
+    path.add(new THREE.LineCurve3(c, P(layout.spineX, row.y)));
+    path.add(new THREE.LineCurve3(P(layout.spineX, row.y), P(layout.px, row.y)));
+    const col = new THREE.Color().lerpColors(new THREE.Color(0x3D8B68), new THREE.Color(0x03F5F2), Math.random());
+    const mesh = new THREE.Mesh(new THREE.CircleGeometry(3.5, 24), new THREE.MeshBasicMaterial({ color: col }));
+    world.add(mesh);
+    pulses.push({ mesh, path, t0: performance.now(), dur: 780, done });
+  }
+
+  let raf = 0;
+  function frame(now) {
+    raf = 0;
+    let alive = false;
+    for (const p of pulses) {
+      if (p.finished) continue;
+      const k = Math.min(1, (now - p.t0) / p.dur);
+      const e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+      p.mesh.position.copy(p.path.getPoint(e));
+      if (k >= 1) { p.finished = true; world.remove(p.mesh); p.mesh.geometry.dispose(); p.mesh.material.dispose(); if (p.done) p.done(); } else alive = true;
+    }
+    for (const t of threads) { const g = t.line.geometry; const n = g.drawRange.count; if (n < N + 1) { g.setDrawRange(0, Math.min(N + 1, n + 3)); alive = true; } }
+    pulses = pulses.filter((p) => !p.finished);
+    render();
+    if (alive) raf = requestAnimationFrame(frame);
+  }
+  function kick() { if (!raf) raf = requestAnimationFrame(frame); }
+  function render() {
+    if (!renderer || !layout) return;
+    const dx = pointer.x - 0.5, dy = pointer.y - 0.5;
+    threads.forEach((t, i) => {
+      const ox = dx * t.z * 0.5, oy = dy * t.z * 0.3;
+      t.ring.position.x = layout.src[i].x - 16 + ox; t.ring.position.y = -(layout.src[i].y) - oy;
+      srcEls[i].style.transform = 'translate(' + ox + 'px, calc(-50% - ' + oy + 'px))';
+    });
+    renderer.render(scene, camera);
+  }
+
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  let running = false, pending = false;
+  async function deliver() {
+    if (running) return; running = true;
+    try { await play(); } finally { running = false; if (pending) { pending = false; relayout(); } }
+  }
+  async function play() {
+    rowEls.forEach((el) => { el.classList.remove('in', 'open'); el.setAttribute('aria-expanded', 'false'); });
+    layout.rows.forEach((r) => (r.line.visible = false));
+    threads.forEach((t) => t.line.geometry.setDrawRange(0, 0));
+    srcEls.forEach((el) => el.classList.remove('in'));
+    greet.classList.remove('in'); closeEl.classList.remove('in');
+    render();
+    greet.textContent = GREETING; await wait(120); greet.classList.add('in');
+    await wait(700);
+    srcEls.forEach((el, i) => setTimeout(() => el.classList.add('in'), i * 90));
+    kick(); await wait(1000);
+    greet.textContent = GREETING_FULL;
+    await wait(500);
+    for (let i = 0; i < ROWS.length; i++) {
+      const r = ROWS[i];
+      await new Promise((resolve) => {
+        let left = r.src.length;
+        r.src.forEach((name, j) => setTimeout(() => pulse(name, i, () => { if (--left === 0) resolve(); }), j * 90));
+        setTimeout(kick, 0);
+      });
+      layout.rows[i].line.visible = true; rowEls[i].classList.add('in'); render();
+      await wait(i === 1 || i === 5 ? 900 : 520);
+    }
+    await wait(400);
+    say.textContent = CLOSING; closeEl.classList.add('in');
+  }
+  function showFinished() {
+    greet.textContent = GREETING_FULL; greet.classList.add('in');
+    srcEls.forEach((el) => el.classList.add('in'));
+    rowEls.forEach((el) => el.classList.add('in'));
+    say.textContent = CLOSING; closeEl.classList.add('in');
+    if (layout) { layout.rows.forEach((r) => (r.line.visible = true)); threads.forEach((t) => t.line.geometry.setDrawRange(0, N + 1)); render(); }
+  }
+
+  const replay = document.getElementById('replay');
+  replay.addEventListener('click', () => {
+    rowEls.forEach((el) => { el.classList.remove('open'); el.setAttribute('aria-expanded', 'false'); });
+    if (reduced || !canvasOn() || !renderer) return;
+    deliver();
+  });
+  report.addEventListener('pointermove', (e) => { const b = report.getBoundingClientRect(); pointer.x = (e.clientX - b.left) / b.width; pointer.y = (e.clientY - b.top) / b.height; render(); });
+  report.addEventListener('pointerleave', () => { pointer.x = 0.5; pointer.y = 0.5; render(); });
+  function relayout() {
+    if (renderer && report.classList.contains('flat') && matchMedia('(min-width: 1101px)').matches) { report.classList.remove('flat'); replay.hidden = reduced; }
+    if (!canvasOn() || !renderer) return;
+    if (running) { pending = true; return; }
+    build(); showFinished();
+  }
+  addEventListener('resize', relayout);
+
+  // Both lines are measured before they are shown, so the panel never grows under the threads.
+  greet.textContent = GREETING_FULL; say.textContent = CLOSING;
+  Promise.race([document.fonts.ready, wait(2500)]).then(() => {
+    if (!canvasOn() || !renderer) { report.classList.add('flat'); replay.hidden = true; showFinished(); return; }
+    build();
+    if (reduced) { replay.hidden = true; showFinished(); } else deliver();
+  });
+</script>
+</body>
+</html>
