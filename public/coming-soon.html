@@ -17,21 +17,28 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
 <style>
   :root {
     --canvas: #F4F6F8; --raised: #FFFEFB; --subtle: #F0EFE9; --band: #E2E8EE; --selected: #E7ECE8;
-    --ink: #111814; --muted: #48564F;
-    --rule: #DCE1DC;
-    --action: #145C43; --action-hover: #0C4935; --action-pressed: #063425; --action-soft: #DCECE4;
+    --ink: #111814; --muted: #48564F; --faint: #6B776F; --faint-ink: #838F89;
+    --rule: #DCE1DC; --rule-soft: #E6EAE6;
+    --action: #145C43; --action-hover: #0C4935; --action-soft: #DCECE4;
     --focus: #1D63D8;
-    --warning: #7A5600; --warning-soft: #FFF1C2; --success: #21683A; --success-soft: #E4F2E7;
+    --warning: #7A5600; --warning-soft: #FFF1C2; --risk: #A73745; --risk-soft: #F9E7EA; --success: #21683A; --success-soft: #E4F2E7; --success-mid: #B9D3C4;
+    --living: #3D8B68; --cyan: #03F5F2;
+    /* night, for Zora's own panel */
+    --n-ground: #131E18; --n-raised: #19261F; --n-hover: #23382F; --n-line: #2B3932; --n-strong: #5D6C64; --n-text: #F5F7F2; --n-muted: #A4B1AA; --n-mint: #67BF99; --n-mint-soft: #183428; --n-warn: #F1C65A; --n-warn-soft: #392F17; --n-rose: #F08A9A; --n-rose-soft: #3C2028; --n-ok: #72CF82; --n-ok-soft: #193A22;
     --shadow: 0 2px 8px -2px rgba(13,21,17,.06), 0 16px 32px -12px rgba(13,21,17,.14);
+    --window-shadow: 0 1px 2px rgba(13,21,17,.05), 0 24px 48px -16px rgba(13,21,17,.22), 0 0 0 1px rgba(13,21,17,.06);
+    --ui: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
   }
   * { box-sizing: border-box; }
   html, body { height: 100%; }
   body { margin: 0; background: var(--canvas); color: var(--ink); font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 18px; line-height: 1.5; font-feature-settings: 'tnum'; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
   .page { min-height: 100vh; min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto; padding: 32px 48px; }
   .top { display: flex; justify-content: space-between; align-items: center; font-size: 15px; }
   .top .brand { display: flex; align-items: center; gap: 12px; font-weight: 500; }
@@ -40,101 +47,461 @@
   .top .mark { width: 30px; height: 30px; flex: none; }
   .top .mark g { transform-origin: 12px 12px; animation: swarm-spin 22s linear infinite; }
   @keyframes swarm-spin { to { transform: rotate(360deg); } }
-  .stage { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); align-items: center; gap: 40px; padding: 40px 0; }
-  .kicker { margin: 0 0 18px; font-size: 18px; font-weight: 500; color: var(--action); }
-  h1 { font-size: 44px; line-height: 1.1; font-weight: 500; letter-spacing: -.025em; margin: 0; max-width: 13em; text-wrap: balance; }
-  .sub { margin: 22px 0 0; max-width: 30em; color: var(--muted); }
+
+  .hero { padding: 40px 0 28px; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px; align-items: end; }
+  .kicker { margin: 0 0 16px; font-size: 18px; font-weight: 500; color: var(--action); }
+  h1 { font-size: 42px; line-height: 1.08; font-weight: 500; letter-spacing: -.025em; margin: 0; max-width: 13em; text-wrap: balance; }
+  .sub { margin: 16px 0 0; max-width: 32em; color: var(--muted); font-size: 17px; }
   .sub b { color: var(--ink); font-weight: 500; }
-  .contact { margin: 40px 0 0; font-size: 15px; color: var(--muted); }
+  .contact { margin: 0; font-size: 15px; color: var(--muted); max-width: 26em; }
   .contact b { color: var(--action); font-weight: 500; }
-  .bottom { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); }
+  .bottom { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); padding-top: 28px; }
 
-  /* the report stage: a light plate (the lab, by day) handing off to a dark panel (Zora, by night) */
-  .report { position: relative; width: 100%; display: grid; grid-template-columns: 38% minmax(0, 1fr); background: var(--band); border-radius: 14px; padding: 28px; }
-  .report canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-  .sources { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; }
-  .src { position: absolute; transform: translate(0, -50%); font-size: 13px; color: var(--muted); white-space: nowrap; opacity: 0; transition: opacity 400ms ease, color 200ms ease; }
-  .src.in { opacity: 1; }
-  .src.hot { color: var(--action); }
-  .panel {
-    position: relative; grid-column: 2; border: 1px solid var(--rule); border-radius: 10px; box-shadow: var(--shadow); font-size: 13.5px; overflow: hidden;
-    /* Zora’s register: the original dark theme, independent of the light tokens around it */
-    --raised: #131E18; --rule: #2B3932; --subtle: #19261F; --selected: #23382F; --muted: #A4B1AA;
-    --action: #67BF99; --action-hover: #80CFAD; --action-soft: #183428;
-    --success: #72CF82; --success-soft: #193A22;
-    --warning: #F1C65A; --warning-soft: #392F17;
-    --focus: #8AB8FF;
-    background: var(--raised); color: #F5F7F2;
-  }
-  .voice { padding: 16px 18px 14px; border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-  .voice b { font-weight: 500; font-size: 17px; opacity: 0; transition: opacity 300ms ease; }
-  .voice b.in { opacity: 1; }
-  .voice .demo { color: var(--muted); font-size: 13px; }
-  .row { display: grid; grid-template-columns: 66px minmax(0,1fr) 118px; gap: 12px; padding: 9px 16px; border-bottom: 1px solid var(--rule); align-items: baseline; line-height: 1.4; cursor: pointer; opacity: 0; transform: translateY(6px); transition: opacity 320ms ease, transform 320ms ease, background 160ms ease; }
-  .row.in { opacity: 1; transform: none; }
-  .row:hover, .row.open { background: var(--selected); }
-  .row .t { color: var(--muted); }
-  .row .s { justify-self: start; display: inline-flex; align-items: center; gap: 7px; padding: 2px 9px 2px 7px; border-radius: 6px; font-size: 12.5px; line-height: 18px; white-space: nowrap; color: var(--success); background: var(--success-soft); }
-  .row .s i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
-  .row .s.prep { color: var(--action); background: var(--action-soft); }
-  .row .s.prep i { background: transparent; border: 1.5px solid currentColor; }
-  .row .s.hold { color: var(--warning); background: var(--warning-soft); }
-  .row .ev { grid-column: 2 / 4; display: none; color: var(--muted); font-size: 13px; line-height: 1.45; padding-top: 4px; }
-  .row.open .ev { display: block; }
-  .close { padding: 12px 18px; border-top: 1px solid var(--rule); background: var(--subtle); display: flex; justify-content: space-between; gap: 16px; align-items: baseline; opacity: 0; transition: opacity 300ms ease; }
-  .close.in { opacity: 1; }
-  .close .say { font-weight: 500; }
-  .close button { font: inherit; font-size: 13px; color: var(--action); background: none; border: 0; padding: 0; cursor: pointer; border-bottom: 1px solid var(--action); border-radius: 0; }
-  .close button:hover { color: var(--action-hover); border-color: var(--action-hover); }
-  .close button:focus-visible, a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
-  .row:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
-  .close button[hidden] { display: none; }
+  /* the window sits on a dot-grid plate, like a screenshot that is still alive */
+  .plate { position: relative; padding: 28px 36px 0; border-radius: 16px 16px 0 0; overflow: hidden; }
+  .plate::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, #C7CFD3 1px, transparent 1.2px); background-size: 20px 20px; -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 78%); mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 78%); }
+  .window { position: relative; height: 900px; display: grid; grid-template-columns: 200px minmax(0, 1fr) 312px; border-radius: 12px 12px 0 0; background: var(--raised); box-shadow: var(--window-shadow); overflow: hidden; font-family: var(--ui); font-size: 12.5px; line-height: 1.45; color: var(--ink); }
 
-  .report.flat { display: block; }
-  .report.flat canvas, .report.flat .sources { display: none; }
-  @media (max-width: 1100px) {
-    .stage { grid-template-columns: 1fr; gap: 24px; }
-    .report { display: block; }
-    .report canvas, .sources { display: none; }
+  /* sidebar */
+  .side { background: #F6F7F5; border-right: 1px solid var(--rule); padding: 12px 10px; display: flex; flex-direction: column; gap: 2px; font-size: 12.5px; }
+  .ws { display: flex; align-items: center; gap: 8px; padding: 6px 8px 12px; font-weight: 600; font-size: 13px; }
+  .ws .z { width: 20px; height: 20px; border-radius: 6px; background: var(--ink); color: #fff; display: grid; place-items: center; font-size: 11px; font-weight: 600; }
+  .ws .chev { margin-left: auto; color: var(--faint); }
+  .nav-h { padding: 12px 8px 4px; font-size: 10.5px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; color: var(--faint); }
+  .nav a { display: flex; align-items: center; gap: 9px; padding: 6px 8px; border-radius: 7px; color: var(--muted); font-weight: 450; }
+  .nav a .i { color: var(--faint); width: 16px; height: 16px; }
+  .nav a:hover { background: #ECEFEC; color: var(--ink); }
+  .nav a.on { background: #E5EAE6; color: var(--action); font-weight: 500; }
+  .nav a.on .i { color: var(--action); }
+  .nav a .n { margin-left: auto; font-family: var(--mono); font-size: 10.5px; color: var(--faint); }
+  .nav a.on .n { color: var(--action); }
+  .side .foot { margin-top: auto; padding: 8px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+
+  /* main */
+  .main { display: flex; flex-direction: column; min-width: 0; }
+  .bar { height: 46px; border-bottom: 1px solid var(--rule); display: flex; align-items: center; gap: 12px; padding: 0 18px; }
+  .crumb { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+  .crumb b { color: var(--ink); font-weight: 500; }
+  .search { flex: 1; max-width: 520px; height: 30px; margin: 0 8px 0 16px; border: 1px solid var(--rule); border-radius: 7px; background: #FAFBF9; display: flex; align-items: center; gap: 8px; padding: 0 8px; color: var(--faint); font-size: 12px; }
+  .search kbd { margin-left: auto; font-family: var(--mono); font-size: 10px; border: 1px solid var(--rule); border-radius: 4px; padding: 1px 5px; color: var(--faint); background: #fff; }
+  .bar .right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 8px; border-radius: 6px; font-size: 11.5px; font-weight: 500; }
+  .pill.time { background: var(--action-soft); color: var(--action); font-family: var(--mono); font-weight: 500; }
+  .me { width: 26px; height: 26px; border-radius: 50%; background: #2A4E3E; color: #fff; display: grid; place-items: center; font-size: 10.5px; font-weight: 600; }
+  .content { padding: 18px 18px 24px; overflow: hidden; }
+  .greet { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+  .greet h2 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -.02em; }
+  .greet p { margin: 4px 0 0; color: var(--muted); font-size: 12.5px; }
+  .greet .actions { display: flex; gap: 8px; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; height: 28px; white-space: nowrap; padding: 0 10px; border-radius: 7px; border: 1px solid var(--rule); background: #fff; color: var(--ink); font: inherit; font-size: 12px; font-weight: 500; cursor: pointer; }
+  .btn:hover { border-color: var(--faint); }
+  .btn.primary { background: var(--action); border-color: var(--action); color: #fff; }
+  .btn.primary:hover { background: var(--action-hover); }
+  .btn.sm { height: 24px; padding: 0 8px; font-size: 11.5px; }
+
+  .grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+  .w { grid-column: span 2; display: flex; flex-direction: column; border: 1px solid var(--rule); border-radius: 12px; background: #fff; box-shadow: 0 1px 2px rgba(13,21,17,.04), 0 1px 0 rgba(13,21,17,.03); min-width: 0; opacity: 0; transform: translateY(6px); transition: opacity 360ms ease, transform 360ms ease; }
+  .w.in { opacity: 1; transform: none; }
+  .w.c3 { grid-column: span 3; } .w.c4 { grid-column: span 4; } .w.c6 { grid-column: span 6; }
+  .w-h { display: flex; align-items: center; gap: 7px; padding: 10px 12px 0; font-size: 12.5px; font-weight: 500; }
+  .w-h .ic { width: 22px; height: 22px; border-radius: 6px; background: var(--subtle); display: grid; place-items: center; flex: none; color: var(--muted); }
+  .w-h .ic .i { width: 14px; height: 14px; }
+  .w-h .meta { margin-left: auto; font-weight: 400; color: var(--faint); font-size: 11.5px; }
+  .w-h .meta a { color: var(--action); }
+  .w-b { padding: 10px 12px 12px; }
+  .w-f { margin-top: auto; border-top: 1px solid var(--rule-soft); padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: var(--muted); }
+  .w-f a { color: var(--action); font-weight: 500; }
+
+  .i { width: 15px; height: 15px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+  .chip { display: inline-flex; align-items: center; gap: 5px; height: 20px; padding: 0 7px; border-radius: 6px; font-size: 11px; font-weight: 500; white-space: nowrap; }
+  .chip::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .chip.ok { color: var(--success); background: var(--success-soft); }
+  .chip.hold { color: var(--warning); background: var(--warning-soft); }
+  .chip.risk { color: var(--risk); background: var(--risk-soft); }
+  .chip.prep { color: var(--action); background: var(--action-soft); }
+  .chip.prep::before { background: transparent; border: 1.5px solid currentColor; box-sizing: border-box; }
+  .chip.muted { color: var(--muted); background: var(--subtle); }
+  .num { font-family: var(--mono); font-size: 26px; font-weight: 500; letter-spacing: -.02em; line-height: 1.1; }
+  .num.sm { font-size: 20px; }
+  .delta { font-family: var(--mono); font-size: 11px; font-weight: 500; }
+  .delta.up { color: var(--success); } .delta.down { color: var(--risk); } .delta.flat { color: var(--faint); }
+  .lbl { font-size: 11px; color: var(--faint); }
+  .av { width: 22px; height: 22px; border-radius: 50%; display: inline-grid; place-items: center; font-size: 9.5px; font-weight: 600; color: #fff; flex: none; }
+  .list { display: flex; flex-direction: column; }
+  .list > div { display: flex; align-items: center; gap: 9px; padding: 7px 0; border-top: 1px solid var(--rule-soft); min-width: 0; }
+  .list > div:first-child { border-top: 0; padding-top: 2px; }
+  .list .t { min-width: 0; flex: 1; }
+  .list .t b { display: block; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .list .t span { display: block; color: var(--faint); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .list .r { margin-left: auto; text-align: right; font-size: 11.5px; color: var(--muted); white-space: nowrap; }
+  .mono { font-family: var(--mono); }
+  .stack { display: grid; gap: 10px; }
+  table.tbl { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .tbl th { text-align: left; font-weight: 500; color: var(--faint); font-size: 11px; padding: 0 8px 6px 0; border-bottom: 1px solid var(--rule-soft); }
+  .tbl td { padding: 7px 8px 7px 0; border-bottom: 1px solid var(--rule-soft); vertical-align: middle; white-space: nowrap; }
+  .tbl tr:last-child td { border-bottom: 0; }
+  .tbl td.grow { white-space: normal; }
+  .prog { display: flex; height: 6px; border-radius: 3px; overflow: hidden; background: var(--subtle); }
+  .prog i { display: block; height: 100%; }
+  .legend { display: flex; justify-content: flex-end; gap: 12px; font-size: 11px; color: var(--faint); margin-bottom: 6px; }
+  .legend span { display: inline-flex; align-items: center; gap: 5px; }
+  .legend i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; }
+  svg.chart { display: block; width: 100%; height: auto; overflow: visible; }
+  .draw { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1200ms ease 200ms; }
+  .in .draw { stroke-dashoffset: 0; }
+  .grow-y { transform: scaleY(0); transform-origin: bottom; transition: transform 500ms ease; }
+  .in .grow-y { transform: none; }
+  .fill { opacity: 0; transition: opacity 600ms ease 900ms; }
+  .in .fill { opacity: 1; }
+
+  /* timeline */
+  .tl { display: grid; gap: 0; }
+  .tl > div { display: grid; grid-template-columns: 44px 14px minmax(0,1fr); gap: 0 8px; align-items: start; min-height: 26px; }
+  .tl .tt { font-family: var(--mono); font-size: 11px; color: var(--faint); padding-top: 3px; }
+  .tl .dotc { position: relative; height: 100%; }
+  .tl .dotc::before { content: ''; position: absolute; left: 6px; top: 8px; width: 2px; bottom: -3px; background: var(--rule); }
+  .tl > div:last-child .dotc::before { display: none; }
+  .tl .dotc i { position: absolute; left: 3px; top: 5px; width: 8px; height: 8px; border-radius: 50%; background: var(--faint); box-shadow: 0 0 0 2px #fff; }
+  .tl .dotc i.risk { background: var(--risk); } .tl .dotc i.ok { background: var(--success); } .tl .dotc i.act { background: var(--action); }
+  .tl .tx { padding: 1px 0 6px; }
+  .tl .tx span { color: var(--faint); font-size: 11px; }
+
+  /* the call cards */
+  .call { border: 1px solid var(--rule); border-radius: 10px; box-shadow: 0 1px 2px rgba(13,21,17,.04); padding: 9px 10px; display: grid; gap: 7px; background: #FCFCFA; }
+  .call.held { border-color: var(--warning-soft); background: #FFFBEC; }
+  .call .ttl { display: flex; align-items: flex-start; gap: 8px; }
+  .call .ttl b { font-weight: 500; }
+  .call .why { color: var(--muted); font-size: 11.5px; }
+  .call .who { display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--faint); }
+  .call .acts { display: flex; gap: 6px; }
+
+  /* Zora's panel */
+  .zp { background: var(--n-ground); color: var(--n-text); border-left: 1px solid var(--n-line); display: flex; flex-direction: column; min-width: 0; }
+  .zp-h { height: 46px; border-bottom: 1px solid var(--n-line); display: flex; align-items: center; gap: 8px; padding: 0 14px; font-weight: 500; }
+  .zp-h .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); }
+  .zp-h .st { margin-left: auto; font-size: 11px; color: var(--n-muted); font-family: var(--mono); }
+  .zp-h .st.busy::after { content: ''; display: inline-block; width: 6px; height: 6px; margin-left: 6px; border-radius: 50%; background: var(--n-mint); animation: blink 1s ease-in-out infinite; vertical-align: 1px; }
+  @keyframes blink { 50% { opacity: .2; } }
+  .tr { flex: 1; overflow: hidden; padding: 18px 16px 10px; display: flex; flex-direction: column; gap: 16px; font-size: 12.5px; line-height: 1.5; }
+  .msg { opacity: 0; transform: translateY(4px); transition: opacity 260ms ease, transform 260ms ease; }
+  .msg.in { opacity: 1; transform: none; }
+  .msg.you { align-self: flex-end; max-width: 92%; background: var(--n-raised); border: 1px solid var(--n-line); border-radius: 10px 10px 2px 10px; padding: 7px 10px; }
+  .msg.you .who { display: block; font-size: 10.5px; color: var(--n-muted); margin-bottom: 2px; font-family: var(--mono); }
+  .steps { display: grid; grid-template-columns: minmax(0, 1fr); gap: 5px; }
+  .msg { min-width: 0; max-width: 100%; }
+  .step { min-width: 0; }
+  .step { display: flex; align-items: center; gap: 8px; color: var(--n-muted); font-size: 12px; opacity: 0; transition: opacity 200ms ease; }
+  .step.in { opacity: 1; }
+  .step .i { color: var(--n-strong); }
+  .step.done .i { color: var(--n-mint); }
+  .step .t { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .step .src { margin-left: auto; flex: none; font-family: var(--mono); font-size: 10.5px; color: var(--n-muted); }
+  .msg.z p { margin: 0 0 8px; }
+  .msg.z p:last-child { margin-bottom: 0; }
+  .msg.z .ref { color: var(--n-mint); }
+  .card { border: 1px solid var(--n-line); background: var(--n-raised); border-radius: 10px; padding: 12px 14px; display: grid; gap: 8px; }
+  .card .ct { font-weight: 500; display: flex; gap: 8px; align-items: flex-start; }
+  .card .ct .chip { margin-left: auto; }
+  .card .cd { color: var(--n-muted); font-size: 12px; }
+  .card .ca { display: flex; gap: 6px; }
+  .nbtn { height: 26px; padding: 0 10px; border-radius: 7px; border: 1px solid var(--n-strong); background: transparent; color: var(--n-text); font: inherit; font-size: 12px; font-weight: 500; cursor: pointer; }
+  .nbtn.primary { background: var(--n-mint); border-color: var(--n-mint); color: #0C1510; }
+  .nbtn.primary:hover { background: #80CFAD; }
+  .nbtn:hover { border-color: var(--n-text); }
+  .chip.nhold { color: var(--n-warn); background: var(--n-warn-soft); }
+  .chip.nok { color: var(--n-ok); background: var(--n-ok-soft); }
+  .ask { margin: 0 14px 14px; border: 1px solid var(--n-line); background: var(--n-raised); border-radius: 9px; display: flex; align-items: center; gap: 8px; padding: 0 8px 0 12px; height: 36px; color: var(--n-muted); font-size: 12.5px; }
+  .ask .send { margin-left: auto; width: 24px; height: 24px; border-radius: 6px; background: var(--n-line); display: grid; place-items: center; color: var(--n-muted); }
+  .zp .replay { margin: 0 14px 12px; align-self: flex-start; font: inherit; font-size: 11.5px; color: var(--n-muted); background: none; border: 0; padding: 0; border-bottom: 1px solid var(--n-line); cursor: pointer; }
+  .zp .replay:hover { color: var(--n-text); border-color: var(--n-text); }
+
+  @media (max-width: 1180px) {
+    .window { grid-template-columns: 184px minmax(0, 1fr); }
+    .zp { display: none; }
   }
-  @media (max-width: 860px) {
+  @media (max-width: 960px) {
+    .hero { grid-template-columns: 1fr; gap: 20px; }
+    .window { grid-template-columns: 1fr; height: auto; }
+    .side { display: none; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .w, .w.c3, .w.c4, .w.c6 { grid-column: span 2; }
+    .plate { padding: 20px 12px 0; }
+  }
+  @media (max-width: 640px) {
     .page { padding: 24px; }
     h1 { font-size: 32px; }
-    .report { padding: 16px; border-radius: 10px; }
-    .row { grid-template-columns: 60px minmax(0,1fr); }
-    .row .s { grid-column: 2; }
+    .grid { grid-template-columns: 1fr; }
+    .w, .w.c3, .w.c4, .w.c6 { grid-column: span 1; }
+    .content { padding: 14px; }
+    .bar .search { display: none; }
+    .plate { margin: 0 -24px; padding: 20px 8px 0; border-radius: 0; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .src, .row, .voice b, .close { transition: none !important; }
     .top .mark g { animation: none; }
+    .zp-h .st.busy::after { animation: none; }
   }
+  @media (prefers-reduced-motion: reduce), all { html.reduced .w, html.reduced .msg, html.reduced .step, html.reduced .draw, html.reduced .grow-y, html.reduced .fill { transition: none !important; } }
+  @media (prefers-reduced-motion: reduce) { .w, .msg, .step, .draw, .grow-y, .fill { transition: none !important; } }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="swarm" gradientUnits="userSpaceOnUse" x1="3" y1="21" x2="21" y2="3"><stop offset="0" stop-color="#3D8B68"/><stop offset="1" stop-color="#03F5F2"/></linearGradient>
+    <linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#145C43" stop-opacity=".22"/><stop offset="1" stop-color="#145C43" stop-opacity="0"/></linearGradient>
+    <symbol id="i-brief" viewBox="0 0 16 16"><path d="M4 2.5h6l2.5 2.5v8.5H4z"/><path d="M10 2.5V5h2.5M6 8h4M6 10.5h4"/></symbol>
+    <symbol id="i-check-c" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5"/><path d="M5.6 8.2l1.7 1.6 3.2-3.4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-6.5"/></symbol>
+    <symbol id="i-decide" viewBox="0 0 16 16"><path d="M8 2.5v11M8 5.5l4-2v4l-4-2M8 8.5l-4 2v-4"/></symbol>
+    <symbol id="i-risk" viewBox="0 0 16 16"><path d="M8 2.8l5.5 9.7H2.5z"/><path d="M8 6.5v3M8 11.2v.3"/></symbol>
+    <symbol id="i-project" viewBox="0 0 16 16"><rect x="2.5" y="3" width="11" height="10" rx="1.5"/><path d="M6 3v10M10 3v10"/></symbol>
+    <symbol id="i-incident" viewBox="0 0 16 16"><path d="M2 8.5h2.5l1.5-4 2.5 7 1.5-3H14"/></symbol>
+    <symbol id="i-people" viewBox="0 0 16 16"><circle cx="6" cy="5.5" r="2.3"/><path d="M2.3 13c.4-2.3 1.8-3.5 3.7-3.5s3.3 1.2 3.7 3.5"/><circle cx="11" cy="6" r="1.8"/><path d="M10.5 9.6c1.6.1 2.7 1.2 3.1 3.1"/></symbol>
+    <symbol id="i-delivery" viewBox="0 0 16 16"><path d="M2.5 12.5l3.5-4 2.5 2.5 5-6"/><path d="M10.5 5h3v3"/></symbol>
+    <symbol id="i-source" viewBox="0 0 16 16"><ellipse cx="8" cy="4.5" rx="5" ry="2"/><path d="M3 4.5v7c0 1.1 2.2 2 5 2s5-.9 5-2v-7M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 16 16"><rect x="2.5" y="3.5" width="11" height="10" rx="1.5"/><path d="M2.5 7h11M5.5 2v3M10.5 2v3"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 16 16"><path d="M2.5 5h7M12.5 5h1M2.5 11h1M6.5 11h7"/><circle cx="11" cy="5" r="1.6"/><circle cx="5" cy="11" r="1.6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4"/><path d="M10 10l3.5 3.5"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 16 16"><path d="M6 4l4 4-4 4"/></symbol>
+    <symbol id="i-updown" viewBox="0 0 16 16"><path d="M5.5 6.5L8 4l2.5 2.5M5.5 9.5L8 12l2.5-2.5"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5"/><path d="M8 5v3.2l2.2 1.3"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></symbol>
+    <symbol id="i-send" viewBox="0 0 16 16"><path d="M8 12.5v-9M4.5 7L8 3.5 11.5 7"/></symbol>
+    <symbol id="i-read" viewBox="0 0 16 16"><path d="M2 4.5c2-1 4-1 6 0 2-1 4-1 6 0v8c-2-1-4-1-6 0-2-1-4-1-6 0z"/><path d="M8 4.5v8"/></symbol>
+    <symbol id="i-spin" viewBox="0 0 16 16"><path d="M8 2.5a5.5 5.5 0 1 1-5.5 5.5"/></symbol>
+    <symbol id="i-hold" viewBox="0 0 16 16"><path d="M6 4v8M10 4v8"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 16 16"><path d="M4 11V7.5a4 4 0 0 1 8 0V11l1 1.5H3z"/><path d="M6.5 13.5a1.5 1.5 0 0 0 3 0"/></symbol>
+  </defs>
+</svg>
+
 <div class="page">
   <header class="top">
     <span class="brand">
-      <svg class="mark" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><defs><linearGradient id="swarm" gradientUnits="userSpaceOnUse" x1="3" y1="21" x2="21" y2="3"><stop offset="0" stop-color="#3D8B68"/><stop offset="1" stop-color="#03F5F2"/></linearGradient></defs><g fill="url(#swarm)"><circle cx="20.5" cy="12" r="1.4"/><circle cx="19.36" cy="7.75" r="1.2"/><circle cx="12" cy="3.5" r="1.1"/><circle cx="7.75" cy="4.64" r="1.3"/><circle cx="4.64" cy="7.75" r="1.5"/><circle cx="3.5" cy="12" r="1.6"/><circle cx="4.64" cy="16.25" r="1.7"/><circle cx="7.75" cy="19.36" r="1.8"/><circle cx="12" cy="20.5" r="1.7"/><circle cx="16.25" cy="19.36" r="1.6"/><circle cx="19.36" cy="16.25" r="1.5"/><circle cx="15" cy="13" r="1"/><circle cx="13" cy="15.5" r="0.9"/></g></svg>
+      <svg class="mark" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><g fill="url(#swarm)"><circle cx="20.5" cy="12" r="1.4"/><circle cx="19.36" cy="7.75" r="1.2"/><circle cx="12" cy="3.5" r="1.1"/><circle cx="7.75" cy="4.64" r="1.3"/><circle cx="4.64" cy="7.75" r="1.5"/><circle cx="3.5" cy="12" r="1.6"/><circle cx="4.64" cy="16.25" r="1.7"/><circle cx="7.75" cy="19.36" r="1.8"/><circle cx="12" cy="20.5" r="1.7"/><circle cx="16.25" cy="19.36" r="1.6"/><circle cx="19.36" cy="16.25" r="1.5"/><circle cx="15" cy="13" r="1"/><circle cx="13" cy="15.5" r="0.9"/></g></svg>
       DORA Research, Inc.
     </span>
     <a class="mail" href="mailto:hello@dorareason.com">hello@dorareason.com</a>
   </header>
 
-  <main class="stage">
-    <div class="copy">
-      <p class="kicker">Coming soon.</p>
-      <h1>Zora is an AI chief of staff for CTOs.</h1>
-      <p class="sub">She keeps every commitment, decision, and risk across your engineering organization in view, and prepares each call with the evidence before you have to make it. Zora is the first agent from <b>DORA Research</b>, an applied AI lab. Private beta, by invitation.</p>
+  <main>
+    <section class="hero">
+      <div>
+        <p class="kicker">Coming soon.</p>
+        <h1>Zora is an AI chief of staff for CTOs.</h1>
+        <p class="sub">She keeps every commitment, decision, and risk across your engineering organization in view, and prepares each call with the evidence before you have to make it. Zora is the first agent from <b>DORA Research</b>, an applied AI lab. Private beta, by invitation.</p>
+      </div>
       <p class="contact">The site is on its way. Until then, the private beta is by invitation: write to <a href="mailto:hello@dorareason.com"><b>hello@dorareason.com</b></a>.</p>
-    </div>
+    </section>
 
-    <div class="report" id="report" aria-label="Zora reporting the week, demonstration data">
-      <canvas id="c" aria-hidden="true"></canvas>
-      <div class="sources" id="sources" aria-hidden="true"></div>
-      <div class="panel" id="panel">
-        <div class="voice"><b id="greet"></b><span class="demo">Demonstration data</span></div>
-        <div id="rows"></div>
-        <div class="close" id="close"><span class="say" id="say"></span><button type="button" id="replay">Replay</button></div>
+    <div class="plate">
+      <div class="window" id="window" role="figure" aria-label="Zora’s morning brief for a CTO, demonstration data">
+        <aside class="side" aria-hidden="true">
+          <div class="ws"><span class="z">N</span>Northwind <span class="chip prep" style="height:16px;font-size:9.5px;padding:0 6px;gap:4px">Engineering</span><svg class="i chev"><use href="#i-updown"/></svg></div>
+          <div class="nav-h">Today</div>
+          <nav class="nav">
+            <a class="on"><svg class="i"><use href="#i-brief"/></svg>Brief<span class="n">06:00</span></a>
+            <a><svg class="i"><use href="#i-risk"/></svg>Your calls<span class="n">2</span></a>
+            <a><svg class="i"><use href="#i-cal"/></svg>Today<span class="n">4</span></a>
+          </nav>
+          <div class="nav-h">Organization</div>
+          <nav class="nav">
+            <a><svg class="i"><use href="#i-check-c"/></svg>Commitments<span class="n">14</span></a>
+            <a><svg class="i"><use href="#i-decide"/></svg>Decisions</a>
+            <a><svg class="i"><use href="#i-project"/></svg>Projects<span class="n">4</span></a>
+            <a><svg class="i"><use href="#i-incident"/></svg>Incidents<span class="n">1</span></a>
+            <a><svg class="i"><use href="#i-delivery"/></svg>Delivery</a>
+            <a><svg class="i"><use href="#i-people"/></svg>People<span class="n">62</span></a>
+          </nav>
+          <div class="nav-h">Zora</div>
+          <nav class="nav">
+            <a><svg class="i"><use href="#i-source"/></svg>Sources<span class="n">6</span></a>
+            <a><svg class="i"><use href="#i-hold"/></svg>Authority</a>
+            <a><svg class="i"><use href="#i-settings"/></svg>Settings</a>
+          </nav>
+          <div class="foot"><span class="me" style="width:22px;height:22px;font-size:9.5px">DK</span>Dana Kim · CTO</div>
+        </aside>
+
+        <div class="main">
+          <div class="bar">
+            <span class="crumb"><b>Brief</b><svg class="i" style="width:12px;height:12px;color:var(--faint)"><use href="#i-chev"/></svg>Mon 21 Sep 2026</span>
+            <div class="search"><svg class="i" style="width:13px;height:13px"><use href="#i-search"/></svg>Ask Zora or search<kbd>⌘K</kbd></div>
+            <div class="right"><span class="pill time"><svg class="i" style="width:12px;height:12px"><use href="#i-clock"/></svg>Compiled 06:00</span>
+            <svg class="i" style="color:var(--faint)"><use href="#i-bell"/></svg>
+            <span class="me">DK</span></div>
+          </div>
+          <div class="content">
+            <div class="greet">
+              <div>
+                <h2 id="greet">Morning, boss.</h2>
+                <p>Read 1,204 records from six sources between 05:12 and 05:58. One incident overnight, mitigated. Two things need your call.</p>
+              </div>
+              <div class="actions"><button class="btn" type="button">Share brief</button><button class="btn primary" type="button">Open incident review</button></div>
+            </div>
+
+            <div class="grid" id="grid">
+              <!-- WIDGET:overnight -->
+              <section class="w c3" data-w="overnight">
+                <header class="w-h"><span class="ic"><svg class="i"><use href="#i-incident"/></svg></span>Overnight<span class="meta">Incident 2291 · <a>review, 4 parts</a></span></header>
+                <div class="w-b">
+                  <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px">
+                    <div style="flex:1;min-width:0"><div style="font-weight:500">EU order writes blocked for 14 minutes</div><div class="lbl">40 checkouts failed · orders_eu · 02:41–02:55</div></div>
+                    <span class="chip ok">Mitigated</span>
+                  </div>
+                  <div class="tl">
+                    <div><span class="tt">02:41</span><span class="dotc"><i class="risk"></i></span><span class="tx">p99 write latency to 30 s <span>· Datadog</span></span></div>
+                    <div><span class="tt">02:44</span><span class="dotc"><i></i></span><span class="tx">Marcus paged, acknowledged in 40 s <span>· PagerDuty</span></span></div>
+                    <div><span class="tt">02:54</span><span class="dotc"><i class="act"></i></span><span class="tx">Index build on orders_eu cancelled <span>· Slack #incident-2291</span></span></div>
+                    <div><span class="tt">02:55</span><span class="dotc"><i class="ok"></i></span><span class="tx">Writes recovered, queue drained by 03:02 <span>· Datadog</span></span></div>
+                    <div><span class="tt">03:12</span><span class="dotc"><i></i></span><span class="tx">ORD-1187 opened for the 40 retries <span>· Linear</span></span></div>
+                  </div>
+                </div>
+                <div class="w-f"><span>Cause: index build took the write lock during EU morning traffic.</span><a>Where else this applies →</a></div>
+              </section>
+
+              <!-- WIDGET:calls -->
+              <section class="w c3" data-w="calls">
+                <header class="w-h"><span class="ic"><svg class="i"><use href="#i-risk"/></svg></span>Needs your call<span class="meta">2 held · nothing decided for you</span></header>
+                <div class="w-b stack">
+                  <div class="call held" id="call-0043">
+                    <div class="ttl"><b style="flex:1">Billing migration 0043 runs tonight against a 22 M-row table</b><span class="chip hold" id="chip-0043">Held for your call</span></div>
+                    <div class="why">Same index-build pattern as 2291, the case behind Marcus’s off-peak proposal this morning. Tomas can move it to 23:00 UTC with the index built first.</div>
+                    <div class="who"><span class="av" style="background:#2A4E3E">TB</span>Tomas Berg, billing · you decide</div>
+                    <div class="acts"><button class="btn sm primary" type="button" data-call="0043" data-act="hold">Hold until off-peak</button><button class="btn sm" type="button" data-call="0043" data-act="run">Let it run</button></div>
+                  </div>
+                  <div class="call held" id="call-rota">
+                    <div class="ttl"><b style="flex:1">On-call rota lists two people who have left</b><span class="chip hold" id="chip-rota">Held for your call</span></div>
+                    <div class="why">Sam and Ines are still in the platform rota through Friday. Marcus is the only live responder this week.</div>
+                    <div class="who"><span class="av" style="background:#5B4A8A">ML</span>Marcus Lind, SRE · you decide</div>
+                    <div class="acts"><button class="btn sm primary" type="button" data-call="rota" data-act="reassign">Reassign by rota</button><button class="btn sm" type="button" data-call="rota" data-act="keep">Leave as is</button></div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- WIDGET:delivery -->
+              <section class="w c4" data-w="delivery">
+                <header class="w-h"><span class="ic"><svg class="i"><use href="#i-delivery"/></svg></span>Delivery<span class="meta">Last 30 days · against your own baseline</span></header>
+                <div class="w-b" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+                  <div><div class="lbl">Deploys / day</div><div class="num" data-count="14.2" data-dec="1">0.0</div><div class="delta up">▲ 8% vs Aug</div></div>
+                  <div><div class="lbl">Lead time</div><div class="num" data-count="1.8" data-dec="1" data-unit=" d">0.0 d</div><div class="delta up">▼ 0.3 d</div></div>
+                  <div><div class="lbl">Change failure</div><div class="num" data-count="3.1" data-dec="1" data-unit="%">0.0%</div><div class="delta up">▼ 0.4 pt</div></div>
+                  <div><div class="lbl">Time to restore</div><div class="num" data-count="22" data-unit=" min">0 min</div><div class="delta down">▲ 4 min · 2291</div></div>
+                </div>
+                <div class="w-b" style="padding-top:0">
+                  <div class="legend"><span><i style="background:#145C43;opacity:.85"></i>Deploys</span><span><i style="background:#145C43;opacity:.3"></i>Weekend</span><span><i style="height:2px;background:#145C43"></i>7-day average</span></div>
+                  <svg class="chart" viewBox="0 0 640 120" aria-hidden="true">
+                    <g stroke="#E6EAE6" stroke-width="1"><path d="M0 100.5H600M0 60.5H600M0 20.5H600"/></g>
+                    <g font-family="Geist Mono, ui-monospace, monospace" font-size="10" fill="#838F89"><text x="0" y="112">Aug 22</text><text x="290" y="112">Sep 6</text><text x="562" y="112">Sep 20</text><text x="612" y="24">20</text><text x="612" y="64">10</text><text x="612" y="104">0</text></g>
+                    <g id="bars" fill="#145C43" fill-opacity=".85"></g>
+                    <path id="avg-area" fill="url(#area)" class="fill"/>
+                    <path id="avg-line" fill="none" stroke="#145C43" stroke-width="1.5" class="draw" pathLength="1"/>
+                    
+                  </svg>
+                </div>
+                <div class="w-f"><span>Production deploys per day, 30 days; weekends shaded.</span><a>Throughput, stability, quality →</a></div>
+              </section>
+
+              <!-- WIDGET:sources -->
+              <section class="w" data-w="sources">
+                <header class="w-h"><span class="ic"><svg class="i"><use href="#i-source"/></svg></span>Sources<span class="meta">6 connected</span></header>
+                <div class="w-b">
+                  <div class="num sm" data-count="1204" data-sep="1">0</div><div class="lbl" style="margin-bottom:8px">records read tonight · 05:12–05:58</div>
+                  <div class="list" style="font-size:12px">
+                    <div><span class="av" style="background:#5E6AD2;border-radius:6px">L</span><span class="t"><b>Linear</b></span><span class="r mono">312</span></div>
+                    <div><span class="av" style="background:#24292F;border-radius:6px">G</span><span class="t"><b>GitHub</b></span><span class="r mono">488</span></div>
+                    <div><span class="av" style="background:#632CA6;border-radius:6px">D</span><span class="t"><b>Datadog</b></span><span class="r mono">201</span></div>
+                    <div><span class="av" style="background:#06AC38;border-radius:6px">P</span><span class="t"><b>PagerDuty</b></span><span class="r mono">3</span></div>
+                    <div><span class="av" style="background:#4A154B;border-radius:6px">S</span><span class="t"><b>Slack</b></span><span class="r mono">176</span></div>
+                    <div><span class="av" style="background:#2A4E3E;border-radius:6px">C</span><span class="t"><b>Calendar</b></span><span class="r mono">24</span></div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- WIDGET:commitments -->
+              <section class="w c3" data-w="commitments">
+                <header class="w-h"><span class="ic"><svg class="i"><use href="#i-check-c"/></svg></span>Commitments<span class="meta">This week</span></header>
+                <div class="w-b">
+                  <div style="display:flex;align-items:baseline;gap:8px"><span class="num sm" data-count="14">0</span><span class="lbl">tracked · 9 kept · 3 open · 2 slipped</span></div>
+                  <div class="prog" style="margin:8px 0 10px"><i class="grow-y" style="width:64%;background:var(--success)"></i><i class="grow-y" style="width:22%;background:var(--success-mid)"></i><i class="grow-y" style="width:14%;background:var(--risk)"></i></div>
+                  <div class="list">
+                    <div><span class="av" style="background:#8A4A5B">PN</span><span class="t"><b>SDK-418 fix to beta</b><span>Priya · moved to Thu 24</span></span><span class="chip hold">Moved</span></div>
+                    <div><span class="av" style="background:#2A4E3E">ER</span><span class="t"><b>Atlas scope signed</b><span>Elena · Tue 15</span></span><span class="chip ok">Kept</span></div>
+                    <div><span class="av" style="background:#5B4A8A">ML</span><span class="t"><b>Rota updated</b><span>Marcus · due Fri 18</span></span><span class="chip risk">Slipped</span></div>
+                    <div><span class="av" style="background:#111814">Z</span><span class="t"><b>Board notes to you</b><span>Zora · Thu 24, drafted</span></span><span class="chip prep">Open</span></div>
+                  </div>
+                </div>
+              </section>
+
+
+              <!-- WIDGET:today -->
+              <section class="w c3" data-w="today">
+                <header class="w-h"><span class="ic"><svg class="i"><use href="#i-cal"/></svg></span>Today<span class="meta">Mon 21 · 4 prepared</span></header>
+                <div class="w-b">
+                  <div class="list">
+                    <div><span class="mono lbl" style="width:38px">09:30</span><span class="t"><b>Incident review, 2291</b><span>4 parts · 8 records</span></span><span class="chip prep">Ready</span></div>
+                    <div><span class="mono lbl" style="width:38px">11:00</span><span class="t"><b>Board prep</b><span>Every figure sourced</span></span><span class="chip prep">Drafted</span></div>
+                    <div><span class="mono lbl" style="width:38px">15:00</span><span class="t"><b>Atlas checkpoint</b><span>Scope decision attached</span></span><span class="chip prep">Ready</span></div>
+                    <div><span class="mono lbl" style="width:38px">17:00</span><span class="t"><b>Commitments check</b><span>14 against what shipped</span></span><span class="chip muted">Zora</span></div>
+                  </div>
+                </div>
+              </section>
+              <!-- WIDGET:decisions -->
+              <section class="w c6" data-w="decisions">
+                <header class="w-h"><span class="ic"><svg class="i"><use href="#i-decide"/></svg></span>Decisions<span class="meta">3 recorded</span></header>
+                <div class="w-b">
+                  <div class="list">
+                    <div><span class="t"><b>Atlas ships EU-only first</b><span>Elena · Tue 15 · 3 records</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
+                    <div><span class="t"><b>Index builds move off-peak</b><span>Marcus, proposed · Mon 21, 02:58 · pending your call</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
+                    <div><span class="t"><b>SDK 2.0 release held to Thu</b><span>Priya · Tue 15 · 2 records</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
+                    <div><span class="t"><b>Rollback owner named per service</b><span>You · Fri 18 · draft</span></span><span class="chip muted">Draft</span></div>
+                  </div>
+                </div>
+                <div class="w-f"><span>Each with who decided and the evidence behind it.</span><a>All decisions →</a></div>
+              </section>
+
+              <!-- WIDGET:projects -->
+              <section class="w c6" data-w="projects">
+                <header class="w-h"><span class="ic"><svg class="i"><use href="#i-project"/></svg></span>Projects<span class="meta">4 active · status from the record, not the status meeting</span></header>
+                <div class="w-b" style="padding-top:8px;overflow-x:auto">
+                  <table class="tbl">
+                    <thead><tr><th style="width:26%">Project</th><th>Owner</th><th>Status</th><th>Next milestone</th><th class="grow">Why</th><th style="text-align:right">Records</th></tr></thead>
+                    <tbody>
+                      <tr><td><b style="font-weight:500">Atlas · EU launch</b></td><td><span class="av" style="background:#2A4E3E;width:20px;height:20px">ER</span> Elena Ruiz</td><td><span class="chip ok">On track</span></td><td class="mono">Oct 14</td><td class="grow" style="color:var(--muted)">Scope cut to EU-only on Tue; dependency on billing 0043 cleared once it runs.</td><td class="mono" style="text-align:right">41</td></tr>
+                      <tr><td><b style="font-weight:500">SDK 2.0 · mobile</b></td><td><span class="av" style="background:#8A4A5B;width:20px;height:20px">PN</span> Priya Nair</td><td><span class="chip hold">At risk</span></td><td class="mono">Sep 24</td><td class="grow" style="color:var(--muted)">Release held on SDK-418; fix moved to Thu, partner demo is Fri.</td><td class="mono" style="text-align:right">27</td></tr>
+                      <tr><td><b style="font-weight:500">Billing migration</b></td><td><span class="av" style="background:#2A4E3E;width:20px;height:20px">TB</span> Tomas Berg</td><td><span class="chip hold" id="proj-0043">Held</span></td><td class="mono">Tonight</td><td class="grow" style="color:var(--muted)">Step 0043 repeats the 2291 pattern; waiting on your call.</td><td class="mono" style="text-align:right">18</td></tr>
+                      <tr><td><b style="font-weight:500">Data platform</b></td><td><span class="av" style="background:#5B4A8A;width:20px;height:20px">ML</span> Marcus Lind</td><td><span class="chip ok">On track</span></td><td class="mono">Nov 2</td><td class="grow" style="color:var(--muted)">Off-peak index policy written Mon 02:58; rota gap is the open risk.</td><td class="mono" style="text-align:right">33</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+
+        <aside class="zp" aria-label="Zora’s panel">
+          <div class="zp-h"><span class="dot"></span>Zora<span class="st" id="zst">In the room</span></div>
+          <div class="tr" id="tr">
+            <div class="msg you" id="m-you"><span class="who">You · 06:04</span>What happened with EU orders last night?</div>
+            <div class="msg" id="m-steps"><div class="steps">
+              <div class="step"><svg class="i"><use href="#i-spin"/></svg><span class="t">Read the Datadog alert, 02:41</span><span class="src">Datadog</span></div>
+              <div class="step"><svg class="i"><use href="#i-spin"/></svg><span class="t">Read incident 2291 and the page</span><span class="src">PagerDuty</span></div>
+              <div class="step"><svg class="i"><use href="#i-spin"/></svg><span class="t">Read #incident-2291, 14 messages</span><span class="src">Slack</span></div>
+              <div class="step"><svg class="i"><use href="#i-spin"/></svg><span class="t">Matched 2291’s pattern to 0043</span><span class="src">Linear</span></div>
+            </div></div>
+            <div class="msg z" id="m-answer">
+              <p>Order writes in the EU were blocked for 14 minutes from 02:41. An index build on <span class="ref">orders_eu</span> took the write lock during the morning traffic ramp; Marcus cancelled it at 02:54 and writes recovered at 02:55. Forty checkouts failed and are covered by <span class="ref">ORD-1187</span>.</p>
+              <p>The same build is scheduled for billing tonight. I’ve held it for you rather than let it run.</p>
+            </div>
+            <div class="msg" id="m-card"><div class="card">
+              <div class="ct">Hold migration 0043 until the index is built off-peak<span class="chip nhold" id="card-chip">Your call</span></div>
+              <div class="cd">Tomas has a 23:00 UTC slot. Nothing runs until you say so.</div>
+              <div class="ca" id="card-acts"><button class="nbtn primary" type="button" data-call="0043" data-act="hold">Hold</button><button class="nbtn" type="button" data-call="0043" data-act="run">Let it run</button></div>
+            </div></div>
+            <div class="msg z" id="m-after"><p id="after-text"></p></div>
+            <div class="msg z" id="m-rota"><p id="rota-text"></p></div>
+          </div>
+          <button class="replay" id="replay" type="button">Replay</button>
+          <div class="ask"><span>Ask Zora…</span><span class="send"><svg class="i" style="width:13px;height:13px"><use href="#i-send"/></svg></span></div>
+        </aside>
       </div>
     </div>
   </main>
@@ -145,212 +512,114 @@
   </footer>
 </div>
 
-<script type="module">
-  import * as THREE from '/vendor/three.module.min.js';
-
-  const SOURCES = ['Linear', 'GitHub', 'Datadog', 'PagerDuty', 'Slack', 'Calendar'];
-  const ROWS = [
-    { t: 'Mon 06:00', text: 'Briefed you: EU order writes were blocked for 14 minutes overnight, mitigated at 02:55.', s: 'done', src: ['Datadog', 'PagerDuty', 'Slack'], ev: 'Datadog 02:41, p99 to 30 s · PagerDuty 02:44, incident 2291 · Slack 02:54, index build canceled · Linear 03:12, ORD-1187 for the 40 failed checkouts.' },
-    { t: 'Mon 06:02', text: 'Flagged: billing migration 0043 repeats the same pattern tonight on a 22-million-row table.', s: 'hold', src: ['GitHub', 'Linear'], ev: 'GitHub PR #4730, CREATE INDEX without CONCURRENTLY · Linear BIL-402, queued for the 02:30 window. I would hold it. That is your decision, not mine.' },
-    { t: 'Mon 09:30', text: 'Prepared the incident review in four parts, eight records attached, no names on the wall.', s: 'done', src: ['Datadog', 'PagerDuty', 'Slack', 'GitHub'], ev: 'Impact and outcome, conditions, what we change, where else. The checklist is the exposure, not any one person.' },
-    { t: 'Tue 08:14', text: 'Recorded the Atlas scope decision, who made it, and the customer evidence behind it.', s: 'done', src: ['Slack', 'Linear'], ev: 'Slack #atlas-planning 08:12, Elena · Linear ATLAS-218 08:14, scope note with the design partner’s requirement attached.' },
-    { t: 'Tue 15:32', text: 'Tracked the mobile release hold on SDK-418; owners and dates updated in Linear.', s: 'done', src: ['Linear', 'GitHub'], ev: 'Linear SDK-418 blocks mobile · GitHub PR #8421, two checks failing · Go/no-go 15:30, web ships Friday, mobile held.' },
-    { t: 'Wed 06:00', text: 'Warned: the on-call rota lists two people who have left. One responder covers this week.', s: 'hold', src: ['PagerDuty'], ev: 'PagerDuty schedule “Core”: one active responder, two deactivated accounts. Eleven pages since 2026-08-14 went to the wrong person. I can draft the rota; a person approves it.' },
-    { t: 'Thu 11:00', text: 'Drafted your board notes on delivery, stability, and quality, every figure sourced.', s: 'prep', src: ['Linear', 'GitHub', 'Datadog', 'Calendar'], ev: 'Lead time and deploy frequency from GitHub and Linear; change failure and restore time from Datadog and PagerDuty; the board slot from your calendar, Friday 14:00.' },
-    { t: 'Fri 17:00', text: 'Checked 14 commitments against what shipped: two slipped, both with a named owner.', s: 'done', src: ['Calendar', 'Linear', 'GitHub'], ev: 'Commitments come from your meetings; what shipped comes from GitHub and Linear. The two that slipped have owners and new dates; neither is customer-facing.' },
-  ];
-  const STATUS = { done: ['', 'Done'], hold: ['hold', 'Held for your call'], prep: ['prep', 'Prepared for you'] };
-  const GREETING = 'Morning, boss.';
-  const GREETING_FULL = 'Morning, boss. Here’s the week.';
-  const CLOSING = 'Two need your call. Say the word and I’ll take it from there.';
-
-  const report = document.getElementById('report');
-  const canvas = document.getElementById('c');
-  const sourcesEl = document.getElementById('sources');
-  const rowsEl = document.getElementById('rows');
-  const greet = document.getElementById('greet');
-  const closeEl = document.getElementById('close');
-  const say = document.getElementById('say');
-  // ?still skips the delivery and shows the finished report, for captures and previews.
+<script>
+  // The brief arrives as a whole, then Zora answers a question in her panel and holds a migration for the CTO's call.
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches || new URLSearchParams(location.search).has('still');
-  const canvasOn = () => getComputedStyle(canvas).display !== 'none';
-
-  const srcEls = SOURCES.map((name) => { const d = document.createElement('div'); d.className = 'src'; d.textContent = name; sourcesEl.appendChild(d); return d; });
-  const rowEls = ROWS.map((r) => {
-    const d = document.createElement('div'); d.className = 'row'; d.setAttribute('role', 'button'); d.tabIndex = 0; d.setAttribute('aria-expanded', 'false');
-    const [cls, label] = STATUS[r.s];
-    d.innerHTML = '<span class="t">' + r.t + '</span><span>' + r.text + '</span><span class="s ' + cls + '"><i></i>' + label + '</span><span class="ev">' + r.ev + '</span>';
-    const toggle = () => { d.setAttribute('aria-expanded', String(d.classList.toggle('open'))); relayout(); };
-    d.addEventListener('click', toggle);
-    d.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
-    d.addEventListener('mouseenter', () => highlight(r.src));
-    d.addEventListener('mouseleave', () => highlight(null));
-    rowsEl.appendChild(d); return d;
-  });
-
-  // three.js: an orthographic scene mapped 1:1 to the report box, so DOM and 3D agree.
-  let renderer = null;
-  try { renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true }); renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); } catch (e) { renderer = null; }
-  const scene = new THREE.Scene();
-  let W = 1, H = 1;
-  const camera = new THREE.OrthographicCamera(0, 1, 0, -1, -2000, 2000);
-  const world = new THREE.Group(); scene.add(world);
-  const P = (x, y, z = 0) => new THREE.Vector3(x, -y, z);
-  const inkMat = (o, c = 0x3D8B68) => new THREE.LineBasicMaterial({ color: c, transparent: true, opacity: o });
-  let threads = [], pulses = [], layout = null;
-  const pointer = { x: 0.5, y: 0.5 };
-  const N = 80;
-
-  function build() {
-    const box = report.getBoundingClientRect(); W = box.width; H = box.height;
-    renderer.setSize(W, H, false);
-    camera.left = 0; camera.right = W; camera.top = 0; camera.bottom = -H; camera.updateProjectionMatrix();
-    while (world.children.length) { const o = world.children[0]; world.remove(o); o.geometry && o.geometry.dispose(); o.material && o.material.dispose(); }
-    threads = []; pulses = [];
-    const panel = document.getElementById('panel').getBoundingClientRect();
-    const px = panel.left - box.left;
-    const spineX = px - 30;
-    const sy0 = 70, sy1 = H - 70, srcX = 26;
-    layout = { px, spineX, rows: [], src: [] };
-    const depths = [-70, 40, -30, 60, -55, 25];
-    SOURCES.forEach((name, i) => {
-      const y = sy0 + (sy1 - sy0) * (i / (SOURCES.length - 1));
-      const z = depths[i];
-      layout.src.push({ name, x: srcX, y, z });
-      srcEls[i].style.left = srcX + 'px'; srcEls[i].style.top = y + 'px';
-      const ring = new THREE.Mesh(new THREE.RingGeometry(3.2, 4.2, 32), new THREE.MeshBasicMaterial({ color: 0x3D8B68, transparent: true, opacity: 0.85 }));
-      ring.position.copy(P(srcX - 16, y, z)); world.add(ring);
-      const a = P(srcX - 16, y, z), c = P(spineX, (sy0 + sy1) / 2, 0);
-      const ctrl = P((srcX + spineX) * 0.55, y + ((sy0 + sy1) / 2 - y) * 0.15, z * 0.5);
-      const curve = new THREE.QuadraticBezierCurve3(a, ctrl, c);
-      const geo = new THREE.BufferGeometry().setFromPoints(curve.getPoints(N));
-      const line = new THREE.Line(geo, inkMat(0.5));
-      geo.setDrawRange(0, reduced ? N + 1 : 0);
-      world.add(line); threads.push({ name, line, curve, ring, z });
-    });
-    const sg = new THREE.BufferGeometry().setFromPoints([P(spineX, sy0 - 10), P(spineX, sy1 + 10)]);
-    world.add(new THREE.Line(sg, inkMat(0.85, 0x3D8B68)));
-    rowEls.forEach((el) => {
-      const r = el.getBoundingClientRect(); const y = r.top - box.top + r.height / 2;
-      const g = new THREE.BufferGeometry().setFromPoints([P(spineX, y), P(px, y)]);
-      const line = new THREE.Line(g, inkMat(0.7, 0x67BF99)); line.visible = reduced; world.add(line);
-      layout.rows.push({ y, line });
-    });
-    render();
-  }
-
-  function highlight(names) {
-    if (!layout) return;
-    threads.forEach((t) => { const on = !names || names.includes(t.name); t.line.material.opacity = names ? (on ? 1 : 0.12) : 0.5; t.ring.material.opacity = names ? (on ? 1 : 0.25) : 0.85; });
-    srcEls.forEach((el, i) => el.classList.toggle('hot', !!names && names.includes(SOURCES[i])));
-    render();
-  }
-
-  function pulse(name, rowIndex, done) {
-    const t = threads.find((x) => x.name === name); if (!t) { done && done(); return; }
-    const row = layout.rows[rowIndex];
-    const path = new THREE.CurvePath();
-    path.add(t.curve);
-    const c = t.curve.getPoint(1);
-    path.add(new THREE.LineCurve3(c, P(layout.spineX, row.y)));
-    path.add(new THREE.LineCurve3(P(layout.spineX, row.y), P(layout.px, row.y)));
-    const col = new THREE.Color().lerpColors(new THREE.Color(0x3D8B68), new THREE.Color(0x03F5F2), Math.random());
-    const mesh = new THREE.Mesh(new THREE.CircleGeometry(3.5, 24), new THREE.MeshBasicMaterial({ color: col }));
-    world.add(mesh);
-    pulses.push({ mesh, path, t0: performance.now(), dur: 780, done });
-  }
-
-  let raf = 0;
-  function frame(now) {
-    raf = 0;
-    let alive = false;
-    for (const p of pulses) {
-      if (p.finished) continue;
-      const k = Math.min(1, (now - p.t0) / p.dur);
-      const e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
-      p.mesh.position.copy(p.path.getPoint(e));
-      if (k >= 1) { p.finished = true; world.remove(p.mesh); p.mesh.geometry.dispose(); p.mesh.material.dispose(); if (p.done) p.done(); } else alive = true;
-    }
-    for (const t of threads) { const g = t.line.geometry; const n = g.drawRange.count; if (n < N + 1) { g.setDrawRange(0, Math.min(N + 1, n + 3)); alive = true; } }
-    pulses = pulses.filter((p) => !p.finished);
-    render();
-    if (alive) raf = requestAnimationFrame(frame);
-  }
-  function kick() { if (!raf) raf = requestAnimationFrame(frame); }
-  function render() {
-    if (!renderer || !layout) return;
-    const dx = pointer.x - 0.5, dy = pointer.y - 0.5;
-    threads.forEach((t, i) => {
-      const ox = dx * t.z * 0.5, oy = dy * t.z * 0.3;
-      t.ring.position.x = layout.src[i].x - 16 + ox; t.ring.position.y = -(layout.src[i].y) - oy;
-      srcEls[i].style.transform = 'translate(' + ox + 'px, calc(-50% - ' + oy + 'px))';
-    });
-    renderer.render(scene, camera);
-  }
-
+  document.documentElement.classList.toggle('reduced', reduced);
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
-  let running = false, pending = false;
+
+  // deploys per day, 30 bars; weekends low
+  (function bars() {
+    const g = $('#bars'); const days = 30; const w = 600 / days;
+    const vals = [14,16,17,15,13,3,2,16,18,17,19,16,4,3,17,19,18,20,17,5,3,19,21,20,22,19,6,4,21,23]; // averages 14.2
+    let html = '';
+    vals.forEach((v, i) => {
+      const h = v * 4; const wk = i % 7 === 5 || i % 7 === 6;
+      html += `<rect class="grow-y" x="${(i * w + 3).toFixed(1)}" y="${(100 - h).toFixed(1)}" width="${(w - 6).toFixed(1)}" height="${h}" rx="2" ${wk ? 'fill-opacity=".35"' : ''} style="transition-delay:${200 + i * 25}ms"/>`;
+    });
+    g.innerHTML = html;
+    // 7-day rolling average, drawn as a line with a soft area under it
+    const pts = vals.map((_, i) => { const win = vals.slice(Math.max(0, i - 6), i + 1); const m = win.reduce((a, b) => a + b, 0) / win.length; return [(i * w + w / 2).toFixed(1), (100 - m * 4).toFixed(1)]; });
+    const line = 'M' + pts.map((p) => p.join(' ')).join(' L');
+    $('#avg-line').setAttribute('d', line);
+    $('#avg-area').setAttribute('d', line + ` L${pts[pts.length - 1][0]} 100 L${pts[0][0]} 100 Z`);
+  })();
+
+  function countUp(el) {
+    const target = parseFloat(el.dataset.count), dec = +(el.dataset.dec || 0), unit = el.dataset.unit || '', sep = el.dataset.sep;
+    const fmt = (v) => (sep ? Math.round(v).toLocaleString('en-US') : v.toFixed(dec)) + unit;
+    if (reduced) { el.textContent = fmt(target); return; }
+    const t0 = performance.now(), dur = 900;
+    const tick = (now) => { const k = Math.min(1, Math.max(0, (now - t0) / dur)); const e = 1 - Math.pow(1 - k, 3); el.textContent = fmt(target * e); if (k < 1) requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
+    setTimeout(() => { el.textContent = fmt(target); }, dur + 60);
+  }
+
+  const widgets = $$('.w'), msgs = { you: $('#m-you'), steps: $('#m-steps'), answer: $('#m-answer'), card: $('#m-card'), after: $('#m-after') };
+  const steps = $$('.step'), zst = $('#zst'), afterText = $('#after-text');
+  let running = false;
+
+  function decideRota(act) {
+    const re = act === 'reassign';
+    const c = $('#chip-rota'); c.className = 'chip ' + (re ? 'ok' : 'hold'); c.textContent = re ? 'Reassigned · you, 06:06' : 'Left as is';
+    $$('#call-rota .acts .btn').forEach((b) => (b.disabled = true)); $('#call-rota').classList.toggle('held', !re);
+    $('#rota-text').textContent = re
+      ? 'Rota reassigned: Priya covers platform through Friday, Sam and Ines are off the schedule, and Marcus is no longer the only responder.'
+      : 'Left as is. I’ll flag it again on Thursday, before the weekend rota is published.';
+    $('#m-rota').classList.add('in');
+  }
+  function decide(act) {
+    const held = act === 'hold';
+    $('#card-acts').innerHTML = '';
+    zst.textContent = 'In the room';
+    const chip = $('#card-chip'); chip.className = 'chip ' + (held ? 'nok' : 'nhold'); chip.textContent = held ? 'Held · you, 06:05' : 'Runs tonight · you, 06:05';
+    afterText.textContent = held
+      ? 'Held. I’ve told Tomas, moved 0043 to 23:00 UTC with the index built first, and put it in tonight’s brief with the rule that fired.'
+      : 'Understood. It runs as scheduled; I’ll watch the write lock from 02:30 and page Marcus on the published rule if p99 passes 5 s.';
+    msgs.after.classList.add('in');
+    const c = $('#chip-0043'); c.className = 'chip ' + (held ? 'ok' : 'hold'); c.textContent = held ? 'Held by you · 23:00' : 'Runs tonight';
+    const p = $('#proj-0043'); p.className = 'chip ' + (held ? 'ok' : 'hold'); p.textContent = held ? 'Held · off-peak' : 'Tonight';
+    $$('#call-0043 .acts .btn').forEach((b) => (b.disabled = true));
+    $('#call-0043').classList.toggle('held', !held);
+  }
+  const route = (b) => (b.dataset.call === 'rota' ? decideRota(b.dataset.act) : decide(b.dataset.act));
+  $$('[data-act]').forEach((b) => b.addEventListener('click', () => route(b)));
+
+  function reset() {
+    widgets.forEach((w) => w.classList.remove('in'));
+    Object.values(msgs).forEach((m) => m.classList.remove('in')); $('#m-rota').classList.remove('in');
+    steps.forEach((s) => { s.classList.remove('in', 'done'); $('use', s).setAttribute('href', '#i-spin'); });
+    $('#card-acts').innerHTML = '<button class="nbtn primary" type="button" data-call="0043" data-act="hold">Hold</button><button class="nbtn" type="button" data-call="0043" data-act="run">Let it run</button>';
+    $$('#card-acts [data-act]').forEach((b) => b.addEventListener('click', () => route(b)));
+    const cr = $('#chip-rota'); cr.className = 'chip hold'; cr.textContent = 'Held for your call';
+    $$('#call-rota .acts .btn').forEach((b) => (b.disabled = false)); $('#call-rota').classList.add('held');
+    $('#rota-text').textContent = ''; $('#m-rota').classList.remove('in');
+    $$('[data-count]').forEach((el) => { const dec = +(el.dataset.dec || 0), unit = el.dataset.unit || ''; el.textContent = (el.dataset.sep ? '0' : (0).toFixed(dec)) + unit; });
+    const chip = $('#card-chip'); chip.className = 'chip nhold'; chip.textContent = 'Your call';
+    const c = $('#chip-0043'); c.className = 'chip hold'; c.textContent = 'Held for your call';
+    const p = $('#proj-0043'); p.className = 'chip hold'; p.textContent = 'Held';
+    $$('#call-0043 .acts .btn').forEach((b) => (b.disabled = false)); $('#call-0043').classList.add('held');
+    afterText.textContent = '';
+    zst.textContent = 'In the room'; zst.classList.remove('busy');
+  }
+
   async function deliver() {
     if (running) return; running = true;
-    try { await play(); } finally { running = false; if (pending) { pending = false; relayout(); } }
-  }
-  async function play() {
-    rowEls.forEach((el) => { el.classList.remove('in', 'open'); el.setAttribute('aria-expanded', 'false'); });
-    layout.rows.forEach((r) => (r.line.visible = false));
-    threads.forEach((t) => t.line.geometry.setDrawRange(0, 0));
-    srcEls.forEach((el) => el.classList.remove('in'));
-    greet.classList.remove('in'); closeEl.classList.remove('in');
-    render();
-    greet.textContent = GREETING; await wait(120); greet.classList.add('in');
-    await wait(700);
-    srcEls.forEach((el, i) => setTimeout(() => el.classList.add('in'), i * 90));
-    kick(); await wait(1000);
-    greet.textContent = GREETING_FULL;
-    await wait(500);
-    for (let i = 0; i < ROWS.length; i++) {
-      const r = ROWS[i];
-      await new Promise((resolve) => {
-        let left = r.src.length;
-        r.src.forEach((name, j) => setTimeout(() => pulse(name, i, () => { if (--left === 0) resolve(); }), j * 90));
-        setTimeout(kick, 0);
-      });
-      layout.rows[i].line.visible = true; rowEls[i].classList.add('in'); render();
-      await wait(i === 1 || i === 5 ? 900 : 520);
-    }
-    await wait(400);
-    say.textContent = CLOSING; closeEl.classList.add('in');
+    try {
+      reset();
+      await wait(150);
+      for (let i = 0; i < widgets.length; i++) { widgets[i].classList.add('in'); $$('[data-count]', widgets[i]).forEach(countUp); await wait(110); }
+      await wait(700);
+      msgs.you.classList.add('in'); zst.textContent = 'Reading'; zst.classList.add('busy');
+      await wait(600);
+      msgs.steps.classList.add('in');
+      for (const s of steps) { s.classList.add('in'); await wait(520); s.classList.add('done'); $('use', s).setAttribute('href', '#i-check'); await wait(140); }
+      await wait(250);
+      zst.textContent = 'In the room'; zst.classList.remove('busy');
+      msgs.answer.classList.add('in');
+      await wait(900);
+      msgs.card.classList.add('in'); zst.textContent = 'Waiting on you';
+    } finally { running = false; }
   }
   function showFinished() {
-    greet.textContent = GREETING_FULL; greet.classList.add('in');
-    srcEls.forEach((el) => el.classList.add('in'));
-    rowEls.forEach((el) => el.classList.add('in'));
-    say.textContent = CLOSING; closeEl.classList.add('in');
-    if (layout) { layout.rows.forEach((r) => (r.line.visible = true)); threads.forEach((t) => t.line.geometry.setDrawRange(0, N + 1)); render(); }
+    widgets.forEach((w) => { w.classList.add('in'); $$('[data-count]', w).forEach(countUp); });
+    [msgs.you, msgs.steps, msgs.answer, msgs.card].forEach((m) => m.classList.add('in')); zst.textContent = 'Waiting on you';
+    steps.forEach((s) => { s.classList.add('in', 'done'); $('use', s).setAttribute('href', '#i-check'); });
   }
-
-  const replay = document.getElementById('replay');
-  replay.addEventListener('click', () => {
-    rowEls.forEach((el) => { el.classList.remove('open'); el.setAttribute('aria-expanded', 'false'); });
-    if (reduced || !canvasOn() || !renderer) return;
-    deliver();
-  });
-  report.addEventListener('pointermove', (e) => { const b = report.getBoundingClientRect(); pointer.x = (e.clientX - b.left) / b.width; pointer.y = (e.clientY - b.top) / b.height; render(); });
-  report.addEventListener('pointerleave', () => { pointer.x = 0.5; pointer.y = 0.5; render(); });
-  function relayout() {
-    if (renderer && report.classList.contains('flat') && matchMedia('(min-width: 1101px)').matches) { report.classList.remove('flat'); replay.hidden = reduced; }
-    if (!canvasOn() || !renderer) return;
-    if (running) { pending = true; return; }
-    build(); showFinished();
-  }
-  addEventListener('resize', relayout);
-
-  // Both lines are measured before they are shown, so the panel never grows under the threads.
-  greet.textContent = GREETING_FULL; say.textContent = CLOSING;
-  Promise.race([document.fonts.ready, wait(2500)]).then(() => {
-    if (!canvasOn() || !renderer) { report.classList.add('flat'); replay.hidden = true; showFinished(); return; }
-    build();
-    if (reduced) { replay.hidden = true; showFinished(); } else deliver();
-  });
+  $('#replay').addEventListener('click', () => { if (reduced) { reset(); showFinished(); } else deliver(); });
+  Promise.race([document.fonts.ready, wait(2500)]).then(() => { if (reduced) showFinished(); else deliver(); });
 </script>
 </body>
 </html>
