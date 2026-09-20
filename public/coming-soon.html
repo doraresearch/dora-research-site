@@ -39,7 +39,8 @@
   body { margin: 0; background: var(--canvas); color: var(--ink); font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 18px; line-height: 1.5; font-feature-settings: 'tnum'; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
   a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
-  .page { min-height: 100vh; min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto; padding: 32px 48px; }
+  .page { min-height: 100vh; min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr auto; padding: 32px 48px; }
+  .page > main { min-width: 0; }
   .top { display: flex; justify-content: space-between; align-items: center; font-size: 15px; }
   .top .brand { display: flex; align-items: center; gap: 12px; font-weight: 500; }
   .top a.mail { color: var(--action); border-bottom: 1px solid var(--action); padding-bottom: 1px; }
@@ -58,8 +59,9 @@
   .bottom { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); padding-top: 28px; }
 
   /* the window sits on a dot-grid plate, like a screenshot that is still alive */
-  .plate { position: relative; padding: 28px 36px 0; border-radius: 16px 16px 0 0; overflow: hidden; }
+  .plate { position: relative; min-width: 0; padding: 28px 36px 0; border-radius: 16px 16px 0 0; overflow: hidden; }
   .plate::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, #C7CFD3 1px, transparent 1.2px); background-size: 20px 20px; -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 78%); mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 78%); }
+  .frame { width: 1272px; transform-origin: 0 0; }
   .window { position: relative; height: 900px; display: grid; grid-template-columns: 200px minmax(0, 1fr) 312px; border-radius: 12px 12px 0 0; background: var(--raised); box-shadow: var(--window-shadow); overflow: hidden; font-family: var(--ui); font-size: 12.5px; line-height: 1.45; color: var(--ink); }
 
   /* sidebar */
@@ -215,12 +217,10 @@
   .zp .replay { margin: 0 14px 12px; align-self: flex-start; font: inherit; font-size: 11.5px; color: var(--n-muted); background: none; border: 0; padding: 0; border-bottom: 1px solid var(--n-line); cursor: pointer; }
   .zp .replay:hover { color: var(--n-text); border-color: var(--n-text); }
 
-  @media (max-width: 1180px) {
-    .window { grid-template-columns: 184px minmax(0, 1fr); }
-    .zp { display: none; }
-  }
   @media (max-width: 960px) {
     .hero { grid-template-columns: 1fr; gap: 20px; }
+    .frame { width: auto !important; transform: none !important; }
+    .plate { height: auto !important; }
     .window { grid-template-columns: 1fr; height: auto; }
     .side { display: none; }
     .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -294,6 +294,7 @@
     </section>
 
     <div class="plate">
+      <div class="frame" id="frame">
       <div class="window" id="window" role="figure" aria-label="Zora’s morning brief for a CTO, demonstration data">
         <aside class="side" aria-hidden="true">
           <div class="ws"><span class="z">N</span>Northwind <span class="chip prep" style="height:16px;font-size:9.5px;padding:0 6px;gap:4px">Engineering</span><svg class="i chev"><use href="#i-updown"/></svg></div>
@@ -503,6 +504,7 @@
           <div class="ask"><span>Ask Zora…</span><span class="send"><svg class="i" style="width:13px;height:13px"><use href="#i-send"/></svg></span></div>
         </aside>
       </div>
+      </div>
     </div>
   </main>
 
@@ -546,6 +548,17 @@
     requestAnimationFrame(tick);
     setTimeout(() => { el.textContent = fmt(target); }, dur + 60);
   }
+
+  // Fit the 1272 px window to the plate: scale it down on tablets and small laptops, fill on wide screens.
+  const plate = $('.plate'), frame = $('#frame');
+  function fit() {
+    if (matchMedia('(max-width: 960px)').matches) { frame.style.width = ''; frame.style.transform = ''; plate.style.height = ''; return; }
+    const avail = plate.clientWidth - 72, w = Math.max(1272, avail), s = avail / w;
+    frame.style.width = w + 'px'; frame.style.transform = 'scale(' + s.toFixed(4) + ')';
+    plate.style.height = Math.round(900 * s + 28) + 'px';
+  }
+  fit(); addEventListener('resize', fit); addEventListener('orientationchange', fit); addEventListener('pageshow', fit); document.addEventListener('visibilitychange', fit);
+  if ('ResizeObserver' in window) new ResizeObserver(fit).observe(plate);
 
   const widgets = $$('.w'), msgs = { you: $('#m-you'), steps: $('#m-steps'), answer: $('#m-answer'), card: $('#m-card'), after: $('#m-after') };
   const steps = $$('.step'), zst = $('#zst'), afterText = $('#after-text');
