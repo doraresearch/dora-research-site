@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Coming soon · DORA Research, Inc.</title>
-<meta name="description" content="Zora is an AI chief of staff for CTOs, by DORA Research, an applied AI lab. Private beta, by invitation.">
+<meta name="description" content="Zora is an AI Chief of Staff for CTOs. She tracks every commitment, decision, and risk across your engineering organization and brings you the calls that need you, with the evidence attached. By DORA Research, an applied AI lab. Private beta, by invitation.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="DORA Research, Inc.">
-<meta property="og:title" content="Zora is an AI chief of staff for CTOs. Coming soon.">
+<meta property="og:title" content="Zora is an AI Chief of Staff for CTOs. Coming soon.">
 <meta property="og:description" content="Zora is the first agent from DORA Research, an applied AI lab. Private beta, by invitation.">
 <meta property="og:image" content="https://www.dorareason.com/og-soon.png">
 <meta property="og:image:width" content="1200">
@@ -20,8 +20,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
 <style>
   :root {
-    --canvas: #F4F6F8; --raised: #FFFEFB; --subtle: #F0EFE9; --band: #E2E8EE; --selected: #E7ECE8;
-    --ink: #111814; --muted: #48564F; --faint: #6B776F; --faint-ink: #838F89;
+    --canvas: #F4F6F8; --raised: #FFFEFB; --subtle: #F0EFE9;
+    --ink: #111814; --muted: #48564F; --faint: #6B776F;
     --rule: #DCE1DC; --rule-soft: #E6EAE6;
     --action: #145C43; --action-hover: #0C4935; --action-soft: #DCECE4;
     --focus: #1D63D8;
@@ -29,7 +29,6 @@
     --living: #3D8B68; --cyan: #03F5F2;
     /* night, for Zora's own panel */
     --n-ground: #131E18; --n-raised: #19261F; --n-hover: #23382F; --n-line: #2B3932; --n-strong: #5D6C64; --n-text: #F5F7F2; --n-muted: #A4B1AA; --n-mint: #67BF99; --n-mint-soft: #183428; --n-warn: #F1C65A; --n-warn-soft: #392F17; --n-rose: #F08A9A; --n-rose-soft: #3C2028; --n-ok: #72CF82; --n-ok-soft: #193A22;
-    --shadow: 0 2px 8px -2px rgba(13,21,17,.06), 0 16px 32px -12px rgba(13,21,17,.14);
     --window-shadow: 0 1px 2px rgba(13,21,17,.05), 0 24px 48px -16px rgba(13,21,17,.22), 0 0 0 1px rgba(13,21,17,.06);
     --ui: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
@@ -49,7 +48,7 @@
   .top .mark g { transform-origin: 12px 12px; animation: swarm-spin 22s linear infinite; }
   @keyframes swarm-spin { to { transform: rotate(360deg); } }
 
-  .hero { padding: 28px 0 24px; display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 32px; align-items: center; }
+  .hero { padding: 28px 0 24px; display: grid; grid-template-columns: minmax(0, 480px) minmax(0, 1fr); gap: 40px; align-items: center; }
   .kicker { margin: 0 0 16px; font-size: 18px; font-weight: 500; color: var(--action); }
   h1 { font-size: 40px; line-height: 1.08; font-weight: 500; letter-spacing: -.025em; margin: 0; max-width: 13em; text-wrap: balance; }
   .sub { margin: 16px 0 0; max-width: 32em; color: var(--muted); font-size: 16px; }
@@ -59,7 +58,7 @@
   .bottom { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); padding-top: 28px; }
 
   /* the stage: a dot-grid plate with the six sources feeding the scaled window */
-  .stage { position: relative; min-width: 0; display: grid; grid-template-columns: 120px minmax(0, 1fr); padding: 24px 20px 24px 0; border-radius: 16px; overflow: hidden; }
+  .stage { position: relative; min-width: 0; width: 100%; justify-self: end; display: grid; grid-template-columns: 104px minmax(0, 1fr); padding: 20px 16px 20px 0; border-radius: 16px; overflow: hidden; }
   .stage::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, #C7CFD3 1px, transparent 1.2px); background-size: 20px 20px; -webkit-mask-image: radial-gradient(ellipse at 60% 50%, #000 30%, transparent 78%); mask-image: radial-gradient(ellipse at 60% 50%, #000 30%, transparent 78%); }
   .feed { position: relative; min-width: 0; }
   .feed svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
@@ -118,6 +117,7 @@
   .w-h .meta { margin-left: auto; font-weight: 400; color: var(--faint); font-size: 11.5px; }
   .w-h .meta a { color: var(--action); }
   .w-b { padding: 10px 12px 12px; }
+  .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
   .w-f { margin-top: auto; border-top: 1px solid var(--rule-soft); padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: var(--muted); }
   .w-f a { color: var(--action); font-weight: 500; }
 
@@ -224,11 +224,9 @@
   .zp .replay { margin: 0 14px 12px; align-self: flex-start; font: inherit; font-size: 11.5px; color: var(--n-muted); background: none; border: 0; padding: 0; border-bottom: 1px solid var(--n-line); cursor: pointer; }
   .zp .replay:hover { color: var(--n-text); border-color: var(--n-text); }
 
-  @media (min-width: 961px) { .grid > .w:nth-child(n+5) { display: none; } }
-  @media (max-width: 1200px) {
-    .hero { grid-template-columns: 1fr; gap: 20px; }
-  }
+  .grid > .w:nth-child(n+5) { display: none; }
   @media (max-width: 960px) {
+    .hero { grid-template-columns: 1fr; gap: 20px; }
     .frame { width: auto !important; transform: none !important; }
     .slot { height: auto !important; }
     .stage { grid-template-columns: 1fr; padding: 20px 12px; }
@@ -240,6 +238,12 @@
   }
   @media (max-width: 640px) {
     .page { padding: 24px; }
+    .top { flex-wrap: wrap; gap: 8px 16px; }
+    .bar { height: auto; min-height: 46px; flex-wrap: wrap; gap: 8px 12px; padding: 8px 12px; }
+    .bar .right { margin-left: 0; }
+    .greet { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .greet .actions { flex-wrap: wrap; }
+    .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     h1 { font-size: 32px; }
     .grid { grid-template-columns: 1fr; }
     .w, .w.c3, .w.c4, .w.c6 { grid-column: span 1; }
@@ -251,7 +255,7 @@
     .top .mark g { animation: none; }
     .zp-h .st.busy::after { animation: none; }
   }
-  @media (prefers-reduced-motion: reduce), all { html.reduced .w, html.reduced .msg, html.reduced .step, html.reduced .draw, html.reduced .grow-y, html.reduced .fill { transition: none !important; } }
+  html.reduced .w, html.reduced .msg, html.reduced .step, html.reduced .draw, html.reduced .grow-y, html.reduced .fill { transition: none !important; }
   @media (prefers-reduced-motion: reduce) { .w, .msg, .step, .draw, .grow-y, .fill { transition: none !important; } }
 </style>
 </head>
@@ -298,9 +302,9 @@
     <section class="hero">
       <div class="copy">
         <p class="kicker">Coming soon.</p>
-        <h1>Zora is an AI chief of staff for CTOs.</h1>
-        <p class="sub">She keeps every commitment, decision, and risk across your engineering organization in view, and prepares each call with the evidence before you have to make it. Zora is the first agent from <b>DORA Research</b>, an applied AI lab. Private beta, by invitation.</p>
-        <p class="contact">The site is on its way. Until then, the private beta is by invitation: write to <a href="mailto:hello@dorareason.com"><b>hello@dorareason.com</b></a>.</p>
+        <h1>Zora is an AI Chief of Staff for CTOs.</h1>
+        <p class="sub">She tracks every commitment, decision, and risk across your engineering organization and brings you the calls that need you, with the evidence attached.</p>
+        <p class="contact">Private beta, by invitation. Write to <a href="mailto:hello@dorareason.com"><b>hello@dorareason.com</b></a>.</p>
       </div>
 
       <div class="stage" id="stage">
@@ -348,7 +352,7 @@
                 <h2 id="greet">Morning, boss.</h2>
                 <p>Read 1,204 records from six sources between 05:12 and 05:58. One incident overnight, mitigated. Two things need your call.</p>
               </div>
-              <div class="actions"><button class="btn" type="button">Share brief</button><button class="btn primary" type="button">Open incident review</button></div>
+              <div class="actions" aria-hidden="true"><button class="btn" type="button" tabindex="-1">Share brief</button><button class="btn primary" type="button" tabindex="-1">Open incident review</button></div>
             </div>
 
             <div class="grid" id="grid">
@@ -393,7 +397,7 @@
               <!-- WIDGET:delivery -->
               <section class="w c4" data-w="delivery">
                 <header class="w-h"><span class="ic"><svg class="i"><use href="#i-delivery"/></svg></span>Delivery<span class="meta">Last 30 days · against your own baseline</span></header>
-                <div class="w-b" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+                <div class="w-b metrics">
                   <div><div class="lbl">Deploys / day</div><div class="num" data-count="14.2" data-dec="1">0.0</div><div class="delta up">▲ 8% vs Aug</div></div>
                   <div><div class="lbl">Lead time</div><div class="num" data-count="1.8" data-dec="1" data-unit=" d">0.0 d</div><div class="delta up">▼ 0.3 d</div></div>
                   <div><div class="lbl">Change failure</div><div class="num" data-count="3.1" data-dec="1" data-unit="%">0.0%</div><div class="delta up">▼ 0.4 pt</div></div>
@@ -403,7 +407,7 @@
                   <div class="legend"><span><i style="background:#145C43;opacity:.85"></i>Deploys</span><span><i style="background:#145C43;opacity:.3"></i>Weekend</span><span><i style="height:2px;background:#145C43"></i>7-day average</span></div>
                   <svg class="chart" viewBox="0 0 640 120" aria-hidden="true">
                     <g stroke="#E6EAE6" stroke-width="1"><path d="M0 100.5H600M0 60.5H600M0 20.5H600"/></g>
-                    <g font-family="Geist Mono, ui-monospace, monospace" font-size="10" fill="#838F89"><text x="0" y="112">Aug 22</text><text x="290" y="112">Sep 6</text><text x="562" y="112">Sep 20</text><text x="612" y="24">20</text><text x="612" y="64">10</text><text x="612" y="104">0</text></g>
+                    <g font-family="Geist Mono, ui-monospace, monospace" font-size="10" fill="#6B776F"><text x="0" y="112">Aug 22</text><text x="290" y="112">Sep 6</text><text x="562" y="112">Sep 20</text><text x="612" y="24">20</text><text x="612" y="64">10</text><text x="612" y="104">0</text></g>
                     <g id="bars" fill="#145C43" fill-opacity=".85"></g>
                     <path id="avg-area" fill="url(#area)" class="fill"/>
                     <path id="avg-line" fill="none" stroke="#145C43" stroke-width="1.5" class="draw" pathLength="1"/>
