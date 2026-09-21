@@ -49,7 +49,7 @@
   .top .mark g { transform-origin: 12px 12px; animation: swarm-spin 22s linear infinite; }
   @keyframes swarm-spin { to { transform: rotate(360deg); } }
 
-  .hero { padding: 28px 0 24px; display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 32px; align-items: center; }
+  .hero { padding: 28px 0 24px; display: grid; grid-template-columns: minmax(0, 480px) minmax(0, 1fr); gap: 40px; align-items: center; }
   .kicker { margin: 0 0 16px; font-size: 18px; font-weight: 500; color: var(--action); }
   h1 { font-size: 40px; line-height: 1.08; font-weight: 500; letter-spacing: -.025em; margin: 0; max-width: 13em; text-wrap: balance; }
   .sub { margin: 16px 0 0; max-width: 32em; color: var(--muted); font-size: 16px; }
@@ -59,7 +59,7 @@
   .bottom { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); padding-top: 28px; }
 
   /* the stage: a dot-grid plate with the six sources feeding the scaled window */
-  .stage { position: relative; min-width: 0; display: grid; grid-template-columns: 120px minmax(0, 1fr); padding: 24px 20px 24px 0; border-radius: 16px; overflow: hidden; }
+  .stage { position: relative; min-width: 0; width: 100%; justify-self: end; display: grid; grid-template-columns: 104px minmax(0, 1fr); padding: 20px 16px 20px 0; border-radius: 16px; overflow: hidden; }
   .stage::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, #C7CFD3 1px, transparent 1.2px); background-size: 20px 20px; -webkit-mask-image: radial-gradient(ellipse at 60% 50%, #000 30%, transparent 78%); mask-image: radial-gradient(ellipse at 60% 50%, #000 30%, transparent 78%); }
   .feed { position: relative; min-width: 0; }
   .feed svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
@@ -225,10 +225,8 @@
   .zp .replay:hover { color: var(--n-text); border-color: var(--n-text); }
 
   @media (min-width: 961px) { .grid > .w:nth-child(n+5) { display: none; } }
-  @media (max-width: 1200px) {
-    .hero { grid-template-columns: 1fr; gap: 20px; }
-  }
   @media (max-width: 960px) {
+    .hero { grid-template-columns: 1fr; gap: 20px; }
     .frame { width: auto !important; transform: none !important; }
     .slot { height: auto !important; }
     .stage { grid-template-columns: 1fr; padding: 20px 12px; }
