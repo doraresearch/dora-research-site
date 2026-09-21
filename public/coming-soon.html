@@ -118,6 +118,7 @@
   .w-h .meta { margin-left: auto; font-weight: 400; color: var(--faint); font-size: 11.5px; }
   .w-h .meta a { color: var(--action); }
   .w-b { padding: 10px 12px 12px; }
+  .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
   .w-f { margin-top: auto; border-top: 1px solid var(--rule-soft); padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: var(--muted); }
   .w-f a { color: var(--action); font-weight: 500; }
 
@@ -224,7 +225,7 @@
   .zp .replay { margin: 0 14px 12px; align-self: flex-start; font: inherit; font-size: 11.5px; color: var(--n-muted); background: none; border: 0; padding: 0; border-bottom: 1px solid var(--n-line); cursor: pointer; }
   .zp .replay:hover { color: var(--n-text); border-color: var(--n-text); }
 
-  @media (min-width: 961px) { .grid > .w:nth-child(n+5) { display: none; } }
+  .grid > .w:nth-child(n+5) { display: none; }
   @media (max-width: 960px) {
     .hero { grid-template-columns: 1fr; gap: 20px; }
     .frame { width: auto !important; transform: none !important; }
@@ -238,6 +239,12 @@
   }
   @media (max-width: 640px) {
     .page { padding: 24px; }
+    .top { flex-wrap: wrap; gap: 8px 16px; }
+    .bar { height: auto; min-height: 46px; flex-wrap: wrap; gap: 8px 12px; padding: 8px 12px; }
+    .bar .right { margin-left: 0; }
+    .greet { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .greet .actions { flex-wrap: wrap; }
+    .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     h1 { font-size: 32px; }
     .grid { grid-template-columns: 1fr; }
     .w, .w.c3, .w.c4, .w.c6 { grid-column: span 1; }
@@ -391,7 +398,7 @@
               <!-- WIDGET:delivery -->
               <section class="w c4" data-w="delivery">
                 <header class="w-h"><span class="ic"><svg class="i"><use href="#i-delivery"/></svg></span>Delivery<span class="meta">Last 30 days · against your own baseline</span></header>
-                <div class="w-b" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+                <div class="w-b metrics">
                   <div><div class="lbl">Deploys / day</div><div class="num" data-count="14.2" data-dec="1">0.0</div><div class="delta up">▲ 8% vs Aug</div></div>
                   <div><div class="lbl">Lead time</div><div class="num" data-count="1.8" data-dec="1" data-unit=" d">0.0 d</div><div class="delta up">▼ 0.3 d</div></div>
                   <div><div class="lbl">Change failure</div><div class="num" data-count="3.1" data-dec="1" data-unit="%">0.0%</div><div class="delta up">▼ 0.4 pt</div></div>
