@@ -29,7 +29,7 @@
     --living: #3D8B68; --cyan: #03F5F2;
     /* night, for Zora's own panel */
     --n-ground: #131E18; --n-raised: #19261F; --n-hover: #23382F; --n-line: #2B3932; --n-strong: #5D6C64; --n-text: #F5F7F2; --n-muted: #A4B1AA; --n-mint: #67BF99; --n-mint-soft: #183428; --n-warn: #F1C65A; --n-warn-soft: #392F17; --n-rose: #F08A9A; --n-rose-soft: #3C2028; --n-ok: #72CF82; --n-ok-soft: #193A22;
-    --window-shadow: 0 1px 2px rgba(13,21,17,.05), 0 24px 48px -16px rgba(13,21,17,.22), 0 0 0 1px rgba(13,21,17,.06);
+    --window-shadow: 0 0 0 1px rgba(13,21,17,.06), inset 0 1px 0 rgba(255,255,255,.75), 0 1px 2px rgba(13,21,17,.05), 0 6px 12px -6px rgba(13,21,17,.08), 0 24px 48px -16px rgba(13,21,17,.18), 0 64px 96px -32px rgba(13,21,17,.28);
     --ui: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
   }
@@ -59,7 +59,7 @@
 
   /* the stage: a dot-grid plate with the six sources feeding the scaled window */
   .stage { position: relative; min-width: 0; width: 100%; justify-self: end; display: grid; grid-template-columns: 104px minmax(0, 1fr); padding: 20px 16px 20px 0; border-radius: 16px; overflow: hidden; }
-  .stage::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, #C7CFD3 1px, transparent 1.2px); background-size: 20px 20px; -webkit-mask-image: radial-gradient(ellipse at 60% 50%, #000 30%, transparent 78%); mask-image: radial-gradient(ellipse at 60% 50%, #000 30%, transparent 78%); }
+  .stage::before { content: ''; position: absolute; inset: 0; background: radial-gradient(70% 90% at 62% 48%, rgba(255,255,255,.85), rgba(255,255,255,0) 72%); }
   .feed { position: relative; min-width: 0; }
   .feed svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
   .feed svg path { fill: none; stroke: var(--living); stroke-width: 1; opacity: .35; }
@@ -70,9 +70,11 @@
   html.reduced .feed svg path.flow { display: none; }
   .feed-src { position: absolute; left: 6px; transform: translateY(-50%); padding-left: 16px; font-size: 12.5px; color: var(--muted); white-space: nowrap; }
   .feed-src::before { content: ''; position: absolute; left: 0; top: 50%; width: 8px; height: 8px; margin-top: -5px; border-radius: 50%; border: 1.5px solid var(--living); box-sizing: border-box; }
-  .slot { position: relative; min-width: 0; }
-  .frame { width: 1100px; transform-origin: 0 0; }
-  .window { position: relative; height: 676px; display: grid; grid-template-columns: 200px minmax(0, 1fr) 300px; grid-template-rows: minmax(0, 1fr); border-radius: 12px; background: var(--raised); box-shadow: var(--window-shadow); overflow: hidden; font-family: var(--ui); font-size: 12.5px; line-height: 1.45; color: var(--ink); }
+  .slot { position: relative; min-width: 0; animation: rise 900ms cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  html.reduced .slot { animation: none; }
+  .frame { width: 1100px; }
+  .window { position: relative; height: 640px; display: grid; grid-template-columns: 200px minmax(0, 1fr) 300px; grid-template-rows: minmax(0, 1fr); border-radius: 16px; background: var(--raised); box-shadow: var(--window-shadow); overflow: hidden; font-family: var(--ui); font-size: 12.5px; line-height: 1.45; color: var(--ink); }
 
   /* sidebar */
   .side { background: #F6F7F5; border-right: 1px solid var(--rule); padding: 12px 10px; display: flex; flex-direction: column; gap: 2px; font-size: 12.5px; min-height: 0; overflow: hidden; }
@@ -99,14 +101,14 @@
   .search { flex: 1; max-width: 200px; height: 30px; margin: 0 8px 0 12px; white-space: nowrap; border: 1px solid var(--rule); border-radius: 7px; background: #FAFBF9; display: flex; align-items: center; gap: 8px; padding: 0 8px; color: var(--faint); font-size: 12px; }
   .search kbd { margin-left: auto; font-family: var(--mono); font-size: 10px; border: 1px solid var(--rule); border-radius: 4px; padding: 1px 5px; color: var(--faint); background: #fff; }
   .bar .right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
-  .pill { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 8px; border-radius: 6px; font-size: 11.5px; font-weight: 500; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 8px; border-radius: 6px; font-size: 11.5px; font-weight: 500; white-space: nowrap; }
   .pill.time { background: var(--action-soft); color: var(--action); font-family: var(--mono); font-weight: 500; }
   .me { width: 26px; height: 26px; border-radius: 50%; background: #2A4E3E; color: #fff; display: grid; place-items: center; font-size: 10.5px; font-weight: 600; }
-  .content { padding: 18px 18px 24px; overflow: hidden; }
+  .content { padding: 20px 18px 24px; overflow: hidden; }
   .greet { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
   .greet h2 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -.02em; }
   .greet p { margin: 4px 0 0; color: var(--muted); font-size: 12.5px; }
-  .greet .actions { display: flex; gap: 8px; }
+  .greet .actions { display: flex; gap: 8px; flex: none; }
   .btn { display: inline-flex; align-items: center; gap: 6px; height: 28px; white-space: nowrap; padding: 0 10px; border-radius: 7px; border: 1px solid var(--rule); background: #fff; color: var(--ink); font: inherit; font-size: 12px; font-weight: 500; cursor: pointer; }
   .btn:hover { border-color: var(--faint); }
   .btn.primary { background: var(--action); border-color: var(--action); color: #fff; }
@@ -197,7 +199,7 @@
   .zp-h .st { margin-left: auto; font-size: 11px; color: var(--n-muted); font-family: var(--mono); }
   .zp-h .st.busy::after { content: ''; display: inline-block; width: 6px; height: 6px; margin-left: 6px; border-radius: 50%; background: var(--n-mint); animation: blink 1s ease-in-out infinite; vertical-align: 1px; }
   @keyframes blink { 50% { opacity: .2; } }
-  .tr { flex: 1; min-height: 0; overflow: hidden; padding: 14px 16px 8px; display: flex; flex-direction: column; gap: 12px; font-size: 12.5px; line-height: 1.5; }
+  .tr { flex: 1; min-height: 0; overflow: hidden; padding: 12px 16px 6px; display: flex; flex-direction: column; gap: 10px; font-size: 12.5px; line-height: 1.5; }
   .msg { opacity: 0; transform: translateY(4px); transition: opacity 260ms ease, transform 260ms ease; }
   .msg.in { opacity: 1; transform: none; }
   .msg.you { align-self: flex-end; max-width: 92%; background: var(--n-raised); border: 1px solid var(--n-line); border-radius: 10px 10px 2px 10px; padding: 7px 10px; }
@@ -214,7 +216,7 @@
   .msg.z p { margin: 0 0 8px; }
   .msg.z p:last-child { margin-bottom: 0; }
   .msg.z .ref { color: var(--n-mint); }
-  .card { border: 1px solid var(--n-line); background: var(--n-raised); border-radius: 10px; padding: 12px 14px; display: grid; gap: 8px; }
+  .card { border: 1px solid var(--n-line); background: var(--n-raised); border-radius: 10px; padding: 10px 12px; display: grid; gap: 8px; }
   .card .ct { font-weight: 500; display: flex; gap: 8px; align-items: flex-start; }
   .card .ct .chip { margin-left: auto; }
   .card .cd { color: var(--n-muted); font-size: 12px; }
@@ -225,16 +227,15 @@
   .nbtn:hover { border-color: var(--n-text); }
   .chip.nhold { color: var(--n-warn); background: var(--n-warn-soft); }
   .chip.nok { color: var(--n-ok); background: var(--n-ok-soft); }
-  .ask { margin: 0 14px 14px; border: 1px solid var(--n-line); background: var(--n-raised); border-radius: 9px; display: flex; align-items: center; gap: 8px; padding: 0 8px 0 12px; height: 36px; color: var(--n-muted); font-size: 12.5px; }
+  .ask { margin: 0 14px 12px; border: 1px solid var(--n-line); background: var(--n-raised); border-radius: 9px; display: flex; align-items: center; gap: 8px; padding: 0 8px 0 12px; height: 36px; color: var(--n-muted); font-size: 12.5px; }
   .ask .send { margin-left: auto; width: 24px; height: 24px; border-radius: 6px; background: var(--n-line); display: grid; place-items: center; color: var(--n-muted); }
-  .zp .replay { margin: 0 14px 12px; align-self: flex-start; font: inherit; font-size: 11.5px; color: var(--n-muted); background: none; border: 0; padding: 0; border-bottom: 1px solid var(--n-line); cursor: pointer; }
+  .zp .replay { margin-left: 10px; font: inherit; font-size: 10.5px; color: var(--n-muted); background: none; border: 1px solid var(--n-line); border-radius: 5px; padding: 2px 7px; cursor: pointer; }
   .zp .replay:hover { color: var(--n-text); border-color: var(--n-text); }
 
   .grid > .w:nth-child(n+3) { display: none; }
   @media (max-width: 960px) {
     .hero { grid-template-columns: 1fr; gap: 20px; }
-    .frame { width: auto !important; transform: none !important; }
-    .slot { height: auto !important; }
+    .frame { width: auto !important; zoom: 1 !important; }
     .stage { grid-template-columns: 1fr; padding: 20px 12px; }
     .feed { display: none; }
     .window { grid-template-columns: 1fr; height: auto; }
@@ -261,6 +262,7 @@
     .top .mark g { animation: none; }
     .zp-h .st.busy::after { animation: none; }
     .feed svg path.flow { display: none; }
+    .slot { animation: none; }
   }
   html.reduced .w, html.reduced .msg, html.reduced .step, html.reduced .draw, html.reduced .grow-y, html.reduced .fill { transition: none !important; }
   @media (prefers-reduced-motion: reduce) { .w, .msg, .step, .draw, .grow-y, .fill { transition: none !important; } }
@@ -346,20 +348,13 @@
         </aside>
 
         <div class="main">
-          <div class="bar">
-            <span class="crumb"><b>Brief</b><svg class="i" style="width:12px;height:12px;color:var(--faint)"><use href="#i-chev"/></svg>Mon 21 Sep 2026</span>
-            <div class="search"><svg class="i" style="width:13px;height:13px"><use href="#i-search"/></svg>Ask Zora<kbd>⌘K</kbd></div>
-            <div class="right"><span class="pill time"><svg class="i" style="width:12px;height:12px"><use href="#i-clock"/></svg>Compiled 06:00</span>
-            <svg class="i" style="color:var(--faint)"><use href="#i-bell"/></svg>
-            <span class="me">DK</span></div>
-          </div>
           <div class="content">
             <div class="greet">
               <div>
                 <h2 id="greet">Morning, boss.</h2>
                 <p>Read 1,204 records from six sources between 05:12 and 05:58. One incident overnight, mitigated. Two things need your call.</p>
               </div>
-              <div class="actions" aria-hidden="true"><button class="btn" type="button" tabindex="-1">Share brief</button><button class="btn primary" type="button" tabindex="-1">Open incident review</button></div>
+              <div class="actions"><span class="pill time"><svg class="i" style="width:12px;height:12px"><use href="#i-clock"/></svg>Compiled 06:00 · Mon 21 Sep</span></div>
             </div>
 
             <div class="grid" id="grid">
@@ -502,7 +497,7 @@
         </div>
 
         <aside class="zp" aria-label="Zora’s panel">
-          <div class="zp-h"><span class="dot"></span>Zora<span class="st" id="zst">In the room</span></div>
+          <div class="zp-h"><span class="dot"></span>Zora<span class="st" id="zst">In the room</span><button class="replay" id="replay" type="button">Replay</button></div>
           <div class="tr" id="tr">
             <div class="msg you" id="m-you"><span class="who">You · 06:04</span>What happened with EU orders last night?</div>
             <div class="msg" id="m-steps"><div class="steps">
@@ -523,7 +518,6 @@
             <div class="msg z" id="m-after"><p id="after-text"></p></div>
             <div class="msg z" id="m-rota"><p id="rota-text"></p></div>
           </div>
-          <button class="replay" id="replay" type="button">Replay</button>
           <div class="ask"><span>Ask Zora…</span><span class="send"><svg class="i" style="width:13px;height:13px"><use href="#i-send"/></svg></span></div>
         </aside>
       </div>
@@ -580,10 +574,9 @@
   const srcEls = SOURCES.map((n) => { const d = document.createElement('div'); d.className = 'feed-src'; d.textContent = n; sourcesEl.appendChild(d); return d; });
   let threadPaths = [];
   function fit() {
-    if (matchMedia('(max-width: 960px)').matches) { frame.style.width = ''; frame.style.transform = ''; slot.style.height = ''; return; }
+    if (matchMedia('(max-width: 960px)').matches) { frame.style.width = ''; frame.style.zoom = ''; return; }
     const avail = slot.clientWidth, w = Math.max(1100, avail), s = avail / w;
-    frame.style.width = w + 'px'; frame.style.transform = 'scale(' + s.toFixed(4) + ')';
-    slot.style.height = Math.round(676 * s) + 'px';
+    frame.style.width = w + 'px'; frame.style.zoom = s.toFixed(4);
     drawFeed();
   }
   // Six threads from the sources into the window's left edge; the data flows in, the brief comes out.
