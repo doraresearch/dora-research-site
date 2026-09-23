@@ -1,49 +1,59 @@
-# Design System — DORA Research and Zora
+# Design system: DORA Research and Zora
 
-Always read this file before making any visual, UI, or copy decision on this site. It is the source of truth for the brand and the target for the site.
+Always read this file before making any visual, UI, or copy decision on this site. It describes the site as shipped and the decisions behind it.
 
-> **Version 2.0 · 13 September 2026 · Paper and Night.** Derived from the DORA Research Brand Book v2.0 (https://claude.ai/code/artifact/07866951-f1ef-4cb2-8972-7363685a1192), which was built on the founder interview of 13 September 2026. The previous system, Porcelain Intelligence, and the second-brain positioning are retired. **The live site at www.dorareason.com still implements the retired system.** This file describes the system the site is being rebuilt into. Do not add new work in the retired system; do not mix the two on one page.
+> **Version 3.0 · 24 September 2026.** Rewritten to match the site as shipped. The live site at www.dorareason.com is one page, `public/coming-soon.html`, published as the whole site while the `HOLDING` file exists (see §11). Version 2.0, Paper and Night, is retired as a visual system: the founder rejected the site rebuilt to it as "AI-generic" on 20 September 2026. Its thesis, naming, voice, and mark geometry survive where this file repeats them. The React site in `src/` still implements v2.0 and is withheld from production. Do not extend it, and do not mix it with this system on one page.
+>
+> The product interface behind the demo is specified in `docs/zora-ui-brief.md`, which carries the window's full component measurements. This file carries the brand, the page, and the rules. Where either document disagrees with `public/coming-soon.html`, the page is the reference and the document is corrected.
 
 Every rule below carries a status:
 
-- **Decided**: confirmed by the founder in the interview. Changing it is a new decision, logged in the changelog with a reason.
-- **Proposed**: drafted in the brand book and not yet adopted. Build to it, but expect it to be amended.
+- **Decided**: the founder decided it, in words, on the date given. Changing it is a new decision, logged in the changelog with a reason.
+- **Shipped**: live on www.dorareason.com. The founder approved the rendered page but has not ruled on this rule by itself; it was chosen during design work. Keep it for consistency. Changing it needs no new decision, but show the founder the rendered change.
+- **Proposed**: drafted, not built, not adopted. Do not build it without asking.
 - **Open**: a known gap or unanswered question.
+
+Dates are the founder's local time (UTC+2), as in the commit history.
 
 ## 1. Brand thesis (Decided)
 
-- **DORA Research is an applied AI lab.** It builds agents that take over specific operational work in engineering organizations, and it says plainly which work that is. People keep judgment and accountability; the agents keep the record, the watch, and the follow-through. Research, benchmarks, and frameworks are published before they become products, in the ElevenLabs sense.
-- **Zora is the first product.** A technical director and chief of staff who reports to the CTO. Buyer and daily user are the same person: the CTO or VP Engineering.
-- **The promise is delivery, not memory.** Ship faster, break less. The lab is named for the DORA metrics, two dimensions of software delivery, throughput and stability, and adds a third measure of its own, quality. Memory, connecting meetings, tickets, code, docs, and system signals, is how Zora works, never what she is for.
-- **Authority.** Today Zora advises with evidence. Within a year she acts, one action at a time, per customer, after a shadow period: hold a deploy, open a ticket, page the on-call on a published rule.
-- **The three questions** Zora answers before they are asked: What happened last night? Where are we with this project, and why? Where are we most at risk?
-- **Two enemies:** the status meeting that reconstructs last week, and being caught off guard.
-- **One feeling** at 06:04, when the brief is read: calm and in control, knowing exactly what to ask first.
-- **Say AI and agents plainly.** Never copilot, assistant, chatbot, second brain, teammate, digital employee.
-- **Zora is she.** She has a name, a voice, and a 6 px dot. Never a face, an avatar, a robot, or an orb. The name comes from the ship's mind in Star Trek Discovery; that reference stays inside the company and nothing customer-facing is science fiction.
+From the founder interview of 13 September 2026, corrected by the founder on 20 September 2026.
 
-## 2. Brand architecture and naming
+- **DORA Research is an applied AI lab.** It builds agents that take over specific operational work in engineering organizations, and it says plainly which work that is. People keep judgment and accountability. Research, benchmarks, and frameworks come first and become products, the way ElevenLabs works.
+- **Zora is the first product: an AI Chief of Staff for CTOs.** In full, a technical director and chief of staff who reports to the CTO. Buyer and daily user are the same person, the CTO or VP Engineering.
+- **Zora leads; DORA Research is the maker** (20 Sep). On the site Zora is the subject of the copy and DORA Research, Inc. is the company that makes her.
+- **She is not a reporting tool** (20 Sep). She keeps the CTO's commitments, decisions, and risks in view at any hour, prepares each call with its evidence before it has to be made, and follows through. The morning brief is one thing she produces. It is never the headline, the hero, or the site's spine.
+- **The promise is delivery.** Ship faster, break less. The lab is named for the DORA metrics. Memory is how Zora works, never what she is for.
+- **Authority.** Today she advises with evidence and the CTO decides. Within a year she acts, one action at a time.
+- **Three questions** she answers before they are asked: What happened last night? Where are we with this project, and why? Where are we most at risk?
+- **Two enemies:** the status meeting that reconstructs last week, and being caught off guard.
+- **One feeling:** calm and in control, knowing which question to ask first.
+- **Say AI and agents plainly. Zora is she.** She has a name and a voice, never a face or an avatar.
+
+## 2. Naming
 
 | Element | Rule | Status |
 | --- | --- | --- |
-| DORA Research | The lab. Four capitals then title case. Descriptor on first mention: *an applied AI lab*. Signs research, the company page, and every product page footer. | Decided |
-| Zora | The first product. Title case, no article, no suffix, never "it". Subject of her sentences: Zora reads, Zora found, Zora recommends. | Decided |
-| Zora by DORA Research | Attribution line on every product surface and page foot. | Decided |
-| a technical director who reports to the CTO | What Zora is, in one clause. Say the reporting line; it is the positioning. | Decided |
-| the night brief | The product's central artifact. Lowercase in running text. | Decided |
-| private beta | The stage. Never waitlist, early access, or launch. Invitation: *Give Zora one night. Read the brief at 06:00.* | Proposed |
-| The lab speaks as "we"; Zora speaks as "I" | The lab never speaks in Zora's first person. | Proposed |
-| Product family | Every product ships with its own name, its own mark (see §3.2), and its own register. The swarm never identifies a product. | Decided |
+| DORA Research, Inc. | The company, and the header wordmark exactly as written. Descriptor: *an applied AI lab*. | Decided: wordmark 20 Sep, descriptor 13 Sep |
+| dorareason.com | The web property ("Dora Reason"). Contact `hello@dorareason.com`. | Decided, 20 Sep |
+| Zora | The first product. Title case, no article, never "it". She is the subject of her sentences. | Decided, 13 Sep |
+| AI Chief of Staff for CTOs | What Zora is, in the headline. "Chief of Staff" is title case, like "CTOs". | Phrase Decided, 20 Sep. Capitals Shipped: the founder flagged the case clash on 21 Sep, and title case was chosen in reply. |
+| reports to the CTO | The reporting line, for longer descriptions. | Decided, 13 Sep |
+| by DORA Research | Attribution where Zora is introduced away from the header, as in the meta description. | Shipped |
+| Private beta, by invitation | The stage. Never waitlist, early access, or launch. Email subject *Zora private beta*. | Shipped |
+| Zora speaks as "I" | In her panel she speaks in the first person and calls the CTO "you". The lab speaks as "we". | Shipped |
+| the brief | The home screen and the morning document. Lowercase in running text. One output, not her identity. | Shipped |
+| Product family | Every product gets its own name and its own mark. The swarm is the lab's mark and never identifies a product. | Decided, 13 Sep |
 
-Retired terms, never reuse: *a second brain for work*, *organizational memory* as a promise, *Starting with product + technology*, *Remember · Connect · Anticipate · Prove* as marketing, *Porcelain Intelligence*, *Work moves. Zora remembers.*
+Retired terms, never reuse: *a second brain for work*; *organizational memory* as a promise; *Starting with product + technology*; *Remember · Connect · Anticipate · Prove* as marketing; *Porcelain Intelligence*; *Paper and Night* as the site's look; *Work moves. Zora remembers.*; *She reads the night. You read the brief.*; *06:00. The brief is finished.*; *Give Zora one night. Read the brief at 06:00.*; *overnight work* as what the lab does; a clock counting down to the next brief; *Zora by DORA Research* as the header wordmark.
 
 ## 3. Marks
 
-### 3.1 The lab's mark: the swarm (Decided, geometry unchanged)
+### 3.1 The swarm, the lab's mark
 
-Thirteen dots in orbit, one seat open. Thirteen specialists, each with one job, around a center that is not drawn. The open seat at the upper right is where the next specialist stands. The geometry has survived every repositioning and is not up for discussion. Source of truth: `src/components/Logo.tsx` and `public/favicon.svg`.
+Thirteen dots in orbit around an undrawn centre, with one seat open at the upper right. The count comes from the lab's first idea, a swarm of AI agents each with its own specialization. The founder chose the mark by eye over months.
 
-24-unit frame. Ring center 12, 12, radius 8.5, seats every 30° counterclockwise from dot 1 at three o'clock. Open seat at 16.25, 4.64 (60°). Two trailing dots inside the ring.
+**Geometry (Decided, unchanged since the original site).** 24-unit frame. Ring centre 12, 12, radius 8.5. Seats every 30° counterclockwise from dot 1 at three o'clock. Open seat at 16.25, 4.64. Two trailing dots inside the ring. The inline SVG in `public/coming-soon.html`, `public/favicon.svg`, and `src/components/Logo.tsx` all carry this geometry.
 
 | Dot | cx | cy | r |
 | --- | --- | --- | --- |
@@ -61,16 +71,18 @@ Thirteen dots in orbit, one seat open. Thirteen specialists, each with one job, 
 | 12 | 15.00 | 13.00 | 1.00 |
 | 13 | 13.00 | 15.50 | 0.90 |
 
-- **Gradient:** two stops, `userSpaceOnUse`, from 3, 21 to 21, 3. Living Green `#3D8B68` at the lower left to Signal Cyan `#03F5F2` at the upper right. Living Green and Signal Cyan appear nowhere else in the Paper register. On Night, cyan survives only as the 6 px dot beside Zora's name.
-- **Variants (Proposed):** gradient in the masthead, the favicon, and the cover of a published artifact; ink-only (`#141D18`) in running lockups on paper; Paper (`#F5F7F2`) on Night.
-- **Motion (Proposed):** static. The 22-second spin retires with the Porcelain register. The open seat is the meaning; a rotating mark has no open seat.
-- **Lockup (Proposed):** mark at 24 px, 10 px gap, "DORA Research" in Geist 500 at 15 px on one line. The two-size DORA / Research treatment retires.
-- **Clear space and minimum (Proposed):** half the mark's height on all sides; 20 px alone on screen, 22 px inside a lockup, 6 mm in print. The favicon tile (64-unit, 14-unit radius, Warm White `#F7F5EF`, mark scaled 2.5× and centered) handles 16 px with heavier dot radii.
-- **Misuse:** never stretched, never a fourteenth dot, never re-angled, never glow, pulse, or spin.
+- **Gradient (Decided, 20 Sep).** Two stops, `userSpaceOnUse`, from 3, 21 to 21, 3: Living Green `#3D8B68` at the lower left to Signal Cyan `#03F5F2` at the upper right.
+- **Motion (Decided, 20 Sep).** The header mark turns once every 22 seconds, linear, forever, about its centre (`transform-origin: 12px 12px`, keyframes `swarm-spin`). Under reduced motion it stands still.
+- **Header lockup (Shipped).** The mark at 30 px, a 12 px gap, then "DORA Research, Inc." in Archivo 500 at 15 px. The email link sits at the far right in muted.
+- **Favicon (Shipped, unchanged since the original site).** `public/favicon.svg`: a 64-unit tile with 14-unit corners in warm white `#F7F5EF`, with the gradient swarm centred on it and its positions scaled 2.5×.
+- **Where it appears (Shipped).** The page header and the favicon. Never inside the product window, which is the customer's workspace.
+- **Misuse.** Never stretched, re-angled, given a fourteenth dot, a glow, or a pulse, or coloured other than the gradient or one flat ink. The turn is its only motion.
 
-### 3.2 Zora's mark: the open seat (Proposed)
+### 3.2 Zora's mark (Proposed, not adopted)
 
-Derived on the lab's ring and never redrawing it. One flat disc stands in the swarm's open seat; one chord joins two seats on the ring and is the line of evidence she stands on. Derive at the ring, then translate the whole figure +2 in y so its optical center sits near the frame center. Never center the disc horizontally; the 60° offset is the mark.
+The site carries no mark for Zora. In the product her presence is her name and a 6 px Signal Cyan dot in her panel's header (Shipped).
+
+Version 2.0 proposed an "open seat" mark: one flat disc in the swarm's open seat, plus a chord joining ring seats 7 and 11. It has never been put to the founder as a rendered choice. `src/components/ZoraMark.tsx` implements it for the withheld v2 site. Kept for reference only:
 
 ```svg
 <svg viewBox="0 0 24 24" fill="currentColor">
@@ -79,254 +91,334 @@ Derived on the lab's ring and never redrawing it. One flat disc stands in the sw
 </svg>
 ```
 
-- Disc: cx 16.25, cy 6.64, r 3.0. Chord: seat to seat x 4.64 → 19.36 (seats at 210° and 330°, dots 7 and 11), end to end 3.74 → 20.26, y 18.25, 1.8 thick, round caps r 0.9.
-- Ratios: chord 16.52 end to end, 2.75× the disc diameter, never under 2.4×. Thickness 0.3× the diameter, never more (a thicker bar reads as ball-and-paddle).
-- Color: `currentColor`. On paper the mark is Ink. On Night the disc is Paper and the chord may dim to Ash from 24 px upward; below 24 px both are Paper. The disc never takes Mint, Signal Cyan, the lab gradient, or a status color.
-- Lockup: mark at 24 px, the word Zora in Geist 500, and on Night the 6 px Signal Cyan dot. The dot reports live state: steady while watching, one 600 ms blink on a real ingest, Ash when disconnected. On paper there is no dot.
-- Favicon: 16 px, chord snapped to one device row, disc unchanged. Beside the swarm at equal height, set Zora's box at 1.08× for optical parity; the geometry does not change.
-- Family rule for every future product mark: one flat disc, r 3.0, in the open seat, plus straight chords of the ring, 1.8 thick with round caps, joining ring seats. Products differ only in which chords they draw. No second disc, no arc, no ring, no color on the disc, same frame offset for all.
-- Misuse: colored disc, centered disc, bar over 0.3×, glow, gradient, 3D, rotation, animation.
+## 4. Colour
 
-## 4. Registers
+### 4.1 Rules
 
-One company, two grounds. The lab is Paper in daylight. Zora is the same paper read in the dark at 06:00. They share Geist, IBM Plex Mono, the mark family, and the signal logic. They differ in ground, display face, and how much color is allowed.
+- **The original palette is the base (Decided, 20 Sep).** The site's first palette (root commit `d9d013f`) is the base, "with room to push it further on this page". Colour is not rationed to a single accent: statuses use amber, rose, and green, the mark carries its gradient, and the source traces light in Living Green.
+- **The Night register lives in Zora's panel (Decided, 20 Sep).** The page and the window are light. Zora's panel inside the window uses the original dark theme. Night tokens never appear outside the panel, and light tokens never inside it.
+- **One action colour in the light register (Shipped).** Deep green `#145C43` for links, primary buttons, the active nav item, and a call's title while she discusses it.
+- **Status is a word in its colour (Shipped).** Never a colour alone, never a pill or a dot (§7).
+- **Reserved colours (Shipped).** Living Green and Signal Cyan are the mark's gradient. Living Green also lights a source trace while Zora reads it and colours the travelling pulses. Signal Cyan is also the 6 px dot beside Zora's name. Neither is ever text or a surface.
+- **Never (Shipped).** Purple, glass, glow, or a gradient on a surface or a heading. The only gradients are the mark's and the Delivery chart's area fill.
 
-### 4.1 Paper (the lab) — Proposed
+### 4.2 Light register
 
-| Token | Value | Use | Contrast on Paper |
+"Original" means the value is in the root commit's palette or its mark. "Added" means it was introduced for the product window.
+
+| Token | Value | Use | Origin |
 | --- | --- | --- | --- |
-| `paper` | `#F9F7F2` | Page ground. Warm, not cream. | ground |
-| `evidence` | `#EDEAE2` | Recessed ground for quoted sources, code, logs, benchmark tables. Always bounded by a Rule hairline. | 1.1 |
-| `ink` | `#141D18` | Display, body, diagrams, ink-only mark. | 16.1 |
-| `pencil` | `#566460` | Secondary text, captions, interactive borders. | 5.8 |
-| `rule` | `#D5D1C7` | Hairlines only. Never text, never the sole boundary of a control. | 1.4 |
-| `green` | `#2A6449` | Living Green Deep. Links, the primary action, the focus ring, the one line in a figure, provenance markers. The only accent. | 6.5 |
-| `risk` | `#AD3547` | Risk text and a 2 px keyline on a risk callout. Never a fill. | 5.8 |
+| `canvas` | `#F4F6F8` | Page ground | original |
+| `raised` | `#FFFEFB` | The window and the brief's ground | original |
+| card | `#FFFFFF` | Widgets, secondary buttons | added |
+| `subtle` | `#F0EFE9` | Progress track, quiet fills | original |
+| sidebar | `#F6F7F5` | Sidebar ground | added |
+| `ink` | `#111814` | Primary text | original |
+| `muted` | `#48564F` | Secondary text, 7.1:1 on white | original |
+| `faint` | `#6B776F` | Labels, metas, axis text, 4.7:1 on white | added |
+| `rule` | `#DCE1DC` | Card and window borders | original |
+| `rule-soft` | `#E6EAE6` | Dividers inside a card, call rows | added |
+| trace | `#C9D2CD` | Source traces at rest | added |
+| `action` | `#145C43` | Links, primary buttons, active nav | original |
+| `action-hover` | `#0C4935` | Hover | original |
+| `action-soft` | `#DCECE4` | A lit timeline row, a new row's flash | original |
+| nav-active | `#E5EAE6` | Active sidebar item | added |
+| nav-hover | `#ECEFEC` | Sidebar hover | added |
+| `focus` | `#1D63D8` | Focus ring | original |
+| `success` / soft | `#21683A` / `#E4F2E7` | Done, Kept, On track, Mitigated | original |
+| `success-mid` | `#B9D3C4` | Open segment of a progress bar | added |
+| `warning` / soft | `#7A5600` / `#FFF1C2` | Held, At risk, Moved, Tonight | original |
+| `risk` / soft | `#A73745` / `#F9E7EA` | Slipped, incident start, worse deltas | original |
+| `living` | `#3D8B68` | Mark gradient start, lit traces, pulses | original |
+| `cyan` | `#03F5F2` | Mark gradient end, Zora's dot | original |
 
-Reserved: Living Green `#3D8B68` and Signal Cyan `#03F5F2` exist only inside the swarm gradient. Undarkened Living Green fails AA as text (3.9) and is never a link color.
+### 4.3 Night register (Zora's panel)
 
-The one dark section on a lab page, where paper hands to Zora, is painted Night Floor `#0A0F0C` and uses the Night tokens. Living Green Deep on Night Floor measures 2.4 and is not used there.
+Every value is from the original site's dark theme.
 
-Never on paper: a chat input, chat bubble, sparkle, avatar, or copilot framing (even in an embedded Zora crop, which shows a finished brief); italic display as decoration; motion on the mark; purple, orange, a second green, or any gradient on a surface; stock photography; an icon set (the lab has the mark, mono markers, and figure arrowheads).
+| Token | Value | Use |
+| --- | --- | --- |
+| `n-ground` | `#131E18` | Panel ground |
+| `n-raised` | `#19261F` | The CTO's message, the action card, the ask input |
+| `n-hover` | `#23382F` | Hover |
+| `n-line` | `#2B3932` | Borders and dividers |
+| `n-strong` | `#5D6C64` | Outlined button borders, the working spinner |
+| `n-text` | `#F5F7F2` | Text |
+| `n-muted` | `#A4B1AA` | Secondary text, steps, the status word |
+| `n-mint` / soft | `#67BF99` / `#183428` | The recommended action, entity links, step checks |
+| `n-warn` / soft | `#F1C65A` / `#392F17` | Your call |
+| `n-rose` / soft | `#F08A9A` / `#3C2028` | A named risk |
+| `n-ok` / soft | `#72CF82` / `#193A22` | Outcomes |
 
-### 4.2 Night (Zora) — Proposed
+### 4.4 Depth (Shipped)
 
-| Token | Value | Use | Contrast on Night Floor |
-| --- | --- | --- | --- |
-| `night` | `#0A0F0C` | Canvas and the black point every film plate is graded to. Scrim over film at 0.80 to 0.88 alpha. | ground |
-| `raised` | `#131E18` | Evidence panels and row hover. Separation is a 1 px Line, never a shadow. The transcript stays on the canvas. | 1.1 |
-| `subtle` | `#19261F` | Second surface step only. Never a ground for interactive controls. | 1.2 |
-| `line` | `#2B3932` | Hairlines, table rules, panel borders. | 1.6 |
-| `line-strong` | `#5D6C64` | Focus rings, input borders, any boundary a user must perceive. | 3.5 |
-| `paper` | `#F5F7F2` | Text. | 17.9 |
-| `ash` | `#A4B1AA` | Secondary, provenance, nominal status. Most of the page. | 8.7 |
-| `mint` | `#67BF99` | The one recommended action, the one evidence link. One per viewport, always paired with a word. Never a glow, a surface, or large text. | 8.7 |
-| `rose` | `#F08A9A` | The one named risk, the hold state. Text or a 2 px rule with a word. Never a fill. One per viewport. | 8.1 |
-| `cyan` | `#03F5F2` | A 6 px dot beside the name Zora. Never larger than 8 px, never text, border, fill, or in the film grade. | dot only |
+- **The window** floats on a three-layer shadow, `--window-shadow` below. The founder asked for a window "nearly floating off the page" on 21 September; the values are Shipped.
+- **Cards** carry `0 1px 2px rgba(13,21,17,.04), 0 1px 0 rgba(13,21,17,.03)`.
+- **Nothing else casts a shadow.** Call rows, the sidebar, and Zora's panel have none; the panel separates with 1 px lines and one raised step.
 
-Only the canvas changes from the tokens shipping today (`#0D1511` → `#0A0F0C`), so film has a black to fall into.
+### 4.5 CSS tokens
 
-The UI never inherits the film grade: grain, warmth, and color live in the plate; the interface stays cool, flat, and ungraded.
-
-### 4.3 CSS tokens
+As shipped in `public/coming-soon.html`:
 
 ```css
 :root {
-  /* Paper */
-  --paper: #F9F7F2; --evidence: #EDEAE2; --ink: #141D18; --pencil: #566460; --rule: #D5D1C7; --green: #2A6449; --risk: #AD3547;
-  /* reserved, mark only */
+  --canvas: #F4F6F8; --raised: #FFFEFB; --subtle: #F0EFE9;
+  --ink: #111814; --muted: #48564F; --faint: #6B776F;
+  --rule: #DCE1DC; --rule-soft: #E6EAE6;
+  --action: #145C43; --action-hover: #0C4935; --action-soft: #DCECE4;
+  --focus: #1D63D8;
+  --warning: #7A5600; --warning-soft: #FFF1C2; --risk: #A73745; --risk-soft: #F9E7EA; --success: #21683A; --success-soft: #E4F2E7; --success-mid: #B9D3C4;
   --living: #3D8B68; --cyan: #03F5F2;
-  /* Night */
-  --night: #0A0F0C; --raised: #131E18; --subtle: #19261F; --nline: #2B3932; --nstrong: #5D6C64; --npaper: #F5F7F2; --ash: #A4B1AA; --mint: #67BF99; --rose: #F08A9A;
-  /* type */
-  --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
-  --sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
-  /* motion */
-  --ease: cubic-bezier(.2, 0, 0, 1); --t-state: 120ms; --t-arrive: 160ms; --t-layout: 240ms;
+  /* night, for Zora's own panel */
+  --n-ground: #131E18; --n-raised: #19261F; --n-hover: #23382F; --n-line: #2B3932; --n-strong: #5D6C64; --n-text: #F5F7F2; --n-muted: #A4B1AA; --n-mint: #67BF99; --n-mint-soft: #183428; --n-warn: #F1C65A; --n-warn-soft: #392F17; --n-rose: #F08A9A; --n-rose-soft: #3C2028; --n-ok: #72CF82; --n-ok-soft: #193A22;
+  --window-shadow: 0 0 0 1px rgba(13,21,17,.07), 0 2px 4px rgba(13,21,17,.05), 0 30px 60px -24px rgba(13,21,17,.22);
+  --ui: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 }
 ```
 
-## 5. Typography (Proposed)
+The sidebar, card, trace, and nav values are written inline in the style block rather than as variables.
 
-Three families across the company, each with one job. **Newsreader** is the lab's voice for display and ledes. **Geist** is what people read and operate, on paper and on Night. **IBM Plex Mono** is what a machine recorded. Two of the three are shared so the lab and Zora read as one company on two grounds. No serif in the product.
+## 5. Typography (Shipped)
 
-Google Fonts, one link, preloaded and swapped:
+- **Page copy:** Archivo 400 and 500. It was chosen for the coming-soon page on 21 September; the founder approved the page but has not ruled on the face (Open, §13).
+- **Product window:** Geist 400, 500, and 600 for the interface. Geist Mono 400 and 500 for figures, times, counts, and chart axes.
+- **One request:** `https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap`
+- **Tabular figures** everywhere: `font-feature-settings: 'tnum'` on the body.
+- **Retired:** Newsreader and IBM Plex Mono, the v2.0 faces. The React build in `src/` still loads them.
 
-```
-https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Geist:wght@400..600&family=IBM+Plex+Mono:wght@400;500&display=swap
-```
-
-`font-feature-settings: 'tnum'` globally so inline numbers align.
-
-### 5.1 Paper scale
+Page scale:
 
 | Role | Face | Size / line | Notes |
 | --- | --- | --- | --- |
-| Display | Newsreader 500 | 64 / 66 · −0.015em · opsz 72 | 46 / 50 on mobile |
-| Section | Newsreader 500 | 40 / 46 · −0.012em | 32 / 38 on mobile |
-| Lede | Newsreader 400 | 22 / 32 | italics for margin notes and at most one lede |
-| Body | Geist 400 | 17 / 28 | 64 to 72 ch measure |
-| UI | Geist 500 | 14 / 20 | buttons, links, nav |
-| Meta | Plex Mono 500 | 12 / 16 · +0.06em · caps | artifact headers, eyebrows |
-| Data | Plex Mono 400 | 13 / 20 · tabular | |
+| Headline | Archivo 500 | `clamp(40px, 3.6vw, 56px)` / 1.03, −0.032em | 36 px at 640 and below. Three lines; "Chief of Staff" is held together with non-breaking spaces. |
+| Sub-line | Archivo 400 | 17 / 1.55, muted | Max 29em. 16 px at 640 and below. |
+| Contact line | Archivo 400 | 15, muted | Max 30em. The link is action, 500, underlined 1 px with a 3 px offset. |
+| Header | Archivo 500 | 15 | Wordmark in ink, email link in muted. |
+| Source labels | Archivo 400 | 12 / 16, muted | Ink while lit. |
+| Demo caption | Archivo 400 | 12.5, faint | Replay is an underlined text button. |
+| Footer | Archivo 400 | 13, faint | |
 
-### 5.2 Night scale
+The window's scale is in `docs/zora-ui-brief.md` §8.3: greeting 22/600, widget title and body 12.5, metas 11.5, status words 11.5/500, figures 26/500 in mono.
 
-| Role | Face | Size / line | Notes |
-| --- | --- | --- | --- |
-| Display | Geist 500 | 44 / 48 · −0.02em | 32 / 36 mobile; left-aligned, ragged right, never centered; the brief's first sentence is the title card |
-| Section | Geist 500 | 22 / 28 · −0.01em | preceded by a Plex Mono index in Ash: 01 Impact and outcome, 02 Conditions, 03 What we change, 04 Where else |
-| Body | Geist 400 | 16 / 26 | 60 to 68 ch |
-| UI | Geist 500 | 14 / 20 | |
-| Caption | Geist 400 | 13 / 18 | Ash |
-| Data | Geist 500 | 13 / 20 · tabular | right-aligned numerics, units in the header |
-| Provenance | Plex Mono 400 | 12 / 16 · +0.02em | Ash, Paper on hover |
-| Timecode | Plex Mono 500 | 11 / 16 · +0.08em · caps | Ash |
+Sentence case everywhere except the title "Chief of Staff" (Shipped).
 
-Tracking tightens as size grows; only mono is tracked open. Sentence case everywhere except mono strings. Interface text never below 11 px.
+## 6. Page layout
 
-## 6. Layout (Proposed)
+### 6.1 Decisions
 
-### 6.1 Paper principles
+- **The window sits on the right, about half the page** (Decided, 21 Sep).
+- **Lines from the data sources feed the window, and records visibly travel along them** (Decided, 21 Sep).
+- **Three panes, and the brief shows only Overnight and Needs your call** (Decided, 21 Sep). Delivery, Sources, and the rest are their own screens.
+- **No top bar over the brief** (Decided, 21 Sep). The founder questioned what it added; it was removed, and the founder approved the result.
+- **The window is lifted off the page**, crisp at every edge (Decided, 21 Sep).
+- **The page works on an iPad** (Decided, 21 Sep). The founder reported it broken there; see §6.3.
 
-1. **Rules, not cards.** Structure is 1 px hairlines on an 8 px rhythm and one recessed Evidence surface for source material. Radius 0 on containers, 2 px at most on controls. No shadows, no glass, no tinted section backgrounds, no white plates on grey.
-2. **Left-anchored, with a live margin.** A 680 px reading column set left of center on a 12-column grid at 1200; the right margin carries figure numbers, footnotes, dates, and citations. Nothing is centered except the mark in the masthead.
-3. **Every number has a source; every artifact has an ID.** A specimen header on every benchmark, framework, and brief: ID, version, date, evidence. Artifact IDs: `DR-FW-###` framework, `DR-BM-###` benchmark, `DR-NT-###` note. Superscript mono markers in Living Green Deep resolve in the margin (desktop) or section foot (mobile). A number without a footnote does not ship.
-4. **The page arrives finished.** No fade-ups, staggers, parallax, counters, chart draw-on, typing, or streaming.
-5. **One Night section per page** is where paper hands to Zora: a full-bleed block painted Night Floor, hard rectangular edge, real product at real density, no device frame, no tilt, captioned in mono with a figure number, place, and time.
+### 6.2 Structure (Shipped)
 
-Pages run in pipeline order: question, benchmark, framework, product. The product page cites the artifacts it came from.
+- **One screen.** Header, hero, and footer in a three-row grid. `.page` is at most 1600 px wide with 32 px by 48 px padding; the hero is centred vertically.
+- **Hero.** Two columns: copy at `clamp(400px, 33vw, 520px)` and the stage filling the rest, 48 px apart, centred vertically.
+- **Copy.** Headline, sub-line, contact line, in that order. Nothing above the headline: no eyebrow, no badge, no logo.
+- **Stage.** A 96 px feed column beside the window. Six labels, Linear, GitHub, Datadog, PagerDuty, Slack, and Calendar, sit on six parallel horizontal traces that end at the window's left edge. The traces spread over the middle 68 percent of the window's height. Each source is its own input: no hub, and no fan converging on a point.
+- **Window.** Laid out at 1000 px wide and 660 px tall with 16 px corners. It is scaled with CSS `zoom` so its layout never drops below 1000 px: in a narrower slot it shrinks, in a wider one it widens at full size. Columns: sidebar 184 px, the brief fluid, Zora's panel 272 px.
+- **Caption.** Under the window: *Interactive demo with fictional data. Click around, or ask Zora.* with Replay at the right.
+- **Footer.** *DORA Research, Inc. · An applied AI lab.* at the left, *dorareason.com · © 2026* at the right.
 
-### 6.2 Night layout
+### 6.3 Responsive (Shipped)
 
-- **The strip**, always present at first paint: the 24 px Zora mark, the word Zora with the dot, three tabs for the three questions (Last night · Projects · Risk), and compiled-at in Plex Mono.
-- **Grid:** 12 columns at 1280 with 80 px margins. Brief in columns 3 to 9, evidence rail in 10 to 12, film plate behind all 12. At 390 the rail becomes footnotes and the plate crops 4:5.
-- **The brief:** one column, four numbered parts in fixed order. Header line in mono (`Night brief · 2026-09-10 · 06:00 · 6 records`), then the title card.
-- **Evidence:** every claim carries a Plex Mono source (system · time) in the rail or inline; opens in place on Raised with a 1 px Line border. Never a modal, never a shadow.
-- **Dialogue:** a transcript below the brief in the same column, speaker as a Plex Mono name in the gutter, composer a single hairline at the foot. Never a chat box.
-- **Radius:** 0 on plates and panels, 4 px on controls. Nothing is a pill.
-- **Depth:** a 1 px Line border and one luminance step. No shadows, no glass, no glow.
+- **1180 px and below:** the hero stacks. The copy is capped at 36rem and the window runs full width beneath it.
+- **960 px and below:** the window is drawn at its natural width with no zoom. The feed and the sidebar are hidden, widgets pair up in two columns, and the window's height follows its content.
+- **640 px and below:** 24 px page padding, the header wraps, the headline drops to 36 px, and widgets run in one column. The greeting stacks. The ask input is 16 px so iOS does not zoom on focus.
 
-### 6.3 Controls
+The product's own responsive behaviour for laptops, tablets, and phones is specified in `docs/zora-ui-brief.md` §12; the demo builds only these breakpoints.
 
-Buttons 40 px tall on paper (36 px inside the product), 14 px Geist 500 label, 16 px horizontal padding, radius 2 px on paper and 4 px on Night. A label never wraps. Paper primary: `green` fill, `paper` label. Night primary: `mint` fill, `night` label. Focus ring 2 px with 2 px offset: `green` on paper, `line-strong` on Night.
+## 7. The product window
 
-## 7. Motion (Proposed)
+The window is Zora's real interface with demonstration data, built as live HTML. It is never an image, an illustration, or a diagram (Decided, 21 Sep: the founder set warp.co's product mockup as the bar for realism). Full anatomy and measurements are in `docs/zora-ui-brief.md` §§4 to 8.
 
-- One curve: `cubic-bezier(.2, 0, 0, 1)`. Three durations: 120 ms state, 160 ms arrive, 240 ms layout.
-- The brief and every answer arrive whole in a 160 ms fade with an 8 px rise. If the brief is not ready, yesterday's brief stands with its Ash timestamp. Never a compiling line, never a pulse, never a thinking state.
-- Navigation between the three views is a hard cut with a 120 ms hold on canvas. Hover is a value step (Ash to Paper, row to Raised), never a glow or a lift.
-- The mark is static everywhere. The cyan dot moves only for a real event.
-- Film plates may push once from 1.00 to 1.04 over 8 to 12 seconds and never loop. Paused offscreen and in hidden tabs.
-- `prefers-reduced-motion`: everything to 0 ms, dot solid. Nothing a reader needs depends on motion.
+**Composition (Decided, 21 Sep; details Shipped).**
 
-## 8. Voice and copy
+- **Sidebar:** the workspace, then three groups, Today, Organization, and Zora. Twelve screens: Brief, Your calls, Today, Commitments, Decisions, Projects, Incidents, Delivery, People, Sources, Authority, and Settings. Dana Kim, CTO, sits at the foot.
+- **Brief:** the greeting *Morning, boss.* (Decided: the founder asked for a "Hi Boss" greeting on 20 Sep. When "Morning, Dana." was offered instead on 21 Sep, the founder went ahead with "boss"). Under it come a sub-line in her words and the stamp *Compiled 06:00 · Mon 21 Sep*. Next is a *Since 06:00* line that changes as records arrive. Then two widgets, Overnight and Needs your call.
+- **Zora's panel:** her name, the 6 px cyan dot, and a status word: *Reading*, *In the room*, or *Waiting on you*. Then the CTO's question and her steps, each naming its source in the sentence ("Read the Datadog alert, 02:41"). Her answer follows, then an action card with a mint border and two buttons. *Try* suggestions sit above the ask input.
 
-### 8.1 The lab (Proposed)
+**AI-template tells, removed on 23 September.** The direction is Decided: the founder said the page still had "too many AI-slop elements". The list below came from an audit the founder approved as rendered, and is Shipped. Do not bring any of them back:
 
-The lab writes as "we". It names the work agents take and the work people keep in the same sentence. It says AI. It cites an artifact ID where a marketing page would cite a logo, and it marks unknowns as unknown. Two beats, then stop. Write for the reader's real constraints, never a budget they do not have.
+- **No status pills or dots.** A status is a coloured word at 11.5/500, with no background, radius, or dot.
+- **No icon badges** in widget headers.
+- **No eyebrow or kicker** above the headline.
+- **No glow or halo** behind the window.
+- **Held calls are rows** divided by a hairline, not cards with their own shadows.
+- **No fan of beams.** Sources arrive on parallel traces.
 
-Company paragraph, first mention: *DORA Research is an applied AI lab. We build agents that take over specific operational work in engineering organizations, and we say plainly which work that is. People keep judgment and accountability; the agents keep the record, the watch, and the follow-through. Our research, benchmarks, and frameworks are published before they become products, and our products are held to the two metrics we are named for, throughput and stability, and to a third we add: quality.*
+**Demonstration data (Shipped, one story; TransparentAI Decided 21 Sep, replacing Northwind).** TransparentAI, Engineering, 62 people. Dana Kim, CTO. Monday 21 September 2026. Incident 2291: EU order writes were blocked for 14 minutes when an index build on `orders_eu` took the write lock, and recovered at 02:55. Migration 0043 runs tonight against a 22 M-row table with the same pattern. The on-call rota still lists two people who have left. The people are Marcus Lind, Elena Ruiz, Priya Nair, and Tomas Berg. The canonical content is in `docs/zora-ui-brief.md` Appendix A. Reuse it rather than inventing new incidents; any new specimen must survive a senior engineer's read.
 
-### 8.2 Zora (Decided structure, Proposed rules)
+**Integrity (Shipped).**
 
-The voice is modeled on a real technical director the founder worked with, referred to internally as Burli. That name never appears on a customer-facing surface.
+1. Every claim traces to a record with a source and a 24-hour time.
+2. Real product names: Linear, GitHub, Datadog, PagerDuty, Slack. Tickets look like tickets: ORD-1187, PR #2214, incident 2291.
+3. No dead controls. The sidebar, every button, the suggestions, and the timeline rows work. Four links do not yet: *review* in the Overnight header, and *Where else →*, *Throughput, stability, quality →*, and *All decisions →* under widgets (Open, §13).
+4. No invented metrics. The figures reconcile; the Delivery bars average the 14.2 deploys a day they claim.
+5. The demo says it is a demo with fictional data.
+6. Zora never decides for the CTO. Held calls wait for a click, and she says who decides: "Nothing runs until you decide."
 
-The four-part brief, in this order, always:
+## 8. Motion and the live demo
+
+**Decided.**
+
+- The mark turns every 22 seconds (20 Sep).
+- Records visibly flow from the sources into the window (21 Sep).
+- The mockup is a live demo, not a static image (23 Sep), built in three layers (23 Sep). It plays by itself, the visitor can drive it, and it stays calm.
+
+**The principle (Shipped).** Anything that moves means something: a record arriving, Zora reading, or a decision taking effect. The only things that repeat are the mark's turn and the small pulses on the traces, which stand for records arriving.
+
+**The opening story (Shipped).**
+
+1. The copy settles with an 8 px rise. The window rises 14 px over 900 ms on `cubic-bezier(.2,.7,.2,1)` after 80 ms.
+2. The brief's widgets arrive and their figures count up.
+3. After 700 ms the ask box types *What happened with EU orders last night?* at 22 ms a character.
+4. Her status turns to *Reading*. Each step lights its source's trace and label while a larger pulse travels in over 0.55 s; then the step's spinner becomes a check.
+5. Her answer appears, then the action card, and her status becomes *Waiting on you*. The call she is discussing lights in the brief for 2.6 s.
+6. Six records arrive, the first after 2.6 s and then one every 4.5 s, each on its own source's trace. Each updates the *Since 06:00* line, and some change the brief: a new timeline row, a moved meeting. The demo clock runs from 06:04 to 06:18 and stops.
+7. If nobody has touched the window after 16 s, the demo types one more question into the ask box in the CTO's place: where the organization is most at risk. Zora never makes a decision herself.
+8. Nothing loops. Replay restores the window and starts over.
+
+A small ambient pulse travels one random trace every 1.1 s, paused while the tab is hidden.
+
+**What the visitor can do (Shipped).**
+
+- **Sidebar:** all twelve screens open.
+- **Decisions ripple.** A decision updates the call row, the project row, the counts, the Decisions log and its subtitle, and her reply.
+- **The ask box** answers nine topics from the demo's record and greets a hello. For anything else it says the question is not in this demo's record, rather than inventing an answer. The suggestions change as topics are used.
+- **Timeline rows** open their record in place.
+
+**Finished state (Shipped).**
+
+- **`?still`** freezes the end of the opening story: no arrivals, no idle question, no pulses, no typing, no counting. The header mark keeps turning.
+- **`prefers-reduced-motion`** shows the opening story finished at once and stops the mark. There are no pulses, typing, or counting. Records still arrive on schedule, without motion, and the idle question is skipped.
+
+**Retired from v2.0:** the static mark, "the page arrives finished" with no fades or staggers, and the 120, 160, and 240 ms scale.
+
+## 9. Voice and copy
+
+### 9.1 The page
+
+| Where | Copy | Status |
+| --- | --- | --- |
+| Headline | Zora is an AI Chief of Staff for CTOs. | Phrase Decided, 20 Sep; capitals Shipped, 21 Sep |
+| Sub-line | She tracks every commitment, decision, and risk across your engineering organization and brings you the calls that need you, with the evidence attached. | Decided, 21 Sep |
+| Contact | Coming soon. Private beta, by invitation. Write to hello@dorareason.com. | Shipped |
+| Demo caption | Interactive demo with fictional data. Click around, or ask Zora. | Shipped |
+| Footer | DORA Research, Inc. · An applied AI lab. / dorareason.com · © 2026 | Shipped |
+| Title tag | Coming soon · DORA Research, Inc. | Shipped |
+| Meta description | The headline and sub-line, then "By DORA Research, an applied AI lab. Private beta, by invitation." | Shipped |
+| Social title | Zora is an AI Chief of Staff for CTOs. Coming soon. | Shipped |
+| Social description | Zora is the first agent from DORA Research, an applied AI lab. Private beta, by invitation. | Shipped |
+
+### 9.2 Zora
+
+**The structure (Decided, 13 Sep).** The voice is modelled on a technical director the founder worked with, known inside the company as Burli. That name never appears on a customer-facing surface. When she explains an incident she goes in this order:
 
 1. **Impact and outcome.** Who was affected, how it was mitigated, what is still open.
-2. **Conditions.** The circumstances that let it happen. No blame, no speculation. Unknowns marked as unknown.
-3. **What we change.** How the organization operates differently so it does not recur, sized to this company's constraints.
-4. **Where else.** Other places the same conditions exist and what to do there. Then she names the decider.
+2. **Conditions.** The circumstances that let it happen. No blame, no speculation, unknowns marked as unknown.
+3. **What we change.** How the organization operates differently so it does not recur, sized to this company's real constraints.
+4. **Where else.** Other places the same conditions exist. Then she names who decides.
 
-Voice rules: Zora is the subject of the sentence. Adjectives are measurements. Every claim carries a record with a source and a 24-hour time, or is cut. Conditions, not blame. Two beats, then stop. The brief arrives finished; life is in the dialogue after it. Board-fluent and SRE-fluent in the same paragraph. Say what she takes and what the person keeps whenever she is described.
+**The rules (Shipped).**
 
-Zora in her own words: *I am Zora. I report to the CTO. Overnight I read what the organization produced: the deploys, the alerts, the tickets, the threads. At 06:00 you get a finished brief: who was affected, what led to it, what we change, and where else it applies. Then I stay in the room for the questions. I will tell you what I know and what I do not.*
+- Zora is the subject of the sentence. She speaks as "I", the CTO is "you", and "boss" appears only in the greeting.
+- Adjectives are measurements. Every claim carries a source and a 24-hour time, or it is cut.
+- She says what she knows and what she does not.
+- She names who decides, and never decides for the CTO.
+- Two beats, then stop.
+- Status words come from a fixed list: see `docs/zora-ui-brief.md` §10.
 
-### 8.3 Lines (Proposed)
+### 9.3 The lab (Proposed)
 
-| Where | Line |
+On the site the lab appears only as *DORA Research, Inc. · An applied AI lab.* The fuller lab voice returns when the lab's own pages do. It writes as "we", names the work agents take and the work people keep in the same sentence, and marks unknowns as unknown. The v2.0 company paragraph is the current draft:
+
+*DORA Research is an applied AI lab. We build agents that take over specific operational work in engineering organizations, and we say plainly which work that is. People keep judgment and accountability; the agents keep the record, the watch, and the follow-through. Our research, benchmarks, and frameworks are published before they become products.*
+
+### 9.4 Vocabulary
+
+**Use:** Zora, she, her · AI Chief of Staff for CTOs · reports to the CTO · AI, agents · an applied AI lab · calls, held for you, you decide · the record, records, evidence, source · commitment, owner, decision, deadline · impact, conditions, what we change, where else · at risk, exposure, hold, mitigated, rollback, baseline, on-call · ship faster, break less · throughput, stability · advise, recommend · judgment, accountability, authority · Linear, GitHub, Datadog, PagerDuty, Slack · reading, in the room, waiting on you.
+
+**Avoid:** copilot, assistant, chatbot, bot, avatar, persona · AI teammate, digital employee, virtual employee · second brain, knowledge base, single pane of glass, command center, mission control · reporting tool, overnight report, dashboard, for Zora herself · insights, actionable, real-time (state the time), surface as a verb · AI-powered, intelligent, smart, magic, seamless, effortless, never sleeps · unlock, empower, leverage, transform, supercharge, 10x, revolutionary · root cause (say conditions) · thinking…, analyzing…, generating…, chat with your data · Welcome to · it, for Zora · am and pm · em dashes · exclamation marks · emoji.
+
+### 9.5 Mechanics (Shipped)
+
+- Sentence case, except the title "Chief of Staff".
+- 24-hour times.
+- Dates in copy as "Mon 21 Sep" or "Tue 15", never ISO.
+- A middle dot `·` separates metadata fields.
+- `→` only ends a link that opens another screen inside the product.
+- Typographic apostrophes and quotes.
+- No em dashes, no exclamation marks, no emoji.
+
+## 10. Media and film (Decided direction, Open)
+
+The direction is engineering documentary, as SpaceX films its rockets and Waymo its cars (Decided, 13 Sep). The founder described four shots:
+
+1. A CTO at 6 a.m. reading the brief.
+2. The product on a real screen.
+3. The systems it watches.
+4. The incident room.
+
+The first shot is a scene, not the positioning (20 Sep). Nothing has been shot, and the site carries no film or photography.
+
+When it is shot, the rules are: real machines at real scale, screens shot in camera, and real people at real work. No robots, glowing brains, or abstract networks. Licensed masters only.
+
+## 11. The site as shipped
+
+| Surface | As shipped |
 | --- | --- |
-| Lab hero | Agents take the work. People keep the judgment. |
-| Research | Benchmarks first. Products second. |
-| Research, alternate | Applied AI. Published before it ships. |
-| The mark's caption | Thirteen agents. One job each. |
-| Zora hero | She reads the night. You read the brief. |
-| Zora subline | Ship faster. Break less. |
-| Night brief section | 06:00. The brief is finished. |
-| Three questions | Three questions. Answered before the meeting. |
-| Delegation | She takes the task. You keep the call. |
-| Evidence | Every line has a source. Every source has a time. |
-| Beta invitation | Give Zora one night. Read the brief at 06:00. |
-| Footer | DORA Research. An applied AI lab. |
+| Pages | One, `public/coming-soon.html`, served at `/` and as the 404 page. |
+| The switch | While `HOLDING` exists at the repository root, `scripts/holding.mjs` runs after the build. It copies the page to `dist/index.html` and `dist/404.html`, and removes the React pages' HTML, the `assets/` bundle, and the route data. It writes `_redirects` so `/research` and `/zora` go to `/` (302) and `/coming-soon.html` goes to `/` (301), and writes a sitemap that lists the root alone. Deleting `HOLDING` publishes the React site again. |
+| Title | Coming soon · DORA Research, Inc. |
+| Social card | `public/og-soon.png`, 1200 × 630, cut from the page itself. |
+| Favicon | `public/favicon.svg` (§3.1). |
+| Email | `hello@dorareason.com`. Cloudflare obfuscates the two `mailto:` links at the edge and injects its decoder script. Production HTML differs from the file there and nowhere else. |
+| Withheld | The React site in `src/`: Company, Research, and Zora pages, built to v2.0. Its social cards, `public/og-lab.png` and `public/og-zora.png`, are still copied to production from `public/`, but nothing links to them. The v2.0 brand book in `brand/` is kept as history. |
 
-### 8.4 Vocabulary
+**Open:** what replaces the withheld site. For the full site the founder wants rendered directions anchored on assets only DORA has, the mark, the real product, and film, rather than a system of typographic rules (20 Sep).
 
-Use: Zora, she, her brief · the night brief · AI, agents, a swarm of agents · an applied AI lab · impact, conditions, what we change, where else · record, evidence, source · commitment, owner, decision, deadline · at risk, exposure · hold, mitigated, rollback, baseline, on-call · ship faster, break less · throughput, stability, quality · advise, recommend, hold a deploy, open a ticket, page the on-call, assign by rota · reports to the CTO · judgment, accountability, authority, sign-off · Linear, GitHub, Datadog, PagerDuty, Slack, Jira, Dovetail · finished, complete, in the room.
+## 12. Accessibility (Shipped)
 
-Avoid: copilot, assistant, chatbot, bot, avatar, persona · AI teammate, digital employee, virtual employee, team member · second brain, knowledge base, single pane of glass, command center, mission control · insights, actionable, real-time (state the time), surface as a verb · AI-powered, intelligent, smart, magic, seamless, effortless, never sleeps · unlock, empower, leverage, transform, supercharge, 10x, revolutionary · root cause (say conditions) · we think, probably, likely without a record · best practice, unqualified · thinking…, analyzing…, generating…, chat with your data · it, for Zora · am/pm times · em dashes · exclamation marks · emoji.
-
-### 8.5 Mechanics
-
-Sentence case. 24-hour times. ISO dates inside the product (`2026-09-10`). Middle dot `·` separates metadata fields. `→` only inside product UI to show a relationship. Typographic quotes and apostrophes in typeset copy. No em dashes, no exclamation marks, no emoji anywhere.
-
-## 9. Product surfaces
-
-The reference frame is the night brief (brand book chapter 9, Fig. 9.1): strip, brief, evidence rail, transcript. Every product frame must pass:
-
-1. Persistent chrome: the strip with mark, name and dot, three tabs, compiled-at.
-2. Operational metadata on every record: source, timestamp, owner.
-3. At least one selectable state that changes what the inspector shows.
-4. Every conclusion traces to a record with a time and an owner.
-5. Real names: Linear, GitHub, Datadog, PagerDuty, Slack. Tickets look like tickets: ORD-1187, PR #4712, incident 2291.
-6. No dead controls, no stale placeholders, no invented metrics, no lorem. Demo data is the canonical specimen with visible provenance and a demo label.
-7. Interface text at 11 px or larger; the frame is legible at the size it ships.
-8. Flat and ruled. No glow, no glass, no floating layers.
-
-The canonical specimen: an overnight non-concurrent `CREATE INDEX` on a 61-million-row `orders` table holding a SHARE lock for 14 minutes, mitigated at 02:55, with the same pattern queued for tonight. Reuse it rather than inventing new incidents; any new specimen must survive a senior engineer's read.
-
-## 10. Media and film (Decided direction, plates Open)
-
-Engineering documentary, as SpaceX films the rocket and Waymo films the car. The canonical film, in order: **the CTO at 06:00 reading the night brief; the product at real scale on a real screen; the systems it watched last night; the incident room.** Four shots, one cut each, 16:9 with a dedicated 4:5 crop, no loop.
-
-Rules: real machine, real scale, screens shot in camera, no screen replacement, no device frames. Real people at real work: no posing, no whiteboard staging, no handshake, no server room, no robot, no glowing brain, no abstract network. Graded to Night Floor; grain, warmth, and skin stay in the plate; the UI is never graded. Licensed masters only; a watermarked or synthetic clip is a composition preview and ships nowhere. Stills on paper go near-monochrome so the mark stays the only chroma.
-
-**Open:** the plates in `public/media/` are stand-ins from the retired system (a desk-typing loop and a code-tablet loop; the handoff plate carries a residual stock watermark). They retire when the storyboard is shot and must not be used in new material.
-
-## 11. Target site architecture (Proposed)
-
-The lab leads. Zora is met second, on her own Night page.
-
-| Surface | Target |
-| --- | --- |
-| Structure | Company page (Paper) → Research (Paper) → Zora (Night). One Night section on the company page hands off to the product. |
-| Title tag, lab | `DORA Research · An applied AI lab` |
-| Title tag, Zora | `Zora · She reads the night. You read the brief.` |
-| Meta description | DORA Research is an applied AI lab. Agents take the work; people keep the judgment. Zora, its first product, is a technical director who reports to the CTO. |
-| Navigation | Research · Zora · Company · Request private beta |
-| Lab hero | *Agents take the work. People keep the judgment.* on Paper, no photography. |
-| Zora hero | *She reads the night. You read the brief.* with *Ship faster. Break less.* over the 06:00 plate. |
-| Eyebrow | `ZORA BY DORA RESEARCH` on Zora's page; the artifact header on lab pages. |
-| Product tabs | Last night · Projects · Risk. The Atlas release story may return inside Projects. |
-| Beta call | *Give Zora one night. Read the brief at 06:00.* Contact `hello@dorareason.com`, subject *Zora private beta*, until a form exists. |
-| Footer | `DORA Research. An applied AI lab. · © 2026` in Plex Mono. |
-| Social cards | Two: the lab line on Paper; Zora's line over the 06:00 plate with the night brief. |
-| Favicon | Unchanged swarm on Warm White. Zora's page may carry her own favicon once the mark is adopted. |
-| Anchors | Keep an 84 px scroll margin under a fixed header. |
-
-## 12. Accessibility
-
-Semantic heading order, labelled fields, keyboard-accessible navigation, visible focus rings, a skip link. All text pairs above meet AA; secondary text meets AAA on both grounds. Specimens are real HTML (`role="figure"` with a label), never images. Looping media is paused offscreen, in hidden tabs, and under reduced-motion or save-data settings. No information is carried by color alone: Mint and Rose are always paired with a word.
+- **Focus:** a 2 px `#1D63D8` ring with a 2 px offset on links, buttons, and focusable rows.
+- **The window** is a region labelled "Interactive demo of Zora, with fictional data". The feed is hidden from assistive technology. Timeline rows are buttons with `aria-expanded` and open with Enter or Space.
+- **No information by colour alone.** Every status is a word.
+- **Reduced motion** removes all motion, including the mark's turn (§8).
+- **Contrast** meets AA. The lowest pair in use is faint on white at 4.7:1.
+- **Small text.** Everything is 11 px or larger except the sidebar's workspace line, group labels, and counts at 10.5 px, the chart axis at 10 px, and avatar initials at 9.5 px.
+- **Landmarks:** header, main, and footer on the page.
 
 ## 13. Governance
 
-- **Precedence:** the founder's decisions in the changelog → the brand book at its current version → this file → the live site, which is ground truth for what exists today and nothing else.
-- **Superseded, do not regress:** a prediction-market operator with AI operations underneath; secure AI teammates for infrastructure operations; a consumer personal-memory organizer; a second brain for work with the lab as a byline (the site as of 13 September 2026). The thirteen-dot mark did not change through any of them and does not change now.
-- **Open items:** trademark search on the name Zora before her page ships; sign-off on every Proposed item; the lab body face (Geist shared with Zora, or IBM Plex Sans); confirm the static mark before the header is rebuilt; commission the four-shot film; print recipes for Ink, Living Green Deep, Living Green, Signal Cyan, and Risk (proof against hex, never convert arithmetically); define what "ready for Reported" means in the Accountability Line, or publish that the lab does not yet know.
+- **Precedence:** the founder's decisions, dated in this file and the changelog; then this file; then `docs/zora-ui-brief.md` for the product interface; then the brand book v2.0 in `brand/`, which is history, with its visual system retired. The live site is ground truth for what exists today. When it and this file disagree, find out which is wrong before changing either.
+- **Asking:** before changing a Decided rule or building a Proposed one, show the founder rendered options, one question at a time.
+- **Superseded, do not regress:**
+  - a prediction-market operator with AI operations underneath;
+  - secure AI teammates for infrastructure operations;
+  - a consumer personal-memory organizer;
+  - a second brain for work, the site until 13 September 2026;
+  - Paper and Night, v2.0, from 13 to 20 September 2026, rejected as AI-generic;
+  - Zora as an overnight reporting tool, retired on 20 September 2026.
+
+  The thirteen-dot mark did not change through any of them.
+- **Open items:**
+  - Trademark search on the name Zora.
+  - Zora's own mark (§3.2).
+  - The direction for the full site that replaces the withheld v2.0 build (§11).
+  - Archivo as the page face: shipped, not ruled on.
+  - Zora's self-description in her own words. The v2.0 text led with the overnight brief and is retired.
+  - Four unwired links in the product window (§7).
+  - The four-shot film (§10).
+  - Print recipes for the gradient and the status colours, proofed against hex.
+  - The Accountability Line, the lab's first framework (v0.1 in `src/content/framework.ts`), including what "ready for Reported" means.
 
 ### Changelog
 
 | Date | Version | Change | Source |
 | --- | --- | --- | --- |
+| 2026-09-24 | 3.0 | Rewritten to match the site as shipped: the coming-soon page, live since 21 September and last changed on 23 September. Positioning: Zora is an AI Chief of Staff for CTOs, Zora leads, and DORA Research, Inc. is the maker; the brief is one output, not her identity. Visuals: the original palette restored as the base; the Night register confined to Zora's panel; the gradient swarm turning every 22 s; Archivo on the page and Geist in the window; a live product window with three panes and a working demo; AI-template tells removed. Paper and Night retired as a visual system and its React build withheld. Statuses are now Decided, Shipped, Proposed, and Open. | Founder decisions of 20, 21, and 23 Sep 2026; `public/coming-soon.html` |
 | 2026-09-13 | 2.0 | Rewritten from the brand book v2.0: lab plus first product; Paper and Night registers; Zora positioned as a technical director reporting to the CTO; promise moved from memory to delivery; night brief as the central scene; four-part voice; AI said plainly; product marks; static swarm; The Accountability Line v0.1 as the lab's first published framework. Porcelain Intelligence and the second-brain positioning retired. | Founder interview, 13 Sep 2026 |

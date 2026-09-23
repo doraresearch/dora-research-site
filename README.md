@@ -1,8 +1,10 @@
 # DORA Research site
 
-Static marketing site for **DORA Research**, an applied AI lab, and its first product, **Zora**, a technical director who reports to the CTO and delivers a finished brief every morning at 06:00.
+Static site for **DORA Research, Inc.**, an applied AI lab, and its first product, **Zora**, an AI Chief of Staff for CTOs.
 
-See `DESIGN.md` for the Paper and Night design system (v2.0), brand architecture, marks, copy rules, and the target site structure. The presentation brand book and its source live in `brand/`. The live site still implements the retired Porcelain system until the rebuild lands.
+Production is one page, `public/coming-soon.html`, with a live demo of Zora's product window. It is published as the whole site while the `HOLDING` file exists (see `scripts/holding.mjs`). The React app in `src/` is the retired v2.0 Paper and Night build and is withheld.
+
+See `DESIGN.md` for the design system as shipped (v3.0) and `docs/zora-ui-brief.md` for the product interface. The v2.0 brand book in `brand/` is kept as history.
 
 ## Run locally
 

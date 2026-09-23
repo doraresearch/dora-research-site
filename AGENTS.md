@@ -1,21 +1,42 @@
 # DORA Research site
 
-Static marketing site for **DORA Research**, an applied AI lab, and its first product, **Zora**, a technical director and chief of staff who reports to the CTO. Zora reads what the organization produced overnight and delivers a finished four-part brief by 06:00: impact and outcome, conditions, what we change, where else. The promise is delivery, ship faster and break less; memory is the mechanism. Stack: React 18 + TypeScript + Vite + Tailwind + react-router-dom, prerendered via `vite-react-ssg`.
+Static site for **DORA Research, Inc.**, an applied AI lab, and its first product, **Zora**: an AI Chief of Staff for CTOs. She tracks every commitment, decision, and risk across an engineering organization and brings the CTO the calls that need a decision, with the evidence attached. She advises with evidence; the CTO decides. The promise is delivery, ship faster and break less; memory is the mechanism, not the promise. The morning brief is one thing she produces, not what she is: never frame Zora as an overnight reporting tool. Stack: React 18 + TypeScript + Vite + Tailwind + react-router-dom, prerendered via `vite-react-ssg`; the live page itself is plain HTML.
+
+## What is live
+
+Production is one page, `public/coming-soon.html`: the headline, a private-beta contact line, and a live, interactive demo of Zora's product window with fictional data (TransparentAI, Dana Kim, incident 2291). It is a single self-contained HTML file with inline CSS and JavaScript.
+
+The holding switch publishes it as the whole site. While the file `HOLDING` exists at the repository root, `scripts/holding.mjs` runs at the end of `npm run build` and:
+
+- copies the page to `dist/index.html` and `dist/404.html`;
+- removes the React bundle, its route data, and the React pages' HTML;
+- redirects `/research` and `/zora` to `/` (302) and `/coming-soon.html` to `/` (301);
+- writes a sitemap that lists the root alone.
+
+The React app in `src/` (Company, Research, and Zora pages) is the v2.0 Paper and Night rebuild, which the founder rejected on 20 September 2026. It still typechecks and builds, but it is withheld. Do not extend it. Do not delete `HOLDING` without the founder's go-ahead, because that republishes it.
+
+Working on the page:
+
+- Edit `public/coming-soon.html`. `npm run dev` serves it at `/coming-soon.html`; the dev server's `/` is the withheld React app.
+- `?still` freezes the demo in its finished state; the header mark keeps turning. Reduced motion removes all motion, including the mark's turn.
+- The demo's timers throttle in background tabs, and the in-app Browser pane runs as one. Verify motion in a headless browser.
+- `public/og-soon.png` is the social card, cut from the page at 1200 by 630. Re-cut it when the page's look changes.
+- Production HTML differs from the file only where Cloudflare obfuscates the `mailto:` links and injects its decoder script. Compare against production, not the repo, before claiming parity.
 
 ## Design system
 
-Read `DESIGN.md` before making visual, UI, or copy decisions. It is version 2.0, Paper and Night, and it is the target system for the site; the live site still implements the retired Porcelain system until the rebuild lands. Do not add new work in the retired system.
+`DESIGN.md` is authoritative. Version 3.0 (24 September 2026) describes the site as shipped and the founder's dated decisions behind it. `docs/zora-ui-brief.md` specifies the product interface behind the demo, with the window's full component measurements, for a senior product designer. Every rule in `DESIGN.md` is Decided (the founder said so, on a date), Shipped (live, chosen during design work, not ruled on separately), Proposed (not built; ask first), or Open.
 
 Key invariants:
 
-- DORA Research is the lab; Zora is the first product. Every product gets its own mark; the swarm never identifies a product.
-- Keep the original 13-dot swarm geometry intact and static. Gradient Living Green `#3D8B68` to Signal Cyan `#03F5F2`, inside the mark only.
-- Two registers. Paper (lab): `#F9F7F2` ground, ink `#141D18`, one accent `#2A6449`, risk `#AD3547`, Newsreader display, Geist body, IBM Plex Mono provenance. Night (Zora): `#0A0F0C` canvas, text `#F5F7F2`, secondary `#A4B1AA`, one Mint action `#67BF99` and one Rose risk `#F08A9A` per viewport, a 6 px cyan dot beside Zora's name, Geist and Plex Mono only.
-- Rules, not cards. Radius 0 on containers, 2 px (paper) or 4 px (Night) on controls. No shadows, glass, glow, gradient surfaces, purple, emoji, or icon library.
-- Say AI and agents plainly. Zora is she, the subject of her sentences, with a name, a voice, and a dot; never a face. Never copilot, assistant, chatbot, second brain, knowledge base, insights, or "it".
-- The brief arrives finished: no streaming, typing, or thinking states. Motion is 120/160/240 ms on one curve; the mark is static; reduced motion is the baseline.
-- Film is engineering documentary: the CTO at 06:00, the product on a real screen, the systems it watched, the incident room. Licensed masters only; the current plates are stand-ins from the retired system.
-- Every number has a source and a 24-hour time; every artifact has an ID; no fake metrics, dead controls, or placeholders.
+- Zora leads the copy. DORA Research, Inc. is the maker and the header wordmark. The headline says "AI Chief of Staff for CTOs", with "Chief of Staff" in title case.
+- Zora is "she". Never describe her as a second brain, a copilot, an assistant, a reporting tool, or "it".
+- The original palette is the base, and Zora's panel is the only dark surface. Do not desaturate.
+- The thirteen-dot swarm keeps its original geometry and its Living Green to Signal Cyan gradient, and turns once every 22 seconds in the header.
+- The product window is live HTML, never an image. No status pills or dots, icon badges, eyebrows, glows, or beam fans.
+- Before changing a Decided rule, or anything the founder chose (the mark, motion, palette, copy), show rendered options and ask, one question at a time.
+
+Never regress to the infrastructure-operations, consumer personal-memory, prediction-market, second-brain, overnight-reporting, or Paper and Night directions. DORA Research is the lab; Zora is the product. The brand book v2.0 in `brand/` is history, and its visual system is retired.
 
 ## Dev
 

@@ -1,11 +1,11 @@
 # Brand
 
-The DORA Research Brand Book, version 2.0, Paper and Night.
+The DORA Research Brand Book, version 2.0, Paper and Night. Kept as history; see below.
 
 - `DORA-Research-Brand-Book-v2.pdf`: the presentation deck, 34 pages, 16:9, fonts embedded. Present it full-screen or share it as-is.
 - `deck/deck.html`: the source the PDF is rendered from. Edit this, then regenerate.
 
-`DESIGN.md` at the repository root is the design system derived from the book and is authoritative for the site. When the two disagree, the book at its current version wins and `DESIGN.md` is corrected.
+`DESIGN.md` at the repository root was derived from this book as version 2.0. Since version 3.0 (24 September 2026) it describes the site as shipped, and it is authoritative. The book is kept as history: its thesis and voice survive where `DESIGN.md` repeats them, and its visual system (Paper and Night) is retired. When the two disagree, `DESIGN.md` wins.
 
 ## Regenerate the PDF
 
