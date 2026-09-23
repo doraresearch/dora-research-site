@@ -714,6 +714,7 @@
     const n = openCalls();
     if (view === 'brief') return 'Read 1,204 records from six sources between 05:12 and 05:58. One incident overnight, mitigated. ' + (n === 2 ? 'Two things need your call.' : n === 1 ? 'One thing needs your call.' : 'You’ve made both calls.');
     if (view === 'calls') return n ? (n === 2 ? 'Two decisions' : 'One decision') + ' held for you. Nothing runs until you decide.' : 'Nothing held. Your decisions are in the log.';
+    if (view === 'decisions') return VIEWS.decisions.s + ' ' + parseInt($('#dec-meta').textContent, 10) + ' recorded this week.';
     return VIEWS[view].s;
   }
   function paint(view) {
@@ -889,7 +890,7 @@
     const m = $('#dec-meta'); m.textContent = (parseInt(m.textContent, 10) + 1) + ' recorded';
     const n = openCalls();
     $('#n-calls').textContent = n || ''; $('#calls-meta').textContent = n ? n + ' held for you' : 'Nothing held';
-    if (st.view === 'brief' || st.view === 'calls') R.vs.textContent = sub(st.view);
+    if (['brief', 'calls', 'decisions'].includes(st.view)) R.vs.textContent = sub(st.view);
     say([o.say]); status(false);
   }
 
