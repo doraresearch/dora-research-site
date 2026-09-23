@@ -34,6 +34,7 @@
     --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
   }
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   html, body { height: 100%; }
   body { margin: 0; background: var(--canvas); color: var(--ink); font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 18px; line-height: 1.5; font-feature-settings: 'tnum'; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
@@ -64,9 +65,12 @@
   .stage { position: relative; min-width: 0; width: 100%; display: grid; grid-template-columns: 96px minmax(0, 1fr); grid-template-rows: auto auto; }
   .feed { position: relative; min-width: 0; grid-row: 1; }
   .feed svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-  .feed svg path { fill: none; stroke: #C9D2CD; stroke-width: 1; }
-  .feed svg circle.pulse { fill: var(--living); }
-  .feed-src { position: absolute; left: 0; font-size: 12px; line-height: 16px; color: var(--muted); white-space: nowrap; }
+  .feed svg path { fill: none; stroke: #C9D2CD; stroke-width: 1; transition: stroke 200ms ease; }
+  .feed svg path.hot { stroke: var(--living); }
+  .feed svg circle.pulse { fill: var(--living); opacity: .75; }
+  .feed svg circle.pulse.big { fill: var(--action); opacity: 1; }
+  .feed-src { position: absolute; left: 0; font-size: 12px; line-height: 16px; color: var(--muted); white-space: nowrap; transition: color 200ms ease; }
+  .feed-src.hot { color: var(--ink); }
   .caption { grid-column: 2; grid-row: 2; margin: 14px 2px 0; display: flex; justify-content: space-between; font-size: 12.5px; color: var(--faint); }
   .caption button { font: inherit; color: var(--muted); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
   .caption button:hover { color: var(--ink); }
@@ -74,7 +78,7 @@
   @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
   html.reduced .slot { animation: none; }
   .frame { width: 1000px; }
-  .window { position: relative; height: 640px; display: grid; grid-template-columns: 184px minmax(0, 1fr) 272px; grid-template-rows: minmax(0, 1fr); border-radius: 16px; background: var(--raised); box-shadow: var(--window-shadow); overflow: hidden; font-family: var(--ui); font-size: 12.5px; line-height: 1.45; color: var(--ink); }
+  .window { position: relative; height: 660px; display: grid; grid-template-columns: 184px minmax(0, 1fr) 272px; grid-template-rows: minmax(0, 1fr); border-radius: 16px; background: var(--raised); box-shadow: var(--window-shadow); overflow: hidden; font-family: var(--ui); font-size: 12.5px; line-height: 1.45; color: var(--ink); }
 
   /* sidebar */
   .side { background: #F6F7F5; border-right: 1px solid var(--rule); padding: 12px 10px; display: flex; flex-direction: column; gap: 2px; font-size: 12.5px; min-height: 0; overflow: hidden; }
@@ -83,17 +87,17 @@
   .ws .wsn small { font-size: 10.5px; font-weight: 400; color: var(--faint); white-space: nowrap; }
   .ws .z { width: 20px; height: 20px; border-radius: 6px; background: var(--ink); color: #fff; display: grid; place-items: center; font-size: 11px; font-weight: 600; }
   .nav-h { padding: 12px 8px 4px; font-size: 10.5px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; color: var(--faint); }
-  .nav a { display: flex; align-items: center; gap: 9px; padding: 6px 8px; border-radius: 7px; color: var(--muted); font-weight: 450; }
-  .nav a .i { color: var(--faint); width: 16px; height: 16px; }
-  .nav a:hover { background: #ECEFEC; color: var(--ink); }
-  .nav a.on { background: #E5EAE6; color: var(--action); font-weight: 500; }
-  .nav a.on .i { color: var(--action); }
-  .nav a .n { margin-left: auto; font-family: var(--mono); font-size: 10.5px; color: var(--faint); }
-  .nav a.on .n { color: var(--action); }
+  .nav .nb { display: flex; align-items: center; gap: 9px; width: 100%; padding: 6px 8px; border: 0; border-radius: 7px; background: none; font: inherit; font-weight: 450; text-align: left; cursor: pointer; color: var(--muted); transition: background 140ms ease, color 140ms ease; }
+  .nav .nb .i { color: var(--faint); width: 16px; height: 16px; }
+  .nav .nb:hover { background: #ECEFEC; color: var(--ink); }
+  .nav .nb.on { background: #E5EAE6; color: var(--action); font-weight: 500; }
+  .nav .nb.on .i { color: var(--action); }
+  .nav .nb .n { margin-left: auto; font-family: var(--mono); font-size: 10.5px; color: var(--faint); }
+  .nav .nb.on .n { color: var(--action); }
   .side .foot { margin-top: auto; padding: 8px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
 
   /* main */
-  .main { display: flex; flex-direction: column; min-width: 0; }
+  .main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
   .bar { height: 46px; border-bottom: 1px solid var(--rule); display: flex; align-items: center; gap: 12px; padding: 0 18px; }
   .crumb { display: flex; align-items: center; gap: 6px; color: var(--muted); }
   .crumb b { color: var(--ink); font-weight: 500; }
@@ -102,11 +106,23 @@
   .bar .right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
   .stamp { font-size: 11.5px; color: var(--faint); white-space: nowrap; }
   .me { width: 26px; height: 26px; border-radius: 50%; background: #2A4E3E; color: #fff; display: grid; place-items: center; font-size: 10.5px; font-weight: 600; }
-  .content { padding: 20px 18px 24px; overflow: hidden; }
+  .content { flex: 1; min-height: 0; padding: 20px 18px 24px; overflow-y: auto; scrollbar-width: none; transition: opacity 140ms ease; }
+  .content::-webkit-scrollbar { display: none; }
+  .content.swap { opacity: 0; }
   .greet { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
   .greet h2 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -.02em; }
   .greet p { margin: 4px 0 0; color: var(--muted); font-size: 12.5px; }
   .greet .actions { display: flex; gap: 8px; flex: none; }
+  .since { display: flex; align-items: center; gap: 8px; margin: -4px 0 14px; font-size: 12px; color: var(--muted); min-width: 0; }
+  .since .k { color: var(--faint); white-space: nowrap; }
+  .since .sv { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: opacity 220ms ease; }
+  .since .sv.fade { opacity: 0; }
+  .since .sn { margin-left: auto; color: var(--faint); white-space: nowrap; }
+  .sdot { width: 6px; height: 6px; border-radius: 50%; background: var(--living); flex: none; opacity: .55; }
+  .sdot.ping { animation: ping 1s ease-out; }
+  @keyframes ping { 0% { opacity: 1; box-shadow: 0 0 0 0 rgba(61,139,104,.45); } 100% { opacity: .55; box-shadow: 0 0 0 7px rgba(61,139,104,0); } }
+  .flash { animation: flash 1.8s ease; }
+  @keyframes flash { 0%, 30% { background: var(--action-soft); } 100% { background: transparent; } }
   .btn { display: inline-flex; align-items: center; gap: 6px; height: 28px; white-space: nowrap; padding: 0 10px; border-radius: 7px; border: 1px solid var(--rule); background: #fff; color: var(--ink); font: inherit; font-size: 12px; font-weight: 500; cursor: pointer; }
   .btn:hover { border-color: var(--faint); }
   .btn.primary { background: var(--action); border-color: var(--action); color: #fff; }
@@ -123,6 +139,8 @@
   .w-h .meta { margin-left: auto; font-weight: 400; color: var(--faint); font-size: 11.5px; }
   .w-h .meta a { color: var(--action); }
   .w-b { padding: 10px 12px 12px; }
+  .grid.solo .w-h { display: none; }
+  .grid.solo .w > .w-b:first-of-type { padding-top: 12px; }
   .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
   .w-f { margin-top: auto; border-top: 1px solid var(--rule-soft); padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: var(--muted); }
   .w-f a { color: var(--action); font-weight: 500; }
@@ -170,12 +188,18 @@
 
   /* timeline */
   .tl { display: grid; gap: 0; }
-  .tl > div { display: grid; grid-template-columns: 44px 14px minmax(0,1fr); gap: 0 8px; align-items: start; min-height: 26px; }
+  .tl > div { display: grid; grid-template-columns: 44px 14px minmax(0,1fr); gap: 0 8px; align-items: start; min-height: 26px; margin: 0 -6px; padding: 0 6px; border-radius: 6px; cursor: pointer; transition: background 220ms ease; }
+  .tl > div:hover { background: #F4F6F4; }
+  .tl > div.lit { background: var(--action-soft); }
+  .tl > div.new { animation: settle 500ms cubic-bezier(.2,.7,.2,1) both, flash 1.8s ease; }
+  .tl .ev { display: none; margin: 3px 0 2px; font-style: normal; font-size: 11.5px; line-height: 1.45; color: var(--muted); }
+  .tl .open .ev { display: block; }
   .tl .tt { font-family: var(--mono); font-size: 11px; color: var(--faint); padding-top: 3px; }
   .tl .dotc { position: relative; height: 100%; }
   .tl .dotc::before { content: ''; position: absolute; left: 6px; top: 8px; width: 2px; bottom: -3px; background: var(--rule); }
   .tl > div:last-child .dotc::before { display: none; }
   .tl .dotc i { position: absolute; left: 3px; top: 5px; width: 8px; height: 8px; border-radius: 50%; background: var(--faint); box-shadow: 0 0 0 2px #fff; }
+  .tl .lit .dotc i, .tl > div:hover .dotc i { box-shadow: 0 0 0 2px transparent; }
   .tl .dotc i.risk { background: var(--risk); } .tl .dotc i.ok { background: var(--success); } .tl .dotc i.act { background: var(--action); }
   .tl .tx { padding: 1px 0 6px; }
   .tl .tx span { color: var(--faint); font-size: 11px; }
@@ -184,7 +208,9 @@
   .call { padding: 10px 0 12px; display: grid; gap: 6px; border-top: 1px solid var(--rule-soft); }
   .call:first-child { border-top: 0; padding-top: 2px; }
   .call .ttl { display: flex; align-items: flex-start; gap: 8px; }
-  .call .ttl b { font-weight: 500; }
+  .call .ttl b { font-weight: 500; transition: color 300ms ease; }
+  .call.lit .ttl b { color: var(--action); }
+  .call .out { font-size: 11.5px; color: var(--muted); }
   .call .why { color: var(--muted); font-size: 11.5px; }
   .call .who { display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--faint); }
   .call .acts { display: flex; gap: 6px; }
@@ -196,7 +222,9 @@
   .zp-h .st { margin-left: auto; font-size: 11.5px; font-weight: 400; color: var(--n-muted); }
   .zp-h .st.busy::after { content: ''; display: inline-block; width: 6px; height: 6px; margin-left: 6px; border-radius: 50%; background: var(--n-mint); animation: blink 1s ease-in-out infinite; vertical-align: 1px; }
   @keyframes blink { 50% { opacity: .2; } }
-  .tr { flex: 1; min-height: 0; overflow: hidden; padding: 12px 16px 6px; display: flex; flex-direction: column; gap: 10px; font-size: 12.5px; line-height: 1.5; }
+  .tr { flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 12px 16px 8px; display: flex; flex-direction: column; gap: 10px; font-size: 12.5px; line-height: 1.5; }
+  .tr::-webkit-scrollbar { display: none; }
+  .tr > * { flex: none; }
   .msg { opacity: 0; transform: translateY(4px); transition: opacity 260ms ease, transform 260ms ease; }
   .msg.in { opacity: 1; transform: none; }
   .msg.you { align-self: flex-end; max-width: 92%; background: var(--n-raised); border: 1px solid var(--n-line); border-radius: 10px 10px 2px 10px; padding: 7px 10px; }
@@ -213,6 +241,13 @@
   .msg.z p { margin: 0 0 8px; }
   .msg.z p:last-child { margin-bottom: 0; }
   .msg.z .ref { color: var(--n-mint); }
+  .msg.z b { font-weight: 500; color: var(--n-text); }
+  .msg.z .open { display: inline-block; margin-top: 2px; font: inherit; font-size: 12px; color: var(--n-mint); background: none; border: 0; padding: 0; cursor: pointer; }
+  .msg.z .open:hover { color: #80CFAD; text-decoration: underline; text-underline-offset: 3px; }
+  .sugg { display: flex; flex-wrap: wrap; align-items: baseline; gap: 3px 12px; margin: 0 16px 8px; font-size: 11.5px; }
+  .sugg .sl { color: var(--n-strong); }
+  .sugg .sq { font: inherit; color: var(--n-mint); background: none; border: 0; padding: 0; cursor: pointer; text-align: left; }
+  .sugg .sq:hover { color: #80CFAD; text-decoration: underline; text-underline-offset: 3px; }
   .card { border: 1px solid rgba(103,191,153,.32); background: var(--n-raised); border-radius: 10px; padding: 12px; display: grid; gap: 8px; }
   .card .ct { font-weight: 500; display: flex; gap: 8px; align-items: flex-start; }
   .card .ct .chip { margin-left: auto; }
@@ -222,12 +257,15 @@
   .nbtn.primary { background: var(--n-mint); border-color: var(--n-mint); color: #0C1510; }
   .nbtn.primary:hover { background: #80CFAD; }
   .nbtn:hover { border-color: var(--n-text); }
-  .chip.nhold { color: var(--n-warn); background: var(--n-warn-soft); }
-  .chip.nok { color: var(--n-ok); background: var(--n-ok-soft); }
-  .ask { margin: 0 14px 12px; border: 1px solid var(--n-line); background: var(--n-raised); border-radius: 9px; display: flex; align-items: center; gap: 8px; padding: 0 8px 0 12px; height: 36px; color: var(--n-muted); font-size: 12.5px; }
-  .ask .send { margin-left: auto; width: 24px; height: 24px; border-radius: 6px; background: var(--n-line); display: grid; place-items: center; color: var(--n-muted); }
+  .chip.nhold { color: var(--n-warn); }
+  .chip.nok { color: var(--n-ok); }
+  .ask { margin: 0 14px 12px; border: 1px solid var(--n-line); background: var(--n-raised); border-radius: 9px; display: flex; align-items: center; gap: 8px; padding: 0 6px 0 12px; height: 36px; transition: border-color 160ms ease; }
+  .ask:focus-within { border-color: rgba(103,191,153,.6); }
+  .ask input { flex: 1; min-width: 0; height: 100%; border: 0; outline: none; background: none; color: var(--n-text); font: inherit; font-size: 12.5px; }
+  .ask input::placeholder { color: var(--n-muted); }
+  .ask .send { width: 24px; height: 24px; border: 0; border-radius: 6px; background: var(--n-line); display: grid; place-items: center; color: var(--n-muted); cursor: pointer; flex: none; }
+  .ask .send:hover { background: var(--n-strong); color: var(--n-text); }
 
-  .grid > .w:nth-child(n+3) { display: none; }
   @media (max-width: 1180px) {
     .hero { grid-template-columns: 1fr; gap: 40px; }
     .copy { max-width: 36rem; }
@@ -250,6 +288,7 @@
     .greet { flex-direction: column; align-items: flex-start; gap: 10px; }
     .greet .actions { flex-wrap: wrap; }
     .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ask input { font-size: 16px; }
     h1 { font-size: 36px; }
     .grid { grid-template-columns: 1fr; }
     .w, .w.c3, .w.c4, .w.c6 { grid-column: span 1; }
@@ -320,29 +359,29 @@
         <div class="feed" id="feed" aria-hidden="true"><svg id="threads"></svg><div id="sources"></div></div>
         <div class="slot" id="slot">
       <div class="frame" id="frame">
-      <div class="window" id="window" role="figure" aria-label="Zora’s morning brief for a CTO, demonstration data">
-        <aside class="side" aria-hidden="true">
+      <div class="window" id="window" role="region" aria-label="Interactive demo of Zora, with fictional data">
+        <aside class="side" aria-label="Demo navigation">
           <div class="ws"><span class="z">T</span><span class="wsn">TransparentAI<small>Engineering · 62 people</small></span></div>
           <div class="nav-h">Today</div>
           <nav class="nav">
-            <a class="on"><svg class="i"><use href="#i-brief"/></svg>Brief<span class="n">06:00</span></a>
-            <a><svg class="i"><use href="#i-risk"/></svg>Your calls<span class="n">2</span></a>
-            <a><svg class="i"><use href="#i-cal"/></svg>Today<span class="n">4</span></a>
+            <button type="button" class="nb on" data-view="brief" aria-current="page"><svg class="i"><use href="#i-brief"/></svg>Brief<span class="n">06:00</span></button>
+            <button type="button" class="nb" data-view="calls"><svg class="i"><use href="#i-risk"/></svg>Your calls<span class="n" id="n-calls">2</span></button>
+            <button type="button" class="nb" data-view="today"><svg class="i"><use href="#i-cal"/></svg>Today<span class="n">4</span></button>
           </nav>
           <div class="nav-h">Organization</div>
           <nav class="nav">
-            <a><svg class="i"><use href="#i-check-c"/></svg>Commitments<span class="n">14</span></a>
-            <a><svg class="i"><use href="#i-decide"/></svg>Decisions</a>
-            <a><svg class="i"><use href="#i-project"/></svg>Projects<span class="n">4</span></a>
-            <a><svg class="i"><use href="#i-incident"/></svg>Incidents<span class="n">1</span></a>
-            <a><svg class="i"><use href="#i-delivery"/></svg>Delivery</a>
-            <a><svg class="i"><use href="#i-people"/></svg>People<span class="n">62</span></a>
+            <button type="button" class="nb" data-view="commitments"><svg class="i"><use href="#i-check-c"/></svg>Commitments<span class="n">14</span></button>
+            <button type="button" class="nb" data-view="decisions"><svg class="i"><use href="#i-decide"/></svg>Decisions</button>
+            <button type="button" class="nb" data-view="projects"><svg class="i"><use href="#i-project"/></svg>Projects<span class="n">4</span></button>
+            <button type="button" class="nb" data-view="incidents"><svg class="i"><use href="#i-incident"/></svg>Incidents<span class="n">1</span></button>
+            <button type="button" class="nb" data-view="delivery"><svg class="i"><use href="#i-delivery"/></svg>Delivery</button>
+            <button type="button" class="nb" data-view="people"><svg class="i"><use href="#i-people"/></svg>People<span class="n">62</span></button>
           </nav>
           <div class="nav-h">Zora</div>
           <nav class="nav">
-            <a><svg class="i"><use href="#i-source"/></svg>Sources<span class="n">6</span></a>
-            <a><svg class="i"><use href="#i-hold"/></svg>Authority</a>
-            <a><svg class="i"><use href="#i-settings"/></svg>Settings</a>
+            <button type="button" class="nb" data-view="sources"><svg class="i"><use href="#i-source"/></svg>Sources<span class="n">6</span></button>
+            <button type="button" class="nb" data-view="authority"><svg class="i"><use href="#i-hold"/></svg>Authority</button>
+            <button type="button" class="nb" data-view="settings"><svg class="i"><use href="#i-settings"/></svg>Settings</button>
           </nav>
           <div class="foot"><span class="me" style="width:22px;height:22px;font-size:9.5px">DK</span>Dana Kim · CTO</div>
         </aside>
@@ -351,11 +390,12 @@
           <div class="content">
             <div class="greet">
               <div>
-                <h2 id="greet">Morning, boss.</h2>
-                <p>Read 1,204 records from six sources between 05:12 and 05:58. One incident overnight, mitigated. Two things need your call.</p>
+                <h2 id="vt">Morning, boss.</h2>
+                <p id="vs">Read 1,204 records from six sources between 05:12 and 05:58. One incident overnight, mitigated. Two things need your call.</p>
               </div>
-              <div class="actions"><span class="stamp">Compiled 06:00 · Mon 21 Sep</span></div>
+              <div class="actions" id="stamp"><span class="stamp">Compiled 06:00 · Mon 21 Sep</span></div>
             </div>
+            <div class="since" id="since"><i class="sdot" id="sdot"></i><span class="k">Since 06:00</span><span class="sv" id="since-t">Watching six sources.</span><span class="sn" id="since-n"></span></div>
 
             <div class="grid" id="grid">
               <!-- WIDGET:overnight -->
@@ -367,11 +407,11 @@
                     <span class="chip ok">Mitigated</span>
                   </div>
                   <div class="tl">
-                    <div><span class="tt">02:41</span><span class="dotc"><i class="risk"></i></span><span class="tx">p99 write latency to 30 s <span>· Datadog</span></span></div>
-                    <div><span class="tt">02:44</span><span class="dotc"><i></i></span><span class="tx">Marcus paged, acknowledged in 40 s <span>· PagerDuty</span></span></div>
-                    <div><span class="tt">02:54</span><span class="dotc"><i class="act"></i></span><span class="tx">Index build on orders_eu cancelled <span>· Slack #incident-2291</span></span></div>
-                    <div><span class="tt">02:55</span><span class="dotc"><i class="ok"></i></span><span class="tx">Writes recovered, queue drained by 03:02 <span>· Datadog</span></span></div>
-                    <div><span class="tt">03:12</span><span class="dotc"><i></i></span><span class="tx">ORD-1187 opened for the 40 retries <span>· Linear</span></span></div>
+                    <div data-t="02:41" tabindex="0" role="button" aria-expanded="false"><span class="tt">02:41</span><span class="dotc"><i class="risk"></i></span><span class="tx">p99 write latency to 30 s <span>· Datadog</span><em class="ev">Datadog monitor “orders_eu write p99” fired: 30.2 s against a 2 s threshold, eu-west-1.</em></span></div>
+                    <div data-t="02:44" tabindex="0" role="button" aria-expanded="false"><span class="tt">02:44</span><span class="dotc"><i></i></span><span class="tx">Marcus paged, acknowledged in 40 s <span>· PagerDuty</span><em class="ev">PagerDuty incident 2291 paged Marcus Lind, primary on call. Acknowledged at 02:44:40.</em></span></div>
+                    <div data-t="02:54" tabindex="0" role="button" aria-expanded="false"><span class="tt">02:54</span><span class="dotc"><i class="act"></i></span><span class="tx">Index build on orders_eu cancelled <span>· Slack #incident-2291</span><em class="ev">Slack #incident-2291, Marcus: “Cancelling the orders_eu index build, it’s holding the write lock.”</em></span></div>
+                    <div data-t="02:55" tabindex="0" role="button" aria-expanded="false"><span class="tt">02:55</span><span class="dotc"><i class="ok"></i></span><span class="tx">Writes recovered, queue drained by 03:02 <span>· Datadog</span><em class="ev">Datadog: write p99 back under 200 ms at 02:55; the queue drained by 03:02.</em></span></div>
+                    <div data-t="03:12" tabindex="0" role="button" aria-expanded="false"><span class="tt">03:12</span><span class="dotc"><i></i></span><span class="tx">ORD-1187 opened for the 40 retries <span>· Linear</span><em class="ev">Linear ORD-1187, opened by Marcus: retry the 40 failed checkouts.</em></span></div>
                   </div>
                 </div>
                 <div class="w-f"><span>Cause: index build took the write lock during EU morning traffic.</span><a>Where else →</a></div>
@@ -379,25 +419,27 @@
 
               <!-- WIDGET:calls -->
               <section class="w c3" data-w="calls">
-                <header class="w-h">Needs your call<span class="meta">2 held for you</span></header>
+                <header class="w-h">Needs your call<span class="meta" id="calls-meta">2 held for you</span></header>
                 <div class="w-b stack">
                   <div class="call" id="call-0043">
                     <div class="ttl"><b style="flex:1">Billing migration 0043 runs tonight against a 22 M-row table</b><span class="chip hold" id="chip-0043">Tonight</span></div>
                     <div class="why">Same index-build pattern as 2291, the case behind Marcus’s off-peak proposal this morning. Tomas can move it to 23:00 UTC with the index built first.</div>
                     <div class="who"><span class="av" style="background:#2A4E3E">TB</span>Tomas Berg, billing · you decide</div>
                     <div class="acts"><button class="btn sm primary" type="button" data-call="0043" data-act="hold">Hold until off-peak</button><button class="btn sm" type="button" data-call="0043" data-act="run">Let it run</button></div>
+                    <div class="out" hidden></div>
                   </div>
                   <div class="call" id="call-rota">
                     <div class="ttl"><b style="flex:1">On-call rota lists two people who have left</b><span class="chip hold" id="chip-rota">Through Fri</span></div>
                     <div class="why">Sam and Ines are still in the platform rota through Friday. Marcus is the only live responder this week.</div>
                     <div class="who"><span class="av" style="background:#44574D">ML</span>Marcus Lind, SRE · you decide</div>
                     <div class="acts"><button class="btn sm primary" type="button" data-call="rota" data-act="reassign">Reassign by rota</button><button class="btn sm" type="button" data-call="rota" data-act="keep">Leave as is</button></div>
+                    <div class="out" hidden></div>
                   </div>
                 </div>
               </section>
 
               <!-- WIDGET:delivery -->
-              <section class="w c4" data-w="delivery">
+              <section class="w c4" data-w="delivery" hidden>
                 <header class="w-h">Delivery<span class="meta">Last 30 days · against your own baseline</span></header>
                 <div class="w-b metrics">
                   <div><div class="lbl">Deploys / day</div><div class="num" data-count="14.2" data-dec="1">0.0</div><div class="delta up">▲ 8% vs Aug</div></div>
@@ -420,7 +462,7 @@
               </section>
 
               <!-- WIDGET:sources -->
-              <section class="w" data-w="sources">
+              <section class="w" data-w="sources" hidden>
                 <header class="w-h">Sources<span class="meta">6 connected</span></header>
                 <div class="w-b">
                   <div class="num sm" data-count="1204" data-sep="1">0</div><div class="lbl" style="margin-bottom:8px">records read tonight · 05:12–05:58</div>
@@ -436,7 +478,7 @@
               </section>
 
               <!-- WIDGET:commitments -->
-              <section class="w c3" data-w="commitments">
+              <section class="w c3" data-w="commitments" hidden>
                 <header class="w-h">Commitments<span class="meta">This week</span></header>
                 <div class="w-b">
                   <div style="display:flex;align-items:baseline;gap:8px"><span class="num sm" data-count="14">0</span><span class="lbl">tracked · 9 kept · 3 open · 2 slipped</span></div>
@@ -444,7 +486,7 @@
                   <div class="list">
                     <div><span class="av" style="background:#5D6C64">PN</span><span class="t"><b>SDK-418 fix to beta</b><span>Priya · moved to Thu 24</span></span><span class="chip hold">Moved</span></div>
                     <div><span class="av" style="background:#2A4E3E">ER</span><span class="t"><b>Atlas scope signed</b><span>Elena · Tue 15</span></span><span class="chip ok">Kept</span></div>
-                    <div><span class="av" style="background:#44574D">ML</span><span class="t"><b>Rota updated</b><span>Marcus · due Fri 18</span></span><span class="chip risk">Slipped</span></div>
+                    <div><span class="av" style="background:#44574D">ML</span><span class="t"><b>Rota updated</b><span>Marcus · due Fri 18</span></span><span class="chip risk" id="com-rota">Slipped</span></div>
                     <div><span class="av" style="background:#111814">Z</span><span class="t"><b>Board notes to you</b><span>Zora · Thu 24, drafted</span></span><span class="chip prep">Open</span></div>
                   </div>
                 </div>
@@ -452,22 +494,22 @@
 
 
               <!-- WIDGET:today -->
-              <section class="w c3" data-w="today">
+              <section class="w c3" data-w="today" hidden>
                 <header class="w-h">Today<span class="meta">Mon 21 · 4 prepared</span></header>
                 <div class="w-b">
                   <div class="list">
                     <div><span class="mono lbl" style="width:38px">09:30</span><span class="t"><b>Incident review, 2291</b><span>4 parts · 8 records</span></span><span class="chip prep">Ready</span></div>
                     <div><span class="mono lbl" style="width:38px">11:00</span><span class="t"><b>Board prep</b><span>Every figure sourced</span></span><span class="chip prep">Drafted</span></div>
-                    <div><span class="mono lbl" style="width:38px">15:00</span><span class="t"><b>Atlas checkpoint</b><span>Scope decision attached</span></span><span class="chip prep">Ready</span></div>
+                    <div><span class="mono lbl" style="width:38px" id="today-atlas">15:00</span><span class="t"><b>Atlas checkpoint</b><span>Scope decision attached</span></span><span class="chip prep">Ready</span></div>
                     <div><span class="mono lbl" style="width:38px">17:00</span><span class="t"><b>Commitments check</b><span>14 against what shipped</span></span><span class="chip muted">Zora</span></div>
                   </div>
                 </div>
               </section>
               <!-- WIDGET:decisions -->
-              <section class="w c6" data-w="decisions">
-                <header class="w-h">Decisions<span class="meta">3 recorded</span></header>
+              <section class="w c6" data-w="decisions" hidden>
+                <header class="w-h">Decisions<span class="meta" id="dec-meta">3 recorded</span></header>
                 <div class="w-b">
-                  <div class="list">
+                  <div class="list" id="dec-list">
                     <div><span class="t"><b>Atlas ships EU-only first</b><span>Elena · Tue 15 · 3 records</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
                     <div><span class="t"><b>Index builds move off-peak</b><span>Marcus, proposed · Mon 21, 02:58 · pending your call</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
                     <div><span class="t"><b>SDK 2.0 release held to Thu</b><span>Priya · Tue 15 · 2 records</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
@@ -478,7 +520,7 @@
               </section>
 
               <!-- WIDGET:projects -->
-              <section class="w c6" data-w="projects">
+              <section class="w c6" data-w="projects" hidden>
                 <header class="w-h">Projects<span class="meta">4 active · status from the record, not the status meeting</span></header>
                 <div class="w-b" style="padding-top:8px;overflow-x:auto">
                   <table class="tbl">
@@ -492,38 +534,61 @@
                   </table>
                 </div>
               </section>
+              <!-- WIDGET:people -->
+              <section class="w c6" data-w="people" hidden>
+                <header class="w-h">People<span class="meta">62 in Engineering · the six in this week’s record</span></header>
+                <div class="w-b">
+                  <div class="list">
+                    <div><span class="av" style="background:#2A4E3E">DK</span><span class="t"><b>Dana Kim</b><span>CTO · you</span></span></div>
+                    <div><span class="av" style="background:#2A4E3E">ER</span><span class="t"><b>Elena Ruiz</b><span>Engineering manager, Atlas · 41 records this week</span></span></div>
+                    <div><span class="av" style="background:#5D6C64">PN</span><span class="t"><b>Priya Nair</b><span>Engineering manager, mobile · owns SDK-418</span></span></div>
+                    <div><span class="av" style="background:#2A4E3E">TB</span><span class="t"><b>Tomas Berg</b><span>Billing lead · owns migration 0043</span></span></div>
+                    <div><span class="av" style="background:#44574D">ML</span><span class="t"><b>Marcus Lind</b><span>SRE · primary on call this week</span></span><span class="chip ok">On call</span></div>
+                    <div><span class="av" style="background:#838F89">SO</span><span class="t"><b>Sam Okafor</b><span>Left 12 Sep · still in the platform rota</span></span><span class="chip risk" id="people-sam">On rota</span></div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- WIDGET:authority -->
+              <section class="w c6" data-w="authority" hidden>
+                <header class="w-h">Authority<span class="meta">Advises today · acts only on rules you grant</span></header>
+                <div class="w-b">
+                  <div class="list">
+                    <div><span class="t"><b>Advise, and hold for your call</b><span>Every call since 1 Sep · 31 held, 31 decided by you</span></span><span class="chip ok">Active</span></div>
+                    <div><span class="t"><b>Open a ticket when a written condition is met</b><span>Shadow · would have fired 4 times this month</span></span><span class="chip muted">Shadow</span></div>
+                    <div><span class="t"><b>Page the on-call on the published rule</b><span>Shadow · would have fired once, 2291 at 02:42</span></span><span class="chip muted">Shadow</span></div>
+                    <div><span class="t"><b>Hold a deploy one click from the on-call</b><span>Not granted</span></span><span class="chip muted">Off</span></div>
+                  </div>
+                </div>
+                <div class="w-f"><span>Each rule runs in shadow first and shows up in the brief. Demotion is one message.</span></div>
+              </section>
+
+              <!-- WIDGET:settings -->
+              <section class="w c6" data-w="settings" hidden>
+                <header class="w-h">Settings<span class="meta">TransparentAI · Engineering</span></header>
+                <div class="w-b">
+                  <div class="list">
+                    <div><span class="t"><b>The brief</b><span>Compiled 06:00 local, Monday to Friday</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
+                    <div><span class="t"><b>Delivered to</b><span>Dana Kim, by email and Slack DM</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
+                    <div><span class="t"><b>Sources</b><span>Six connected · read 05:12–05:58</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
+                    <div><span class="t"><b>Urgent calls</b><span>A Slack DM when a deadline is inside two hours</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
+                  </div>
+                </div>
+              </section>
             </div>
           </div>
         </div>
 
         <aside class="zp" aria-label="Zora’s panel">
           <div class="zp-h"><span class="dot"></span>Zora<span class="st" id="zst">In the room</span></div>
-          <div class="tr" id="tr">
-            <div class="msg you" id="m-you"><span class="who">You · 06:04</span>What happened with EU orders last night?</div>
-            <div class="msg" id="m-steps"><div class="steps">
-              <div class="step"><svg class="i"><use href="#i-spin"/></svg><span class="t">Read the Datadog alert, 02:41</span></div>
-              <div class="step"><svg class="i"><use href="#i-spin"/></svg><span class="t">Read PagerDuty incident 2291</span></div>
-              <div class="step"><svg class="i"><use href="#i-spin"/></svg><span class="t">Read 14 messages in #incident-2291</span></div>
-              <div class="step"><svg class="i"><use href="#i-spin"/></svg><span class="t">Matched 2291 to 0043 in Linear</span></div>
-            </div></div>
-            <div class="msg z" id="m-answer">
-              <p>Order writes in the EU were blocked for 14 minutes from 02:41. An index build on <span class="ref">orders_eu</span> took the write lock during the morning traffic ramp; Marcus cancelled it at 02:54 and writes recovered at 02:55. Forty checkouts failed and are covered by <span class="ref">ORD-1187</span>.</p>
-              <p>The same build is scheduled for billing tonight. I’ve held it for you rather than let it run.</p>
-            </div>
-            <div class="msg" id="m-card"><div class="card">
-              <div class="ct">Hold migration 0043 until the index is built off-peak<span class="chip nhold" id="card-chip">Your call</span></div>
-              <div class="cd">Tomas has a 23:00 UTC slot. Nothing runs until you say so.</div>
-              <div class="ca" id="card-acts"><button class="nbtn primary" type="button" data-call="0043" data-act="hold">Hold</button><button class="nbtn" type="button" data-call="0043" data-act="run">Let it run</button></div>
-            </div></div>
-            <div class="msg z" id="m-after"><p id="after-text"></p></div>
-            <div class="msg z" id="m-rota"><p id="rota-text"></p></div>
-          </div>
-          <div class="ask"><span>Ask Zora…</span><span class="send"><svg class="i" style="width:13px;height:13px"><use href="#i-send"/></svg></span></div>
+          <div class="tr" id="tr" aria-live="polite"></div>
+          <div class="sugg" id="sugg" hidden></div>
+          <form class="ask" id="askf" autocomplete="off"><input id="askin" type="text" placeholder="Ask Zora…" aria-label="Ask Zora" maxlength="140"><button class="send" type="submit" aria-label="Send"><svg class="i" style="width:13px;height:13px"><use href="#i-send"/></svg></button></form>
         </aside>
       </div>
       </div>
         </div>
-        <p class="caption"><span>Demonstration data. TransparentAI is fictional.</span><button id="replay" type="button">Replay</button></p>
+        <p class="caption"><span>Interactive demo with fictional data. Click around, or ask Zora.</span><button id="replay" type="button">Replay</button></p>
       </div>
     </section>
   </main>
@@ -535,12 +600,17 @@
 </div>
 
 <script>
-  // The brief arrives as a whole, then Zora answers a question in her panel and holds a migration for the CTO's call.
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches || new URLSearchParams(location.search).has('still');
+  // A live demo of Zora. The brief arrives whole; she answers a question and holds a call for the CTO;
+  // new records keep arriving and change the brief; the visitor can move around, decide, and ask.
+  // She never decides for the CTO.
+  const params = new URLSearchParams(location.search);
+  const still = params.has('still');
+  const reduced = still || matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.documentElement.classList.toggle('reduced', reduced);
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  const esc = (t) => t.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
   // deploys per day, 30 bars; weekends low
   (function bars() {
@@ -552,7 +622,6 @@
       html += `<rect class="grow-y" x="${(i * w + 3).toFixed(1)}" y="${(100 - h).toFixed(1)}" width="${(w - 6).toFixed(1)}" height="${h}" rx="2" ${wk ? 'fill-opacity=".35"' : ''} style="transition-delay:${200 + i * 25}ms"/>`;
     });
     g.innerHTML = html;
-    // 7-day rolling average, drawn as a line with a soft area under it
     const pts = vals.map((_, i) => { const win = vals.slice(Math.max(0, i - 6), i + 1); const m = win.reduce((a, b) => a + b, 0) / win.length; return [(i * w + w / 2).toFixed(1), (100 - m * 4).toFixed(1)]; });
     const line = 'M' + pts.map((p) => p.join(' ')).join(' L');
     $('#avg-line').setAttribute('d', line);
@@ -564,12 +633,12 @@
     const fmt = (v) => (sep ? Math.round(v).toLocaleString('en-US') : v.toFixed(dec)) + unit;
     if (reduced) { el.textContent = fmt(target); return; }
     const t0 = performance.now(), dur = 900;
-    const tick = (now) => { const k = Math.min(1, Math.max(0, (now - t0) / dur)); const e = 1 - Math.pow(1 - k, 3); el.textContent = fmt(target * e); if (k < 1) requestAnimationFrame(tick); };
+    const tick = (now) => { const k = Math.min(1, Math.max(0, (now - t0) / dur)); el.textContent = fmt(target * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(tick); };
     requestAnimationFrame(tick);
     setTimeout(() => { el.textContent = fmt(target); }, dur + 60);
   }
 
-  // Fit the 1000 px window to its slot: scaled down beside the copy, larger on its own row, stacked under 960 px.
+  // ---------- the window's size, and the six source lines ----------
   const slot = $('#slot'), frame = $('#frame'), feed = $('#feed'), threadsSvg = $('#threads'), sourcesEl = $('#sources');
   const SOURCES = ['Linear', 'GitHub', 'Datadog', 'PagerDuty', 'Slack', 'Calendar'];
   const srcEls = SOURCES.map((n) => { const d = document.createElement('div'); d.className = 'feed-src'; d.textContent = n; sourcesEl.appendChild(d); return d; });
@@ -588,99 +657,304 @@
     SOURCES.forEach((_, i) => {
       const y = Math.round(top + span * (i / (SOURCES.length - 1))) + 0.5;
       srcEls[i].style.top = (y - 8.5) + 'px';
-      const x0 = srcEls[i].offsetWidth + 10;
-      html += `<path id="thread-${i}" d="M${x0} ${y} H${W}"/>`;
+      html += `<path id="thread-${i}" d="M${srcEls[i].offsetWidth + 10} ${y} H${W}"/>`;
     });
     threadsSvg.innerHTML = html;
     threadPaths = $$('path', threadsSvg);
   }
   fit(); addEventListener('resize', fit); addEventListener('orientationchange', fit); addEventListener('pageshow', fit); document.addEventListener('visibilitychange', fit);
   if ('ResizeObserver' in window) new ResizeObserver(fit).observe(slot);
-  // pulses: one record at a time, on a thread chosen at random, from the source into the window
-  let pulseTimer = 0;
-  function pulse() {
-    if (reduced || document.hidden || !threadPaths.length || getComputedStyle(feed).display === 'none') return;
-    const i = Math.floor(Math.random() * threadPaths.length), dur = (0.8 + Math.random() * 0.3).toFixed(2);
-    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    g.innerHTML = `<circle class="pulse" r="2.25" opacity="0"><animateMotion dur="${dur}s" begin="0s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.3 0 0.7 1"><mpath href="#thread-${i}"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.88;1" dur="${dur}s" begin="0s" fill="freeze"/></circle>`;
-    threadsSvg.appendChild(g);
-    setTimeout(() => g.remove(), Math.round(dur * 1000) + 200);
-  }
-  function schedulePulses() { clearInterval(pulseTimer); if (!reduced) pulseTimer = setInterval(pulse, 420); }
-  schedulePulses();
+  const feedShown = () => getComputedStyle(feed).display !== 'none';
 
-  const widgets = $$('.w'), msgs = { you: $('#m-you'), steps: $('#m-steps'), answer: $('#m-answer'), card: $('#m-card'), after: $('#m-after') };
-  const steps = $$('.step'), zst = $('#zst'), afterText = $('#after-text');
-  let running = false;
-
-  function decideRota(act) {
-    const re = act === 'reassign';
-    const c = $('#chip-rota'); c.className = 'chip ' + (re ? 'ok' : 'hold'); c.textContent = re ? 'Reassigned · you, 06:06' : 'Left as is';
-    $$('#call-rota .acts .btn').forEach((b) => (b.disabled = true));
-    $('#rota-text').textContent = re
-      ? 'Rota reassigned: Priya covers platform through Friday, Sam and Ines are off the schedule, and Marcus is no longer the only responder.'
-      : 'Left as is. I’ll flag it again on Thursday, before the weekend rota is published.';
-    $('#m-rota').classList.add('in');
+  // A record travels along one source's line into the window. Big ones are records she is reading or receiving.
+  function ride(i, big) {
+    return new Promise((done) => {
+      const path = threadPaths[i];
+      if (reduced) return done();
+      if (!path || !feedShown()) return setTimeout(done, big ? 450 : 0);
+      const dur = big ? 0.55 : 0.8 + Math.random() * 0.3;
+      if (big) { path.classList.add('hot'); srcEls[i].classList.add('hot'); }
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.innerHTML = `<circle class="pulse${big ? ' big' : ''}" r="${big ? 2.75 : 1.9}" opacity="0"><animateMotion dur="${dur}s" begin="0s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.3 0 0.7 1"><mpath href="#thread-${i}"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.88;1" dur="${dur}s" begin="0s" fill="freeze"/></circle>`;
+      threadsSvg.appendChild(g);
+      setTimeout(() => { g.remove(); if (big) { path.classList.remove('hot'); srcEls[i].classList.remove('hot'); } done(); }, dur * 1000);
+    });
   }
-  function decide(act) {
-    const held = act === 'hold';
-    $('#card-acts').innerHTML = '';
-    zst.textContent = 'In the room';
-    const chip = $('#card-chip'); chip.className = 'chip ' + (held ? 'nok' : 'nhold'); chip.textContent = held ? 'Held · you, 06:05' : 'Runs tonight · you, 06:05';
-    afterText.textContent = held
-      ? 'Held. I’ve told Tomas, moved 0043 to 23:00 UTC with the index built first, and put it in tonight’s brief with the rule that fired.'
-      : 'Understood. It runs as scheduled; I’ll watch the write lock from 02:30 and page Marcus on the published rule if p99 passes 5 s.';
-    msgs.after.classList.add('in');
-    const c = $('#chip-0043'); c.className = 'chip ' + (held ? 'ok' : 'hold'); c.textContent = held ? 'Held by you · 23:00' : 'Runs tonight';
-    const p = $('#proj-0043'); p.className = 'chip ' + (held ? 'ok' : 'hold'); p.textContent = held ? 'Held · off-peak' : 'Tonight';
-    $$('#call-0043 .acts .btn').forEach((b) => (b.disabled = true));
-  }
-  const route = (b) => (b.dataset.call === 'rota' ? decideRota(b.dataset.act) : decide(b.dataset.act));
-  $$('[data-act]').forEach((b) => b.addEventListener('click', () => route(b)));
+  if (!reduced) setInterval(() => { if (!document.hidden) ride(Math.floor(Math.random() * SOURCES.length), false); }, 1100);
 
-  function reset() {
-    widgets.forEach((w) => w.classList.remove('in'));
-    Object.values(msgs).forEach((m) => m.classList.remove('in')); $('#m-rota').classList.remove('in');
-    steps.forEach((s) => { s.classList.remove('in', 'done'); $('use', s).setAttribute('href', '#i-spin'); });
-    $('#card-acts').innerHTML = '<button class="nbtn primary" type="button" data-call="0043" data-act="hold">Hold</button><button class="nbtn" type="button" data-call="0043" data-act="run">Let it run</button>';
-    $$('#card-acts [data-act]').forEach((b) => b.addEventListener('click', () => route(b)));
-    const cr = $('#chip-rota'); cr.className = 'chip hold'; cr.textContent = 'Through Fri';
-    $$('#call-rota .acts .btn').forEach((b) => (b.disabled = false));
-    $('#rota-text').textContent = ''; $('#m-rota').classList.remove('in');
-    $$('[data-count]').forEach((el) => { const dec = +(el.dataset.dec || 0), unit = el.dataset.unit || ''; el.textContent = (el.dataset.sep ? '0' : (0).toFixed(dec)) + unit; });
-    const chip = $('#card-chip'); chip.className = 'chip nhold'; chip.textContent = 'Your call';
-    const c = $('#chip-0043'); c.className = 'chip hold'; c.textContent = 'Tonight';
-    const p = $('#proj-0043'); p.className = 'chip hold'; p.textContent = 'Held';
-    $$('#call-0043 .acts .btn').forEach((b) => (b.disabled = false));
-    afterText.textContent = '';
-    zst.textContent = 'In the room'; zst.classList.remove('busy');
+  // ---------- the window's state ----------
+  const win = $('#window');
+  const WIN0 = win.innerHTML;
+  let R = {}, st, gen = 0;
+  const fresh = () => ({ d: { '0043': null, rota: null }, min: 6 * 60 + 3, arrived: 0, touched: false, busy: false, view: 'brief', used: new Set(), atlas: '15:00' });
+  const hhmm = (m) => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+  const bump = () => hhmm(++st.min);
+  function bind() {
+    R = { tr: $('#tr'), zst: $('#zst'), input: $('#askin'), sugg: $('#sugg'), content: $('.content', win), vt: $('#vt'), vs: $('#vs'), stamp: $('#stamp'), since: $('#since'), sinceT: $('#since-t'), sinceN: $('#since-n'), sdot: $('#sdot'),
+      W: Object.fromEntries($$('.w', win).map((w) => [w.dataset.w, w])) };
   }
 
-  async function deliver() {
-    if (running) return; running = true;
+  // ---------- screens ----------
+  const VIEWS = {
+    brief: { t: 'Morning, boss.', w: ['overnight', 'calls'] },
+    calls: { t: 'Your calls', w: ['calls'] },
+    today: { t: 'Today', s: 'Monday 21 September. Four things prepared, each with its records.', w: ['today'] },
+    commitments: { t: 'Commitments', s: 'Everything someone said they would do this week, and whether it happened.', w: ['commitments'] },
+    decisions: { t: 'Decisions', s: 'Who decided what, when, and on what evidence.', w: ['decisions'] },
+    projects: { t: 'Projects', s: 'Status from the record, not the status meeting.', w: ['projects'] },
+    incidents: { t: 'Incidents', s: 'One this week, mitigated. The review is prepared: four parts, eight records.', w: ['overnight'] },
+    delivery: { t: 'Delivery', s: 'The four DORA measures over 30 days, against your own baseline.', w: ['delivery'] },
+    people: { t: 'People', s: 'Who owns what, who is on call, and who has left.', w: ['people'] },
+    sources: { t: 'Sources', s: 'Six connected. Read every night between 05:12 and 05:58.', w: ['sources'] },
+    authority: { t: 'Authority', s: 'What Zora may do on her own. Today, nothing without you.', w: ['authority'] },
+    settings: { t: 'Settings', s: 'The brief, who receives it, and how you hear from her.', w: ['settings'] },
+  };
+  const openCalls = () => Object.values(st.d).filter((v) => !v).length;
+  function sub(view) {
+    const n = openCalls();
+    if (view === 'brief') return 'Read 1,204 records from six sources between 05:12 and 05:58. One incident overnight, mitigated. ' + (n === 2 ? 'Two things need your call.' : n === 1 ? 'One thing needs your call.' : 'You’ve made both calls.');
+    if (view === 'calls') return n ? (n === 2 ? 'Two decisions' : 'One decision') + ' held for you. Nothing runs until you decide.' : 'Nothing held. Your decisions are in the log.';
+    return VIEWS[view].s;
+  }
+  function paint(view) {
+    R.vt.textContent = VIEWS[view].t; R.vs.textContent = sub(view);
+    R.stamp.hidden = R.since.hidden = view !== 'brief';
+    Object.values(R.W).forEach((w) => { w.hidden = true; w.classList.remove('in', 'c3', 'c4', 'c6'); });
+    $('.grid', win).classList.toggle('solo', view !== 'brief');
+    VIEWS[view].w.forEach((k) => { R.W[k].hidden = false; R.W[k].classList.add(view === 'brief' ? 'c3' : 'c6'); });
+    $$('.nb', win).forEach((b) => { const on = b.dataset.view === view; b.classList.toggle('on', on); on ? b.setAttribute('aria-current', 'page') : b.removeAttribute('aria-current'); });
+    R.content.scrollTop = 0;
+  }
+  async function showView(view, instant) {
+    if (!VIEWS[view]) return;
+    st.view = view;
+    if (instant || reduced) { paint(view); VIEWS[view].w.forEach((k) => { R.W[k].classList.add('in'); $$('[data-count]', R.W[k]).forEach(countUp); }); return; }
+    R.content.classList.add('swap'); await wait(140);
+    if (st.view !== view) return;
+    paint(view); void R.content.offsetWidth; R.content.classList.remove('swap');
+    for (const k of VIEWS[view].w) { R.W[k].classList.add('in'); $$('[data-count]', R.W[k]).forEach(countUp); await wait(80); }
+  }
+
+  // ---------- Zora's panel ----------
+  const scrollDown = () => R.tr.scrollTo({ top: R.tr.scrollHeight, behavior: reduced ? 'auto' : 'smooth' });
+  function add(el) {
+    el.classList.add('msg'); R.tr.appendChild(el);
+    if (reduced) el.classList.add('in'); else requestAnimationFrame(() => el.classList.add('in'));
+    scrollDown(); return el;
+  }
+  function you(text, t) { const d = document.createElement('div'); d.className = 'you'; d.innerHTML = `<span class="who">You · ${t}</span>${esc(text)}`; return add(d); }
+  function say(paras, openView) {
+    const d = document.createElement('div'); d.className = 'z';
+    d.innerHTML = paras.map((p) => `<p>${p}</p>`).join('') + (openView ? `<button class="open" type="button" data-view="${openView}">Open ${VIEWS[openView].t} →</button>` : '');
+    return add(d);
+  }
+  function stepList(steps) { const d = document.createElement('div'); d.innerHTML = `<div class="steps">${steps.map(([t]) => `<div class="step"><svg class="i"><use href="#i-spin"/></svg><span class="t">${esc(t)}</span></div>`).join('')}</div>`; return add(d); }
+  const CARDS = {
+    '0043': { t: 'Hold migration 0043 until the index is built off-peak', d: 'Tomas has a 23:00 UTC slot. Nothing runs until you say so.', a: [['hold', 'Hold'], ['run', 'Let it run']] },
+    rota: { t: 'Reassign the platform rota by the published order', d: 'Priya takes Sam’s shifts and Tomas takes Ines’s. Nothing changes until you say so.', a: [['reassign', 'Reassign'], ['keep', 'Leave as is']] },
+  };
+  function card(call) {
+    const c = CARDS[call], d = document.createElement('div');
+    d.innerHTML = `<div class="card" data-cardfor="${call}"><div class="ct">${c.t}<span class="chip nhold cchip">Your call</span></div><div class="cd">${c.d}</div><div class="ca">${c.a.map(([k, l], i) => `<button class="nbtn${i ? '' : ' primary'}" type="button" data-call="${call}" data-act="${k}">${l}</button>`).join('')}</div></div>`;
+    return add(d);
+  }
+  function status(reading) {
+    R.zst.classList.toggle('busy', !!reading);
+    R.zst.textContent = reading ? 'Reading' : $$('.card .ca button', R.tr).length ? 'Waiting on you' : 'In the room';
+  }
+  function lightCall(call) { const c = $('#call-' + call); if (!c) return; c.classList.add('lit'); setTimeout(() => c.classList.remove('lit'), 2600); }
+
+  // What she can answer from this demo's record. Each answer reads its sources first.
+  const Q = { eu: 'What happened with EU orders last night?', risk: 'What’s at risk this week?', sdk: 'Where is SDK 2.0?', delivery: 'How are we delivering?', atlas: 'How is Atlas going?', board: 'What’s in the board notes?', commitments: 'What slipped this week?', rota: 'Who is on call this week?', '0043': 'Should 0043 run tonight?' };
+  const KEYS = [
+    ['hello', ['hi', 'hello', 'hey', 'morning', 'good morning']],
+    ['0043', ['0043', 'migration', 'billing']],
+    ['rota', ['rota', 'on-call', 'on call', 'oncall', 'pager', 'sam', 'ines']],
+    ['sdk', ['sdk', 'mobile', 'priya', 'android', 'sdk-418', 'release']],
+    ['atlas', ['atlas', 'elena', 'launch']],
+    ['board', ['board']],
+    ['commitments', ['slip', 'slipped', 'commitment', 'commitments', 'promise', 'promised', 'late', 'overdue']],
+    ['delivery', ['deliver', 'delivering', 'delivery', 'deploy', 'deploys', 'dora', 'lead time', 'change failure', 'restore', 'shipping', 'velocity', 'throughput']],
+    ['risk', ['risk', 'risks', 'worry', 'worried', 'blocker', 'blockers', 'danger', 'attention']],
+    ['eu', ['eu', 'order', 'orders', 'last night', 'overnight', 'incident', '2291', 'happened', 'outage', 'checkout', 'checkouts']],
+  ];
+  function match(text) {
+    const t = ' ' + text.toLowerCase().replace(/[^a-z0-9\-\s]/g, ' ') + ' ';
+    for (const [k, words] of KEYS) if (words.some((w) => t.includes(' ' + w + ' ') || (w.length > 4 && t.includes(w)))) return k;
+    return 'none';
+  }
+  const ref = (t) => `<span class="ref">${t}</span>`;
+  const RESP = {
+    eu: () => ({ steps: [['Read the Datadog alert, 02:41', 'Datadog', '02:41'], ['Read PagerDuty incident 2291', 'PagerDuty', '02:44'], ['Read 14 messages in #incident-2291', 'Slack', '02:54'], ['Matched 2291 to 0043 in Linear', 'Linear', '03:12']],
+      a: [`Order writes in the EU were blocked for 14 minutes from 02:41. An index build on ${ref('orders_eu')} took the write lock during the morning traffic ramp; Marcus cancelled it at 02:54 and writes recovered at 02:55. Forty checkouts failed and are covered by ${ref('ORD-1187')}.`,
+        st.d['0043'] === 'hold' ? 'The same build was scheduled for billing tonight. You held it; it now runs at 23:00 UTC with the index built first.' : st.d['0043'] === 'run' ? 'The same build runs for billing tonight, as you decided. I’m watching the write lock from 02:30.' : 'The same build is scheduled for billing tonight. I’ve held it for you rather than let it run.'],
+      card: '0043', lit: '0043' }),
+    '0043': () => ({ steps: [['Read migration 0043 in GitHub', 'GitHub'], ['Matched it to 2291 in Linear', 'Linear', '03:12']],
+      a: st.d['0043'] ? [`You decided at ${st.t0043}: ${st.d['0043'] === 'hold' ? 'held until off-peak. It runs at 23:00 UTC with the index built first.' : 'it runs as scheduled, and I’m watching the write lock from 02:30.'}`]
+        : ['Not in the EU write window. It builds the same kind of index that blocked orders_eu at 02:41, on a 22 M-row table. Tomas has a 23:00 UTC slot with the index built first.'],
+      card: '0043', lit: '0043' }),
+    rota: () => ({ steps: [['Read the platform rota in PagerDuty', 'PagerDuty'], ['Read Marcus’s rota commitment in Linear', 'Linear']],
+      a: [st.d.rota === 'reassign' ? 'Marcus is primary. Priya covers Sam’s shifts and Tomas covers Ines’s through Friday, since you reassigned it.' : st.d.rota === 'keep' ? 'Marcus is primary, and the rota still lists Sam and Ines through Friday. You left it as is; I’ll raise it again Thursday.' : 'Marcus is primary. The rota still lists Sam and Ines, who have both left, through Friday, so Marcus is the only live responder. Updating it was Marcus’s commitment for Friday; it slipped.'],
+      card: 'rota', lit: 'rota' }),
+    risk: () => ({ steps: [['Read 4 active projects in Linear', 'Linear'], ['Read the on-call rota in PagerDuty', 'PagerDuty'], ['Read Friday’s partner demo', 'Calendar']],
+      a: ['Two things. <b>SDK 2.0</b> is at risk: the SDK-418 fix moved to Thursday and the partner demo is Friday, so there is one day of slack.',
+        st.d.rota === 'reassign' ? 'The rota is covered now that you reassigned it.' : st.d.rota === 'keep' ? 'And the rota still lists Sam and Ines; you left it as is.' : 'And the <b>on-call rota</b> still lists Sam and Ines through Friday, so Marcus is the only live responder.'],
+      card: 'rota', lit: 'rota' }),
+    sdk: () => ({ steps: [['Read SDK-418 in Linear', 'Linear'], ['Read PR #2190 in GitHub', 'GitHub'], ['Read Friday’s partner demo', 'Calendar']],
+      a: ['Held on SDK-418, a crash on Android 12 when the app resumes offline. Priya moved the fix to Thursday and PR #2190 is in review. The partner demo is Friday at 10:00; if the fix slips again, the demo runs on 1.9.'], open: 'projects' }),
+    atlas: () => ({ steps: [['Read ATLAS-218 in Linear', 'Linear'], ['Read #atlas-planning in Slack', 'Slack'], ['Read today’s checkpoint', 'Calendar']],
+      a: [`On track for Oct 14. Elena cut scope to EU-only on Tuesday, with the design partner’s requirement attached. Its one dependency is migration 0043, ${st.d['0043'] === 'hold' ? 'which now runs at 23:00 UTC.' : st.d['0043'] === 'run' ? 'which runs tonight.' : 'which is waiting on your call.'} Today’s checkpoint is at ${st.atlas}.`], open: 'projects' }),
+    delivery: () => ({ steps: [['Read 30 days of deploys in GitHub', 'GitHub'], ['Read change failures in Datadog', 'Datadog'], ['Read restore times in PagerDuty', 'PagerDuty']],
+      a: ['14.2 production deploys a day, up 8% on August. Lead time is 1.8 days and change failure 3.1%, both better. Time to restore is 22 minutes, 4 worse, and all of that is 2291.'], open: 'delivery' }),
+    board: () => ({ steps: [['Read Thursday’s board agenda', 'Calendar'], ['Checked each figure against its record', 'Datadog']],
+      a: ['Drafted for Thursday: delivery, stability, and quality, every figure linked to its record. Two questions for you: whether to cover 2291 under stability, and how to present Atlas’s EU-only scope.'], open: 'today' }),
+    commitments: () => ({ steps: [['Read 14 commitments in Linear', 'Linear'], ['Checked them against this week’s calendar', 'Calendar']],
+      a: ['Two of fourteen. Marcus’s rota update was due Friday and hasn’t happened, which is why the rota still lists Sam and Ines. Priya’s SDK-418 fix moved to Thursday. Nine are kept and three are open.'], open: 'commitments' }),
+    hello: () => ({ steps: [], a: ['Morning. One incident overnight, mitigated, and two calls waiting for you. Where do you want to start?'] }),
+    none: () => ({ steps: [],
+      a: ['That isn’t in this demo’s record. In the private beta I read your Linear, GitHub, Datadog, PagerDuty, Slack, and calendar. Here, ask me about last night’s incident, migration 0043, the on-call rota, SDK 2.0, Atlas, or delivery.'] }),
+  };
+  const SUGG = ['risk', 'sdk', 'delivery', 'atlas', 'board', 'commitments', 'rota', '0043'];
+  function refreshSugg() {
+    const k = SUGG.filter((x) => !st.used.has(x)).slice(0, 2);
+    R.sugg.innerHTML = '<span class="sl">Try</span>' + k.map((x) => `<button class="sq" type="button" data-q="${x}">${Q[x]}</button>`).join('');
+    R.sugg.hidden = !k.length;
+  }
+
+  async function ask(text, typed) {
+    text = (text || '').trim().slice(0, 140);
+    if (!text || st.busy) return;
+    const g = gen; st.busy = true;
     try {
-      reset();
-      await wait(150);
-      for (let i = 0; i < widgets.length; i++) { widgets[i].classList.add('in'); $$('[data-count]', widgets[i]).forEach(countUp); await wait(110); }
-      await wait(700);
-      msgs.you.classList.add('in'); zst.textContent = 'Reading'; zst.classList.add('busy');
-      await wait(600);
-      msgs.steps.classList.add('in');
-      for (const s of steps) { s.classList.add('in'); await wait(520); s.classList.add('done'); $('use', s).setAttribute('href', '#i-check'); await wait(140); }
-      await wait(250);
-      zst.textContent = 'In the room'; zst.classList.remove('busy');
-      msgs.answer.classList.add('in');
-      await wait(900);
-      msgs.card.classList.add('in'); zst.textContent = 'Waiting on you';
-    } finally { running = false; }
+      if (typed && !reduced) { for (let i = 1; i <= text.length; i++) { R.input.value = text.slice(0, i); await wait(22); if (g !== gen) return; } await wait(220); }
+      R.input.value = '';
+      const key = match(text); st.used.add(key); refreshSugg();
+      const r = RESP[key]();
+      you(text, bump()); status(true);
+      if (!reduced) await wait(380);
+      if (g !== gen) return;
+      if (r.steps.length) {
+        const rows = $$('.step', stepList(r.steps));
+        for (let i = 0; i < r.steps.length; i++) {
+          const [, src, t] = r.steps[i], row = rows[i], tl = t && $(`.tl [data-t="${t}"]`, win);
+          row.classList.add('in'); tl && tl.classList.add('lit');
+          await ride(SOURCES.indexOf(src), true);
+          if (g !== gen) return;
+          row.classList.add('done'); $('use', row).setAttribute('href', '#i-check');
+          if (!reduced) await wait(140);
+          tl && tl.classList.remove('lit');
+        }
+      }
+      if (!reduced) await wait(240);
+      if (g !== gen) return;
+      if (r.lit && !still) lightCall(r.lit);
+      say(r.a, r.open); status(false);
+      if (r.card && !st.d[r.card] && !$(`.card[data-cardfor="${r.card}"] .ca`, R.tr)) {
+        if (!reduced) await wait(650);
+        if (g !== gen) return;
+        card(r.card); status(false);
+      }
+    } finally { if (g === gen) st.busy = false; }
   }
-  function showFinished() {
-    widgets.forEach((w) => { w.classList.add('in'); $$('[data-count]', w).forEach(countUp); });
-    [msgs.you, msgs.steps, msgs.answer, msgs.card].forEach((m) => m.classList.add('in')); zst.textContent = 'Waiting on you';
-    steps.forEach((s) => { s.classList.add('in', 'done'); $('use', s).setAttribute('href', '#i-check'); });
+
+  // ---------- decisions ripple through the window ----------
+  const OUT = {
+    '0043': {
+      hold: { card: ['Held · you, {t}', 'nok'], row: ['Held · 23:00', 'ok'], proj: ['Held · off-peak', 'ok'], log: 'Migration 0043 held until off-peak',
+        say: 'Held. I’ve told Tomas, moved 0043 to 23:00 UTC with the index built first, and put it in tonight’s brief with the rule that fired.' },
+      run: { card: ['Runs tonight · you, {t}', 'nhold'], row: ['Runs tonight', 'hold'], proj: ['Tonight', 'hold'], log: 'Migration 0043 runs as scheduled',
+        say: 'Understood. It runs as scheduled; I’ll watch the write lock from 02:30 and page Marcus on the published rule if p99 passes 5 s.' },
+    },
+    rota: {
+      reassign: { card: ['Reassigned · you, {t}', 'nok'], row: ['Reassigned', 'ok'], log: 'Platform rota reassigned by order',
+        say: 'Done. Priya takes Sam’s shifts and Tomas takes Ines’s through Friday, so Marcus is no longer the only responder. I’ve told all three.',
+        fx: () => { const c = $('#com-rota'); c.className = 'chip ok'; c.textContent = 'Done · you'; const p = $('#people-sam'); p.className = 'chip muted'; p.textContent = 'Off the rota'; } },
+      keep: { card: ['Left as is · you, {t}', 'nhold'], row: ['Left as is', 'muted'], log: 'Platform rota left as is',
+        say: 'Left as is. I’ll raise it again Thursday, before the weekend rota is published.' },
+    },
+  };
+  function decide(call, act) {
+    if (!OUT[call] || st.d[call]) return;
+    const o = OUT[call][act], t = bump();
+    st.d[call] = act; if (call === '0043') st.t0043 = t;
+    $$(`.card[data-cardfor="${call}"]`, R.tr).forEach((c) => { const ch = $('.cchip', c); ch.className = 'chip cchip ' + o.card[1]; ch.textContent = o.card[0].replace('{t}', t); $('.ca', c) && $('.ca', c).remove(); });
+    const row = $('#call-' + call), rc = $('.chip', row);
+    rc.className = 'chip ' + o.row[1]; rc.textContent = o.row[0];
+    $('.acts', row).hidden = true; const out = $('.out', row); out.textContent = `Decided by you at ${t}.`; out.hidden = false;
+    if (o.proj) { const p = $('#proj-0043'); p.className = 'chip ' + o.proj[1]; p.textContent = o.proj[0]; }
+    o.fx && o.fx();
+    const list = $('#dec-list'), d = document.createElement('div');
+    d.className = 'flash'; d.innerHTML = `<span class="t"><b>${o.log}</b><span>You · Mon 21, ${t} · decided from the brief</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg>`;
+    list.prepend(d);
+    const m = $('#dec-meta'); m.textContent = (parseInt(m.textContent, 10) + 1) + ' recorded';
+    const n = openCalls();
+    $('#n-calls').textContent = n || ''; $('#calls-meta').textContent = n ? n + ' held for you' : 'Nothing held';
+    if (st.view === 'brief' || st.view === 'calls') R.vs.textContent = sub(st.view);
+    say([o.say]); status(false);
   }
-  $('#replay').addEventListener('click', () => { if (reduced) { reset(); showFinished(); } else deliver(); });
-  Promise.race([document.fonts.ready, wait(2500)]).then(() => { if (reduced) showFinished(); else deliver(); });
+
+  // ---------- records keep arriving after 06:00 ----------
+  const ARR = [
+    { src: 'Slack', m: 7, text: () => st.d['0043'] === 'hold' ? 'Tomas confirmed 23:00 UTC for 0043.' : 'Tomas: 23:00 UTC works for 0043 if you hold it.' },
+    { src: 'Linear', m: 9, text: () => 'ORD-1187: 38 of 40 retries settled.', fx: () => addEvent('06:09', '38 of 40 retries settled', 'Linear', 'Linear ORD-1187, Tomas: 38 retried and settled; 2 need the card re-entered.') },
+    { src: 'Datadog', m: 12, text: () => 'orders_eu write p99 back to 110 ms.' },
+    { src: 'GitHub', m: 14, text: () => 'PR #2214 builds the orders_eu index concurrently.' },
+    { src: 'Calendar', m: 16, text: () => 'Atlas checkpoint moved to 15:30.', fx: () => { st.atlas = '15:30'; const r = $('#today-atlas'); r.textContent = '15:30'; const row = r.closest('div'); row.classList.remove('flash'); void row.offsetWidth; row.classList.add('flash'); } },
+    { src: 'PagerDuty', m: 18, text: () => 'No new pages since 02:44.' },
+  ];
+  function addEvent(t, text, src, ev) {
+    const d = document.createElement('div');
+    d.className = 'new'; d.dataset.t = t; d.tabIndex = 0; d.setAttribute('role', 'button'); d.setAttribute('aria-expanded', 'false');
+    d.innerHTML = `<span class="tt">${t}</span><span class="dotc"><i class="ok"></i></span><span class="tx">${text} <span>· ${src}</span><em class="ev">${ev}</em></span>`;
+    $('.tl', win).appendChild(d);
+  }
+  async function arrivals(g) {
+    while (st.arrived < ARR.length) {
+      await wait(st.arrived ? 4500 : 2600);
+      if (g !== gen) return;
+      const a = ARR[st.arrived];
+      await ride(SOURCES.indexOf(a.src), true);
+      if (g !== gen) return;
+      st.min = Math.max(st.min, 6 * 60 + a.m); st.arrived++;
+      R.sinceT.classList.add('fade');
+      await wait(reduced ? 0 : 200);
+      if (g !== gen) return;
+      R.sinceT.textContent = `${hhmm(6 * 60 + a.m)} · ${a.src} · ${a.text()}`; R.sinceT.classList.remove('fade');
+      R.sinceN.textContent = `${st.arrived} new`;
+      R.sdot.classList.remove('ping'); void R.sdot.offsetWidth; R.sdot.classList.add('ping');
+      a.fx && a.fx();
+    }
+  }
+
+  // ---------- input ----------
+  function toggleEv(row) { const open = row.classList.toggle('open'); row.setAttribute('aria-expanded', String(open)); }
+  win.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-act]'); if (b) { st.touched = true; decide(b.dataset.call, b.dataset.act); return; }
+    const v = e.target.closest('[data-view]'); if (v) { st.touched = true; showView(v.dataset.view); return; }
+    const q = e.target.closest('[data-q]'); if (q) { st.touched = true; ask(Q[q.dataset.q], true); return; }
+    const row = e.target.closest('.tl > div'); if (row) toggleEv(row);
+  });
+  win.addEventListener('keydown', (e) => { const row = e.target.closest && e.target.closest('.tl > div'); if (row && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); toggleEv(row); } });
+  win.addEventListener('submit', (e) => { e.preventDefault(); st.touched = true; ask(R.input.value); });
+  ['pointerdown', 'keydown'].forEach((t) => win.addEventListener(t, () => { if (st) st.touched = true; }));
+
+  // ---------- the story ----------
+  function reset() { gen++; win.innerHTML = WIN0; bind(); st = fresh(); }
+  async function run() {
+    const g = gen;
+    await showView('brief', reduced);
+    if (!reduced) await wait(700);
+    if (g !== gen) return;
+    await ask(Q.eu, true);
+    if (g !== gen) return;
+    refreshSugg();
+    if (still) return;
+    arrivals(g);
+    if (!reduced) setTimeout(() => { if (g === gen && !st.touched && !st.busy) ask(Q.risk, true); }, 16000);
+  }
+  $('#replay').addEventListener('click', () => { reset(); run(); });
+  reset();
+  Promise.race([document.fonts.ready, wait(2500)]).then(run);
 </script>
 </body>
 </html>
