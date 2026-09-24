@@ -137,13 +137,14 @@
   .w-h .ic { width: 22px; height: 22px; border-radius: 6px; background: var(--subtle); display: grid; place-items: center; flex: none; color: var(--muted); }
   .w-h .ic .i { width: 14px; height: 14px; }
   .w-h .meta { margin-left: auto; font-weight: 400; color: var(--faint); font-size: 11.5px; }
-  .w-h .meta a { color: var(--action); }
+  .lnk { font: inherit; color: var(--action); background: none; border: 0; padding: 0; cursor: pointer; text-align: inherit; }
+  .lnk:hover { color: var(--action-hover); }
   .w-b { padding: 10px 12px 12px; }
   .grid.solo .w-h { display: none; }
   .grid.solo .w > .w-b:first-of-type { padding-top: 12px; }
   .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
   .w-f { margin-top: auto; border-top: 1px solid var(--rule-soft); padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: var(--muted); }
-  .w-f a { color: var(--action); font-weight: 500; }
+  .w-f .lnk { font-weight: 500; }
 
   .i { width: 15px; height: 15px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
   /* status is a word in its colour, not a pill */
@@ -400,7 +401,7 @@
             <div class="grid" id="grid">
               <!-- WIDGET:overnight -->
               <section class="w c3" data-w="overnight">
-                <header class="w-h">Overnight<span class="meta">Incident 2291 · <a>review</a></span></header>
+                <header class="w-h">Overnight<span class="meta">Incident 2291 · <button type="button" class="lnk" data-q="review">review</button></span></header>
                 <div class="w-b">
                   <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px">
                     <div style="flex:1;min-width:0"><div style="font-weight:500">EU order writes blocked for 14 minutes</div><div class="lbl">40 checkouts failed · orders_eu · 02:41–02:55</div></div>
@@ -414,7 +415,7 @@
                     <div data-t="03:12" tabindex="0" role="button" aria-expanded="false"><span class="tt">03:12</span><span class="dotc"><i></i></span><span class="tx">ORD-1187 opened for the 40 retries <span>· Linear</span><em class="ev">Linear ORD-1187, opened by Marcus: retry the 40 failed checkouts.</em></span></div>
                   </div>
                 </div>
-                <div class="w-f"><span>Cause: index build took the write lock during EU morning traffic.</span><a>Where else →</a></div>
+                <div class="w-f"><span>Cause: index build took the write lock during EU morning traffic.</span><button type="button" class="lnk" data-q="where">Where else →</button></div>
               </section>
 
               <!-- WIDGET:calls -->
@@ -458,7 +459,7 @@
                     
                   </svg>
                 </div>
-                <div class="w-f"><span>Production deploys per day, 30 days; weekends shaded.</span><a>Throughput, stability, quality →</a></div>
+                <div class="w-f"><span>Production deploys per day, 30 days; weekends shaded.</span><button type="button" class="lnk" data-q="delivery">Throughput, stability, quality →</button></div>
               </section>
 
               <!-- WIDGET:sources -->
@@ -511,12 +512,12 @@
                 <div class="w-b">
                   <div class="list" id="dec-list">
                     <div><span class="t"><b>Atlas ships EU-only first</b><span>Elena · Tue 15 · 3 records</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
-                    <div><span class="t"><b>Index builds move off-peak</b><span>Marcus, proposed · Mon 21, 02:58 · pending your call</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
+                    <div><span class="t"><b>Index builds move off-peak</b><span id="dec-offpeak">Marcus, proposed · Mon 21, 02:58 · pending your call</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
                     <div><span class="t"><b>SDK 2.0 release held to Thu</b><span>Priya · Tue 15 · 2 records</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
                     <div><span class="t"><b>Rollback owner named per service</b><span>You · Fri 18 · draft</span></span><span class="chip muted">Draft</span></div>
                   </div>
                 </div>
-                <div class="w-f"><span>Each with who decided and the evidence behind it.</span><a>All decisions →</a></div>
+                <div class="w-f"><span>Each with who decided and the evidence behind it.</span><button type="button" class="lnk" data-q="decisions">All decisions →</button></div>
               </section>
 
               <!-- WIDGET:projects -->
@@ -528,8 +529,8 @@
                     <tbody>
                       <tr><td><b style="font-weight:500">Atlas · EU launch</b></td><td><span class="av" style="background:#2A4E3E;width:20px;height:20px">ER</span> Elena Ruiz</td><td><span class="chip ok">On track</span></td><td class="mono">Oct 14</td><td class="grow" style="color:var(--muted)">Scope cut to EU-only on Tue; dependency on billing 0043 cleared once it runs.</td><td class="mono" style="text-align:right">41</td></tr>
                       <tr><td><b style="font-weight:500">SDK 2.0 · mobile</b></td><td><span class="av" style="background:#5D6C64;width:20px;height:20px">PN</span> Priya Nair</td><td><span class="chip hold">At risk</span></td><td class="mono">Sep 24</td><td class="grow" style="color:var(--muted)">Release held on SDK-418; fix moved to Thu, partner demo is Fri.</td><td class="mono" style="text-align:right">27</td></tr>
-                      <tr><td><b style="font-weight:500">Billing migration</b></td><td><span class="av" style="background:#2A4E3E;width:20px;height:20px">TB</span> Tomas Berg</td><td><span class="chip hold" id="proj-0043">Held</span></td><td class="mono">Tonight</td><td class="grow" style="color:var(--muted)">Step 0043 repeats the 2291 pattern; waiting on your call.</td><td class="mono" style="text-align:right">18</td></tr>
-                      <tr><td><b style="font-weight:500">Data platform</b></td><td><span class="av" style="background:#44574D;width:20px;height:20px">ML</span> Marcus Lind</td><td><span class="chip ok">On track</span></td><td class="mono">Nov 2</td><td class="grow" style="color:var(--muted)">Off-peak index policy written Mon 02:58; rota gap is the open risk.</td><td class="mono" style="text-align:right">33</td></tr>
+                      <tr><td><b style="font-weight:500">Billing migration</b></td><td><span class="av" style="background:#2A4E3E;width:20px;height:20px">TB</span> Tomas Berg</td><td><span class="chip hold" id="proj-0043">Held</span></td><td class="mono">Tonight</td><td class="grow" style="color:var(--muted)" id="proj-0043-why">Step 0043 repeats the 2291 pattern; waiting on your call.</td><td class="mono" style="text-align:right">18</td></tr>
+                      <tr><td><b style="font-weight:500">Data platform</b></td><td><span class="av" style="background:#44574D;width:20px;height:20px">ML</span> Marcus Lind</td><td><span class="chip ok">On track</span></td><td class="mono">Nov 2</td><td class="grow" style="color:var(--muted)" id="proj-dp-why">Off-peak index policy written Mon 02:58; rota gap is the open risk.</td><td class="mono" style="text-align:right">33</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -741,12 +742,12 @@
   function add(el) {
     el.classList.add('msg'); R.tr.appendChild(el);
     if (reduced) el.classList.add('in'); else requestAnimationFrame(() => el.classList.add('in'));
-    scrollDown(); return el;
+    scrollDown(); if (st.follow) el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'nearest' }); return el;
   }
   function you(text, t) { const d = document.createElement('div'); d.className = 'you'; d.innerHTML = `<span class="who">You · ${t}</span>${esc(text)}`; return add(d); }
   function say(paras, openView) {
     const d = document.createElement('div'); d.className = 'z';
-    d.innerHTML = paras.map((p) => `<p>${p}</p>`).join('') + (openView ? `<button class="open" type="button" data-view="${openView}">Open ${VIEWS[openView].t} →</button>` : '');
+    d.innerHTML = paras.map((p) => `<p>${p}</p>`).join('') + (openView && openView !== st.view ? `<button class="open" type="button" data-view="${openView}">Open ${VIEWS[openView].t} →</button>` : '');
     return add(d);
   }
   function stepList(steps) { const d = document.createElement('div'); d.innerHTML = `<div class="steps">${steps.map(([t]) => `<div class="step"><svg class="i"><use href="#i-spin"/></svg><span class="t">${esc(t)}</span></div>`).join('')}</div>`; return add(d); }
@@ -766,15 +767,19 @@
   function lightCall(call) { const c = $('#call-' + call); if (!c) return; c.classList.add('lit'); setTimeout(() => c.classList.remove('lit'), 2600); }
 
   // What she can answer from this demo's record. Each answer reads its sources first.
-  const Q = { eu: 'What happened with EU orders last night?', risk: 'What’s at risk this week?', sdk: 'Where is SDK 2.0?', delivery: 'How are we delivering?', atlas: 'How is Atlas going?', board: 'What’s in the board notes?', commitments: 'What slipped this week?', rota: 'Who is on call this week?', '0043': 'Should 0043 run tonight?' };
+  const Q = { eu: 'What happened with EU orders last night?', risk: 'What’s at risk this week?', sdk: 'Where is SDK 2.0?', delivery: 'How are we delivering?', atlas: 'How is Atlas going?', board: 'What’s in the board notes?', commitments: 'What slipped this week?', rota: 'Who is on call this week?', '0043': 'Should 0043 run tonight?',
+    review: 'What did the 2291 review find?', where: 'Where else could this happen?', decisions: 'What did we decide this week?' };
   const KEYS = [
     ['hello', ['hi', 'hello', 'hey', 'morning', 'good morning']],
     ['0043', ['0043', 'migration', 'billing']],
     ['rota', ['rota', 'on-call', 'on call', 'oncall', 'pager', 'sam', 'ines']],
-    ['sdk', ['sdk', 'mobile', 'priya', 'android', 'sdk-418', 'release']],
+    ['sdk', ['sdk', 'mobile', 'priya', 'android', 'sdk-418', 'release', '2190']],
     ['atlas', ['atlas', 'elena', 'launch']],
     ['board', ['board']],
+    ['where', ['where else', 'elsewhere', 'same pattern', 'same condition', 'same conditions', 'recur']],
+    ['review', ['review', 'postmortem', 'post-mortem', 'retro', 'retrospective', 'write-up', 'writeup']],
     ['commitments', ['slip', 'slipped', 'commitment', 'commitments', 'promise', 'promised', 'late', 'overdue']],
+    ['decisions', ['decision', 'decisions', 'decided', 'decide']],
     ['delivery', ['deliver', 'delivering', 'delivery', 'deploy', 'deploys', 'dora', 'lead time', 'change failure', 'restore', 'shipping', 'velocity', 'throughput']],
     ['risk', ['risk', 'risks', 'worry', 'worried', 'blocker', 'blockers', 'danger', 'attention']],
     ['eu', ['eu', 'order', 'orders', 'last night', 'overnight', 'incident', '2291', 'happened', 'outage', 'checkout', 'checkouts']],
@@ -811,6 +816,30 @@
       a: ['Drafted for Thursday: delivery, stability, and quality, every figure linked to its record. Two questions for you: whether to cover 2291 under stability, and how to present Atlas’s EU-only scope.'], open: 'today' }),
     commitments: () => ({ steps: [['Read 14 commitments in Linear', 'Linear'], ['Checked them against this week’s calendar', 'Calendar']],
       a: ['Two of fourteen. Marcus’s rota update was due Friday and hasn’t happened, which is why the rota still lists Sam and Ines. Priya’s SDK-418 fix moved to Thursday. Nine are kept and three are open.'], open: 'commitments' }),
+    review: () => ({ steps: [['Read the Datadog alert, 02:41', 'Datadog', '02:41'], ['Read PagerDuty incident 2291', 'PagerDuty', '02:44'], ['Read the cancellation in #incident-2291', 'Slack', '02:54'], ['Read the recovery in Datadog', 'Datadog', '02:55'], ['Read ORD-1187 in Linear', 'Linear', '03:12']],
+      a: [`EU order writes were blocked for 14 minutes from 02:41, and 40 checkouts failed. Marcus cancelled the index build at 02:54, writes recovered at 02:55, and ${ref('ORD-1187')} covers the retries.`,
+        'It happened because the build on orders_eu took the write lock during the EU morning traffic ramp; why it was scheduled then isn’t in the record. Marcus has proposed moving index builds off-peak. '
+          + (st.d['0043'] === 'hold' ? 'The same build was due for billing tonight in migration 0043. You held it, and it runs at 23:00 UTC with the index built first.'
+            : st.d['0043'] === 'run' ? 'The same build is due for billing tonight in migration 0043. You let it run as scheduled, and I’m watching the write lock from 02:30.'
+            : 'The same build is due for billing tonight in migration 0043, and that call is yours.')],
+      card: '0043', lit: '0043' }),
+    where: () => ({ steps: [['Read the migrations scheduled this week in GitHub', 'GitHub'], ['Matched them to 2291 in Linear', 'Linear', '03:12']],
+      a: ['One place: migration 0043, due tonight. It builds the same kind of index on a 22 M-row table, so it can take the same write lock.',
+        st.d['0043'] === 'hold' ? 'You held it. It runs at 23:00 UTC with the index built first.'
+          : st.d['0043'] === 'run' ? 'You let it run as scheduled. I’m watching the write lock from 02:30.'
+          : 'Tomas has a 23:00 UTC slot with the index built first. Nothing runs until you decide.'],
+      card: '0043', lit: '0043' }),
+    decisions: () => {
+      const a = { hold: `held migration 0043 until off-peak at ${st.t0043}`, run: `let migration 0043 run as scheduled at ${st.t0043}` }[st.d['0043']];
+      const b = { reassign: `reassigned the platform rota at ${st.trota}`, keep: `left the platform rota as is at ${st.trota}` }[st.d.rota];
+      return { steps: [['Read #atlas-planning in Slack', 'Slack'], ['Read SDK-418 in Linear', 'Linear'], ['Read PR #2190 in GitHub', 'GitHub']],
+        a: ['Elena cut Atlas to EU-only first on Tuesday, with three records behind it. Priya held the SDK 2.0 release to Thursday the same day, with two. Your rollback owner per service is still a draft from Friday.',
+          a && b ? `This morning you ${a} and ${b}.`
+            : a ? `This morning you ${a}. The rota call is still open.`
+            : b ? `This morning you ${b}. Marcus’s off-peak proposal from 02:58 still waits on your call on 0043.`
+            : 'Marcus proposed moving index builds off-peak at 02:58, and it waits on your call on 0043. The rota call is open too.'],
+        card: ['0043', 'rota'] };
+    },
     hello: () => ({ steps: [], a: ['Morning. One incident overnight, mitigated, and two calls waiting for you. Where do you want to start?'] }),
     none: () => ({ steps: [],
       a: ['That isn’t in this demo’s record. In the private beta I read your Linear, GitHub, Datadog, PagerDuty, Slack, and calendar. Here, ask me about last night’s incident, migration 0043, the on-call rota, SDK 2.0, Atlas, or delivery.'] }),
@@ -824,7 +853,8 @@
 
   async function ask(text, typed) {
     text = (text || '').trim().slice(0, 140);
-    if (!text || st.busy) return;
+    if (!text) return;
+    if (st.busy) { st.next = [text, typed]; return; }
     const g = gen; st.busy = true;
     try {
       if (typed && !reduced) { for (let i = 1; i <= text.length; i++) { R.input.value = text.slice(0, i); await wait(22); if (g !== gen) return; } await wait(220); }
@@ -850,26 +880,29 @@
       if (g !== gen) return;
       if (r.lit && !still) lightCall(r.lit);
       say(r.a, r.open); status(false);
-      if (r.card && !st.d[r.card] && !$(`.card[data-cardfor="${r.card}"] .ca`, R.tr)) {
+      // Each call she raises gets its card, unless it is decided or already waiting in the transcript.
+      for (const c of [].concat(r.card || []).filter((k) => !st.d[k] && !$(`.card[data-cardfor="${k}"] .ca`, R.tr))) {
         if (!reduced) await wait(650);
         if (g !== gen) return;
-        card(r.card); status(false);
+        card(c); status(false);
       }
-    } finally { if (g === gen) st.busy = false; }
+    } finally {
+      if (g === gen) { st.busy = false; if (st.next) { const [t2, ty2] = st.next; st.next = null; ask(t2, ty2); } else st.follow = false; }
+    }
   }
 
   // ---------- decisions ripple through the window ----------
   const OUT = {
     '0043': {
-      hold: { card: ['Held · you, {t}', 'nok'], row: ['Held · 23:00', 'ok'], proj: ['Held · off-peak', 'ok'], log: 'Migration 0043 held until off-peak',
+      hold: { card: ['Held · you, {t}', 'nok'], row: ['Held · 23:00', 'ok'], proj: ['Held · off-peak', 'ok'], log: 'Migration 0043 held until off-peak', why: 'Step 0043 repeats the 2291 pattern; you held it to 23:00 UTC.', offpeak: 'Marcus, proposed · Mon 21, 02:58 · you held 0043 at {t}',
         say: 'Held. I’ve told Tomas, moved 0043 to 23:00 UTC with the index built first, and put it in tonight’s brief with the rule that fired.' },
-      run: { card: ['Runs tonight · you, {t}', 'nhold'], row: ['Runs tonight', 'hold'], proj: ['Tonight', 'hold'], log: 'Migration 0043 runs as scheduled',
+      run: { card: ['Runs tonight · you, {t}', 'nhold'], row: ['Runs tonight', 'hold'], proj: ['Tonight', 'hold'], log: 'Migration 0043 runs as scheduled', why: 'Step 0043 repeats the 2291 pattern; you let it run tonight.', offpeak: 'Marcus, proposed · Mon 21, 02:58 · you let 0043 run at {t}',
         say: 'Understood. It runs as scheduled; I’ll watch the write lock from 02:30 and page Marcus on the published rule if p99 passes 5 s.' },
     },
     rota: {
       reassign: { card: ['Reassigned · you, {t}', 'nok'], row: ['Reassigned', 'ok'], log: 'Platform rota reassigned by order',
         say: 'Done. Priya takes Sam’s shifts and Tomas takes Ines’s through Friday, so Marcus is no longer the only responder. I’ve told all three.',
-        fx: () => { const c = $('#com-rota'); c.className = 'chip ok'; c.textContent = 'Done · you'; const p = $('#people-sam'); p.className = 'chip muted'; p.textContent = 'Off the rota'; } },
+        fx: () => { const c = $('#com-rota'); c.className = 'chip ok'; c.textContent = 'Done · you'; const p = $('#people-sam'); p.className = 'chip muted'; p.textContent = 'Off the rota'; $('#proj-dp-why').textContent = 'Off-peak index policy written Mon 02:58; rota reassigned, so the gap is closed.'; } },
       keep: { card: ['Left as is · you, {t}', 'nhold'], row: ['Left as is', 'muted'], log: 'Platform rota left as is',
         say: 'Left as is. I’ll raise it again Thursday, before the weekend rota is published.' },
     },
@@ -877,12 +910,12 @@
   function decide(call, act) {
     if (!OUT[call] || st.d[call]) return;
     const o = OUT[call][act], t = bump();
-    st.d[call] = act; if (call === '0043') st.t0043 = t;
+    st.d[call] = act; st['t' + call] = t;
     $$(`.card[data-cardfor="${call}"]`, R.tr).forEach((c) => { const ch = $('.cchip', c); ch.className = 'chip cchip ' + o.card[1]; ch.textContent = o.card[0].replace('{t}', t); $('.ca', c) && $('.ca', c).remove(); });
     const row = $('#call-' + call), rc = $('.chip', row);
     rc.className = 'chip ' + o.row[1]; rc.textContent = o.row[0];
     $('.acts', row).hidden = true; const out = $('.out', row); out.textContent = `Decided by you at ${t}.`; out.hidden = false;
-    if (o.proj) { const p = $('#proj-0043'); p.className = 'chip ' + o.proj[1]; p.textContent = o.proj[0]; }
+    if (o.proj) { const p = $('#proj-0043'); p.className = 'chip ' + o.proj[1]; p.textContent = o.proj[0]; $('#proj-0043-why').textContent = o.why; $('#dec-offpeak').textContent = o.offpeak.replace('{t}', t); }
     o.fx && o.fx();
     const list = $('#dec-list'), d = document.createElement('div');
     d.className = 'flash'; d.innerHTML = `<span class="t"><b>${o.log}</b><span>You · Mon 21, ${t} · decided from the brief</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg>`;
@@ -932,7 +965,7 @@
   win.addEventListener('click', (e) => {
     const b = e.target.closest('[data-act]'); if (b) { st.touched = true; decide(b.dataset.call, b.dataset.act); return; }
     const v = e.target.closest('[data-view]'); if (v) { st.touched = true; showView(v.dataset.view); return; }
-    const q = e.target.closest('[data-q]'); if (q) { st.touched = true; ask(Q[q.dataset.q], true); return; }
+    const q = e.target.closest('[data-q]'); if (q) { st.touched = true; if (!q.closest('.zp') && matchMedia('(max-width: 960px)').matches) { st.follow = true; $('#askf', win).scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' }); } ask(Q[q.dataset.q], true); return; }
     const row = e.target.closest('.tl > div'); if (row) toggleEv(row);
   });
   win.addEventListener('keydown', (e) => { const row = e.target.closest && e.target.closest('.tl > div'); if (row && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); toggleEv(row); } });
