@@ -25,7 +25,7 @@ Working on the page:
 
 ## Design system
 
-`DESIGN.md` is authoritative. Version 3.1 (24 September 2026) describes the site as shipped and the founder's dated decisions behind it. `docs/zora-ui-brief.md` specifies the product interface behind the demo, with the window's full component measurements, for a senior product designer. Every rule in `DESIGN.md` is Decided (the founder said so, on a date), Shipped (live, chosen during design work, not ruled on separately), Proposed (not built; ask first), or Open.
+`DESIGN.md` is authoritative. Version 3.2 (24 September 2026) describes the site as shipped and the founder's dated decisions behind it. `docs/zora-ui-brief.md` specifies the product interface behind the demo, with the window's full component measurements, for a senior product designer. Every rule in `DESIGN.md` is Decided (the founder said so, on a date), Shipped (live, chosen during design work, not ruled on separately), Proposed (not built; ask first), or Open.
 
 Key invariants:
 

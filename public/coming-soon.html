@@ -123,6 +123,9 @@
   @keyframes ping { 0% { opacity: 1; box-shadow: 0 0 0 0 rgba(61,139,104,.45); } 100% { opacity: .55; box-shadow: 0 0 0 7px rgba(61,139,104,0); } }
   .flash { animation: flash 1.8s ease; }
   @keyframes flash { 0%, 30% { background: var(--action-soft); } 100% { background: transparent; } }
+  /* a new decision row flashes in the same shape as its hover tint, so hovering it early never shows two colours */
+  .list > div.flash { animation: flashrow 1.8s ease; }
+  @keyframes flashrow { 0%, 30% { background: var(--action-soft); box-shadow: -6px 0 0 var(--action-soft), 6px 0 0 var(--action-soft); } 100% { background: transparent; box-shadow: -6px 0 0 transparent, 6px 0 0 transparent; } }
   .btn { display: inline-flex; align-items: center; gap: 6px; height: 28px; white-space: nowrap; padding: 0 10px; border-radius: 7px; border: 1px solid var(--rule); background: #fff; color: var(--ink); font: inherit; font-size: 12px; font-weight: 500; cursor: pointer; }
   .btn:hover { border-color: var(--faint); }
   .btn.primary { background: var(--action); border-color: var(--action); color: #fff; }
@@ -166,6 +169,12 @@
   .list .t { min-width: 0; flex: 1; }
   .list .t b { display: block; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .list .t span { display: block; color: var(--faint); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .list > div[role="button"] { cursor: pointer; transition: background 220ms ease, box-shadow 220ms ease; }
+  .list > div[role="button"]:hover { background: #F4F6F4; box-shadow: -6px 0 0 #F4F6F4, 6px 0 0 #F4F6F4; }
+  .list .t .ev { display: none; margin: 3px 0 1px; font-style: normal; font-size: 11.5px; line-height: 1.45; color: var(--muted); white-space: normal; }
+  .list > div.open .t .ev { display: block; }
+  .list > div.exp .chev { transition: transform 200ms ease; }
+  .list > div.exp.open .chev { transform: rotate(90deg); }
   .list .r { margin-left: auto; text-align: right; font-size: 11.5px; color: var(--muted); white-space: nowrap; }
   .mono { font-family: var(--mono); }
   .stack { display: grid; gap: 0; }
@@ -305,8 +314,9 @@
     .slot { animation: none; }
     .copy > * { animation: none; }
   }
+  html.reduced .chev, html.reduced .list > div { transition: none !important; }
   html.reduced .w, html.reduced .msg, html.reduced .step, html.reduced .draw, html.reduced .grow-y, html.reduced .fill { transition: none !important; }
-  @media (prefers-reduced-motion: reduce) { .w, .msg, .step, .draw, .grow-y, .fill { transition: none !important; } }
+  @media (prefers-reduced-motion: reduce) { .w, .msg, .step, .draw, .grow-y, .fill, .chev, .list > div { transition: none !important; } }
 </style>
 </head>
 <body>
@@ -511,9 +521,9 @@
                 <header class="w-h">Decisions<span class="meta" id="dec-meta">2 recorded</span></header>
                 <div class="w-b">
                   <div class="list" id="dec-list">
-                    <div><span class="t"><b>Atlas ships EU-only first</b><span>Elena · Tue 15 · 3 records</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
-                    <div><span class="t"><b>Index builds move off-peak</b><span id="dec-offpeak">Marcus, proposed · Mon 21, 02:58 · pending your call</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
-                    <div><span class="t"><b>SDK 2.0 release held to Thu</b><span>Priya · Tue 15 · 2 records</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
+                    <div role="button" tabindex="0" data-q="atlas"><span class="t"><b>Atlas ships EU-only first</b><span>Elena · Tue 15 · 3 records</span></span><svg class="i chev" style="color:var(--faint)" aria-hidden="true"><use href="#i-chev"/></svg></div>
+                    <div role="button" tabindex="0" data-q="offpeak"><span class="t"><b>Index builds move off-peak</b><span id="dec-offpeak">Marcus, proposed · Mon 21, 02:58 · pending your call</span></span><svg class="i chev" style="color:var(--faint)" aria-hidden="true"><use href="#i-chev"/></svg></div>
+                    <div role="button" tabindex="0" data-q="sdk"><span class="t"><b>SDK 2.0 release held to Thu</b><span>Priya · Tue 15 · 2 records</span></span><svg class="i chev" style="color:var(--faint)" aria-hidden="true"><use href="#i-chev"/></svg></div>
                     <div><span class="t"><b>Rollback owner named per service</b><span>You · Fri 18 · draft</span></span><span class="chip muted">Draft</span></div>
                   </div>
                 </div>
@@ -569,10 +579,10 @@
                 <header class="w-h">Settings<span class="meta">TransparentAI · Engineering</span></header>
                 <div class="w-b">
                   <div class="list">
-                    <div><span class="t"><b>The brief</b><span>Compiled 06:00 local, Monday to Friday</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
-                    <div><span class="t"><b>Delivered to</b><span>Dana Kim, by email and Slack DM</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
-                    <div><span class="t"><b>Sources</b><span>Six connected · read 05:12–05:58</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
-                    <div><span class="t"><b>Urgent calls</b><span>A Slack DM when a deadline is inside two hours</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg></div>
+                    <div class="exp" role="button" tabindex="0" aria-expanded="false"><span class="t"><b>The brief</b><span>Compiled 06:00 local, Monday to Friday</span><em class="ev">Sources are read from 05:12 to 05:58, and the brief is compiled at 06:00.</em></span><svg class="i chev" style="color:var(--faint)" aria-hidden="true"><use href="#i-chev"/></svg></div>
+                    <div class="exp" role="button" tabindex="0" aria-expanded="false"><span class="t"><b>Delivered to</b><span>Dana Kim, by email and Slack DM</span><em class="ev">Announced at 06:00 by email and Slack DM, each with the brief’s sub-line and a link straight to it.</em></span><svg class="i chev" style="color:var(--faint)" aria-hidden="true"><use href="#i-chev"/></svg></div>
+                    <div role="button" tabindex="0" data-view="sources"><span class="t"><b>Sources</b><span>Six connected · read 05:12–05:58</span></span><svg class="i chev" style="color:var(--faint)" aria-hidden="true"><use href="#i-chev"/></svg></div>
+                    <div class="exp" role="button" tabindex="0" aria-expanded="false"><span class="t"><b>Urgent calls</b><span>A Slack DM when a deadline is inside two hours</span><em class="ev">A held call whose deadline falls inside two hours gets its own message.</em></span><svg class="i chev" style="color:var(--faint)" aria-hidden="true"><use href="#i-chev"/></svg></div>
                   </div>
                 </div>
               </section>
@@ -768,7 +778,8 @@
 
   // What she can answer from this demo's record. Each answer reads its sources first.
   const Q = { eu: 'What happened with EU orders last night?', risk: 'What’s at risk this week?', sdk: 'Where is SDK 2.0?', delivery: 'How are we delivering?', atlas: 'How is Atlas going?', board: 'What’s in the board notes?', commitments: 'What slipped this week?', rota: 'Who is on call this week?', '0043': 'Should 0043 run tonight?',
-    review: 'What did the 2291 review find?', where: 'Where else could this happen?', decisions: 'What did we decide this week?' };
+    review: 'What did the 2291 review find?', where: 'Where else could this happen?', decisions: 'What did we decide this week?',
+    offpeak: 'Why move index builds off-peak?' };
   const KEYS = [
     ['hello', ['hi', 'hello', 'hey', 'morning', 'good morning']],
     ['0043', ['0043', 'migration', 'billing']],
@@ -778,6 +789,7 @@
     ['board', ['board']],
     ['where', ['where else', 'elsewhere', 'same pattern', 'same condition', 'same conditions', 'recur']],
     ['review', ['review', 'postmortem', 'post-mortem', 'retro', 'retrospective', 'write-up', 'writeup']],
+    ['offpeak', ['off-peak', 'off peak', 'offpeak']],
     ['commitments', ['slip', 'slipped', 'commitment', 'commitments', 'promise', 'promised', 'late', 'overdue']],
     ['decisions', ['decision', 'decisions', 'decided', 'decide']],
     ['delivery', ['deliver', 'delivering', 'delivery', 'deploy', 'deploys', 'dora', 'lead time', 'change failure', 'restore', 'shipping', 'velocity', 'throughput']],
@@ -799,7 +811,7 @@
       a: st.d['0043'] ? [`You decided at ${st.t0043}: ${st.d['0043'] === 'hold' ? 'held until off-peak. It runs at 23:00 UTC with the index built first.' : 'it runs as scheduled, and I’m watching the write lock from 02:30.'}`]
         : ['Not in the EU write window. It builds the same kind of index that blocked orders_eu at 02:41, on a 22 M-row table. Tomas has a 23:00 UTC slot with the index built first.'],
       card: '0043', lit: '0043' }),
-    rota: () => ({ steps: [['Read the platform rota in PagerDuty', 'PagerDuty'], ['Read Marcus’s rota commitment in Linear', 'Linear']],
+    rota: () => ({ steps: [['Read the platform rota in PagerDuty', 'PagerDuty'], ['Read Marcus’s commitment in Linear', 'Linear']],
       a: [st.d.rota === 'reassign' ? 'Marcus is primary. Priya covers Sam’s shifts and Tomas covers Ines’s through Friday, since you reassigned it.' : st.d.rota === 'keep' ? 'Marcus is primary, and the rota still lists Sam and Ines through Friday. You left it as is; I’ll raise it again Thursday.' : 'Marcus is primary. The rota still lists Sam and Ines, who have both left, through Friday, so Marcus is the only live responder. Updating it was Marcus’s commitment for Friday; it slipped.'],
       card: 'rota', lit: 'rota' }),
     risk: () => ({ steps: [['Read 4 active projects in Linear', 'Linear'], ['Read the on-call rota in PagerDuty', 'PagerDuty'], ['Read Friday’s partner demo', 'Calendar']],
@@ -814,7 +826,7 @@
       a: ['14.2 production deploys a day, up 8% on August. Lead time is 1.8 days and change failure 3.1%, both better. Time to restore is 22 minutes, 4 worse, and all of that is 2291.'], open: 'delivery' }),
     board: () => ({ steps: [['Read Thursday’s board agenda', 'Calendar'], ['Checked each figure against its record', 'Datadog']],
       a: ['Drafted for Thursday: delivery, stability, and quality, every figure linked to its record. Two questions for you: whether to cover 2291 under stability, and how to present Atlas’s EU-only scope.'], open: 'today' }),
-    commitments: () => ({ steps: [['Read 14 commitments in Linear', 'Linear'], ['Checked them against this week’s calendar', 'Calendar']],
+    commitments: () => ({ steps: [['Read 14 commitments in Linear', 'Linear'], ['Checked them against the calendar', 'Calendar']],
       a: ['Two of fourteen. Marcus’s rota update was due Friday and hasn’t happened, which is why the rota still lists Sam and Ines. Priya’s SDK-418 fix moved to Thursday. Nine are kept and three are open.'], open: 'commitments' }),
     review: () => ({ steps: [['Read the Datadog alert, 02:41', 'Datadog', '02:41'], ['Read PagerDuty incident 2291', 'PagerDuty', '02:44'], ['Read the cancellation in #incident-2291', 'Slack', '02:54'], ['Read the recovery in Datadog', 'Datadog', '02:55'], ['Read ORD-1187 in Linear', 'Linear', '03:12']],
       a: [`EU order writes were blocked for 14 minutes from 02:41, and 40 checkouts failed. Marcus cancelled the index build at 02:54, writes recovered at 02:55, and ${ref('ORD-1187')} covers the retries.`,
@@ -823,7 +835,13 @@
             : st.d['0043'] === 'run' ? 'The same build is due for billing tonight in migration 0043. You let it run as scheduled, and I’m watching the write lock from 02:30.'
             : 'The same build is due for billing tonight in migration 0043, and that call is yours.')],
       card: '0043', lit: '0043' }),
-    where: () => ({ steps: [['Read the migrations scheduled this week in GitHub', 'GitHub'], ['Matched them to 2291 in Linear', 'Linear', '03:12']],
+    offpeak: () => ({ steps: [['Read the cancellation in #incident-2291', 'Slack', '02:54'], ['Read the off-peak policy in Linear', 'Linear'], ['Matched it to migration 0043 in GitHub', 'GitHub']],
+      a: ['Marcus proposed it at 02:58, four minutes after he cancelled the index build that blocked EU order writes. The build had taken the write lock during the EU morning traffic ramp.',
+        st.d['0043'] === 'hold' ? `It’s still a proposal. You held migration 0043 until off-peak at ${st.t0043}, in line with it.`
+          : st.d['0043'] === 'run' ? `It’s still a proposal. You let migration 0043 run as scheduled at ${st.t0043}, so it doesn’t apply tonight; I’m watching the write lock from 02:30.`
+          : 'It’s still a proposal. The first build it would move is migration 0043 tonight; Tomas has a 23:00 UTC slot with the index built first, and that call is yours.'],
+      card: '0043', lit: '0043' }),
+    where: () => ({ steps: [['Read this week’s migrations in GitHub', 'GitHub'], ['Matched them to 2291 in Linear', 'Linear', '03:12']],
       a: ['One place: migration 0043, due tonight. It builds the same kind of index on a 22 M-row table, so it can take the same write lock.',
         st.d['0043'] === 'hold' ? 'You held it. It runs at 23:00 UTC with the index built first.'
           : st.d['0043'] === 'run' ? 'You let it run as scheduled. I’m watching the write lock from 02:30.'
@@ -918,7 +936,8 @@
     if (o.proj) { const p = $('#proj-0043'); p.className = 'chip ' + o.proj[1]; p.textContent = o.proj[0]; $('#proj-0043-why').textContent = o.why; $('#dec-offpeak').textContent = o.offpeak.replace('{t}', t); }
     o.fx && o.fx();
     const list = $('#dec-list'), d = document.createElement('div');
-    d.className = 'flash'; d.innerHTML = `<span class="t"><b>${o.log}</b><span>You · Mon 21, ${t} · decided from the brief</span></span><svg class="i" style="color:var(--faint)"><use href="#i-chev"/></svg>`;
+    d.className = 'flash'; d.setAttribute('role', 'button'); d.tabIndex = 0; d.dataset.q = call;
+    d.innerHTML = `<span class="t"><b>${o.log}</b><span>You · Mon 21, ${t} · decided from the brief</span></span><svg class="i chev" style="color:var(--faint)" aria-hidden="true"><use href="#i-chev"/></svg>`;
     list.prepend(d);
     const m = $('#dec-meta'); m.textContent = (parseInt(m.textContent, 10) + 1) + ' recorded';
     const n = openCalls();
@@ -966,9 +985,13 @@
     const b = e.target.closest('[data-act]'); if (b) { st.touched = true; decide(b.dataset.call, b.dataset.act); return; }
     const v = e.target.closest('[data-view]'); if (v) { st.touched = true; showView(v.dataset.view); return; }
     const q = e.target.closest('[data-q]'); if (q) { st.touched = true; if (!q.closest('.zp') && matchMedia('(max-width: 960px)').matches) { st.follow = true; $('#askf', win).scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' }); } ask(Q[q.dataset.q], true); return; }
-    const row = e.target.closest('.tl > div'); if (row) toggleEv(row);
+    const row = e.target.closest('.tl > div, .list > div.exp'); if (row) toggleEv(row);
   });
-  win.addEventListener('keydown', (e) => { const row = e.target.closest && e.target.closest('.tl > div'); if (row && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); toggleEv(row); } });
+  win.addEventListener('keydown', (e) => {
+    if (!e.target.closest || (e.key !== 'Enter' && e.key !== ' ')) return;
+    const row = e.target.closest('.tl > div, .list > div.exp'); if (row) { e.preventDefault(); toggleEv(row); return; }
+    const r = e.target.closest('div[role="button"][data-q], div[role="button"][data-view]'); if (r) { e.preventDefault(); r.click(); }
+  });
   win.addEventListener('submit', (e) => { e.preventDefault(); st.touched = true; ask(R.input.value); });
   ['pointerdown', 'keydown'].forEach((t) => win.addEventListener(t, () => { if (st) st.touched = true; }));
 
