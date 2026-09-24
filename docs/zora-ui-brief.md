@@ -144,7 +144,7 @@ Widgets are cards on a 6-column grid with 12 px gaps: `c3` is half width, `c4`/`
 
 ### 5.3 Rules for the Brief
 - It is compiled at the customer's chosen time (default 06:00 local) and dated. Reopening it later in the day shows the same compiled brief plus a "Since 06:00" strip if anything changed. The strip sits between the greeting and the widget grid, one line per change ("New call: on-call rota…", "Incident 2291: recovered"), each linking to the changed widget; it is not dismissible and disappears at the next compile. The demo simplifies this to a single line under the greeting that starts "Watching six sources." and replaces itself with the latest arrival and a count ("06:09 · Linear · ORD-1187: 38 of 40 retries settled.  2 new"); the product keeps one line per change, each a link.
-- Every widget's meta or footer carries the one link that goes deeper. No widget has more than one.
+- Every widget's meta or footer carries the one link that goes deeper. No widget has more than one. The demo builds no modals or detail pages, so each of these links asks Zora instead and she answers in her panel: the review, where else the condition holds, the delivery picture, and the week's decisions.
 - Numbers in the brief must reconcile with the screens they summarise (14 commitments here means 14 on the Commitments screen).
 - Demonstration data in the mockup is the canonical example content for design; see the appendix.
 
