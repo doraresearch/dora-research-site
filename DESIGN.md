@@ -2,7 +2,7 @@
 
 Always read this file before making any visual, UI, or copy decision on this site. It describes the site as shipped and the decisions behind it.
 
-> **Version 3.1 · 24 September 2026.** Rewritten to match the site as shipped. The live site at www.dorareason.com is one page, `public/coming-soon.html`, published as the whole site while the `HOLDING` file exists (see §11). Version 2.0, Paper and Night, is retired as a visual system: the founder rejected the site rebuilt to it as "AI-generic" on 20 September 2026. Its thesis, naming, voice, and mark geometry survive where this file repeats them. The React site in `src/` still implements v2.0 and is withheld from production. Do not extend it, and do not mix it with this system on one page.
+> **Version 3.2 · 24 September 2026.** Rewritten to match the site as shipped. The live site at www.dorareason.com is one page, `public/coming-soon.html`, published as the whole site while the `HOLDING` file exists (see §11). Version 2.0, Paper and Night, is retired as a visual system: the founder rejected the site rebuilt to it as "AI-generic" on 20 September 2026. Its thesis, naming, voice, and mark geometry survive where this file repeats them. The React site in `src/` still implements v2.0 and is withheld from production. Do not extend it, and do not mix it with this system on one page.
 >
 > The product interface behind the demo is specified in `docs/zora-ui-brief.md`, which carries the window's full component measurements. This file carries the brand, the page, and the rules. Where either document disagrees with `public/coming-soon.html`, the page is the reference and the document is corrected.
 
@@ -257,7 +257,7 @@ The window is Zora's real interface with demonstration data, built as live HTML.
 
 1. Every claim traces to a record with a source and a 24-hour time.
 2. Real product names: Linear, GitHub, Datadog, PagerDuty, Slack. Tickets look like tickets: ORD-1187, PR #2214, incident 2291.
-3. No dead controls. Every button, link, nav item, and timeline row does something. Rows that carry a chevron in Decisions and Settings open nothing yet (Open, §13).
+3. No dead controls. Every button, link, nav item, timeline row, and chevron row does something. A row with nothing to open, like the draft *Rollback owner named per service*, is not a button and has no hover state.
 4. No invented metrics. The figures reconcile; the Delivery bars average the 14.2 deploys a day they claim.
 5. The demo says it is a demo with fictional data.
 6. Zora never decides for the CTO. Held calls wait for a click, and she says who decides: "Nothing runs until you decide."
@@ -290,7 +290,10 @@ A small ambient pulse travels one random trace every 1.1 s, paused while the tab
 - **Sidebar:** all twelve screens open.
 - **Decisions ripple.** A decision updates the call row, the project row, the counts, the Decisions log and its subtitle, and her reply.
 - **Widget links go deeper through Zora.** *review* asks for the four-part incident review. *Where else →* asks where the same condition holds, and she names migration 0043. *Throughput, stability, quality →* asks how delivery is going. *All decisions →* asks for the week's decisions and their evidence. Each answer is written for every state of the two calls.
-- **The ask box** answers twelve topics from the demo's record and greets a hello. For anything else it says the question is not in this demo's record, rather than inventing an answer. The suggestions change as topics are used.
+- **Decision rows ask Zora about that decision.** Atlas and SDK 2.0 reuse her answers on those projects. *Index builds move off-peak* gets its own answer about the proposal and tonight's 0043 call. A row added by a decision asks about that call.
+- **Settings rows** expand in place with one line of detail, their chevron turning down, except *Sources*, which opens the Sources screen.
+- **Every clickable row** takes the timeline's hover tint and a pointer, and opens with Enter or Space.
+- **The ask box** answers thirteen topics from the demo's record and greets a hello. For anything else it says the question is not in this demo's record, rather than inventing an answer. The suggestions change as topics are used.
 - **A question asked while she is answering waits its turn.** If several arrive, the latest one runs.
 - **On screens 960 px and narrower**, a widget link scrolls the page to her panel and keeps her reply in view.
 - **Timeline rows** open their record in place.
@@ -415,7 +418,6 @@ When it is shot, the rules are: real machines at real scale, screens shot in cam
   - Archivo as the page face: shipped, not ruled on.
   - Zora's self-description in her own words. The v2.0 text led with the overnight brief and is retired.
   - *Throughput, stability, quality →*: her delivery answer covers throughput and stability, and the demo has no measure of quality.
-  - Chevron rows in the Decisions and Settings screens suggest they open a detail, but open nothing.
   - The four-shot film (§10).
   - Print recipes for the gradient and the status colours, proofed against hex.
   - The Accountability Line, the lab's first framework (v0.1 in `src/content/framework.ts`), including what "ready for Reported" means.
@@ -424,6 +426,7 @@ When it is shot, the rules are: real machines at real scale, screens shot in cam
 
 | Date | Version | Change | Source |
 | --- | --- | --- | --- |
+| 2026-09-24 | 3.2 | The chevron rows in Decisions and Settings are wired: decision rows ask Zora about that decision, Settings rows expand in place or open Sources. The draft row stays inert by the list-row rule. Four step labels that were cut off in Zora's panel are shortened. | `public/coming-soon.html` |
 | 2026-09-24 | 3.1 | The four widget links (*review*, *Where else →*, *Throughput, stability, quality →*, *All decisions →*) now ask Zora to go deeper. The arrow rule is corrected to match the brief, where a footer link goes deeper rather than always opening a screen. After the 0043 call, the Decisions log and the Projects table no longer say it is pending; after the rota is reassigned, the Data platform project no longer calls the rota gap open. | `public/coming-soon.html` |
 | 2026-09-24 | 3.0 | Rewritten to match the site as shipped: the coming-soon page, live since 21 September and last changed on 23 September. Positioning: Zora is an AI Chief of Staff for CTOs, Zora leads, and DORA Research, Inc. is the maker; the brief is one output, not her identity. Visuals: the original palette restored as the base; the Night register confined to Zora's panel; the gradient swarm turning every 22 s; Archivo on the page and Geist in the window; a live product window with three panes and a working demo; AI-template tells removed. Paper and Night retired as a visual system and its React build withheld. Statuses are now Decided, Shipped, Proposed, and Open. | Founder decisions of 20, 21, and 23 Sep 2026; `public/coming-soon.html` |
 | 2026-09-13 | 2.0 | Rewritten from the brand book v2.0: lab plus first product; Paper and Night registers; Zora positioned as a technical director reporting to the CTO; promise moved from memory to delivery; night brief as the central scene; four-part voice; AI said plainly; product marks; static swarm; The Accountability Line v0.1 as the lab's first published framework. Porcelain Intelligence and the second-brain positioning retired. | Founder interview, 13 Sep 2026 |
