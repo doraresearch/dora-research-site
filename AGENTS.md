@@ -1,3 +1,19 @@
+# Active production site: Rivet Ridge Rally
+
+> **Owner decision · 28 October 2026:** replace the DORA holding website at dorareason.com with the Rivet Ridge Rally landing page. This section takes precedence over the historical DORA instructions below for the active production site.
+
+- Edit `gaming/index.html`, `gaming/style.css`, `gaming/main.js`, and `gaming/venues.js`. Static deployment files are in `gaming/public/`; game art is in `gaming/media/`.
+- `npm run dev`, `npm run build`, and `npm run preview` use `vite.gaming.config.ts`. The dev and preview root `/` is Rivet Ridge Rally, and the production build writes `dist/`.
+- Game content sources and the teal/coral visual direction are documented in `gaming/README.md`. Use real game artwork and documented gameplay; do not claim AI world generation or live multiplayer.
+- Run typecheck, build, and rendered browser QA. No lint or automated test script is currently configured.
+- Keep the established local branch → GitHub PR → merge to `main` release path. The existing Cloudflare Pages workflow deploys `dist/` to project `dora-research-site`, using GitHub `Production` secrets. Do not use local Wrangler or commit credentials.
+- Preserve the archived DORA sources. `npm run dev:dora` and `npm run build:dora` retain the previous development/build path. `HOLDING` and `scripts/holding.mjs` apply only to `build:dora`; they do not select the active site.
+- The following DORA rules, including `DESIGN.md`, apply when working on the archived DORA site, not to Rivet Ridge Rally. Do not extend or publish the rejected React app in `src/`.
+
+---
+
+## Historical DORA instructions — archived 28 October 2026
+
 # DORA Research site
 
 Static site for **DORA Research, Inc.**, an applied AI lab, and its first product, **Zora**: an AI Chief of Staff for CTOs. She tracks every commitment, decision, and risk across an engineering organization and brings the CTO the calls that need a decision, with the evidence attached. She advises with evidence; the CTO decides. The promise is delivery, ship faster and break less; memory is the mechanism, not the promise. The morning brief is one thing she produces, not what she is: never frame Zora as an overnight reporting tool. Stack: React 18 + TypeScript + Vite + Tailwind + react-router-dom, prerendered via `vite-react-ssg`; the live page itself is plain HTML.
