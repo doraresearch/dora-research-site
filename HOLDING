@@ -1,2 +1,4 @@
-The coming-soon page is published as the whole site while this file exists.
-Delete it (and commit) to publish the full site again. See scripts/holding.mjs.
+Legacy DORA holding switch — retained after the owner-authorized Rivet Ridge Rally replacement on 28 October 2026.
+This file affects only npm run build:dora via scripts/holding.mjs.
+The active npm run build uses vite.gaming.config.ts and publishes gaming/.
+Do not delete this file to select the active site: deletion exposes the rejected React app in a legacy DORA build.

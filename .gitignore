@@ -10,3 +10,6 @@ dist.nosync
 
 # gstack browse screenshot artifacts
 .gstack-screenshots/
+
+# Standalone gaming concept build
+dist-gaming/

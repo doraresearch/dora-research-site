@@ -1,3 +1,5 @@
+> **Archived site · 28 October 2026:** the owner authorized Rivet Ridge Rally to replace the DORA holding page at dorareason.com. This document records the DORA/Zora design and remains authoritative for those archived sources only. The active landing page is `gaming/`; its art direction is documented in `gaming/README.md`. The current default build uses `vite.gaming.config.ts`. The historical production statements below describe the former DORA release, which remains available through `npm run build:dora`.
+
 # Design system: DORA Research and Zora
 
 Always read this file before making any visual, UI, or copy decision on this site. It describes the site as shipped and the decisions behind it.
