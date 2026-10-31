@@ -15,12 +15,12 @@ DORA sources remain archived. `npm run dev:dora` and `npm run build:dora` retain
 
 The owner selected Cinematic Launch, then simplified it to three sections: cinematic hero and film, visual track showcase, and a final Play on Roblox invitation. Riding tutorials, controls references and garage sections were removed. The original generated-video direction was deferred in favour of the existing motion preview.
 
-Dark navy, white Sora typography, electric teal actions, coral section headings, original sunset artwork, and actual venue captures. All text and controls are native HTML. No AI world generation, live multiplayer, fictional statistics or public-release claims. Roblox place `96146435186709` requires private-playtest access; website links do not grant access.
+Dark navy, white Sora typography, electric teal actions, coral section headings, original sunset artwork, and actual venue captures. All text and controls are native HTML. No AI world generation, live multiplayer, fictional statistics or public-release claims. Roblox place `96146435186709` requires invite-only playtest access; website links do not grant access. Both main play invitations state that the Roblox account needs access.
 
 ## Content and motion
 
 - `main.js` owns the three featured tracks, ten-track catalog and venue detail dialogs. `venues.js` holds documented venue names, settings, lap lengths and medal times.
-- `motion.js` owns the muted ten-second hero loop, pause/play control and on-demand 45-second film with native seeking, sound, captions and fullscreen controls.
+- `motion.js` owns the muted ten-second hero loop, pause/play control and on-demand 45-second film with native seeking, sound, captions and fullscreen controls. If the film fails, its dialog retains the poster and offers Retry; captions failing alone do not interrupt playback.
 - Background motion pauses offscreen, when a dialog opens or when the document is hidden. Reduced-motion and data-saving preferences prevent automatic loading/playback; visitors can opt in.
 - Video comes from the game's own `build/marketing/RivetRidgeRally_promo.mp4`. The hero uses seconds 8–18; the film retains the original 45-second edit. MP4 exports use H.264 with fast-start metadata, approximately 1.7 MB for the hero and 9.4 MB for the film. Caption cues describe non-dialogue racing audio.
 - `media/cinematic-poster.jpg` is generated promotional artwork derived from the selected concept, labeled separately from actual footage. Canyon's showcase uses existing promotional art; other venue images are actual gameplay. Sora is self-hosted with its SIL Open Font License in `public/fonts/OFL-Sora.txt`.

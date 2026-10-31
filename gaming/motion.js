@@ -95,7 +95,9 @@ export function installMotion({ modal, body }) {
         retry.textContent = 'Retry';
       }
       // Source failures do not consistently bubble to the video element.
-      film.addEventListener('error', showFailure, true);
+      film.addEventListener('error', event => {
+        if (event.target === film || event.target === film.querySelector('source')) showFailure();
+      }, true);
       film.addEventListener('playing', () => {
         media.classList.remove('has-error');
         fallback.hidden = true;
