@@ -63,3 +63,4 @@ footer .footer-brand{display:flex;flex-direction:column;align-items:flex-start;j
  .brand strong{font-size:16px}
  .header-play{font-size:11px;padding-inline:12px}
 }
+@media(min-width:701px){.track-heading h2{flex-shrink:0}}
