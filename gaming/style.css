@@ -43,3 +43,23 @@
  .catalog span{font-size:12px}
  footer p,footer>a:last-child{font-size:12px}
 }
+
+/* Give small navigation and utility links comfortable pointer/touch areas. */
+nav a{min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.discover-link{min-height:44px}
+.track-picker>.text-link{min-height:44px}
+footer a{min-height:44px;display:inline-flex;align-items:center}
+footer .footer-brand{display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+@media(max-width:700px){
+ nav{gap:20px}
+ nav a{font-size:13px}
+ .header-play{min-height:44px;font-size:12px}
+ .site-header{gap:10px}
+ .discover-link{font-size:12px}
+ #motion-toggle{font-size:12px}
+}
+@media(max-width:400px){
+ .brand{min-width:110px}
+ .brand strong{font-size:16px}
+ .header-play{font-size:11px;padding-inline:12px}
+}
