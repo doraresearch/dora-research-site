@@ -64,3 +64,11 @@ footer .footer-brand{display:flex;flex-direction:column;align-items:flex-start;j
  .header-play{font-size:11px;padding-inline:12px}
 }
 @media(min-width:701px){.track-heading h2{flex-shrink:0}}
+
+/* Let the hero grow with Chrome's rendered text metrics and browser zoom. */
+.hero{height:auto;min-height:clamp(640px,64svh,780px);display:grid;grid-template-rows:1fr auto;align-items:start;gap:36px;padding-bottom:32px}
+.hero-copy{align-self:start}
+.hero-footer{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px 24px;width:100%}
+.hero-footer .discover-link,.hero-footer .motion-controls{position:static}
+.hero-footer .motion-controls{margin-left:auto}
+@media(max-width:700px){.hero{min-height:790px}}
