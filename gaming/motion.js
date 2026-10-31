@@ -79,11 +79,53 @@ export function installMotion({ modal, body }) {
       if (modal.open) modal.close();
       hero.pause();
       modal.classList.add('film-dialog');
-      body.innerHTML = `<video class="film-player" controls playsinline preload="metadata" poster="${filmPoster}" aria-label="Rivet Ridge Rally gameplay film"><source src="/video/rivet-film.mp4" type="video/mp4"><track kind="captions" src="/video/rivet-film.vtt" srclang="en" label="English">Your browser does not support video. <a href="/video/rivet-film.mp4">Open the gameplay film</a>.</video><div class="film-description"><h2 id="modal-title">One more run.</h2><p>45 seconds of real Rivet Ridge Rally gameplay. Sound on for engines, turbo, landings, and the finish line. No voice-over.</p></div>`;
+      body.innerHTML = `<div class="film-media"><video class="film-player" controls playsinline preload="metadata" poster="${filmPoster}" aria-label="Rivet Ridge Rally gameplay film"><source src="/video/rivet-film.mp4" type="video/mp4"><track kind="captions" src="/video/rivet-film.vtt" srclang="en" label="English">Your browser does not support video. <a href="/video/rivet-film.mp4">Open the gameplay film</a>.</video><img class="film-fallback" src="${filmPoster}" alt="" hidden></div><div class="film-error" hidden><p role="status">The film couldn’t load. Try again.</p><button class="button secondary film-retry">Retry</button></div><div class="film-description"><h2 id="modal-title">One more run.</h2><p>45 seconds of real Rivet Ridge Rally gameplay. Sound on for engines, turbo, landings, and the finish line. No voice-over.</p></div>`;
+      const film = body.querySelector('.film-player');
+      const media = body.querySelector('.film-media');
+      const fallback = body.querySelector('.film-fallback');
+      const errorPanel = body.querySelector('.film-error');
+      const message = errorPanel.querySelector('[role="status"]');
+      const retry = errorPanel.querySelector('button');
+      function showFailure() {
+        media.classList.add('has-error');
+        fallback.hidden = false;
+        errorPanel.hidden = false;
+        message.textContent = 'The film couldn’t load. Try again.';
+        retry.disabled = false;
+        retry.textContent = 'Retry';
+      }
+      // Source failures do not consistently bubble to the video element.
+      film.addEventListener('error', showFailure, true);
+      film.addEventListener('playing', () => {
+        media.classList.remove('has-error');
+        fallback.hidden = true;
+        if (document.activeElement === retry) film.focus();
+        errorPanel.hidden = true;
+      });
+      function startFilm() {
+        film.play().catch(() => {
+          // Autoplay rejection leaves native Play available. Only a real
+          // media error should be presented as a failed download.
+          if (film.error) showFailure();
+          else if (!errorPanel.hidden && !media.classList.contains('has-error')) {
+            if (document.activeElement === retry) film.focus();
+            errorPanel.hidden = true;
+          }
+        });
+      }
+      retry.onclick = () => {
+        media.classList.remove('has-error');
+        fallback.hidden = true;
+        retry.disabled = true;
+        retry.textContent = 'Retrying…';
+        message.textContent = 'Loading the film…';
+        film.load();
+        startFilm();
+      };
       modal.showModal();
       // This is called within the click gesture; sound is never autoplayed
       // by ambient previews. Native controls remain available if blocked.
-      modal.querySelector('video').play().catch(() => {});
+      startFilm();
     };
   });
   updateToggle();
