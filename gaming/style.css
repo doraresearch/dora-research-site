@@ -14,3 +14,72 @@
 @media(min-width:1700px){.race-stage .race-film{min-height:530px}}
 @media(max-width:1100px){.track-heading h2{font-size:52px}.track-heading>p{font-size:12px}.track-showcase{gap:28px;grid-template-columns:1.5fr 1fr}.track-image{aspect-ratio:1.6}.track-detail h3{font-size:32px}.track-detail #selected-tagline{font-size:13px}.track-detail #selected-description{font-size:11px}.track-stage .venue-rail button{min-height:100px}.track-stage .venue-rail strong{font-size:11px}.track-stage .venue-rail button>span{padding:10px;gap:7px}.race-stage{gap:35px;grid-template-columns:1fr 1.1fr}.race-stage .race-film{min-height:390px}.race-stage h2{font-size:40px}.garage-stage{gap:35px}.garage-stage .swatches{gap:12px}.garage-stage .swatches button{width:32px;height:32px}.garage-art{aspect-ratio:1.15}.race-film-caption{display:block}.race-film-caption>span{display:block;margin-top:6px}}
 @media(max-width:700px){.track-stage{padding-block:45px}.track-heading{display:block;margin-bottom:25px}.track-heading h2{font-size:clamp(32px,9.5vw,60px);letter-spacing:-1.5px;line-height:1.01}.track-heading>p{font-size:12px;margin-top:20px}.track-heading>p br{display:none}.track-showcase{display:flex;flex-direction:column;gap:23px;align-items:stretch}.track-image{aspect-ratio:1.6}.track-image figcaption{font-size:8px;bottom:8px;right:8px}.track-number{font-size:10px}.track-detail h3{font-size:34px;letter-spacing:-1.2px;margin:12px 0}.track-detail #selected-tagline{font-size:14px}.track-detail #selected-description{font-size:12px;margin-bottom:17px}.track-button{font-size:12px;min-height:47px}.track-picker{display:block;margin-top:26px}.track-stage .venue-rail{gap:8px;grid-template-columns:repeat(3,minmax(0,1fr))}.track-stage .venue-rail button{aspect-ratio:auto;min-height:112px}.track-stage .venue-rail button>span{padding:8px 6px;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;gap:4px}.track-stage .venue-rail strong{font-size:10px;line-height:1.4}.track-stage .venue-rail small{font-size:8px}.track-picker>.text-link{margin-top:13px;min-height:44px}.race-stage{grid-template-columns:1fr;padding-block:40px 45px;gap:25px}.race-stage h2{font-size:clamp(33px,9.2vw,57px);letter-spacing:-1.5px}.race-intro{font-size:12px;margin-top:17px}.race-moves button{gap:15px;padding:17px 0}.race-moves strong{font-size:16px}.race-moves small{font-size:11px}.race-stage .race-film{min-height:285px;aspect-ratio:1.2}.race-film-caption{left:20px;bottom:20px}.race-film-caption strong{font-size:15px}.race-play{width:65px;height:65px}.garage-stage{grid-template-columns:1fr;gap:30px;padding-block:40px 45px}.garage-art{aspect-ratio:1.5}.garage-stage h2{font-size:48px;letter-spacing:-2px}.garage-stage h2 br{display:none}.garage-stage h2 em::before{content:' '}.garage-pitch>p:not(.garage-note){font-size:17px;margin:15px 0 24px}.garage-stage .swatches{gap:13px}.garage-stage .swatches button{width:35px;height:35px}.garage-note{font-size:11px}.play-finale{padding:60px 24px}.play-finale h2{font-size:clamp(30px,8.3vw,49px);letter-spacing:-1.4px}.play-finale p{font-size:11px;max-width:260px;margin:20px auto 24px}.finale-button{min-width:248px;font-size:14px;min-height:56px}.play-finale small{font-size:8px;line-height:1.8;max-width:260px;margin-inline:auto}footer.section-shell{gap:20px}footer p{font-size:10px}}
+
+/* Keep intrinsic aspect ratios from widening track choices beyond their grid cells. */
+.track-stage .venue-rail button{width:100%;min-width:0}
+
+/* Supporting copy should remain readable without zooming on a phone. */
+.track-heading>p,.track-detail #selected-description,.play-finale p,.modal-content p{font-size:16px}
+.access-note{font-size:12px!important;letter-spacing:0}
+.track-number,.track-image figcaption,.play-finale small,.notice,.modal-kicker{font-size:12px!important}
+.track-stage .venue-rail strong,.track-picker>.text-link,.track-button{font-size:14px}
+.track-stage .venue-rail small,#hero-source,.duration,footer p,footer>a:last-child{font-size:12px}
+.track-stage .venue-rail button>span{gap:8px}
+.modal-content .button,.catalog span,.controls-table td{font-size:14px}
+.film-description p{font-size:14px}
+@media(max-width:700px){
+ .hero-copy>p:not(.access-note){font-size:16px}
+ .track-heading>p,.track-detail #selected-description,.play-finale p{font-size:16px}
+ .track-detail #selected-tagline{font-size:16px}
+ .track-stage .venue-rail button{min-height:132px}
+ .track-stage .venue-rail strong{font-size:12px}
+ .track-stage .venue-rail small{font-size:12px}
+ .track-picker>.text-link{font-size:14px}
+ .track-button{font-size:14px}
+ .play-finale p{max-width:310px}
+ .play-finale small{max-width:310px;font-size:12px}
+ .motion-controls>span{font-size:10px}
+ .access-note{margin-left:0}
+ .catalog span{font-size:12px}
+ footer p,footer>a:last-child{font-size:12px}
+}
+
+/* Give small navigation and utility links comfortable pointer/touch areas. */
+nav a{min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.discover-link{min-height:44px}
+.track-picker>.text-link{min-height:44px}
+footer a{min-height:44px;display:inline-flex;align-items:center}
+footer .footer-brand{display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+@media(max-width:700px){
+ nav{gap:20px}
+ nav a{font-size:13px}
+ .header-play{min-height:44px;font-size:12px}
+ .site-header{gap:10px}
+ .discover-link{font-size:12px}
+ #motion-toggle{font-size:12px}
+}
+@media(max-width:400px){
+ .brand{min-width:110px}
+ .brand strong{font-size:16px}
+ .header-play{font-size:11px;padding-inline:12px}
+}
+@media(min-width:701px){.track-heading h2{flex-shrink:0}}
+
+/* Let the hero grow with Chrome's rendered text metrics and browser zoom. */
+.hero{height:auto;min-height:clamp(640px,64svh,780px);display:grid;grid-template-rows:1fr auto;align-items:start;gap:36px;padding-bottom:32px}
+.hero-copy{align-self:start}
+.hero-footer{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px 24px;width:100%}
+.hero-footer .discover-link,.hero-footer .motion-controls{position:static}
+.hero-footer .motion-controls{margin-left:auto}
+@media(max-width:700px){.hero{min-height:790px}}
+
+/* Recovery stays inside the existing film dialog and preserves its poster. */
+.film-media{position:relative;aspect-ratio:16/9;background:#000}
+.film-fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.film-media.has-error .film-player{visibility:hidden}
+.film-error{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:18px 25px;border-bottom:1px solid var(--line)}
+.film-error[hidden],.film-fallback[hidden]{display:none}
+.film-error p{margin:0;font-size:16px;line-height:1.6}
+.film-error .film-retry{min-width:100px;min-height:44px;flex-shrink:0}
+.film-retry:disabled{opacity:.6;cursor:wait;transform:none}
+@media(max-width:700px){.film-error{align-items:flex-start;flex-direction:column;padding:18px}}

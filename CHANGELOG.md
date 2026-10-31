@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.2 — 2026-10-31
+
+- Fix Chrome hero-link overlap and tablet track thumbnail overlap.
+- Improve supporting text readability and navigation tap targets.
+- Clarify invite-only playtest access beside Roblox actions.
+- Add a film loading failure message and Retry action, retaining the poster, close control, and keyboard focus behavior.
+
 ## 1.1.1 — 2026-10-31
 
 - Replace the initial Rivet page with the selected Cinematic Launch design: cinematic hero, track showcase, and a clear Roblox play invitation.
