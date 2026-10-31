@@ -17,3 +17,29 @@
 
 /* Keep intrinsic aspect ratios from widening track choices beyond their grid cells. */
 .track-stage .venue-rail button{width:100%;min-width:0}
+
+/* Supporting copy should remain readable without zooming on a phone. */
+.track-heading>p,.track-detail #selected-description,.play-finale p,.modal-content p{font-size:16px}
+.access-note{font-size:12px!important;letter-spacing:0}
+.track-number,.track-image figcaption,.play-finale small,.notice,.modal-kicker{font-size:12px!important}
+.track-stage .venue-rail strong,.track-picker>.text-link,.track-button{font-size:14px}
+.track-stage .venue-rail small,#hero-source,.duration,footer p,footer>a:last-child{font-size:12px}
+.track-stage .venue-rail button>span{gap:8px}
+.modal-content .button,.catalog span,.controls-table td{font-size:14px}
+.film-description p{font-size:14px}
+@media(max-width:700px){
+ .hero-copy>p:not(.access-note){font-size:16px}
+ .track-heading>p,.track-detail #selected-description,.play-finale p{font-size:16px}
+ .track-detail #selected-tagline{font-size:16px}
+ .track-stage .venue-rail button{min-height:132px}
+ .track-stage .venue-rail strong{font-size:12px}
+ .track-stage .venue-rail small{font-size:12px}
+ .track-picker>.text-link{font-size:14px}
+ .track-button{font-size:14px}
+ .play-finale p{max-width:310px}
+ .play-finale small{max-width:310px;font-size:12px}
+ .motion-controls>span{font-size:10px}
+ .access-note{margin-left:0}
+ .catalog span{font-size:12px}
+ footer p,footer>a:last-child{font-size:12px}
+}
