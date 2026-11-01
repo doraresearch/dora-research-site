@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.3 — 2026-11-02
+
+- Replace V1 video with the 26-second silent v3 development trailer, 6.233-second hero loop and matching in-engine posters.
+- Update runtime, development/paid-cosmetic labels and current venue names; remove obsolete sound captions and sound claims.
+- Match mobile poster/video framing and strengthen desktop headline contrast over roadside signage.
+- Preserve native media controls, Retry recovery, reduced-motion behavior and the three-section layout.
+
 ## 1.1.2 — 2026-10-31
 
 - Fix Chrome hero-link overlap and tablet track thumbnail overlap.

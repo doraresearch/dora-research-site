@@ -52,8 +52,8 @@ export function installMotion({ modal, body }) {
     });
   }
   bindPlayingState(hero, document.querySelector('.hero-media'));
-  hero.addEventListener('playing', () => { document.querySelector('#hero-source').textContent = 'Actual in-game footage'; });
-  hero.addEventListener('pause', () => { document.querySelector('#hero-source').textContent = 'Cinematic key art'; });
+  hero.addEventListener('playing', () => { document.querySelector('#hero-source').textContent = 'Development footage'; });
+  hero.addEventListener('pause', () => { document.querySelector('#hero-source').textContent = 'Development still'; });
   toggle.onclick = () => {
     motionEnabled = !motionEnabled;
     updateToggle();
@@ -79,7 +79,7 @@ export function installMotion({ modal, body }) {
       if (modal.open) modal.close();
       hero.pause();
       modal.classList.add('film-dialog');
-      body.innerHTML = `<div class="film-media"><video class="film-player" controls playsinline preload="metadata" poster="${filmPoster}" aria-label="Rivet Ridge Rally gameplay film"><source src="/video/rivet-film.mp4" type="video/mp4"><track kind="captions" src="/video/rivet-film.vtt" srclang="en" label="English">Your browser does not support video. <a href="/video/rivet-film.mp4">Open the gameplay film</a>.</video><img class="film-fallback" src="${filmPoster}" alt="" hidden></div><div class="film-error" hidden><p role="status">The film couldn’t load. Try again.</p><button class="button secondary film-retry">Retry</button></div><div class="film-description"><h2 id="modal-title">One more run.</h2><p>45 seconds of real Rivet Ridge Rally gameplay. Sound on for engines, turbo, landings, and the finish line. No voice-over.</p></div>`;
+      body.innerHTML = `<div class="film-media"><video class="film-player" controls playsinline preload="metadata" poster="${filmPoster}" aria-label="Rivet Ridge Rally development trailer"><source src="/video/rivet-film.mp4?v=3" type="video/mp4">Your browser does not support video. <a href="/video/rivet-film.mp4?v=3">Open the trailer</a>.</video><img class="film-fallback" src="${filmPoster}" alt="" hidden></div><div class="film-error" hidden><p role="status">The film couldn’t load. Try again.</p><button class="button secondary film-retry">Retry</button></div><div class="film-description"><h2 id="modal-title">One more run.</h2><p>26 seconds of racing against AI rivals. Development footage; environments may differ from the playtest. Paid cosmetics shown. Silent trailer.</p></div>`;
       const film = body.querySelector('.film-player');
       const media = body.querySelector('.film-media');
       const fallback = body.querySelector('.film-fallback');

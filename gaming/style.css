@@ -83,3 +83,7 @@ footer .footer-brand{display:flex;flex-direction:column;align-items:flex-start;j
 .film-error .film-retry{min-width:100px;min-height:44px;flex-shrink:0}
 .film-retry:disabled{opacity:.6;cursor:wait;transform:none}
 @media(max-width:700px){.film-error{align-items:flex-start;flex-direction:column;padding:18px}}
+
+/* V3 in-engine footage: shield the desktop headline from roadside signage. */
+@media(min-width:701px){.hero-shade{background:linear-gradient(90deg,#080f20e6 0%,#080f2099 35%,#080f2012 70%),linear-gradient(0deg,var(--bg),transparent 22%)}}
+@media(max-width:700px){.hero-poster{background-position:76% center}.hero-media video{object-position:76% center}}

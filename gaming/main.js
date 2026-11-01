@@ -42,7 +42,7 @@ featured.forEach(id => {
 selectVenue(selected);
 document.querySelector('#selected-venue').onclick = () => showVenue(selected);
 document.querySelector('#all-venues').onclick = () => {
-  openModal('<div class="modal-content"><p class="modal-kicker">THE CAMPAIGN</p><h2 id="modal-title">Ten venues. One more run.</h2><p>From Canyon Kickoff to Summit Showdown. Podium a race to open the next venue.</p><div class="catalog"></div></div>');
+  openModal('<div class="modal-content"><p class="modal-kicker">THE CAMPAIGN</p><h2 id="modal-title">Ten venues. One more run.</h2><p>From Redline Mesa to Frostbite Ridge. Podium a race to open the next venue.</p><div class="catalog"></div></div>');
   venues.forEach(v => {
     const button = document.createElement('button');
     button.innerHTML = `<img src="${imageFor(v.id)}" alt="${v.name} actual gameplay" loading="lazy"><span>${v.name}</span>`;
