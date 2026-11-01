@@ -1,6 +1,6 @@
 export const venues = [
   {
-    "name": "Canyon Kickoff",
+    "name": "Redline Mesa",
     "id": "canyon-kickoff",
     "tagline": "Find the line. Feel the lift.",
     "setting": "Sunlit red-rock festival",
@@ -13,7 +13,7 @@ export const venues = [
     "period": "Daylight"
   },
   {
-    "name": "Saltpan Scorch",
+    "name": "Salt Flats Run",
     "id": "saltpan-scorch",
     "tagline": "Ration the heat, own the line.",
     "setting": "Bleached midday salt flat",
@@ -26,7 +26,7 @@ export const venues = [
     "period": "Daylight"
   },
   {
-    "name": "Pine Run",
+    "name": "Splinter Run",
     "id": "pine-run",
     "tagline": "Thread the timber rhythm.",
     "setting": "Alpine logging festival",
@@ -78,7 +78,7 @@ export const venues = [
     "period": "Daylight"
   },
   {
-    "name": "Foundry Flight",
+    "name": "Copper Crossing",
     "id": "foundry-flight",
     "tagline": "Ride the sparks, land the line.",
     "setting": "Colorful reclaimed metalworks",
@@ -104,7 +104,7 @@ export const venues = [
     "period": "After dark"
   },
   {
-    "name": "Cinder Caldera",
+    "name": "Cinder Wasteland",
     "id": "cinder-caldera",
     "tagline": "Outrun the mountain's temper.",
     "setting": "Volcanic badlands at ember sunrise",
@@ -117,7 +117,7 @@ export const venues = [
     "period": "Daylight"
   },
   {
-    "name": "Summit Showdown",
+    "name": "Frostbite Ridge",
     "id": "summit-showdown",
     "tagline": "Every line is a decision.",
     "setting": "High-altitude festival finale",

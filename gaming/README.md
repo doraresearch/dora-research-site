@@ -19,11 +19,14 @@ Dark navy, white Sora typography, electric teal actions, coral section headings,
 
 ## Content and motion
 
-- `main.js` owns the three featured tracks, ten-track catalog and venue detail dialogs. `venues.js` holds documented venue names, settings, lap lengths and medal times.
-- `motion.js` owns the muted ten-second hero loop, pause/play control and on-demand 45-second film with native seeking, sound, captions and fullscreen controls. If the film fails, its dialog retains the poster and offers Retry; captions failing alone do not interrupt playback.
-- Background motion pauses offscreen, when a dialog opens or when the document is hidden. Reduced-motion and data-saving preferences prevent automatic loading/playback; visitors can opt in.
-- Video comes from the game's own `build/marketing/RivetRidgeRally_promo.mp4`. The hero uses seconds 8–18; the film retains the original 45-second edit. MP4 exports use H.264 with fast-start metadata, approximately 1.7 MB for the hero and 9.4 MB for the film. Caption cues describe non-dialogue racing audio.
-- `media/cinematic-poster.jpg` is generated promotional artwork derived from the selected concept, labeled separately from actual footage. Canyon's showcase uses existing promotional art; other venue images are actual gameplay. Sora is self-hosted with its SIL Open Font License in `public/fonts/OFL-Sora.txt`.
+- `main.js` owns the featured tracks, ten-track catalog and venue detail dialogs. Stable track IDs remain unchanged; displayed names match the current game’s `src/shared/rules/Tracks.luau` (including Redline Mesa, Splinter Run and Frostbite Ridge).
+- `motion.js` owns the muted 6.233-second hero loop and on-demand 26-second silent trailer with native playback, seek and fullscreen controls. Film failures retain the poster and offer Retry; blocked playback leaves native controls available.
+- The v3 media source is `/Users/john/Sandbox/rivet-ridge-rally-website-video-v3/`: copy only trailer.mp4, hero-loop.mp4, poster.jpg and trailer-poster.jpg. Owner confirmed website-use rights. `sources/` stays internal and is never committed or uploaded.
+- Both videos are 1920×1080, 30fps H.264 with fast-start metadata and no audio stream. Trailer is about 14.5 MB; hero about 3.45 MB. The old sound-caption track is removed because this version is silent. Static video URLs include a v3 cache key.
+- Footage was captured in-engine from development build f259bfa. Venue scenery and the neutral rider are Studio-only; do not describe it as the currently available playtest. The film description identifies development footage and paid cosmetics. The invite-only access note remains beside both play invitations.
+- Hero video and matching first-frame poster use the same framing: 50% on desktop/tablet and 76% on phones. The desktop scrim reduces competition from roadside lettering. Background motion pauses offscreen, during dialogs and when the tab is hidden; reduced-motion/data-saving preferences defer loading until opt-in.
+- Poster and video are development footage; the other existing promotional artwork and venue stills remain unchanged. Sora is self-hosted with its SIL Open Font License in `public/fonts/OFL-Sora.txt`.
+- Known media limitations accepted for integration: the foliage loop transition is visible; a roadside RIDER SCHOOL board enters behind the hero headline; the trailer contains game-effect flicker and a brief repeated finish crossing. No retouching or trailer re-edit was performed here. Physical-phone playback has not been verified.
 
 ## Verification
 
