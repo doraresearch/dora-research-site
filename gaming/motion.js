@@ -30,19 +30,21 @@ export function installMotion({ modal, body }) {
     });
   }
   function updateToggle() {
-    toggle.setAttribute('aria-pressed', String(motionEnabled));
-    toggle.setAttribute('aria-label', motionEnabled ? 'Pause background video' : 'Play background video');
-    toggle.querySelector('.motion-label').textContent = motionEnabled ? 'Pause motion' : 'Play motion';
-    toggle.querySelector('.motion-icon').textContent = motionEnabled ? 'Ⅱ' : '▶';
+    const finished = hero.ended;
+    toggle.setAttribute('aria-pressed', String(motionEnabled && !finished));
+    toggle.setAttribute('aria-label', finished ? 'Replay background video' : motionEnabled ? 'Pause background video' : 'Play background video');
+    toggle.querySelector('.motion-label').textContent = finished ? 'Replay motion' : motionEnabled ? 'Pause motion' : 'Play motion';
+    toggle.querySelector('.motion-icon').textContent = motionEnabled && !finished ? 'Ⅱ' : '▶';
   }
   function syncMotion() {
     const allowed = motionEnabled && !document.hidden && !modal.open;
-    if (allowed && heroVisible) playSilently(hero);
+    if (allowed && heroVisible && !hero.ended) playSilently(hero);
     else hero.pause();
   }
   function bindPlayingState(video, container) {
     video.addEventListener('playing', () => container.classList.add('is-playing'));
-    video.addEventListener('pause', () => container.classList.remove('is-playing'));
+    // Retain the rendered frame on pause/end; do not cross-fade back to frame zero.
+    video.addEventListener('pause', updateToggle);
     video.addEventListener('error', () => {
       container.classList.remove('is-playing');
       if (video === hero) {
@@ -53,8 +55,9 @@ export function installMotion({ modal, body }) {
   }
   bindPlayingState(hero, document.querySelector('.hero-media'));
   hero.addEventListener('playing', () => { document.querySelector('#hero-source').textContent = 'Development footage'; });
-  hero.addEventListener('pause', () => { document.querySelector('#hero-source').textContent = 'Development still'; });
+  hero.addEventListener('ended', () => { motionEnabled = false; updateToggle(); });
   toggle.onclick = () => {
+    if (hero.ended) hero.currentTime = 0;
     motionEnabled = !motionEnabled;
     updateToggle();
     syncMotion();
