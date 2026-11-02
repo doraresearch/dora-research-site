@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.4 — 2026-11-02
+
+- Replace the repeating backdrop with a short racing intro that holds its final frame and offers Replay.
+- Give phones a separate unobscured video stage below the hero copy.
+- Feature current Redline Mesa, Harvest Ridge and Splinter Run footage; refresh the closing artwork.
+- Simplify inline track previews while retaining optional details through the ten-track catalog.
+
 ## 1.1.3 — 2026-11-02
 
 - Replace V1 video with the 26-second silent v3 development trailer, 6.233-second hero loop and matching in-engine posters.
