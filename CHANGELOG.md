@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.5 — 2026-11-03
+
+- Restore the owner-preferred continuous v3 backdrop and matching poster with Pause/Play controls.
+- Preserve the separate mobile video stage, current track previews and simplified catalog flow.
+
 ## 1.1.4 — 2026-11-02
 
 - Replace the repeating backdrop with a short racing intro that holds its final frame and offers Replay.

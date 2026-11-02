@@ -1,4 +1,8 @@
-# Rivet landing-page staging rehearsal
+# Current hero direction
+
+The owner rejected the one-time intro and held race frame on 3 November 2026. The active backdrop is again the original continuous 6.233-second v3 loop and matching poster, with Pause/Play controls. The refreshed track stills, simplified catalog flow and separate mobile video stage remain.
+
+# Previous staging rehearsal — superseded hero behavior
 
 Stageshow principles applied to an existing real-game landing page: one focal scene, a visible payoff, an intentional held result, and a separate compact composition. No faux product UI, browser/device chrome, cursor walkthrough, placeholder bars or kit components were introduced. This adapts the skill’s framing/motion principles rather than claiming a copied gold example or a kit film-gate pass.
 
