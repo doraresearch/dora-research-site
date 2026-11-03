@@ -1,6 +1,6 @@
 # Current hero direction
 
-The owner rejected the one-time intro and held race frame on 3 November 2026. The active backdrop is again the original continuous 6.233-second v3 loop and matching poster, with Pause/Play controls. The refreshed track stills, simplified catalog flow and separate mobile video stage remain.
+The owner rejected the one-time intro and held race frame on 3 November 2026. The active backdrop is again the continuous v3 loop, now trimmed to 4.733 seconds by removing the last 1.5 seconds and matching poster, with Pause/Play controls. The refreshed track stills, simplified catalog flow and separate mobile video stage remain.
 
 # Previous staging rehearsal — superseded hero behavior
 

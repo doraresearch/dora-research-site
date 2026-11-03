@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.6 — 2026-11-03
+
+- Remove the last 1.5 seconds of the looping backdrop, reducing it from 187 to 142 frames (4.733 seconds).
+- Refresh its cache key; retain the existing poster, continuous playback and site layout.
+
 ## 1.1.5 — 2026-11-03
 
 - Restore the owner-preferred continuous v3 backdrop and matching poster with Pause/Play controls.
