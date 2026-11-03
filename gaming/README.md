@@ -26,7 +26,7 @@ Dark navy, white Sora typography, electric teal actions, coral section headings,
 - Footage was captured in-engine from development build f259bfa. Venue scenery and the neutral rider are Studio-only; do not describe it as the currently available playtest. The film description identifies development footage and paid cosmetics. The invite-only access note remains beside both play invitations.
 - Desktop keeps the full-bleed hero treatment. Phones place the copy/actions above an uncovered, full-width 16:9 video stage, with matching centered poster/video framing. The desktop scrim reduces competition from roadside lettering. Background motion pauses offscreen, during dialogs and when the tab is hidden; paused media returns to the matching v3 poster; reduced-motion/data-saving preferences defer loading until opt-in.
 - Poster, featured track stills and closing artwork are development footage from the current trailer; the other seven catalog captures remain unchanged. Sora is self-hosted with its SIL Open Font License in `public/fonts/OFL-Sora.txt`.
-- The owner chose to restore the continuous v3 backdrop, including its previously reviewed foliage transition, rather than hold a frozen race frame. The full trailer remains unedited and contains the previously documented game-effect flicker and brief repeated finish crossing. Physical-phone playback has not been verified.
+- The owner chose continuous playback rather than a held race frame, then requested removal of the final 1.5 seconds, omitting the former foliage ending. The full trailer remains unedited and contains the previously documented game-effect flicker and brief repeated finish crossing. Physical-phone playback has not been verified.
 
 ## Verification
 
